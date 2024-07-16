@@ -28,6 +28,10 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
     "@typescript-eslint/camelcase": "off",
-    "no-console": "error"
+    "no-console": "error",
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": ["arrow-function", "function-declaration"] }
+    ]
   }
 }
