@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import * as style from "./buttons.css";
+import { Body15SB } from "../texts/texts";
 
 const LoginButton = () => {
   function handleKakaoLogin() {
@@ -11,14 +13,18 @@ const LoginButton = () => {
   }
 
   return (
-    <button type="button" onClick={() => handleKakaoLogin()}>
+    <button
+      type="button"
+      onClick={() => handleKakaoLogin()}
+      className={style.kakaoContainer}
+    >
       <Image
         src="/icons/kakao-logo.svg"
         alt="login-logo"
         height={12}
         width={12}
       />
-      login with kakao
+      <Body15SB>카카오 로그인</Body15SB>
     </button>
   );
 };

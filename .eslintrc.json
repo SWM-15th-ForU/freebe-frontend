@@ -28,6 +28,7 @@
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
+    "import/prefer-default-export": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-console": "error",
