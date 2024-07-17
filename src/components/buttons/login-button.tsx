@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 const LoginButton = () => {
   function handleKakaoLogin() {
     window.Kakao.Auth.authorize({
@@ -10,6 +12,12 @@ const LoginButton = () => {
 
   return (
     <button type="button" onClick={() => handleKakaoLogin()}>
+      <Image
+        src="/icons/kakao-logo.svg"
+        alt="login-logo"
+        height={12}
+        width={12}
+      />
       login with kakao
     </button>
   );
