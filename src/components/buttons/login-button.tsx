@@ -1,11 +1,13 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-
 const LoginButton = () => {
-  async function handleKakaoLogin() {
-    signIn("kakao", { redirect: true, callbackUrl: "/" });
+  function handleKakaoLogin() {
+    window.Kakao.Auth.authorize({
+      // [TODO] redirect to backend
+      redirectUri: "http://localhost:8080/login/oauth2/code/kakao",
+    });
   }
+
   return (
     <button type="button" onClick={() => handleKakaoLogin()}>
       login with kakao
