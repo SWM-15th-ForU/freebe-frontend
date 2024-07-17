@@ -25,9 +25,16 @@
   "ignorePatterns": ["node_modules/"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off",
+    "import/prefer-default-export": "off",
     "@typescript-eslint/camelcase": "off",
-    "no-console": "error"
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-console": "error",
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": ["arrow-function", "function-declaration"] }
+    ]
   }
 }
