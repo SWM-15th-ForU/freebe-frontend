@@ -8,7 +8,9 @@ const LoginButton = () => {
   function handleKakaoLogin() {
     window.Kakao.Auth.authorize({
       // [TODO] redirect to backend
-      redirectUri: "http://localhost:8080/login/oauth2/code/kakao",
+      redirectUri:
+        "https://f32b-221-148-248-129.ngrok-free.app/login/oauth2/code/kakao",
+      state: "photographer",
     });
   }
 
