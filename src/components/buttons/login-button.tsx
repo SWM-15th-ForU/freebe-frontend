@@ -5,19 +5,15 @@ import * as style from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
 const LoginButton = () => {
-  function handleKakaoLogin() {
-    window.Kakao.Auth.authorize({
-      // [TODO] redirect to backend
-      redirectUri:
-        "https://f32b-221-148-248-129.ngrok-free.app/login/oauth2/code/kakao",
-      state: "photographer",
-    });
+  function loginToKakao() {
+    window.location.href =
+      "https://4c07-221-148-248-129.ngrok-free.app/oauth2/authorization/kakao";
   }
 
   return (
     <button
       type="button"
-      onClick={() => handleKakaoLogin()}
+      onClick={loginToKakao}
       className={style.kakaoContainer}
     >
       <Image
