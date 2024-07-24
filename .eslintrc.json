@@ -27,6 +27,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-bind": "off",
     "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "no-useless-catch": "off",

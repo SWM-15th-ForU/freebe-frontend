@@ -7,7 +7,8 @@ import * as style from "./product.css";
 import ItemFieldArray from "./item-field-array";
 import { SubmitButton } from "../buttons/common-buttons";
 import OptionFieldArray from "./option-field-array";
-import ImagesInput from "./images-input";
+import ImagesInput from "./image-input";
+import DiscountFieldArray from "./discount-field-array";
 
 const ProductForm = () => {
   const defaultValues: Product = {
@@ -25,6 +26,13 @@ const ProductForm = () => {
       },
     ],
     options: [{ title: "보정본 추가", isFree: false }],
+    discounts: [
+      {
+        title: "첫 주문 할인",
+        discountType: "amount",
+        hasDescription: false,
+      },
+    ],
   };
   const method = useForm({
     defaultValues,
@@ -49,6 +57,7 @@ const ProductForm = () => {
         <ImagesInput images={images} setImage={setImages} />
         <ItemFieldArray formControl={control} formRegister={register} />
         <OptionFieldArray formControl={control} formRegister={register} />
+        <DiscountFieldArray formControl={control} formRegister={register} />
         <SubmitButton title="다음" />
       </form>
     </FormProvider>

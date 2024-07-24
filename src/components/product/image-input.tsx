@@ -2,6 +2,7 @@ import { Image } from "product-types";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { AddButton } from "../buttons/common-buttons";
 import ImageThumbnail from "../common/image-thumbnail";
+import { Body15SB } from "../texts/texts";
 
 interface ImageInputProps {
   images: Image[];
@@ -51,11 +52,12 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
 
   return (
     <div style={{ width: "100%" }}>
+      <Body15SB>상품 사진</Body15SB>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        {images.map((image) => {
+        {images.map((image, index) => {
           return (
             <ImageThumbnail
-              key={image.name}
+              key={image.name + index}
               image={image}
               onClickDelete={() => handleDeleteImage(image.name)}
             />

@@ -12,6 +12,15 @@ declare module "product-types" {
     price?: number;
   }
 
+  export interface Discount {
+    title: string;
+    hasDescription: boolean;
+    description?: string;
+    discountType: "rate" | "amount";
+    rate?: number;
+    amount?: number;
+  }
+
   export type Image = File;
 
   export interface Product {
@@ -20,5 +29,6 @@ declare module "product-types" {
     images: Image[];
     items: Item[];
     options: Option[];
+    discounts: Discount[];
   }
 }
