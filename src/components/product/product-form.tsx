@@ -1,28 +1,35 @@
 "use client";
 
 import { Product } from "product-types";
-import { useFieldArray, useForm } from "react-hook-form";
-import * as style from "./product-form.css";
+import { useForm } from "react-hook-form";
+import * as style from "./product.css";
+import ItemFieldArray from "./item-field-array";
 
 const ProductForm = () => {
-  const defaultValues: Product = {
+  const values: Product = {
     title: undefined,
     subtitle: undefined,
     images: [],
-    items: [{ title: "기본 가격", content: "120,000원" }],
+    items: [
+      { title: "기본 가격", content: "120,000원" },
+      { title: "촬영 시간", content: "1시간" },
+      {
+        title: "보정본 수",
+        content: "10장",
+        description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
+      },
+    ],
     options: [],
   };
   const { handleSubmit, control, register } = useForm({
-    defaultValues,
+    values,
   });
-  const {
-    fields: itemFields,
-    append: appendItem,
-    remove: removeItem,
-  } = useFieldArray({ control, name: "items" });
+  const onSubmit = (data: Product) => {
+    // console.log(data);
+  };
 
   return (
-    <form className={style.formDiv}>
+    <form className={style.formDiv} onSubmit={handleSubmit(onSubmit)}>
       <input
         placeholder="상품 제목을 입력해 주세요."
         className={style.textInput}
@@ -34,6 +41,8 @@ const ProductForm = () => {
         className={style.textInput}
         {...register("subtitle")}
       />
+      <ItemFieldArray formControl={control} formRegister={register} />
+      <button type="submit">다음</button>
     </form>
   );
 };

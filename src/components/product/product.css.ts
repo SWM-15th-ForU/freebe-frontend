@@ -15,3 +15,10 @@ export const textInput = style({
   border: 0,
   width: "80%",
 });
+
+export const inputBox = style({
+  backgroundColor: "#D9D9D9",
+  borderRadius: 10,
+  padding: 10,
+  marginTop: 20,
+});
