@@ -2,6 +2,7 @@ import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
 import { Body15SB } from "../texts/texts";
 import ItemInput from "./item-input";
+import { AddButton } from "../buttons/common-buttons";
 
 const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   const { fields, append, remove } = useFieldArray({
@@ -22,13 +23,10 @@ const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
           />
         );
       })}
-
-      <button
-        type="button"
+      <AddButton
         onClick={() => append({ title: "", content: "", description: "" })}
-      >
-        추가하기
-      </button>
+        title="추가하기"
+      />
     </div>
   );
 };

@@ -17,3 +17,19 @@ export const kakaoContainer = style({
     cursor: "pointer",
   },
 });
+
+export const AddContainer = style({
+  width: "100%",
+  border: "dashed",
+  borderRadius: 10,
+  marginTop: 15,
+  padding: 5,
+});
+
+export const SubmitContainer = style({
+  width: "100%",
+  borderRadius: 10,
+  marginTop: 15,
+  padding: 5,
+  border: "none",
+});

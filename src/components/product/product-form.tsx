@@ -4,6 +4,7 @@ import { Product } from "product-types";
 import { useForm } from "react-hook-form";
 import * as style from "./product.css";
 import ItemFieldArray from "./item-field-array";
+import { SubmitButton } from "../buttons/common-buttons";
 
 const ProductForm = () => {
   const values: Product = {
@@ -42,7 +43,7 @@ const ProductForm = () => {
         {...register("subtitle")}
       />
       <ItemFieldArray formControl={control} formRegister={register} />
-      <button type="submit">다음</button>
+      <SubmitButton title="다음" />
     </form>
   );
 };
