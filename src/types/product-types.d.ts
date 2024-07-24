@@ -12,10 +12,12 @@ declare module "product-types" {
     price?: number;
   }
 
+  export type Image = File;
+
   export interface Product {
     title: string;
     subtitle: string;
-    images: any[];
+    images: Image[];
     items: Item[];
     options: Option[];
   }

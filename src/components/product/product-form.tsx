@@ -1,11 +1,13 @@
 "use client";
 
-import { Product } from "product-types";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { Image, Product } from "product-types";
 import * as style from "./product.css";
 import ItemFieldArray from "./item-field-array";
 import { SubmitButton } from "../buttons/common-buttons";
 import OptionFieldArray from "./option-field-array";
+import ImagesInput from "./images-input";
 
 const ProductForm = () => {
   const defaultValues: Product = {
@@ -28,13 +30,11 @@ const ProductForm = () => {
     defaultValues,
   });
   const { handleSubmit, control, register } = method;
-  const onSubmit = (data: Product) => {
-    // console.log(data);
-  };
+  const [images, setImages] = useState<Image[]>([]);
 
   return (
     <FormProvider {...method}>
-      <form className={style.formDiv} onSubmit={handleSubmit(onSubmit)}>
+      <form className={style.formDiv}>
         <input
           placeholder="상품 제목을 입력해 주세요."
           className={style.textInput}
@@ -46,6 +46,7 @@ const ProductForm = () => {
           className={style.textInput}
           {...register("subtitle")}
         />
+        <ImagesInput images={images} setImage={setImages} />
         <ItemFieldArray formControl={control} formRegister={register} />
         <OptionFieldArray formControl={control} formRegister={register} />
         <SubmitButton title="다음" />
