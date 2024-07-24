@@ -9,15 +9,16 @@ import OptionFieldArray from "./option-field-array";
 
 const ProductForm = () => {
   const defaultValues: Product = {
-    title: undefined,
-    subtitle: undefined,
+    title: "",
+    subtitle: "",
     images: [],
     items: [
-      { title: "기본 가격", content: "120,000원" },
-      { title: "촬영 시간", content: "1시간" },
+      { title: "기본 가격", content: "120,000원", hasDescription: false },
+      { title: "촬영 시간", content: "1시간", hasDescription: false },
       {
         title: "보정본 수",
         content: "10장",
+        hasDescription: true,
         description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
       },
     ],

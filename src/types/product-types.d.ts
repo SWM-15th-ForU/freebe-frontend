@@ -1,19 +1,20 @@
 declare module "product-types" {
   export interface Item {
-    title: undefined | string;
-    content: undefined | string;
-    description?: undefined | string;
+    title: string;
+    content: string;
+    hasDescription: boolean;
+    description?: string;
   }
 
   export interface Option {
-    title: undefined | string;
+    title: string;
     isFree: boolean;
     price?: number;
   }
 
   export interface Product {
-    title: undefined | string;
-    subtitle: undefined | string;
+    title: string;
+    subtitle: string;
     images: any[];
     items: Item[];
     options: Option[];

@@ -11,7 +11,7 @@ const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   });
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <Body15SB>상품 구성</Body15SB>
       {fields.map((item, index) => {
         return (
@@ -24,7 +24,14 @@ const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         );
       })}
       <AddButton
-        onClick={() => append({ title: "", content: "", description: "" })}
+        onClick={() =>
+          append({
+            title: "",
+            content: "",
+            description: "",
+            hasDescription: false,
+          })
+        }
         title="추가하기"
       />
     </div>
