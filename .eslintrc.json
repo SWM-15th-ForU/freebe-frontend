@@ -27,6 +27,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-no-bind": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
+    "react/jsx-props-no-spreading": "off",
     "no-useless-catch": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/camelcase": "off",
