@@ -1,14 +1,15 @@
+import { Product } from "product-types";
 import { useForm } from "react-hook-form";
 
 const ProductForm = () => {
-  const defaultValues = {
+  const defaultValues: Product = {
     title: undefined,
     subtitle: undefined,
     images: [],
-    item: [],
-    option: [],
+    items: [],
+    options: [],
   };
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control } = useForm<Product>({
     defaultValues,
   });
 
