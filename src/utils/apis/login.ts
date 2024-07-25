@@ -1,5 +1,6 @@
 import { nextFetch } from "./core";
 
+// [TODO] OAuth 요청 방식 확정에 따라 삭제 혹은 수정
 // async function getPhotographerKakaoLogin() {
 //   const response = await nextFetch("/oauth2/authorization/kakao", {
 //     method: "GET",
