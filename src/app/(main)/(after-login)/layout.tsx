@@ -1,4 +1,4 @@
-import Header from "@/containers/main/header/header";
+import Header from "@/containers/main/header";
 
 const MainAfterLoginLayout = ({
   children,
