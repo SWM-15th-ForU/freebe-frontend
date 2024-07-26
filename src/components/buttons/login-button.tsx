@@ -5,17 +5,14 @@ import * as style from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
 const LoginButton = () => {
-  function handleKakaoLogin() {
-    window.Kakao.Auth.authorize({
-      // [TODO] redirect to backend
-      redirectUri: "http://localhost:8080/login/oauth2/code/kakao",
-    });
+  function loginToKakao() {
+    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/kakao`;
   }
 
   return (
     <button
       type="button"
-      onClick={() => handleKakaoLogin()}
+      onClick={loginToKakao}
       className={style.kakaoContainer}
     >
       <Image
