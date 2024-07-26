@@ -16,7 +16,7 @@ const ProductForm = () => {
     subtitle: "",
     images: [],
     items: [
-      { title: "기본 가격", content: "120,000원", hasDescription: false },
+      { title: "기본 가격", content: "", hasDescription: false },
       { title: "촬영 시간", content: "1시간", hasDescription: false },
       {
         title: "보정본 수",
