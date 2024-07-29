@@ -11,6 +11,16 @@ export const formDiv = style({
   gap: 15,
 });
 
+export const bannerDiv = style({
+  backgroundColor: "#A5A5A5",
+  borderRadius: 10,
+  padding: 10,
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 10,
+});
+
 export const textInput = style({
   border: 0,
   width: "80%",
