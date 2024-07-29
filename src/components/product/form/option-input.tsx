@@ -1,6 +1,6 @@
 import { Product } from "product-types";
 import { UseFormRegister, useWatch } from "react-hook-form";
-import * as style from "./product.css";
+import * as style from "../product.css";
 
 interface OptionInputProps {
   formRegister: UseFormRegister<Product>;

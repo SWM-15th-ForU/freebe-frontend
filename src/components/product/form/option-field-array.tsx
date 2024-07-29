@@ -1,21 +1,22 @@
 import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
-import { Body15SB } from "../texts/texts";
-import { AddButton } from "../buttons/common-buttons";
-import DiscountInput from "./discount-input";
+import { Body15SB } from "../../texts/texts";
+import ItemInput from "./item-input";
+import { AddButton } from "../../buttons/common-buttons";
+import OptionInput from "./option-input";
 
-const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
+const OptionFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   const { fields, append, remove } = useFieldArray({
     control: formControl,
-    name: "discounts",
+    name: "options",
   });
 
   return (
     <div style={{ width: "100%" }}>
-      <Body15SB>상품 할인</Body15SB>
+      <Body15SB>상품 옵션</Body15SB>
       {fields.map((item, index) => {
         return (
-          <DiscountInput
+          <OptionInput
             key={item.id}
             formRegister={formRegister}
             index={index}
@@ -24,18 +25,11 @@ const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         );
       })}
       <AddButton
-        onClick={() =>
-          append({
-            title: "",
-            hasDescription: false,
-            description: "",
-            discountType: "amount",
-          })
-        }
+        onClick={() => append({ title: "", price: "", isFree: false })}
         title="추가하기"
       />
     </div>
   );
 };
 
-export default DiscountFieldArray;
+export default OptionFieldArray;
