@@ -1,7 +1,6 @@
 "use client";
 
 import LoginButton from "@/components/buttons/login-button";
-import ProductBanner from "@/components/product/product-banner";
 
 const Page = () => {
   return (

@@ -19,6 +19,31 @@ export const bannerDiv = style({
   flexDirection: "row",
   alignItems: "center",
   gap: 10,
+  width: 200,
+  height: 100,
+});
+
+export const listDiv = style({
+  backgroundColor: "#F5F5F5",
+  borderRadius: 10,
+  padding: 20,
+  margin: 20,
+  width: 700,
+});
+
+export const listHead = style({
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-around",
+  alignItems: "center",
+  gap: 300,
+  marginBottom: 20,
+});
+
+export const listBody = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: 10,
 });
 
 export const textInput = style({

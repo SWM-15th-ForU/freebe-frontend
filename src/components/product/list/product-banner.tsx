@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import { Switch } from "@mantine/core";
-import { Body15SB } from "../texts/texts";
-import { bannerDiv } from "./product.css";
+import { Body15SB } from "../../texts/texts";
+import { bannerDiv } from "../product.css";
 
 interface ProductBannerProps {
+  id: string;
   title: string;
   image: string;
   totalReservation: number;
@@ -11,6 +14,7 @@ interface ProductBannerProps {
 }
 
 const ProductBanner = ({
+  id,
   image,
   isOpen,
   title,
@@ -20,8 +24,8 @@ const ProductBanner = ({
 
   return (
     <div className={bannerDiv}>
-      <Image src={image} alt="상품 메인 이미지" />
-      <div>
+      <Image src={image} alt="상품 메인 이미지" style={{ width: 70 }} />
+      <div style={{ flex: 1 }}>
         <Body15SB>{title}</Body15SB>
         <Body15SB>예약 건수 {totalReservation} 건</Body15SB>
         <Switch checked={isOpen} onChange={handleSwitchOpen} />
