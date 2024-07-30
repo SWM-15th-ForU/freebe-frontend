@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { kakaoLogin } from "@/utils/apis/login";
 import * as style from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
 const LoginButton = () => {
   function loginToKakao() {
+    kakaoLogin();
     window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/kakao`;
   }
 

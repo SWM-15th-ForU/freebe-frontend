@@ -1,31 +1,14 @@
-import { nextFetch } from "./core";
+"use server";
 
-// [TODO] OAuth 요청 방식 확정에 따라 삭제 혹은 수정
-// async function getPhotographerKakaoLogin() {
-//   const response = await nextFetch("/oauth2/authorization/kakao", {
-//     method: "GET",
-//     mode: "no-cors",
-//   });
-//   return response;
-// }
+import { cookies } from "next/headers";
 
-async function postPhotographerKakaoLogin(userType: string) {
-  const requestBody = {
-    userType,
-  };
-  const response = await nextFetch("/api/login", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
-  });
-  return response;
+export async function customerKakaoLogin(postLogin: string) {
+  const cookieStore = cookies();
+  cookieStore.set("requestUserType", "customer");
+  cookieStore.set("postLogin", postLogin);
 }
 
-export async function loginKakao(userType: string) {
-  const response = await postPhotographerKakaoLogin(userType);
-  console.dir(response);
-  return response;
+export async function kakaoLogin() {
+  const cookieStore = cookies();
+  cookieStore.set("requestUserType", "photographer", { httpOnly: true });
 }
