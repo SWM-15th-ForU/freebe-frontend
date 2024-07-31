@@ -1,16 +1,17 @@
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { cookieKeys, cookieValues } from "./constants/cookies";
 
 export async function middleware(request: NextRequest) {
   const cookieStore = cookies();
-  const currentUser = cookieStore.get("currentUser")?.value;
+  const currentUser = cookieStore.get(cookieKeys.currentUser)?.value;
   const response = NextResponse.next();
   if (
     // 인증되지 않은 유저
-    !cookieStore.has("accessToken") ||
+    !cookieStore.has(cookieKeys.accessToken) ||
     // 고객측으로 로그인하고 작가측 페이지 접근
     (request.nextUrl.pathname.startsWith("/main") &&
-      currentUser !== "photographer")
+      currentUser !== cookieValues.currentUser.customer)
   ) {
     return NextResponse.redirect(
       new URL("/login", process.env.NEXT_PUBLIC_DOMAIN_BASE),

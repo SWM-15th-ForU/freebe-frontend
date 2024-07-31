@@ -18,7 +18,10 @@ const userValues: { [key in User]: string } = {
   photographer: "photographer",
 };
 
-export const cookieValues: { [key in Cookies]?: object } = {
+export const cookieValues: {
+  currentUser: { [key in User]: string };
+  requestUser: { [key in User]: string };
+} = {
   currentUser: userValues,
   requestUser: userValues,
 };

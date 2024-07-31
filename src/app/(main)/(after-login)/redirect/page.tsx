@@ -1,5 +1,6 @@
 "use server";
 
+import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 
@@ -7,11 +8,11 @@ const USER_TYPE_COOKIE = "requestUserType";
 
 const RedirectPage = async () => {
   const cookieStore = cookies();
-  const requestUserType = cookieStore.get(USER_TYPE_COOKIE)?.value;
-  if (requestUserType === "photographer") {
+  const requestUserType = cookieStore.get(cookieKeys.requestUser)?.value;
+  if (requestUserType === cookieValues.requestUser.photographer) {
     redirect("/");
-  } else if (requestUserType === "customer") {
-    const redirectRequest = cookieStore.get("redirectRequest")?.value;
+  } else if (requestUserType === cookieValues.requestUser.customer) {
+    const redirectRequest = cookieStore.get(cookieKeys.redirectRequest)?.value;
     if (redirectRequest) {
       redirect(redirectRequest);
     } else {
