@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Switch } from "@mantine/core";
-import { Body15SB } from "../../texts/texts";
+import { Body15SB } from "@/components/texts/texts";
 import { bannerDiv } from "../product.css";
 
 interface ProductBannerProps {

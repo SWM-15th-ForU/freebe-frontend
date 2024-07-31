@@ -1,8 +1,8 @@
 import { Image } from "product-types";
 import { Dispatch, SetStateAction, useRef } from "react";
-import { AddButton } from "../../buttons/common-buttons";
-import ImageThumbnail from "../../common/image-thumbnail";
-import { Body15SB } from "../../texts/texts";
+import { AddButton } from "@/components/buttons/common-buttons";
+import ImageThumbnail from "@/components/common/image-thumbnail";
+import { Body15SB } from "@/components/texts/texts";
 
 interface ImageInputProps {
   images: Image[];

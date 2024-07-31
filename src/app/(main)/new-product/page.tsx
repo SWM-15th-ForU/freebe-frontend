@@ -1,4 +1,4 @@
-import ProductForm from "@/components/product/product-form";
+import ProductForm from "@/containers/product/product-form";
 
 const NewProduct = () => {
   return (

@@ -1,7 +1,7 @@
 import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
-import { Body15SB } from "../../texts/texts";
-import { AddButton } from "../../buttons/common-buttons";
+import { Body15SB } from "@/components/texts/texts";
+import { AddButton } from "@/components/buttons/common-buttons";
 import DiscountInput from "./discount-input";
 
 const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {

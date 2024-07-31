@@ -1,8 +1,8 @@
 import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
-import { Body15SB } from "../../texts/texts";
+import { Body15SB } from "@/components/texts/texts";
+import { AddButton } from "@/components/buttons/common-buttons";
 import ItemInput from "./item-input";
-import { AddButton } from "../../buttons/common-buttons";
 
 const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   const { fields, append, remove } = useFieldArray({

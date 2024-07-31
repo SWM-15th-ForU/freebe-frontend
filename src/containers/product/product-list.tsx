@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Status } from "product-types";
+import { Body15SB } from "@/components/texts/texts";
 import ProductBanner from "./list/product-banner";
-import { Body15SB } from "../texts/texts";
 import { listBody, listDiv, listHead } from "./product.css";
 
 interface ProductListProps {

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Image, Product } from "product-types";
+import { SubmitButton } from "@/components/buttons/common-buttons";
 import * as style from "./product.css";
 import ItemFieldArray from "./form/item-field-array";
-import { SubmitButton } from "../buttons/common-buttons";
 import OptionFieldArray from "./form/option-field-array";
 import ImagesInput from "./form/image-input";
 import DiscountFieldArray from "./form/discount-field-array";
