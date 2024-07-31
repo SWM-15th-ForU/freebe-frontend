@@ -1,6 +1,6 @@
 import { User } from "user-types";
 
-type Cookies =
+export type Cookies =
   | "currentUser"
   | "accessToken"
   | "requestUser"

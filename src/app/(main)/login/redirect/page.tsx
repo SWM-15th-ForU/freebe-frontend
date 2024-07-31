@@ -4,8 +4,6 @@ import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 
-const USER_TYPE_COOKIE = "requestUserType";
-
 const RedirectPage = async () => {
   const cookieStore = cookies();
   const requestUserType = cookieStore.get(cookieKeys.requestUser)?.value;
