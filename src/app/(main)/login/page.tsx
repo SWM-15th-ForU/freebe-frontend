@@ -1,5 +1,3 @@
-"use client";
-
 import LoginButton from "@/components/buttons/login-button";
 
 const Page = () => {

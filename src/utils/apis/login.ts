@@ -10,5 +10,5 @@ export async function customerKakaoLogin(postLogin: string) {
 
 export async function kakaoLogin() {
   const cookieStore = cookies();
-  cookieStore.set("requestUserType", "photographer", { httpOnly: true });
+  cookieStore.set("requestUserType", "photographer");
 }
