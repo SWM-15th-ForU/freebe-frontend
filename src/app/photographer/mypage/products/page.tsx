@@ -1,4 +1,4 @@
-import ProductList from "@/components/product/product-list";
+import ProductList from "@/containers/product/product-list";
 
 const MyProductPage = () => {
   const productDatas = [
