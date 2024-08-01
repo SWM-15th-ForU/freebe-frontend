@@ -1,4 +1,5 @@
 declare module "product-types" {
+  export type Status = "ACTIVE" | "INACTIVE";
   export interface Item {
     title: string;
     content: string;

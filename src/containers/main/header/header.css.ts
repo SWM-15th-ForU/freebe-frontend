@@ -1,6 +1,8 @@
 import { style } from "@vanilla-extract/css";
 
 export const headerContainer = style({
+  top: 0,
+  left: 0,
   position: "fixed",
   height: 50,
   paddingLeft: 20,
@@ -15,6 +17,7 @@ export const headerContainer = style({
 export const profileContainer = style({
   display: "flex",
   flexDirection: "row",
+  alignItems: "center",
   marginLeft: 30,
   gap: 10,
 });
