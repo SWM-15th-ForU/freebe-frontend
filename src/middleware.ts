@@ -13,9 +13,7 @@ export async function middleware(request: NextRequest) {
     (request.nextUrl.pathname.startsWith("/main") &&
       currentUser !== cookieValues.currentUser.customer)
   ) {
-    return NextResponse.redirect(
-      new URL("/login", process.env.NEXT_PUBLIC_DOMAIN_BASE),
-    );
+    return NextResponse.redirect(new URL("/login", "https://www.freebe.co.kr"));
   }
   return response;
 }
