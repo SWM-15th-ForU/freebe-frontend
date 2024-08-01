@@ -12,6 +12,7 @@ export const sheetContainer = style({
   borderTopLeftRadius: 30,
   borderTopRightRadius: 30,
   padding: 30,
+  paddingBottom: 60,
 });
 
 export const imageContainer = style({
@@ -19,4 +20,13 @@ export const imageContainer = style({
   width: "100%",
   height: 700,
   backgroundColor: "#D9D9D9",
+});
+
+export const buttonsWrapper = style({
+  width: "100%",
+  flex: 1,
+  overflowY: "scroll",
+  display: "flex",
+  flexDirection: "column",
+  gap: 15,
 });
