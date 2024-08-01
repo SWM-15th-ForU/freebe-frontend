@@ -13,7 +13,7 @@ interface ProductListProps {
 const ProductList = ({ productDatas, status }: ProductListProps) => {
   const titles: { [key in Status]: string } = {
     ACTIVE: "예약 가능 상품",
-    INACTIVE: "예약 불가 상품",
+    INACTIVE: "대기 중인 상품",
   };
 
   return (
