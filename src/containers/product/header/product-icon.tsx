@@ -13,7 +13,7 @@ const ProductIcon = ({
       <div className={iconStyle.container}>
         <div
           className={iconStyle.image}
-          style={{ borderWidth: selected ? 2 : 0, borderColor: "black" }}
+          style={{ backgroundColor: selected ? "#838383" : "#d9d9d9" }}
         />
         <p className={iconStyle.title}>{title}</p>
       </div>

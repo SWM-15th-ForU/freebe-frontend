@@ -5,7 +5,7 @@ import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
 import { Product } from "product-types";
 
-const ProductPage = () => {
+const ProductPage = ({ params }: { params: { product: string } }) => {
   const productData: Product = {
     title: "스냅 이름",
     discounts: [],
@@ -24,6 +24,7 @@ const ProductPage = () => {
           return <Carousel.Slide key={index}>1</Carousel.Slide>;
         })}
       </Carousel>
+      <p>{params.product}</p>
       <ProductInfo {...productData} />
     </div>
   );

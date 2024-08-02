@@ -6,7 +6,7 @@ import ProductIcon from "./header/product-icon";
 import { headerStyle } from "./product.css";
 
 const ProductHeader = ({ products }: { products: Icon[] }) => {
-  const currentId = usePathname();
+  const currentId = usePathname().split("/").pop();
 
   return (
     <div className={headerStyle.container}>
