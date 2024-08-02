@@ -33,7 +33,7 @@ declare module "product-types" {
     discounts: Discount[];
   }
 
-  export interface ProductIcon {
+  export interface Icon {
     title: string;
     image: string;
     id: string;
