@@ -4,6 +4,7 @@ import ProductInfo from "@/containers/product/product-info";
 import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
 import { Product } from "product-types";
+import "@mantine/carousel/styles.css";
 
 const ProductPage = ({ params }: { params: { product: string } }) => {
   const productData: Product = {
@@ -18,13 +19,26 @@ const ProductPage = ({ params }: { params: { product: string } }) => {
   const imageData = ["", "", ""];
 
   return (
-    <div style={{ width: "100%" }}>
-      <Carousel withIndicators height={200} slideSize={100}>
+    <div
+      style={{
+        width: "100%",
+        overflowY: "scroll",
+        maxHeight: "932px",
+        paddingTop: "140px",
+      }}
+    >
+      <Carousel
+        withIndicators
+        style={{
+          width: "100%",
+          height: "100vw",
+          backgroundColor: "#d9d9d9",
+        }}
+      >
         {imageData.map((image, index) => {
-          return <Carousel.Slide key={index}>1</Carousel.Slide>;
+          return <Carousel.Slide key={index} />;
         })}
       </Carousel>
-      <p>{params.product}</p>
       <ProductInfo {...productData} />
     </div>
   );

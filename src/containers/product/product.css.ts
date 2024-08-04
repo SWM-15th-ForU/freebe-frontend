@@ -65,6 +65,10 @@ export const inputBox = style({
 
 export const headerStyle = {
   container: style({
+    position: "fixed",
+    zIndex: 3,
+    backgroundColor: "#fff",
+    top: 0,
     width: "100%",
     display: "flex",
     alignItems: "center",

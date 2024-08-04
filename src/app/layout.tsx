@@ -26,7 +26,10 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className={inter.className}>
+      <body
+        className={inter.className}
+        style={{ overflowX: "hidden", overflowY: "auto" }}
+      >
         <div>
           <MantineProvider>{children}</MantineProvider>
         </div>
