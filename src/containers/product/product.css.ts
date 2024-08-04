@@ -33,7 +33,7 @@ export const listDiv = style({
 
 export const infoContainer = style({
   flex: 1,
-  backgroundColor: "#D9D9D9",
+  padding: 15,
 });
 
 export const listHead = style({
@@ -98,5 +98,23 @@ export const iconStyle = {
   }),
   title: style({
     margin: 0,
+  }),
+};
+
+export const infoStyle = {
+  wrapper: style({
+    display: "flex",
+    paddingLeft: 5,
+    paddingRight: 5,
+    flexDirection: "column",
+    gap: 5,
+  }),
+  container: style({
+    border: "solid",
+    display: "flex",
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#a5a5a5",
+    gap: 10,
   }),
 };
