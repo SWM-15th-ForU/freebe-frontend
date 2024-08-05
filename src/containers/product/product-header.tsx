@@ -5,8 +5,15 @@ import { Icon } from "product-types";
 import ProductIcon from "./header/product-icon";
 import { headerStyle } from "./product.css";
 
+const INDEX_OF_PRODUCT = 3;
+
 const ProductHeader = ({ products }: { products: Icon[] }) => {
-  const currentId = usePathname().split("/").pop();
+  const currentPath = usePathname().split("/");
+  const currentProduct = currentPath.at(INDEX_OF_PRODUCT);
+
+  function getBasePath(params: string[]) {
+    return params.slice(0, INDEX_OF_PRODUCT).join("/");
+  }
 
   return (
     <div className={headerStyle.container}>
@@ -14,7 +21,8 @@ const ProductHeader = ({ products }: { products: Icon[] }) => {
         return (
           <ProductIcon
             key={index}
-            selected={product.id === currentId}
+            selected={product.id === currentProduct}
+            path={getBasePath(currentPath)}
             {...product}
           />
         );

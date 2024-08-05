@@ -7,9 +7,10 @@ const ProductIcon = ({
   image,
   title,
   selected,
-}: Icon & { selected: boolean }) => {
+  path,
+}: Icon & { selected: boolean; path: string }) => {
   return (
-    <Link href={`${id}`} style={{ width: "100%" }}>
+    <Link href={`${path}/${id}`} style={{ width: "100%" }}>
       <div className={iconStyle.container}>
         <div
           className={iconStyle.image}

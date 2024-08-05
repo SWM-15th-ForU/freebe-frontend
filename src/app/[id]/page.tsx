@@ -2,7 +2,7 @@ import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { Link } from "profile-types";
 
-const CustomerMainPage = () => {
+const CustomerMainPage = ({ params }: { params: { id: string } }) => {
   const defaultLinks: Link[] = [
     { name: "상품 선택하기", src: "/products" },
     { name: "일정 확인하기 ", src: "/schedules" },
@@ -13,8 +13,8 @@ const CustomerMainPage = () => {
     src: "imageSource",
     id: "photographerId",
     links: [
-      { name: "a", src: "a" },
-      { name: "a", src: "a" },
+      { name: "a", src: "/a" },
+      { name: "a", src: "/a" },
     ],
 
     message:
@@ -26,7 +26,9 @@ const CustomerMainPage = () => {
       <BackgroundImage />
       <InfoSheet
         message={photographerProfile.message}
-        links={defaultLinks.concat(photographerProfile.links)}
+        links={defaultLinks.concat(photographerProfile.links).map((link) => {
+          return { ...link, src: params.id + link.src };
+        })}
         id={photographerProfile.id}
       />
     </div>
