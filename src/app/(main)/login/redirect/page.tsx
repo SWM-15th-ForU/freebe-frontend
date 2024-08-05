@@ -1,24 +1,30 @@
-"use server";
+"use client";
 
-import { cookieKeys, cookieValues } from "@/constants/cookies";
-import { cookies } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { tokenKeys } from "@/constants/auth";
+import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-const RedirectPage = async () => {
-  const cookieStore = cookies();
-  const requestUserType = cookieStore.get(cookieKeys.requestUser)?.value;
-  if (requestUserType === cookieValues.requestUser.photographer) {
-    redirect("/");
-  } else if (requestUserType === cookieValues.requestUser.customer) {
-    const redirectRequest = cookieStore.get(cookieKeys.redirectRequest)?.value;
-    if (redirectRequest) {
-      redirect(redirectRequest);
-    } else {
-      redirect("/customer");
+const RedirectPage = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const accessToken = searchParams.get(tokenKeys.access);
+  const refreshToken = searchParams.get(tokenKeys.refresh);
+
+  function setToken() {
+    if (accessToken) {
+      localStorage.setItem(tokenKeys.access, accessToken);
     }
-  } else {
-    notFound();
+    if (refreshToken) {
+      localStorage.setItem(tokenKeys.refresh, refreshToken);
+    }
   }
+
+  useEffect(() => {
+    setToken();
+  }, []);
+
+  router.push("/login/send");
+  return <div />;
 };
 
 export default RedirectPage;

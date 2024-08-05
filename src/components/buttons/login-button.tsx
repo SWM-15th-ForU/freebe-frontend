@@ -8,7 +8,7 @@ import { Body15SB } from "../texts/texts";
 const LoginButton = () => {
   function loginToKakao() {
     kakaoLogin();
-    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/kakao`;
+    window.location.href = `https://api.freebe.co.kr/oauth2/authorization/kakao`;
   }
 
   return (
