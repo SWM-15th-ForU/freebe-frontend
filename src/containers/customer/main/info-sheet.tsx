@@ -5,6 +5,7 @@ import { buttonsWrapper, sheetContainer } from "./main.css";
 
 interface InfoSheetProps {
   id: string;
+  // TODO: 소개글 최대 길이 제한
   message: string;
   links: Link[];
 }

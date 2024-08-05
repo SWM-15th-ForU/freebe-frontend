@@ -8,23 +8,9 @@ import "@mantine/carousel/styles.css";
 
 const ProductPage = ({ params }: { params: { product: string } }) => {
   const productData: Product = {
-    title: "스냅 이름",
-    discounts: [
-      {
-        discountType: "amount",
-        hasDescription: true,
-        title: "할인1",
-        amount: 1000,
-        description: "설명",
-      },
-      {
-        discountType: "rate",
-        hasDescription: false,
-        title: "할인2",
-        rate: 10,
-      },
-    ],
     images: [],
+    title: "스냅 이름",
+    subtitle: "스냅 소개글",
     items: [
       {
         content: "내용",
@@ -54,7 +40,21 @@ const ProductPage = ({ params }: { params: { product: string } }) => {
         price: 1000,
       },
     ],
-    subtitle: "스냅 소개글",
+    discounts: [
+      {
+        discountType: "amount",
+        hasDescription: true,
+        title: "할인1",
+        amount: 1000,
+        description: "설명",
+      },
+      {
+        discountType: "rate",
+        hasDescription: false,
+        title: "할인2",
+        rate: 10,
+      },
+    ],
   };
 
   const imageData = ["", "", ""];
