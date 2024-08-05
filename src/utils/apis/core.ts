@@ -1,6 +1,7 @@
 import returnFetch from "return-fetch";
 import ky from "ky";
 import { tokenKeys } from "@/constants/auth";
+import { cookies } from "next/headers";
 
 export const api = ky
   .create({ prefixUrl: "https://api.freebe.co.kr/" })
@@ -8,9 +9,9 @@ export const api = ky
     hooks: {
       beforeRequest: [
         (request) => {
-          const accessToken = localStorage.getItem(tokenKeys.access);
+          const accessToken = cookies().get(tokenKeys.access)?.value;
           if (accessToken) {
-            request.headers.set("access-token", accessToken);
+            request.headers.set("Authorization", `Bearer ${accessToken}`);
           }
         },
       ],
@@ -18,6 +19,5 @@ export const api = ky
   });
 
 export const nextFetch = returnFetch({
-  // [TODO] switch to domain
   baseUrl: "https://api.freebe.co.kr/",
 });

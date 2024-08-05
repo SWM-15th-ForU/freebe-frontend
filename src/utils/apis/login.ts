@@ -2,6 +2,7 @@
 
 import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { cookies } from "next/headers";
+import { api } from "./core";
 
 export async function customerKakaoLogin(postLogin: string) {
   const cookieStore = cookies();
@@ -15,4 +16,9 @@ export async function kakaoLogin() {
     cookieKeys.requestUser,
     cookieValues.requestUser.photographer,
   );
+}
+
+export async function postUserRole(roleType: string) {
+  const res = await api.post("login/type", { json: { roleType } });
+  console.log(res);
 }
