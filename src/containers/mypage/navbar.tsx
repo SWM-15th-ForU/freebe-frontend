@@ -3,6 +3,7 @@
 import { LinkButton } from "@/components/buttons/common-buttons";
 import { usePathname } from "next/navigation";
 import { LinkType } from "profile-types";
+import { navbarStyle } from "./mypage.css";
 
 const Navbar = () => {
   const currentTab = usePathname().split("/").pop();
@@ -30,7 +31,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div>
+    <div className={navbarStyle.container}>
       {mypageTabs.map((tab, index) => (
         <LinkButton key={index} selected={currentTab === tab.src} {...tab} />
       ))}

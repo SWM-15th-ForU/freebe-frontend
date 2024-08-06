@@ -9,7 +9,7 @@ const MypageLayout = ({
   return (
     <div
       className={styles.center}
-      style={{ display: "flex", flexDirection: "row" }}
+      style={{ display: "flex", flexDirection: "row", width: "100vw" }}
     >
       <Navbar />
       <div style={{ flex: 1 }}>{children}</div>
