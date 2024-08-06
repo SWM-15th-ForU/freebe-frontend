@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header className={styles.headerContainer}>
-      <Link href="/">
+      <Link href="/photographer">
         <div>메인</div>
       </Link>
       <Profile name="ForU" />
