@@ -17,11 +17,11 @@ const ImageThumbnail = ({ image, onClickDelete }: ImageThumbnailProps) => {
         </button>
       )}
       <Image
-        src={URL.createObjectURL(image)}
+        src={image}
         width={THUMBNAIL_SIZE}
         height={THUMBNAIL_SIZE}
         sizes="80px"
-        alt={image.name}
+        alt="등록 이미지"
       />
     </div>
   );

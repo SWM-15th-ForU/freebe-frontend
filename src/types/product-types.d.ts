@@ -23,7 +23,7 @@ declare module "product-types" {
     discountValue: number | null;
   }
 
-  export type Image = File;
+  export type Image = string;
 
   export interface Product {
     title: string;
