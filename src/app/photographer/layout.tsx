@@ -1,16 +1,17 @@
+import styles from "@/styles/page.module.css";
 import Header from "@/containers/main/header";
 
-const MainAfterLoginLayout = ({
+const PhotographerLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
   return (
-    <div>
+    <div className={styles.center}>
       <Header />
       <div>{children}</div>
     </div>
   );
 };
 
-export default MainAfterLoginLayout;
+export default PhotographerLayout;

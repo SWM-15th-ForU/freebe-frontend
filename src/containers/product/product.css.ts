@@ -31,6 +31,11 @@ export const listDiv = style({
   width: 700,
 });
 
+export const infoContainer = style({
+  flex: 1,
+  padding: 15,
+});
+
 export const listHead = style({
   display: "flex",
   flexDirection: "row",
@@ -57,3 +62,59 @@ export const inputBox = style({
   padding: 10,
   marginTop: 20,
 });
+
+export const headerStyle = {
+  container: style({
+    position: "fixed",
+    zIndex: 3,
+    backgroundColor: "#fff",
+    top: 0,
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    gap: "8vw",
+    padding: 25,
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    overflow: "scroll",
+    msOverflowStyle: "none",
+    "::-webkit-scrollbar": {
+      display: "none",
+    },
+  }),
+};
+
+export const iconStyle = {
+  container: style({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  }),
+  image: style({
+    backgroundColor: "#D9D9D9",
+    borderRadius: "100%",
+    width: "70px",
+    aspectRatio: "1",
+  }),
+  title: style({
+    margin: 0,
+  }),
+};
+
+export const infoStyle = {
+  wrapper: style({
+    display: "flex",
+    paddingLeft: 5,
+    paddingRight: 5,
+    flexDirection: "column",
+    gap: 5,
+  }),
+  container: style({
+    border: "solid",
+    display: "flex",
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#a5a5a5",
+    gap: 10,
+  }),
+};

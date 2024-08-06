@@ -32,4 +32,10 @@ declare module "product-types" {
     options: Option[];
     discounts: Discount[];
   }
+
+  export interface Icon {
+    title: string;
+    image: string;
+    id: string;
+  }
 }

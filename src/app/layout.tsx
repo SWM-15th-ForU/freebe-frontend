@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import styles from "@/styles/page.module.css";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
@@ -27,8 +26,11 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className={inter.className}>
-        <div className={styles.center}>
+      <body
+        className={inter.className}
+        style={{ overflowX: "hidden", overflowY: "auto" }}
+      >
+        <div>
           <MantineProvider>{children}</MantineProvider>
         </div>
       </body>
