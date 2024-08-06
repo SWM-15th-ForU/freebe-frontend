@@ -14,33 +14,23 @@ export async function postProduct(data: ProductFormdata, images: Image[]) {
         description: item.hasDescription ? item.description : null,
       };
     }),
-    productOptions: [
-      {
-        title: "인원 추가 (1인)",
-        price: 30000,
-        description: null,
-      },
-      {
-        title: "의상 대여",
-        price: 15000,
-        description: "의상대여는 1개만 가능합니다.",
-      },
-    ],
-    productDiscounts: [
-      {
-        title: "친구 소개",
-        discountType: "RATE",
-        discountValue: 20,
-        description: null,
-      },
-      {
-        title: "3번째 예약",
-        discountType: "AMOUNT",
-        discountValue: 30000,
-        description: "계좌이체 시 할인 가능합니다^^",
-      },
-    ],
+    productOptions: data.options.map((option) => {
+      return {
+        title: option.title,
+        price: option.isFree ? 0 : option.price,
+        description: option.hasDescription ? option.description : null,
+      };
+    }),
+    productDiscounts: data.discounts.map((discount) => {
+      return {
+        title: discount.title,
+        discountType: discount.discountType,
+        discountValue: discount.discountValue,
+        description: discount.hasDescription ? discount.description : null,
+      };
+    }),
   };
+  console.log(body);
   try {
     const response = await fetch("https://api.freebe.co.kr/product/", {
       method: "POST",

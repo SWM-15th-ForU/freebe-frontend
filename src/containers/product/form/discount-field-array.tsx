@@ -29,7 +29,8 @@ const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
             title: "",
             hasDescription: false,
             description: "",
-            discountType: "amount",
+            discountType: "AMOUNT",
+            discountValue: null,
           })
         }
         title="추가하기"

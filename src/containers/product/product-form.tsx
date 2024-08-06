@@ -25,12 +25,13 @@ const ProductForm = () => {
         description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
       },
     ],
-    options: [{ title: "보정본 추가", isFree: false }],
+    options: [{ title: "보정본 추가", hasDescription: false, isFree: false }],
     discounts: [
       {
         title: "첫 주문 할인",
-        discountType: "amount",
+        discountType: "AMOUNT",
         hasDescription: false,
+        discountValue: null,
       },
     ],
   };

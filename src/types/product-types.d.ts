@@ -11,15 +11,16 @@ declare module "product-types" {
     title: string;
     isFree: boolean;
     price?: number;
+    hasDescription: boolean;
+    description?: string;
   }
 
   export interface Discount {
     title: string;
     hasDescription: boolean;
     description?: string;
-    discountType: "rate" | "amount";
-    rate?: number;
-    amount?: number;
+    discountType: "RATE" | "AMOUNT";
+    discountValue: number | null;
   }
 
   export type Image = File;
