@@ -33,6 +33,8 @@ declare module "product-types" {
     discounts: Discount[];
   }
 
+  export interface ProductFormdata extends Omit<Product, "images"> {}
+
   export interface Icon {
     title: string;
     image: string;
