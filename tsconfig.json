@@ -27,8 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "./src/types",
-    "src/app/photographer/mypage/schedule"
+    "./src/types"
   ],
   "exclude": ["node_modules"]
 }
