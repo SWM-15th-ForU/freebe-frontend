@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { Image, ProductFormdata } from "product-types";
 import { SubmitButton } from "@/components/buttons/common-buttons";
 import { postProduct } from "@/utils/apis/products";
@@ -12,6 +13,7 @@ import DiscountFieldArray from "./form/discount-field-array";
 import * as style from "./product.css";
 
 const ProductForm = () => {
+  const router = useRouter();
   const defaultValues: ProductFormdata = {
     title: "",
     subtitle: "",
@@ -44,6 +46,7 @@ const ProductForm = () => {
   const onSubmit: SubmitHandler<ProductFormdata> = (data) => {
     console.log({ images, ...data });
     postProduct(data, images);
+    router.push("/photographer");
   };
 
   return (
