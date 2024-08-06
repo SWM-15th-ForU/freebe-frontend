@@ -1,8 +1,12 @@
+"use client";
+
 import { LinkButton } from "@/components/buttons/common-buttons";
-import { Link } from "profile-types";
+import { usePathname } from "next/navigation";
+import { LinkType } from "profile-types";
 
 const Navbar = () => {
-  const mypageTabs: Link[] = [
+  const currentTab = usePathname().split("/").pop();
+  const mypageTabs: LinkType[] = [
     {
       name: "이전 예약",
       src: "previous",
@@ -28,7 +32,7 @@ const Navbar = () => {
   return (
     <div>
       {mypageTabs.map((tab, index) => (
-        <LinkButton key={index} {...tab} />
+        <LinkButton key={index} selected={currentTab === tab.src} {...tab} />
       ))}
     </div>
   );

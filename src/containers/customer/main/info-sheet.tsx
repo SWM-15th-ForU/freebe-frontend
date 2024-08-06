@@ -1,13 +1,13 @@
 import ServiceFooter from "@/components/customer/service-footer";
 import { LinkButton } from "@/components/buttons/common-buttons";
-import { Link } from "profile-types";
+import { LinkType } from "profile-types";
 import { buttonsWrapper, sheetContainer } from "./main.css";
 
 interface InfoSheetProps {
   id: string;
   // TODO: 소개글 최대 길이 제한
   message: string;
-  links: Link[];
+  links: LinkType[];
 }
 
 const InfoSheet = ({ id, links, message }: InfoSheetProps) => {

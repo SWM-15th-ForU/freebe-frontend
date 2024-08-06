@@ -1,9 +1,9 @@
 import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
-import { Link } from "profile-types";
+import { LinkType } from "profile-types";
 
 const CustomerMainPage = ({ params }: { params: { id: string } }) => {
-  const defaultLinks: Link[] = [
+  const defaultLinks: LinkType[] = [
     { name: "상품 선택하기", src: "/products" },
     { name: "일정 확인하기 ", src: "/schedules" },
     { name: "자주 묻는 질문", src: "/faqs" },

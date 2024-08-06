@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Link as LinkProp } from "profile-types";
+import { LinkType } from "profile-types";
 import * as style from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
@@ -24,10 +24,17 @@ export const SubmitButton = ({ onClick = () => {}, title }: ButtonProps) => {
   );
 };
 
-export const LinkButton = ({ name, src }: LinkProp) => {
+export const LinkButton = ({
+  name,
+  src,
+  selected = false,
+}: LinkType & { selected?: boolean }) => {
   return (
     <Link href={src}>
-      <div className={style.LinkContainer}>
+      <div
+        className={style.LinkContainer}
+        style={selected ? { backgroundColor: "#a9a9a9" } : {}}
+      >
         <Body15SB>{name}</Body15SB>
       </div>
     </Link>

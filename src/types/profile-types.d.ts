@@ -1,5 +1,5 @@
 declare module "profile-types" {
-  export interface Link {
+  export interface LinkType {
     src: string;
     name: string;
   }
