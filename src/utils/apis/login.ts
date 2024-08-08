@@ -19,6 +19,6 @@ export async function kakaoLogin() {
 }
 
 export async function postUserRole(roleType: string) {
-  const res = await api.post("login/type", { json: { roleType } });
-  console.log(res);
+  const res = await api.post("login/type", { json: { roleType } }).json();
+  return res;
 }
