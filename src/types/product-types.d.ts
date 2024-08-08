@@ -1,4 +1,5 @@
 declare module "product-types" {
+  export type Status = "ACTIVE" | "INACTIVE";
   export interface Item {
     title: string;
     content: string;
@@ -30,5 +31,11 @@ declare module "product-types" {
     items: Item[];
     options: Option[];
     discounts: Discount[];
+  }
+
+  export interface Icon {
+    title: string;
+    image: string;
+    id: string;
   }
 }

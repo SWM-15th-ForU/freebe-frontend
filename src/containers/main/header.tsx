@@ -5,11 +5,11 @@ import Url from "./header/url";
 
 const Header = () => {
   // [TODO] 회원가입 후 api 요청과 연결
-  const myUrl = "https://www.freebe.co.kr/randid";
+  const myUrl = "https://www.freebe.co.kr/myid";
 
   return (
     <header className={styles.headerContainer}>
-      <Link href="/">
+      <Link href="/photographer">
         <div>메인</div>
       </Link>
       <Profile name="ForU" />

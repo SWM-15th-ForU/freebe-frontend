@@ -24,8 +24,13 @@
     ]
   },
   "dependencies": {
+    "@mantine/carousel": "^7.11.2",
+    "@mantine/core": "^7.11.2",
+    "@mantine/hooks": "^7.11.2",
+    "@mantine/vanilla-extract": "^7.11.2",
     "@vanilla-extract/css": "^1.15.3",
     "ky": "^1.5.0",
+    "embla-carousel-react": "^7.1.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
@@ -54,6 +59,9 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.7",
+    "postcss": "^8.4.40",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.3.2",
     "typescript": "^5",
     "url-loader": "^4.1.1"

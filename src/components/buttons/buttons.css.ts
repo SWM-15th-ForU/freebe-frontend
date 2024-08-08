@@ -33,3 +33,13 @@ export const SubmitContainer = style({
   padding: 5,
   border: "none",
 });
+
+export const LinkContainer = style({
+  backgroundColor: "#D9D9D9",
+  color: "#000",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  padding: 10,
+});
