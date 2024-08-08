@@ -11,18 +11,19 @@ declare module "product-types" {
     title: string;
     isFree: boolean;
     price?: number;
+    hasDescription: boolean;
+    description?: string;
   }
 
   export interface Discount {
     title: string;
     hasDescription: boolean;
     description?: string;
-    discountType: "rate" | "amount";
-    rate?: number;
-    amount?: number;
+    discountType: "RATE" | "AMOUNT";
+    discountValue: number | null;
   }
 
-  export type Image = File;
+  export type Image = string;
 
   export interface Product {
     title: string;
@@ -32,6 +33,8 @@ declare module "product-types" {
     options: Option[];
     discounts: Discount[];
   }
+
+  export interface ProductFormdata extends Omit<Product, "images"> {}
 
   export interface Icon {
     title: string;

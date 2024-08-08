@@ -1,20 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { Image, Product } from "product-types";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { Image, ProductFormdata } from "product-types";
 import { SubmitButton } from "@/components/buttons/common-buttons";
-import * as style from "./product.css";
+import { postProduct } from "@/utils/apis/products";
 import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
 import ImagesInput from "./form/image-input";
 import DiscountFieldArray from "./form/discount-field-array";
+import * as style from "./product.css";
 
 const ProductForm = () => {
-  const defaultValues: Product = {
+  const router = useRouter();
+  const defaultValues: ProductFormdata = {
     title: "",
     subtitle: "",
-    images: [],
     items: [
       { title: "기본 가격", content: "", hasDescription: false },
       { title: "촬영 시간", content: "1시간", hasDescription: false },
@@ -25,12 +27,13 @@ const ProductForm = () => {
         description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
       },
     ],
-    options: [{ title: "보정본 추가", isFree: false }],
+    options: [{ title: "보정본 추가", hasDescription: false, isFree: false }],
     discounts: [
       {
         title: "첫 주문 할인",
-        discountType: "amount",
+        discountType: "AMOUNT",
         hasDescription: false,
+        discountValue: null,
       },
     ],
   };
@@ -40,9 +43,15 @@ const ProductForm = () => {
   const { handleSubmit, control, register } = method;
   const [images, setImages] = useState<Image[]>([]);
 
+  const onSubmit: SubmitHandler<ProductFormdata> = (data) => {
+    console.log({ images, ...data });
+    postProduct(data, images);
+    router.push("/photographer");
+  };
+
   return (
     <FormProvider {...method}>
-      <form className={style.formDiv}>
+      <form className={style.formDiv} onSubmit={handleSubmit(onSubmit)}>
         <input
           placeholder="상품 제목을 입력해 주세요."
           className={style.textInput}

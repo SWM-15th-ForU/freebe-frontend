@@ -22,6 +22,13 @@ const OptionInput = ({
         placeholder="이름을 입력해 주세요."
         {...formRegister(`options.${index}.title`)}
       />
+      {options[index]?.hasDescription && (
+        <input
+          className={style.textInput}
+          placeholder="설명을 입력해 주세요."
+          {...formRegister(`options.${index}.description`)}
+        />
+      )}
       {options[index]?.isFree && (
         <input
           className={style.textInput}
@@ -29,7 +36,12 @@ const OptionInput = ({
           {...formRegister(`options.${index}.price`)}
         />
       )}
+
       <input type="checkbox" {...formRegister(`options.${index}.isFree`)} />
+      <input
+        type="checkbox"
+        {...formRegister(`options.${index}.hasDescription`)}
+      />
       <button type="button" onClick={onClickRemove}>
         X
       </button>
