@@ -1,7 +1,43 @@
 import returnFetch from "return-fetch";
-import ky from "ky";
+import ky, { BeforeRetryHook, HTTPError } from "ky";
 import { tokenKeys } from "@/constants/auth";
 import { cookies } from "next/headers";
+
+const DEFAULT_API_RETRY_LIMIT = 2;
+
+export async function refreshAccessToken() {
+  const cookieStore = cookies();
+  const refreshToken = cookieStore.get(tokenKeys.refresh)?.value;
+  if (!refreshToken) {
+    throw new Error("no refresh token");
+  }
+  const response = await fetch("https://api.freebe.co.kr/reissue", {
+    headers: {
+      refreshToken,
+    },
+  });
+  const newAccessToken = response.headers.get("accessToken");
+  const newRefreshToken = response.headers.get("refreshToken");
+  if (!newAccessToken || !newRefreshToken) {
+    throw new Error("failed to reissue");
+  } else {
+    cookieStore.set(tokenKeys.access, newAccessToken);
+    cookieStore.set(tokenKeys.refresh, newRefreshToken);
+  }
+  return newAccessToken;
+}
+
+const beforeRetry: BeforeRetryHook = async ({ request, error, retryCount }) => {
+  if (error instanceof HTTPError && error.response.status === 401) {
+    if (retryCount === DEFAULT_API_RETRY_LIMIT - 1) {
+      return ky.stop;
+    }
+    const newAccessToken = await refreshAccessToken();
+    request.headers.set("Authorization", `Bearer ${newAccessToken}`);
+  } else {
+    return ky.stop;
+  }
+};
 
 export const api = ky
   .create({ prefixUrl: "https://api.freebe.co.kr/" })
@@ -15,6 +51,7 @@ export const api = ky
           }
         },
       ],
+      beforeRetry: [beforeRetry],
     },
   });
 

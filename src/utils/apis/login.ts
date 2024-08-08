@@ -17,7 +17,6 @@ export async function kakaoLogin() {
     cookieValues.requestUser.photographer,
   );
 }
-
 interface RegisterResponse {
   data: string;
 }
