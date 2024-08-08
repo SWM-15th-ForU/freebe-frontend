@@ -10,10 +10,10 @@ const RegisterPage = ({ params }: { params: { roleType: User } }) => {
   const router = useRouter();
   const { setUserInfo } = useUserInfo();
   const postUser = async () => {
-    const data = await postUserRole(params.roleType);
+    const result = await postUserRole(params.roleType);
     setUserInfo({
       userRole: params.roleType,
-      userData: { profileUrl: data },
+      userData: { profileUrl: result.data },
     });
     router.push("/photographer");
   };
