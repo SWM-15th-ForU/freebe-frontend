@@ -5,7 +5,7 @@ import { profileContainer } from "./header.css";
 const Profile = ({ name }: { name: string }) => {
   return (
     <div className={profileContainer}>
-      <Link href="/mypage/products">마이페이지</Link>
+      <Link href="/photographer/mypage/products">마이페이지</Link>
       <Body15SB>{name} 작가님</Body15SB>
     </div>
   );

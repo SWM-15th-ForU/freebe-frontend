@@ -20,7 +20,9 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
     <div className={listDiv}>
       <div className={listHead}>
         <Body15SB>{titles[status]}</Body15SB>
-        {status === "ACTIVE" && <Link href="/new-product">추가</Link>}
+        {status === "ACTIVE" && (
+          <Link href="/photographer/new-product">추가</Link>
+        )}
       </div>
       <div className={listBody}>
         {productDatas.map((data) => (

@@ -7,7 +7,10 @@ const PhotographerLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className={styles.center}>
+    <div
+      className={styles.center}
+      style={{ minWidth: "900px", width: "100vw", overflowX: "scroll" }}
+    >
       <Header />
       <div>{children}</div>
     </div>
