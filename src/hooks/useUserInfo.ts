@@ -1,4 +1,3 @@
-import { User } from "user-types";
 import { create } from "zustand";
 
 interface PhotographerData {
@@ -7,12 +6,15 @@ interface PhotographerData {
 
 interface CustomerData {}
 
-type UserDataType = PhotographerData | CustomerData;
-
-interface UserInfoState {
-  userRole: User;
-  userData: UserDataType;
-}
+type UserInfoState =
+  | {
+      userRole: "photographer";
+      userData: PhotographerData;
+    }
+  | {
+      userRole: "customer";
+      userData: CustomerData;
+    };
 
 interface UserInfoActions {
   setUserInfo: (userinfo: UserInfoState) => void;
@@ -21,7 +23,7 @@ interface UserInfoActions {
 
 const defaultState: UserInfoState = { userRole: "customer", userData: {} };
 
-const useUserInfo = create<UserInfoState & UserInfoActions>((set) => ({
+const useUserInfo = create<UserInfoState & UserInfoActions>()((set) => ({
   userRole: defaultState.userRole,
   userData: defaultState.userData,
   setUserInfo: (userInfo: UserInfoState) => {

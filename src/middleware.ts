@@ -4,4 +4,6 @@ export async function middleware(request: NextRequest) {
   return new NextResponse();
 }
 
-export const config = {};
+export const config = {
+  matcher: "/about/:path*",
+};
