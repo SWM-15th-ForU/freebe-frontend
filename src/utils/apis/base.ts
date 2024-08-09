@@ -4,6 +4,7 @@ import { tokenKeys } from "@/constants/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+// TODO: seperate Auth parts
 const DEFAULT_API_RETRY_LIMIT = 2;
 
 export async function refreshAccessToken() {
