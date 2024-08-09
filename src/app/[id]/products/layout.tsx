@@ -1,4 +1,3 @@
-import ProductHeader from "@/containers/product/product-header";
 import { Icon } from "product-types";
 
 const ProductLayout = ({
@@ -14,12 +13,7 @@ const ProductLayout = ({
     { image: "image", title: "상품e", id: "e" },
   ];
 
-  return (
-    <div style={{ width: "100vw", overflowX: "hidden" }}>
-      <ProductHeader products={products} />
-      {children}
-    </div>
-  );
+  return <div style={{ width: "100vw", overflowX: "hidden" }}>{children}</div>;
 };
 
 export default ProductLayout;
