@@ -28,7 +28,7 @@ export async function refreshAccessToken() {
     }
     return newAccessToken;
   }
-  redirect("/login");
+  throw new Error("failed to reissue");
 }
 
 const beforeRetry: BeforeRetryHook = async ({ request, error, retryCount }) => {
@@ -36,8 +36,13 @@ const beforeRetry: BeforeRetryHook = async ({ request, error, retryCount }) => {
     if (retryCount === DEFAULT_API_RETRY_LIMIT - 1) {
       return ky.stop;
     }
-    const newAccessToken = await refreshAccessToken();
-    request.headers.set("Authorization", `Bearer ${newAccessToken}`);
+    try {
+      const newAccessToken = await refreshAccessToken();
+      request.headers.set("Authorization", `Bearer ${newAccessToken}`);
+    } catch (refreshError) {
+      console.log(refreshError);
+      redirect("/login");
+    }
   } else {
     return ky.stop;
   }
