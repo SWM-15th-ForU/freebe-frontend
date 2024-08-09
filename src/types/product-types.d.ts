@@ -38,4 +38,21 @@ declare module "product-types" {
     image: string;
     id: string;
   }
+
+  namespace reservation {
+    export interface SelectedOption {
+      optionId: string;
+      count: number;
+    }
+
+    export interface FormType {
+      referenceImages: Image[];
+      name: string;
+      contanct: string;
+      instagram: string;
+      schedules: Date[];
+      options: SelectedOption[];
+      memo: string;
+    }
+  }
 }
