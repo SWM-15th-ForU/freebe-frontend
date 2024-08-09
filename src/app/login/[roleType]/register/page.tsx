@@ -1,7 +1,7 @@
 "use client";
 
 import useUserInfo from "@/hooks/useUserInfo";
-import { postUserRole } from "@/utils/apis/login";
+import { postUserRole } from "@/services/auth/login";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { User } from "user-types";

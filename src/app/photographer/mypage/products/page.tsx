@@ -1,5 +1,5 @@
 import ProductList from "@/containers/product/product-list";
-import { getProductList } from "@/utils/apis/photographer/mypage";
+import { getProductList } from "@/services/photographer/mypage";
 
 const MyProductPage = async () => {
   const productDatas = await getProductList();
