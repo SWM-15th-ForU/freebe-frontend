@@ -19,7 +19,7 @@ const RegisterPage = ({ params }: { params: { roleType: User } }) => {
   };
   useEffect(() => {
     postUser();
-  });
+  }, []);
 
   return <div />;
 };

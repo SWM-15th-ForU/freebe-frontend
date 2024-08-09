@@ -14,5 +14,5 @@ export async function GET(request: NextRequest) {
   if (refreshToken) {
     cookieStore.set("refreshToken", refreshToken);
   }
-  redirect(`${basePath}/login//photographer/register`);
+  redirect(`${basePath}/login/photographer/register`);
 }
