@@ -32,6 +32,7 @@
     "react/jsx-props-no-spreading": "off",
     "no-useless-catch": "off",
     "import/prefer-default-export": "off",
+    "consistent-return": "warn",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "warn",

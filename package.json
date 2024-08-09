@@ -11,7 +11,7 @@
     "gitRoot": ""
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -29,15 +29,18 @@
     "@mantine/hooks": "^7.11.2",
     "@mantine/vanilla-extract": "^7.11.2",
     "@vanilla-extract/css": "^1.15.3",
+    "ky": "^1.5.0",
     "embla-carousel-react": "^7.1.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
-    "return-fetch": "^0.4.6"
+    "return-fetch": "^0.4.6",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

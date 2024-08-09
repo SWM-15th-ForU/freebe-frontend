@@ -1,31 +1,29 @@
-import { nextFetch } from "./core";
+"use server";
 
-// [TODO] OAuth 요청 방식 확정에 따라 삭제 혹은 수정
-// async function getPhotographerKakaoLogin() {
-//   const response = await nextFetch("/oauth2/authorization/kakao", {
-//     method: "GET",
-//     mode: "no-cors",
-//   });
-//   return response;
-// }
+import { cookieKeys, cookieValues } from "@/constants/cookies";
+import { cookies } from "next/headers";
+import { api } from "./core";
 
-async function postPhotographerKakaoLogin(userType: string) {
-  const requestBody = {
-    userType,
-  };
-  const response = await nextFetch("/api/login", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestBody),
-  });
-  return response;
+export async function customerKakaoLogin(postLogin: string) {
+  const cookieStore = cookies();
+  cookieStore.set(cookieKeys.requestUser, cookieValues.requestUser.customer);
+  cookieStore.set(cookieKeys.redirectRequest, postLogin);
 }
 
-export async function loginKakao(userType: string) {
-  const response = await postPhotographerKakaoLogin(userType);
-  console.dir(response);
-  return response;
+export async function kakaoLogin() {
+  const cookieStore = cookies();
+  cookieStore.set(
+    cookieKeys.requestUser,
+    cookieValues.requestUser.photographer,
+  );
+}
+interface RegisterResponse {
+  data: string;
+}
+
+export async function postUserRole(
+  roleType: string,
+): Promise<RegisterResponse> {
+  const response = await api.post("login/type", { json: { roleType } });
+  return (await response.json()) as RegisterResponse;
 }

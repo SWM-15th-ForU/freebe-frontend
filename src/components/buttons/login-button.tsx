@@ -1,12 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import * as style from "./buttons.css";
+import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { Body15SB } from "../texts/texts";
+import * as style from "./buttons.css";
 
 const LoginButton = () => {
   function loginToKakao() {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/kakao`;
+    localStorage.setItem(
+      cookieKeys.requestUser,
+      cookieValues.requestUser.photographer,
+    );
+    window.location.href = `https://api.freebe.co.kr/oauth2/authorization/kakao`;
   }
 
   return (
