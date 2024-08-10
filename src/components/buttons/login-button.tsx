@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { Body15SB } from "../texts/texts";
-import * as style from "./buttons.css";
+import buttonStyles from "./buttons.css";
 
 const LoginButton = () => {
   function loginToKakao() {
@@ -15,11 +15,7 @@ const LoginButton = () => {
   }
 
   return (
-    <button
-      type="button"
-      onClick={loginToKakao}
-      className={style.kakaoContainer}
-    >
+    <button type="button" onClick={loginToKakao} className={buttonStyles.kakao}>
       <Image
         src="/icons/kakao-logo.svg"
         alt="login-logo"

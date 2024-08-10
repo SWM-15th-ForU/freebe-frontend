@@ -14,7 +14,7 @@ const ReferenceGrid = ({
   handleSelect: (index: number) => void;
 }) => {
   return (
-    <div style={{ margin: 20 }}>
+    <div style={{ margin: 20, paddingBottom: 70 }}>
       <MasonryGrid
         column={GRID_COLUMN_COUNT}
         gap={{ horizontal: 10 }}
