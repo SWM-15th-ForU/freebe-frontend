@@ -1,8 +1,11 @@
 "use client";
 
-import ReferenceGrid from "@/containers/customer/reservation/reference-grid";
+import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
+import ReferenceSelected from "@/containers/customer/reservation/reference/selected";
 import { reservation } from "product-types";
 import { useEffect, useState } from "react";
+
+const MAX_SELECT_COUNT = 3;
 
 const ReferencePage = () => {
   const imageDatas: reservation.ImageListType[] = [
@@ -25,12 +28,38 @@ const ReferencePage = () => {
   ];
 
   const [imageList, setImageList] = useState<reservation.ImageListType[]>([]);
+  const [selectedImageList, setSelectedImageList] = useState<
+    reservation.SelectedImageListType[]
+  >([]);
 
   useEffect(() => {
     setImageList(imageDatas);
   }, []);
 
+  function addSelected(targetIndex: number) {
+    if (selectedImageList.length === MAX_SELECT_COUNT) {
+      alert("더 이상 선택할 수 없습니다.");
+    } else {
+      setSelectedImageList((list) => {
+        list.push({ index: targetIndex, ...imageList[targetIndex] });
+        return list;
+      });
+    }
+  }
+
+  function removeSelected(targetIndex: number) {
+    setSelectedImageList((list) => {
+      return list.filter((image) => image.index !== targetIndex);
+    });
+  }
+
   function changeSelected(targetIndex: number) {
+    if (imageList[targetIndex].selected) {
+      removeSelected(targetIndex);
+    } else {
+      addSelected(targetIndex);
+    }
+
     setImageList((list) => {
       return list.map((image, index) =>
         index === targetIndex
@@ -42,6 +71,10 @@ const ReferencePage = () => {
 
   return (
     <div>
+      <ReferenceSelected
+        images={selectedImageList}
+        onClickDelete={changeSelected}
+      />
       <ReferenceGrid images={imageList} handleSelect={changeSelected} />
     </div>
   );

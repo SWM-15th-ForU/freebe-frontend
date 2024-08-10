@@ -45,6 +45,11 @@ declare module "product-types" {
       selected: boolean;
     }
 
+    export interface SelectedImageListType {
+      url: string;
+      index: number;
+    }
+
     export interface SelectedOption {
       optionId: string;
       count: number;

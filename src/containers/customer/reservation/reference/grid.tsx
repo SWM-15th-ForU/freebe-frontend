@@ -17,7 +17,7 @@ const ReferenceGrid = ({
     <div style={{ margin: 20 }}>
       <MasonryGrid
         column={GRID_COLUMN_COUNT}
-        gap={{ horizontal: 5 }}
+        gap={{ horizontal: 10 }}
         align="center"
         className="container"
       >

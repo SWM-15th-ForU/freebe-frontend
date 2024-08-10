@@ -17,7 +17,7 @@ const GridImage = ({ url, selected, handleClick }: GridImageProps) => {
         alt={url}
         className={GridStyles.image}
         style={{
-          outlineWidth: selected ? 1 : 0,
+          outlineWidth: selected ? 2 : 0,
         }}
       />
     </div>
