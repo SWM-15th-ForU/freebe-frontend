@@ -3,7 +3,7 @@
 import { BottomButton } from "@/components/buttons/common-buttons";
 import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
 import ReferenceSelected from "@/containers/customer/reservation/reference/selected";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { reservation } from "product-types";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -35,7 +35,8 @@ const ReferencePage = () => {
   const [selectedImageList, setSelectedImageList] = useState<
     reservation.SelectedImageListType[]
   >([]);
-  const { setValue, getValues } = useFormContext<reservation.FormType>();
+  const { setValue } = useFormContext<reservation.FormType>();
+  const currentPath = usePathname();
 
   useEffect(() => {
     setImageList(imageDatas);
@@ -74,10 +75,21 @@ const ReferencePage = () => {
     }
   }
 
-  function handleNext() {
+  function registerImages() {
     const referenceImages = selectedImageList.map((image) => image.url);
     setValue("referenceImages", referenceImages);
-    router.push("");
+  }
+
+  function getNextPath(param: string) {
+    const targetPath = currentPath.split("/");
+    targetPath[targetPath.length - 1] = param;
+    return targetPath.join("/");
+  }
+
+  function handleNext() {
+    registerImages();
+    const nextPath = getNextPath("submit");
+    router.push(nextPath);
   }
 
   return (
