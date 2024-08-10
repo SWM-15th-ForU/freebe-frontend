@@ -40,6 +40,11 @@ declare module "product-types" {
   }
 
   namespace reservation {
+    export interface ImageListType {
+      url: string;
+      selected: boolean;
+    }
+
     export interface SelectedOption {
       optionId: string;
       count: number;
