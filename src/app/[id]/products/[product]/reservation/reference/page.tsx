@@ -6,6 +6,7 @@ import ReferenceSelected from "@/containers/customer/reservation/reference/selec
 import { useRouter } from "next/navigation";
 import { reservation } from "product-types";
 import { useEffect, useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 const MAX_SELECT_COUNT = 3;
 
@@ -34,6 +35,7 @@ const ReferencePage = () => {
   const [selectedImageList, setSelectedImageList] = useState<
     reservation.SelectedImageListType[]
   >([]);
+  const { setValue, getValues } = useFormContext<reservation.FormType>();
 
   useEffect(() => {
     setImageList(imageDatas);
@@ -73,6 +75,8 @@ const ReferencePage = () => {
   }
 
   function handleNext() {
+    const referenceImages = selectedImageList.map((image) => image.url);
+    setValue("referenceImages", referenceImages);
     router.push("");
   }
 

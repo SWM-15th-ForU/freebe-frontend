@@ -56,7 +56,7 @@ declare module "product-types" {
     }
 
     export interface FormType {
-      referenceImages: Image[];
+      referenceImages: string[];
       name: string;
       contanct: string;
       instagram: string;
