@@ -2,11 +2,11 @@ import sprinkles from "@/styles/sprinkles.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 const TextInputStyles = styleVariants({
-  container: [
-    {
-      margin: 20,
-    },
-  ],
+  container: {
+    width: "100%",
+    marginTop: 20,
+    marginBottom: 20,
+  },
   title: [
     sprinkles({
       fontSize: "headline-03",
@@ -35,6 +35,7 @@ const TextInputStyles = styleVariants({
       border: "none",
       width: "100%",
       margin: "auto",
+      verticalAlign: "middle",
     },
   ],
 });

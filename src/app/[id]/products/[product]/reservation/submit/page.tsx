@@ -5,12 +5,16 @@ import CustomerInfoForm from "@/containers/customer/reservation/submit/customer-
 import { useFormContext } from "react-hook-form";
 
 const SubmitPage = () => {
-  const { register } = useFormContext();
+  const { register, getValues } = useFormContext();
+
+  function handleSubmit() {
+    const value = getValues();
+  }
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#F4F8FD" }}>
       <CustomerInfoForm />
-      <BottomButton title="신청하기" onClick={() => {}} />
+      <BottomButton title="신청하기" onClick={handleSubmit} />
     </div>
   );
 };

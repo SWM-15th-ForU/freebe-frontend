@@ -67,9 +67,14 @@ const fontSizes = {
     */
 };
 
+const fontWeights = {
+  "headline-02": 600,
+};
+
 const textProperties = defineProperties({
   properties: {
     fontSize: fontSizes,
+    fontWeight: fontWeights,
   },
 });
 
