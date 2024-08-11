@@ -12,6 +12,8 @@ const MAX_SELECT_COUNT = 3;
 
 const ReferencePage = () => {
   const router = useRouter();
+
+  // TODO: 데이터 페칭 후 form value 접근해서 선택되어 있는지 여부 확인
   const imageDatas: reservation.ImageListType[] = [
     {
       url: "https://picsum.photos/300/400",
