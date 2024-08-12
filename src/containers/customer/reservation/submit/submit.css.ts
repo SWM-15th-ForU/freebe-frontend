@@ -19,6 +19,13 @@ const submitStyles = styleVariants({
       fontWeight: "headline-02",
     }),
   ],
+  itemTitle: [
+    sprinkles({
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+      color: "text-02",
+    }),
+  ],
 });
 
 export default submitStyles;

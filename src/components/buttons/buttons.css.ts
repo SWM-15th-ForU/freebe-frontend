@@ -66,4 +66,18 @@ const buttonStyles = styleVariants({
   },
 });
 
+export const closeStyles = styleVariants({
+  container: { zIndex: 3, display: "flex", alignItems: "center" },
+  grey: [
+    sprinkles({
+      color: "stroke-grey",
+    }),
+  ],
+  white: [
+    sprinkles({
+      color: "white",
+    }),
+  ],
+});
+
 export default buttonStyles;

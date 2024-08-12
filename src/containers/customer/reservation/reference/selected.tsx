@@ -37,7 +37,12 @@ const ReferenceSelected = ({
                 marginTop: 15,
               }}
             >
-              <CloseButton onClick={() => onClickDelete(image.index)} />
+              <CloseButton
+                onClick={() => onClickDelete(image.index)}
+                styleType="shadow"
+                container={{ top: 4, right: 4 }}
+                size={24}
+              />
               <Image src={image.url} alt={image.url} fill />
             </div>
           );

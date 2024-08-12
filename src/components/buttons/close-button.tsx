@@ -1,18 +1,40 @@
+import { CSSProperties } from "react";
 import Image from "next/image";
+import { closeStyles } from "./buttons.css";
 
-const CloseButton = ({ onClick }: { onClick: () => void }) => {
+interface CloseButtonProps {
+  onClick: () => void;
+  size: number;
+  styleType?: "shadow" | "normal";
+  color?: "grey" | "white";
+  container?: CSSProperties;
+}
+
+const CloseButton = ({
+  onClick,
+  styleType = "normal",
+  color = "grey",
+  container,
+  size,
+}: CloseButtonProps) => {
+  const styles = {
+    shadow: { src: "/icons/close-shadow.svg" },
+    normal: { src: "/icons/close.svg" },
+  };
+
   return (
     <div
-      style={{ zIndex: 3, position: "absolute", top: 4, right: 4 }}
+      className={closeStyles.container}
+      style={container}
       onClick={onClick}
       role="presentation"
     >
       <Image
-        src="/icons/close.svg"
-        width={24}
-        height={24}
+        src={styles[styleType].src}
+        width={size}
+        height={size}
         alt="close"
-        style={{ color: "white" }}
+        className={closeStyles[color]}
       />
     </div>
   );

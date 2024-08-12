@@ -45,6 +45,12 @@ declare module "product-types" {
       selected: boolean;
     }
 
+    export interface ScheduleListType {
+      date: Date;
+      startTime: Date;
+      endTime: Date;
+    }
+
     export interface SelectedImageListType {
       url: string;
       index: number;
@@ -60,7 +66,7 @@ declare module "product-types" {
       name: string;
       contanct: string;
       instagram: string;
-      schedules: Date[];
+      schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
     }

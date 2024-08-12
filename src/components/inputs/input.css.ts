@@ -17,6 +17,7 @@ const baseWrapper = style([
   {
     display: "flex",
     alignItems: "center",
+    position: "relative",
     width: "100%",
     height: "56px",
     borderRadius: 8,
