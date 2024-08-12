@@ -27,7 +27,7 @@ const baseWrapper = style([
   },
 ]);
 
-const TextInputStyles = styleVariants({
+const InputStyles = styleVariants({
   container: {
     width: "100%",
     marginTop: 20,
@@ -59,4 +59,4 @@ const TextInputStyles = styleVariants({
   ],
 });
 
-export default TextInputStyles;
+export default InputStyles;

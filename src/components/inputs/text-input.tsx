@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { FieldValues, useFormContext } from "react-hook-form";
-import TextInputStyles from "./text-input.css";
+import InputStyles from "./input.css";
 
 interface TextInputProps<T extends FieldValues>
   extends DetailedHTMLProps<
@@ -23,19 +23,15 @@ const TextInput = <T extends FieldValues>({
   const { register } = useFormContext();
 
   return (
-    <div className={TextInputStyles.container}>
-      {title && <span className={TextInputStyles.title}>{title}</span>}
+    <div className={InputStyles.container}>
+      {title && <span className={InputStyles.title}>{title}</span>}
       <div
         className={
-          disabled
-            ? TextInputStyles.disabledInputWrapper
-            : TextInputStyles.inputWrapper
+          disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
         }
       >
         <input
-          className={
-            disabled ? TextInputStyles.disabledInput : TextInputStyles.input
-          }
+          className={disabled ? InputStyles.disabledInput : InputStyles.input}
           placeholder={placeholder}
           {...(formField && register(formField.toString()))}
           disabled

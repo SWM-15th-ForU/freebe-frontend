@@ -16,6 +16,7 @@ const SubmitPage = () => {
 
   function handleSubmit() {
     const value = getValues();
+    console.log(value);
   }
 
   return (

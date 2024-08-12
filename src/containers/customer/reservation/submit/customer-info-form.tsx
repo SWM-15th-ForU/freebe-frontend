@@ -1,4 +1,4 @@
-import TextInput from "@/components/common/text-input";
+import TextInput from "@/components/inputs/text-input";
 import { reservation } from "product-types";
 import PartLayout from "./part-layout";
 

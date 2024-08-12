@@ -8,6 +8,7 @@ const submitStyles = styleVariants({
     }),
     {
       padding: 20,
+      paddingTop: 28,
       marginBottom: 8,
     },
   ],
