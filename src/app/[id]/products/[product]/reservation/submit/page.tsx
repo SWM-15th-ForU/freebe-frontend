@@ -3,13 +3,19 @@
 import { BottomButton } from "@/components/buttons/common-buttons";
 import CustomerInfoForm from "@/containers/customer/reservation/submit/customer-info-form";
 import ProductInfoForm from "@/containers/customer/reservation/submit/product-info-form";
+import SelectOptionForm from "@/containers/customer/reservation/submit/select-option-form";
+import { Item, Option } from "product-types";
 import { useFormContext } from "react-hook-form";
 
 const SubmitPage = () => {
-  const datas = {
+  const datas: {
+    items: Item[];
+    options: Option[];
+  } = {
     items: [
       { title: "기본 가격", content: "160,000원", hasDescription: false },
     ],
+    options: [{ title: "인원 추가", isFree: true }],
   };
 
   const { getValues } = useFormContext();
@@ -30,6 +36,7 @@ const SubmitPage = () => {
     >
       <CustomerInfoForm />
       <ProductInfoForm items={datas.items} />
+      <SelectOptionForm options={datas.options} />
       <BottomButton title="신청하기" onClick={handleSubmit} />
     </div>
   );

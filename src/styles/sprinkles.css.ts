@@ -66,6 +66,7 @@ const fontSizes = {
 const fontWeights = {
   "headline-02": 600,
   "headline-03": 600,
+  "body-01": 500,
   "body-02": 500,
   "button-01": 600,
 };
