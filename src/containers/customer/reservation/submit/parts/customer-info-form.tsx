@@ -1,6 +1,6 @@
 import TextInput from "@/components/inputs/text-input";
 import { reservation } from "product-types";
-import PartLayout from "./part-layout";
+import PartLayout from "../part-layout";
 
 const CustomerInfoForm = () => {
   return (

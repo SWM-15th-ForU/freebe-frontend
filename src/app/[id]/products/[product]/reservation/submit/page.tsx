@@ -1,11 +1,10 @@
 "use client";
 
 import { BottomButton } from "@/components/buttons/common-buttons";
-import CustomerInfoForm from "@/containers/customer/reservation/submit/customer-info-form";
-import ProductInfoForm from "@/containers/customer/reservation/submit/product-info-form";
-import RequestForm from "@/containers/customer/reservation/submit/request-form";
-import SelectOptionForm from "@/containers/customer/reservation/submit/select-option-form";
-import Link from "next/link";
+import CustomerInfoForm from "@/containers/customer/reservation/submit/parts/customer-info-form";
+import ProductInfoForm from "@/containers/customer/reservation/submit/parts/product-info-form";
+import RequestForm from "@/containers/customer/reservation/submit/parts/request-form";
+import SelectOptionForm from "@/containers/customer/reservation/submit/parts/select-option-form";
 import { Item, Option } from "product-types";
 import { useFormContext } from "react-hook-form";
 

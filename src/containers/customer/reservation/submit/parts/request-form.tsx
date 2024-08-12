@@ -2,9 +2,9 @@ import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
 import TextInput from "@/components/inputs/text-input";
-import PartLayout from "./part-layout";
-import { reservationStyles } from "../reservation.css";
-import submitStyles from "./submit.css";
+import PartLayout from "../part-layout";
+import { reservationStyles } from "../../reservation.css";
+import submitStyles from "../submit.css";
 
 const RequestForm = () => {
   const { getValues } = useFormContext<reservation.FormType>();

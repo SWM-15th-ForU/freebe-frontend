@@ -4,8 +4,8 @@ import TextInput from "@/components/inputs/text-input";
 import ScheduleInput from "@/components/inputs/schedule-input";
 import { AddButton } from "@/components/buttons/common-buttons";
 import { Item, reservation } from "product-types";
-import PartLayout from "./part-layout";
-import submitStyles from "./submit.css";
+import PartLayout from "../part-layout";
+import submitStyles from "../submit.css";
 
 const ProductInfoForm = ({ items }: { items: Item[] }) => {
   const currentPath = usePathname();
