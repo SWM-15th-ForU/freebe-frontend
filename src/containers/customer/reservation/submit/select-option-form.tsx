@@ -1,13 +1,12 @@
 import Dropdown from "@/components/common/dropdown";
 import { Option } from "product-types";
-import submitStyles from "./submit.css";
+import PartLayout from "./part-layout";
 
 const SelectOptionForm = ({ options }: { options: Option[] }) => {
   return (
-    <div className={submitStyles.container}>
-      <span className={submitStyles.title}>추가 옵션</span>
+    <PartLayout title="추가 옵션">
       <Dropdown datas={[]} />
-    </div>
+    </PartLayout>
   );
 };
 

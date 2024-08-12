@@ -3,6 +3,7 @@
 import { BottomButton } from "@/components/buttons/common-buttons";
 import CustomerInfoForm from "@/containers/customer/reservation/submit/customer-info-form";
 import ProductInfoForm from "@/containers/customer/reservation/submit/product-info-form";
+import RequestForm from "@/containers/customer/reservation/submit/request-form";
 import SelectOptionForm from "@/containers/customer/reservation/submit/select-option-form";
 import { Item, Option } from "product-types";
 import { useFormContext } from "react-hook-form";
@@ -37,6 +38,7 @@ const SubmitPage = () => {
       <CustomerInfoForm />
       <ProductInfoForm items={datas.items} />
       <SelectOptionForm options={datas.options} />
+      <RequestForm />
       <BottomButton title="신청하기" onClick={handleSubmit} />
     </div>
   );

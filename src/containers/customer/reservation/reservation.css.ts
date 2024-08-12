@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-export const SelectedStyles = styleVariants({
+export const reservationStyles = styleVariants({
   imageWrapper: {
     display: "flex",
     width: "100%",
