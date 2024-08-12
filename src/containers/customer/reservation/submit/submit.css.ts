@@ -12,6 +12,18 @@ const submitStyles = styleVariants({
       marginBottom: 8,
     },
   ],
+  selectWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    position: "relative",
+  },
+  calenderWrapper: {
+    display: "flex",
+    height: 500,
+    paddingTop: 20,
+    alignItems: "flex-start",
+  },
   title: [
     sprinkles({
       fontSize: "headline-02",
