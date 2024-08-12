@@ -19,7 +19,7 @@ const baseWrapper = style([
     alignItems: "center",
     position: "relative",
     width: "100%",
-    height: "56px",
+    height: "fit-content",
     borderRadius: 8,
     borderWidth: 1,
     borderStyle: "solid",
@@ -31,6 +31,7 @@ const baseWrapper = style([
 const InputStyles = styleVariants({
   container: {
     width: "100%",
+    height: "fit-content",
     marginTop: 20,
     marginBottom: 20,
   },
@@ -58,6 +59,7 @@ const InputStyles = styleVariants({
     }),
     baseInput,
   ],
+  multilineInput: [baseInput, { height: "80px" }],
 });
 
 export default InputStyles;

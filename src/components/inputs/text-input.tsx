@@ -10,6 +10,7 @@ interface TextInputProps<T extends FieldValues>
   title?: string;
   placeholder?: string;
   disabled?: boolean;
+  multiline?: boolean;
   formField?: keyof T;
 }
 
@@ -17,6 +18,7 @@ const TextInput = <T extends FieldValues>({
   title,
   placeholder = "내용을 입력해주세요.",
   disabled,
+  multiline,
   formField,
   ...props
 }: TextInputProps<T>) => {
@@ -30,13 +32,23 @@ const TextInput = <T extends FieldValues>({
           disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
         }
       >
-        <input
-          className={disabled ? InputStyles.disabledInput : InputStyles.input}
-          placeholder={placeholder}
-          {...(formField && register(formField.toString()))}
-          disabled
-          {...props}
-        />
+        {multiline ? (
+          <textarea
+            className={
+              disabled ? InputStyles.disabledInput : InputStyles.multilineInput
+            }
+            placeholder={placeholder}
+            {...(formField && register(formField.toString()))}
+          />
+        ) : (
+          <input
+            className={disabled ? InputStyles.disabledInput : InputStyles.input}
+            placeholder={placeholder}
+            {...(formField && register(formField.toString()))}
+            disabled
+            {...props}
+          />
+        )}
       </div>
     </div>
   );

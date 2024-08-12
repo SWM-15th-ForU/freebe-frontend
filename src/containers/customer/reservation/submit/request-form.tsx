@@ -34,7 +34,9 @@ const RequestForm = () => {
       </div>
       <TextInput<reservation.FormType>
         placeholder="작가님께 전달하고 싶은 말이 있거나, 궁금한 내용이 있다면 편하게 작성해주세요."
+        title="요청 메모"
         formField="memo"
+        multiline
       />
     </PartLayout>
   );
