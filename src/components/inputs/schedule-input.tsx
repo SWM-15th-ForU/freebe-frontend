@@ -26,23 +26,20 @@ const ScheduleInput = <T extends FieldValues>({
   const { register, setValue } = useFormContext();
 
   return (
-    <div className={InputStyles.container}>
-      {title && <span className={InputStyles.title}>{title}</span>}
-      <div
-        className={
-          disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
-        }
-      >
-        <input
-          className={disabled ? InputStyles.disabledInput : InputStyles.input}
-          type="datetime-local"
-          placeholder={placeholder}
-          {...(formField && register(formField.toString()))}
-          disabled
-          {...props}
-        />
-        <CloseButton onClick={onClickDelete} size={18} />
-      </div>
+    <div
+      className={
+        disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
+      }
+    >
+      <input
+        className={disabled ? InputStyles.disabledInput : InputStyles.input}
+        type="datetime-local"
+        placeholder={placeholder}
+        {...(formField && register(formField.toString()))}
+        disabled
+        {...props}
+      />
+      <CloseButton onClick={onClickDelete} size={18} />
     </div>
   );
 };

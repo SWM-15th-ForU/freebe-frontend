@@ -26,6 +26,20 @@ const submitStyles = styleVariants({
       color: "text-02",
     }),
   ],
+  modalBackground: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    backgroundColor: "black",
+    opacity: 0.3,
+    width: "100vw",
+    height: "100vh",
+  },
+  modal: {
+    backgroundColor: "white",
+    borderRadius: 16,
+    padding: 24,
+  },
 });
 
 export default submitStyles;

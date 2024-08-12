@@ -20,7 +20,14 @@ const SubmitPage = () => {
   }
 
   return (
-    <div style={{ backgroundColor: "#F4F8FD" }}>
+    <div
+      style={{
+        backgroundColor: "#F4F8FD",
+        paddingBottom: 72,
+        height: "100vh",
+        overflowY: "scroll",
+      }}
+    >
       <CustomerInfoForm />
       <ProductInfoForm items={datas.items} />
       <BottomButton title="신청하기" onClick={handleSubmit} />
