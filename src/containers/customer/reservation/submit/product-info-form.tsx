@@ -1,4 +1,5 @@
 import TextInput from "@/components/inputs/text-input";
+import { AddButton } from "@/components/buttons/common-buttons";
 import { Item, reservation } from "product-types";
 import PartLayout from "./part-layout";
 
@@ -19,6 +20,7 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
         title="촬영 일정"
         formField="schedules"
       />
+      <AddButton title="후보 일정 추가하기" />
     </PartLayout>
   );
 };

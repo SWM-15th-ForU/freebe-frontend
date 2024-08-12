@@ -13,7 +13,7 @@ const baseInput = style([
 ]);
 
 const baseWrapper = style([
-  sprinkles({ borderColor: "grey" }),
+  sprinkles({ borderColor: "stroke-grey" }),
   {
     display: "flex",
     alignItems: "center",

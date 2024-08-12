@@ -28,10 +28,6 @@ const backgroundColors = {
   lightblue: "#E7F2FB",
 };
 
-const borderColors = {
-  grey: "#DBE2E8",
-};
-
 const colorProperties = defineProperties({
   conditions: {
     lightMode: {
@@ -43,7 +39,7 @@ const colorProperties = defineProperties({
   properties: {
     color: colors,
     backgroundColor: backgroundColors,
-    borderColor: borderColors,
+    borderColor: colors,
   },
 });
 
@@ -71,6 +67,7 @@ const fontWeights = {
   "headline-02": 600,
   "headline-03": 600,
   "body-02": 500,
+  "button-01": 600,
 };
 
 const textProperties = defineProperties({

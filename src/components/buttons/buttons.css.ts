@@ -1,4 +1,5 @@
 import { BLUE01 } from "@/styles/colors";
+import sprinkles from "@/styles/sprinkles.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 const buttonStyles = styleVariants({
@@ -19,13 +20,23 @@ const buttonStyles = styleVariants({
       cursor: "pointer",
     },
   },
-  add: {
-    width: "100%",
-    border: "dashed",
-    borderRadius: 10,
-    marginTop: 15,
-    padding: 5,
-  },
+  add: [
+    sprinkles({
+      borderColor: "blue",
+      color: "blue",
+      backgroundColor: "white",
+      fontWeight: "button-01",
+    }),
+    {
+      width: "100%",
+      height: 56,
+      borderStyle: "solid",
+      borderRadius: 8,
+      borderWidth: 1,
+      marginTop: 15,
+      padding: 10,
+    },
+  ],
   link: {
     backgroundColor: "#D9D9D9",
     color: "#000",
