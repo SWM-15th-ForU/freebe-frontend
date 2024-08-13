@@ -2,6 +2,9 @@ import sprinkles from "@/styles/sprinkles.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const DropdownStyles = styleVariants({
+  area: {
+    position: "relative",
+  },
   container: [
     sprinkles({
       borderColor: "stroke-grey",
@@ -27,4 +30,23 @@ export const DropdownStyles = styleVariants({
     }),
   ],
   icon: [sprinkles({ color: "skyblue" })],
+  list: [
+    sprinkles({ borderColor: "stroke-grey", backgroundColor: "white" }),
+    {
+      zIndex: 5,
+      width: "100%",
+      position: "absolute",
+      top: 60,
+      borderWidth: 1,
+      borderRadius: 8,
+      borderStyle: "solid",
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
+  ],
+  listItems: [
+    {
+      padding: "16px 20px",
+      height: 56,
+    },
+  ],
 });
