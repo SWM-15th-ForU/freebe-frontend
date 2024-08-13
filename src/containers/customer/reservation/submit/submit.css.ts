@@ -18,12 +18,16 @@ const submitStyles = styleVariants({
     alignItems: "center",
     position: "relative",
   },
-  calenderWrapper: {
-    display: "flex",
-    height: 430,
-    paddingTop: 20,
-    alignItems: "flex-start",
-  },
+  calenderWrapper: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      borderWidth: 0,
+      borderBottomWidth: 1,
+      borderStyle: "solid",
+    },
+  ],
   title: [
     sprinkles({
       fontSize: "headline-02",

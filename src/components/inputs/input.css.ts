@@ -8,6 +8,7 @@ export const TimeInputStyles = styleVariants({
     width: "100%",
     alignItems: "center",
     padding: 4,
+    marginTop: 10,
   },
   title: [
     sprinkles({
