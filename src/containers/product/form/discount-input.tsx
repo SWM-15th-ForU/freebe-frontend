@@ -33,26 +33,22 @@ const DiscountInput = ({
         id="discountType"
         {...formRegister(`discounts.${index}.discountType`)}
       >
-        <option id="discountType" value="amount">
+        <option id="discountType" value="AMOUNT">
           금액 할인
         </option>
-        <option id="discountType" value="rate">
+        <option id="discountType" value="RATE">
           비율 할인
         </option>
       </select>
-      {discounts[index]?.discountType === "amount" ? (
-        <input
-          className={style.textInput}
-          placeholder="할인 금액을 입력해 주세요."
-          {...formRegister(`discounts.${index}.amount`)}
-        />
-      ) : (
-        <input
-          className={style.textInput}
-          placeholder="할인율을 입력해 주세요."
-          {...formRegister(`discounts.${index}.rate`)}
-        />
-      )}
+      <input
+        className={style.textInput}
+        placeholder={
+          discounts[index]?.discountType === "AMOUNT"
+            ? "할인 금액을 입력해 주세요."
+            : "할인율을 입력해 주세요."
+        }
+        {...formRegister(`discounts.${index}.discountValue`)}
+      />
       <input
         type="checkbox"
         {...formRegister(`discounts.${index}.hasDescription`)}
