@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useRef } from "react";
 import { AddButton } from "@/components/buttons/common-buttons";
 import ImageThumbnail from "@/components/common/image-thumbnail";
 import { Body15SB } from "@/components/texts/texts";
+import { getUrlFromFiles } from "@/utils/image";
 
 interface ImageInputProps {
   images: Image[];
@@ -21,9 +22,11 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
     e.preventDefault();
     if (e.type === "drop") {
       const event = e as React.DragEvent;
-      const droppedFiles = Array.from(event.dataTransfer.files);
+      const droppedImages = getUrlFromFiles(
+        Array.from(event.dataTransfer.files),
+      );
       setImage((prev) => {
-        const newImages = [...prev, ...droppedFiles].slice(
+        const newImages = [...prev, ...droppedImages].slice(
           ARRAY_START_INDEX,
           MAX_IMAGE_COUNT,
         );
@@ -31,11 +34,11 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
       });
     } else if (e.type === "change") {
       const inputElement = e.target as HTMLInputElement;
-      const selectedFiles = inputElement.files
-        ? Array.from(inputElement.files)
-        : [];
+      const selectedImages = getUrlFromFiles(
+        inputElement.files ? Array.from(inputElement.files) : [],
+      );
       setImage((prev) => {
-        const newImages = [...prev, ...selectedFiles].slice(
+        const newImages = [...prev, ...selectedImages].slice(
           ARRAY_START_INDEX,
           MAX_IMAGE_COUNT,
         );
@@ -44,9 +47,9 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
     }
   }
 
-  function handleDeleteImage(deleteFileName: string) {
+  function handleDeleteImage(deleteImageIndex: number) {
     setImage((prev) => {
-      return prev.filter((image) => image.name !== deleteFileName);
+      return prev.filter((_, index) => index !== deleteImageIndex);
     });
   }
 
@@ -57,9 +60,9 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
         {images.map((image, index) => {
           return (
             <ImageThumbnail
-              key={image.name + index}
+              key={index}
               image={image}
-              onClickDelete={() => handleDeleteImage(image.name)}
+              onClickDelete={() => handleDeleteImage(index)}
             />
           );
         })}
