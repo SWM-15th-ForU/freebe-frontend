@@ -16,7 +16,7 @@ const SubmitPage = () => {
     items: [
       { title: "기본 가격", content: "160,000원", hasDescription: false },
     ],
-    options: [{ title: "인원 추가", isFree: true }],
+    options: [{ title: "인원 추가", isFree: true, hasDescription: false }],
   };
 
   const { getValues } = useFormContext();

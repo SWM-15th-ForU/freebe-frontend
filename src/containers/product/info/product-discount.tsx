@@ -5,18 +5,17 @@ const ProductDiscount = ({
   discountType,
   hasDescription,
   title,
-  amount,
   description,
-  rate,
+  discountValue,
 }: Discount) => {
   return (
     <div className={infoStyle.container}>
       <span>{title}</span>
       {hasDescription && <span>{description}</span>}
-      {discountType === "amount" ? (
-        <span>{amount}원 할인</span>
+      {discountType === "AMOUNT" ? (
+        <span>{discountValue}원 할인</span>
       ) : (
-        <span>{rate}% 할인</span>
+        <span>{discountValue}% 할인</span>
       )}
     </div>
   );
