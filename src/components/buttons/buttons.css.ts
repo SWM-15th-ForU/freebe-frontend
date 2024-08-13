@@ -76,7 +76,12 @@ const buttonStyles = styleVariants({
 });
 
 export const closeStyles = styleVariants({
-  container: { zIndex: 3, display: "flex", alignItems: "center" },
+  container: {
+    position: "relative",
+    zIndex: 3,
+    display: "flex",
+    alignItems: "center",
+  },
   grey: [
     sprinkles({
       color: "stroke-grey",

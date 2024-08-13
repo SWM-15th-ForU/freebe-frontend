@@ -13,73 +13,41 @@ const MAX_SELECT_COUNT = 3;
 const ReferencePage = () => {
   const router = useRouter();
 
-  // TODO: 데이터 페칭 후 form value 접근해서 선택되어 있는지 여부 확인
-  const imageDatas: reservation.ImageListType[] = [
-    {
-      url: "https://picsum.photos/300/400",
-      selected: false,
-    },
-    {
-      url: "https://picsum.photos/280/500",
-      selected: false,
-    },
-    {
-      url: "https://picsum.photos/200/400",
-      selected: false,
-    },
-    {
-      url: "https://picsum.photos/400/300",
-      selected: false,
-    },
+  // TODO: reference images 데이터 페칭
+  const imageDatas: string[] = [
+    "https://picsum.photos/300/400",
+    "https://picsum.photos/280/500",
+    "https://picsum.photos/200/400",
+    "https://picsum.photos/400/300",
   ];
 
-  const [imageList, setImageList] = useState<reservation.ImageListType[]>([]);
-  const [selectedImageList, setSelectedImageList] = useState<
-    reservation.SelectedImageListType[]
-  >([]);
-  const { setValue } = useFormContext<reservation.FormType>();
+  const [imageList, setImageList] = useState<string[]>([]);
+  const { setValue, watch } = useFormContext<reservation.FormType>();
   const currentPath = usePathname();
+
+  const selectedImageList = watch("referenceImages");
 
   useEffect(() => {
     setImageList(imageDatas);
   }, []);
 
-  function addSelected(targetIndex: number) {
-    setSelectedImageList((list) => {
-      list.push({ index: targetIndex, ...imageList[targetIndex] });
-      return list;
-    });
+  function addSelected(target: string) {
+    setValue("referenceImages", [...selectedImageList, target]);
   }
 
-  function removeSelected(targetIndex: number) {
-    setSelectedImageList((list) => {
-      return list.filter((image) => image.index !== targetIndex);
-    });
+  function removeSelected(target: string) {
+    const newImages = selectedImageList.filter((value) => value !== target);
+    setValue("referenceImages", newImages);
   }
 
-  function changeSelected(targetIndex: number) {
-    if (imageList[targetIndex].selected) {
-      removeSelected(targetIndex);
-      setImageList((list) => {
-        return list.map((image, index) =>
-          index === targetIndex ? { selected: false, url: image.url } : image,
-        );
-      });
+  function changeSelected(target: string) {
+    if (selectedImageList.includes(target)) {
+      removeSelected(target);
     } else if (selectedImageList.length >= MAX_SELECT_COUNT) {
       alert("더 이상 선택할 수 없습니다.");
     } else {
-      addSelected(targetIndex);
-      setImageList((list) => {
-        return list.map((image, index) =>
-          index === targetIndex ? { selected: true, url: image.url } : image,
-        );
-      });
+      addSelected(target);
     }
-  }
-
-  function registerImages() {
-    const referenceImages = selectedImageList.map((image) => image.url);
-    setValue("referenceImages", referenceImages);
   }
 
   function getNextPath(param: string) {
@@ -89,7 +57,6 @@ const ReferencePage = () => {
   }
 
   function handleNext() {
-    registerImages();
     const nextPath = getNextPath("submit");
     router.push(nextPath);
   }
@@ -98,9 +65,13 @@ const ReferencePage = () => {
     <div>
       <ReferenceSelected
         images={selectedImageList}
-        onClickDelete={changeSelected}
+        onClickDelete={removeSelected}
       />
-      <ReferenceGrid images={imageList} handleSelect={changeSelected} />
+      <ReferenceGrid
+        images={imageList}
+        handleSelect={changeSelected}
+        selectedImages={selectedImageList}
+      />
       <BottomButton title="다음" onClick={handleNext} />
     </div>
   );

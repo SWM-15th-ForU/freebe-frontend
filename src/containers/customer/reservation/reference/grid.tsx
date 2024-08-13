@@ -2,16 +2,17 @@
 
 import GridImage from "@/components/images/grid-image";
 import { MasonryGrid } from "@egjs/react-grid";
-import { reservation } from "product-types";
 
 const GRID_COLUMN_COUNT = 2;
 
 const ReferenceGrid = ({
   images,
+  selectedImages,
   handleSelect,
 }: {
-  images: reservation.ImageListType[];
-  handleSelect: (index: number) => void;
+  images: string[];
+  selectedImages: string[];
+  handleSelect: (value: string) => void;
 }) => {
   return (
     <div style={{ margin: 20, paddingBottom: 70 }}>
@@ -25,9 +26,10 @@ const ReferenceGrid = ({
           <GridImage
             key={index}
             handleClick={() => {
-              handleSelect(index);
+              handleSelect(image);
             }}
-            {...image}
+            url={image}
+            selected={selectedImages.includes(image)}
           />
         ))}
       </MasonryGrid>

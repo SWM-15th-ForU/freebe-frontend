@@ -9,8 +9,8 @@ const ReferenceSelected = ({
   images,
   onClickDelete,
 }: {
-  images: reservation.SelectedImageListType[];
-  onClickDelete: (index: number) => void;
+  images: string[];
+  onClickDelete: (value: string) => void;
 }) => {
   return (
     <div
@@ -37,13 +37,13 @@ const ReferenceSelected = ({
                 marginTop: 15,
               }}
             >
+              <Image src={image} alt={image} fill />
               <CloseButton
-                onClick={() => onClickDelete(image.index)}
+                onClick={() => onClickDelete(image)}
                 styleType="shadow"
-                container={{ top: 4, right: 4 }}
+                container={{ padding: 4, justifyContent: "flex-end" }}
                 size={24}
               />
-              <Image src={image.url} alt={image.url} fill />
             </div>
           );
         })}

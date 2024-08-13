@@ -1,12 +1,15 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
 import TextInput from "@/components/inputs/text-input";
+import { AddButton } from "@/components/buttons/common-buttons";
 import PartLayout from "../part-layout";
 import { reservationStyles } from "../../reservation.css";
 import submitStyles from "../submit.css";
 
 const RequestForm = () => {
+  const router = useRouter();
   const { getValues } = useFormContext<reservation.FormType>();
 
   return (
@@ -31,6 +34,7 @@ const RequestForm = () => {
             );
           })}
         </div>
+        <AddButton title="사진 수정하기" onClick={() => router.back()} />
       </div>
       <TextInput<reservation.FormType>
         placeholder="작가님께 전달하고 싶은 말이 있거나, 궁금한 내용이 있다면 편하게 작성해주세요."
