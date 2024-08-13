@@ -30,7 +30,6 @@ const ScheduleCalender = ({
           locale="ko"
           size="lg"
           firstDayOfWeek={0}
-          allowDeselect
           onChange={handleSelectNewDate}
         />
       </div>

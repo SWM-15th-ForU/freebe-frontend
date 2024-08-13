@@ -10,14 +10,15 @@ import submitStyles from "../submit.css";
 const ProductInfoForm = ({ items }: { items: Item[] }) => {
   const currentPath = usePathname();
   const router = useRouter();
-  const { control } = useFormContext<reservation.FormType>();
-  const { fields, remove } = useFieldArray<reservation.FormType>({
+  const { control, watch } = useFormContext<reservation.FormType>();
+  const schedules = watch("schedules");
+  const { remove } = useFieldArray<reservation.FormType>({
     control,
     name: "schedules",
   });
 
   function handleAddSchedule() {
-    router.push(`${currentPath}/schedule?index=${fields.length}`);
+    router.push(`${currentPath}/schedule`);
   }
 
   function handleDeleteSchedule(index: number) {
@@ -37,7 +38,7 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
         );
       })}
       <span className={submitStyles.itemTitle}>촬영 일정</span>
-      {fields.map((field, index) => {
+      {schedules.map((field, index) => {
         return (
           <ScheduleInput<reservation.FormType>
             formField="schedules"

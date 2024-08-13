@@ -28,7 +28,29 @@ export const SubmitButton = ({
   ...props
 }: ButtonProps) => {
   return (
-    <button onClick={onClick} className={buttonStyles.submit} {...props}>
+    <button
+      type="submit"
+      onClick={onClick}
+      className={buttonStyles.submit}
+      {...props}
+    >
+      {title}
+    </button>
+  );
+};
+
+export const FinishButton = ({
+  onClick = () => {},
+  title,
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={buttonStyles.submit}
+      {...props}
+    >
       {title}
     </button>
   );

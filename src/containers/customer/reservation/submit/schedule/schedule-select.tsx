@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import "dayjs/locale/ko";
 import { reservation } from "product-types";
 import ScheduleCalender from "@/components/calender/schedule-calender";
-import { SubmitButton } from "@/components/buttons/common-buttons";
+import { FinishButton } from "@/components/buttons/common-buttons";
 import ScheduleLayout from "../schedule-layout";
 import submitStyles from "../submit.css";
 
 const ScheduleSelect = () => {
-  const { control, setValue } = useFormContext<reservation.FormType>();
+  const router = useRouter();
+  const { control } = useFormContext<reservation.FormType>();
   const [valueOnModal, setValueOnModal] =
     useState<reservation.ScheduleListType>({
       date: new Date(),
@@ -20,6 +22,11 @@ const ScheduleSelect = () => {
     name: "schedules",
   });
 
+  function handleAddSchedule() {
+    append(valueOnModal);
+    router.back();
+  }
+
   return (
     <ScheduleLayout>
       <span className={submitStyles.title}>후보 일정 추가하기</span>
@@ -27,7 +34,7 @@ const ScheduleSelect = () => {
         <div className={submitStyles.calenderWrapper}>
           <ScheduleCalender value={valueOnModal} setValue={setValueOnModal} />
         </div>
-        <SubmitButton title="후보 일정 추가하기" />
+        <FinishButton title="후보 일정 추가하기" onClick={handleAddSchedule} />
       </div>
     </ScheduleLayout>
   );

@@ -18,6 +18,7 @@ export const ModalStyles = styleVariants({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
   },
   content: {
+    zIndex: 10,
     borderRadius: 16,
     padding: 24,
     margin: 20,
