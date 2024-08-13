@@ -20,7 +20,7 @@ const submitStyles = styleVariants({
   },
   calenderWrapper: {
     display: "flex",
-    height: 500,
+    height: 430,
     paddingTop: 20,
     alignItems: "flex-start",
   },

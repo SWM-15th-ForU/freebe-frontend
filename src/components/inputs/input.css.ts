@@ -1,6 +1,36 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const TimeInputStyles = styleVariants({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    padding: 4,
+  },
+  title: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-02",
+    }),
+    {
+      marginRight: "auto",
+    },
+  ],
+  date: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-04",
+    }),
+    {
+      marginRight: 12,
+    },
+  ],
+});
+
 const baseInput = style([
   sprinkles({ fontWeight: "body-02" }),
   {

@@ -3,6 +3,7 @@ import { DatePicker, DateValue } from "@mantine/dates";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import "dayjs/locale/ko";
 import { reservation } from "product-types";
+import CustomedTimeInput from "@/components/inputs/time-input";
 import ScheduleLayout from "../schedule-layout";
 import submitStyles from "../submit.css";
 
@@ -25,6 +26,12 @@ const ScheduleSelect = () => {
     });
   }
 
+  function handleSelectNewTime(newTime: Date, target: "startTime" | "endTime") {
+    setValueOnModal((prev) => {
+      return { ...prev, target: newTime };
+    });
+  }
+
   return (
     <ScheduleLayout>
       <span className={submitStyles.title}>후보 일정 추가하기</span>
@@ -37,6 +44,16 @@ const ScheduleSelect = () => {
           onChange={handleSelectNewDate}
         />
       </div>
+      <CustomedTimeInput
+        title="시작"
+        date={valueOnModal.date ? valueOnModal.date : undefined}
+        onChangeTime={(time) => handleSelectNewTime(time, "startTime")}
+      />
+      <CustomedTimeInput
+        title="종료"
+        date={valueOnModal.date ? valueOnModal.date : undefined}
+        onChangeTime={(time) => handleSelectNewTime(time, "endTime")}
+      />
     </ScheduleLayout>
   );
 };
