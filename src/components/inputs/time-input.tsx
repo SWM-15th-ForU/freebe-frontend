@@ -4,12 +4,15 @@ import { TimeInputStyles } from "./input.css";
 
 interface CustomedTimeInputProps extends TimeInputProps {
   title: string;
+  value: string | number | readonly string[] | undefined;
   date?: Date;
   onChangeTime: (time: Date) => void;
 }
 
+// FIX: 오전/오후까지 입력했을 때만 onChange 동작, 입력한 시간을 삭제할 수 없음
 const CustomedTimeInput = ({
   title,
+  value,
   date,
   onChangeTime,
   ...props
@@ -29,6 +32,7 @@ const CustomedTimeInput = ({
       {date && <span className={TimeInputStyles.date}>{parseDate(date)}</span>}
       <TimeInput
         size="sm"
+        value={value}
         onChange={(e) => handleTimeChange(e.currentTarget.value)}
         {...props}
       />

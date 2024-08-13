@@ -20,9 +20,10 @@ const ScheduleModal = () => {
     return null;
   }
   const index = parseIndex(searchParams.get("index"));
-
   return (
-    <Modal>{index ? <ScheduleEdit index={index} /> : <ScheduleSelect />}</Modal>
+    <Modal>
+      {index !== null ? <ScheduleEdit index={index} /> : <ScheduleSelect />}
+    </Modal>
   );
 };
 

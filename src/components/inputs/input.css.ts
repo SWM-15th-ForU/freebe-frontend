@@ -97,6 +97,7 @@ const InputStyles = styleVariants({
     }),
     {
       display: "flex",
+      flex: 1,
       flexDirection: "row",
       gap: 5,
       marginRight: "auto",
