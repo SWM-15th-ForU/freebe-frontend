@@ -25,6 +25,10 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
     remove(index);
   }
 
+  function handleEditSchedule(index: number) {
+    router.push(`${currentPath}/schedule?index=${index}`);
+  }
+
   return (
     <PartLayout title="촬영 정보">
       {items.map((item, index) => {
@@ -41,9 +45,10 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
       {schedules.map((field, index) => {
         return (
           <ScheduleInput<reservation.FormType>
-            formField="schedules"
             key={index}
+            onClickValue={() => handleEditSchedule(index)}
             onClickDelete={() => handleDeleteSchedule(index)}
+            value={field}
           />
         );
       })}

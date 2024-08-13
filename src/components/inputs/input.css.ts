@@ -90,6 +90,18 @@ const InputStyles = styleVariants({
     }),
     baseInput,
   ],
+  contentWrapper: [
+    sprinkles({
+      color: "text-02",
+      fontWeight: "body-02",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      gap: 5,
+      marginRight: "auto",
+    },
+  ],
   multilineInput: [baseInput, { height: "80px" }],
 });
 

@@ -1,4 +1,5 @@
 import { TimeInput, TimeInputProps } from "@mantine/dates";
+import { parseDate } from "@/utils/date";
 import { TimeInputStyles } from "./input.css";
 
 interface CustomedTimeInputProps extends TimeInputProps {
@@ -15,10 +16,6 @@ const CustomedTimeInput = ({
 }: CustomedTimeInputProps) => {
   function parseTimeString(time: string) {
     return new Date(`1970-01-01T${time}`);
-  }
-
-  function parseDate(target: Date) {
-    return `${target.getFullYear()}.${target.getMonth() + 1}.${target.getDate()}`;
   }
 
   function handleTimeChange(time: string) {
