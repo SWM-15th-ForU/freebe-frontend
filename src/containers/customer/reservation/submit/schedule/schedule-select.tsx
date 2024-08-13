@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { DateValue } from "@mantine/dates";
 import { useFormContext, useFieldArray } from "react-hook-form";
 import "dayjs/locale/ko";
 import { reservation } from "product-types";
 import ScheduleCalender from "@/components/calender/schedule-calender";
+import { SubmitButton } from "@/components/buttons/common-buttons";
 import ScheduleLayout from "../schedule-layout";
 import submitStyles from "../submit.css";
 
@@ -27,6 +27,7 @@ const ScheduleSelect = () => {
         <div className={submitStyles.calenderWrapper}>
           <ScheduleCalender value={valueOnModal} setValue={setValueOnModal} />
         </div>
+        <SubmitButton title="후보 일정 추가하기" />
       </div>
     </ScheduleLayout>
   );

@@ -1,10 +1,15 @@
+import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { LinkType } from "profile-types";
 import { texts } from "@/styles/text.css";
 import buttonStyles from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
-interface ButtonProps {
+interface ButtonProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   onClick?: () => void;
   title: string;
 }
@@ -17,9 +22,13 @@ export const AddButton = ({ onClick = () => {}, title }: ButtonProps) => {
   );
 };
 
-export const SubmitButton = ({ onClick = () => {}, title }: ButtonProps) => {
+export const SubmitButton = ({
+  onClick = () => {},
+  title,
+  ...props
+}: ButtonProps) => {
   return (
-    <button type="submit" onClick={onClick} className={buttonStyles.submit}>
+    <button onClick={onClick} className={buttonStyles.submit} {...props}>
       {title}
     </button>
   );

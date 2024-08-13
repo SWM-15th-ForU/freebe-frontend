@@ -46,13 +46,22 @@ const buttonStyles = styleVariants({
     width: "100%",
     padding: 10,
   },
-  submit: {
-    width: "100%",
-    borderRadius: 10,
-    marginTop: 15,
-    padding: 5,
-    border: "none",
-  },
+  submit: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+      fontSize: "button-01",
+      fontWeight: "button-01",
+    }),
+    {
+      width: "100%",
+      borderRadius: 8,
+      marginTop: 20,
+      height: 56,
+      padding: 5,
+      border: "none",
+    },
+  ],
   bottom: {
     display: "flex",
     alignItems: "center",
