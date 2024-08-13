@@ -46,9 +46,9 @@ declare module "product-types" {
     }
 
     export interface ScheduleListType {
-      date: Date;
-      startTime: Date;
-      endTime: Date;
+      date: Date | null;
+      startTime: Date | null;
+      endTime: Date | null;
     }
 
     export interface SelectedImageListType {
