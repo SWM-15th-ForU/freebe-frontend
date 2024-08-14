@@ -9,23 +9,38 @@ import SelectOptionForm from "@/containers/customer/reservation/submit/parts/sel
 import TotalPriceForm from "@/containers/customer/reservation/submit/parts/total-price-form";
 import { Item, Option, reservation } from "product-types";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { postReservation } from "@/services/client/customer/reservation";
 
 const SubmitForm = ({
   name,
   items,
   options,
   phoneNumber,
+  photographerId,
 }: {
   name: string;
   options: Option[];
   phoneNumber: string;
   items: Item[];
+  photographerId: number;
 }) => {
+  const router = useRouter();
   const { getValues, setValue } = useFormContext<reservation.FormType>();
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const value = getValues();
-    console.log(value);
+    const infos = items.map((item) => {
+      return { [item.title]: item.content };
+    });
+
+    // TODO: 상품 조회 페이지에서 신청서 작성으로 넘어올 때 상품명 전달
+    const reservationId = await postReservation(value, {
+      infos,
+      photographerId,
+      productTitle: "title",
+    });
+    router.push(`/${reservationId}`);
   }
 
   useEffect(() => {

@@ -1,9 +1,13 @@
 import SubmitForm from "@/containers/customer/reservation/submit-form";
 import { getFormBase } from "@/services/customer/reservation";
 
-const SubmitPage = async ({ params }: { params: { product: string } }) => {
+const SubmitPage = async ({
+  params,
+}: {
+  params: { product: string; id: number };
+}) => {
   const result = await getFormBase(params.product);
-  return <SubmitForm {...result} />;
+  return <SubmitForm photographerId={params.id} {...result} />;
 };
 
 export default SubmitPage;
