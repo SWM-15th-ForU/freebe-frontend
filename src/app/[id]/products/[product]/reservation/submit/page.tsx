@@ -17,8 +17,8 @@ const SubmitPage = () => {
       { title: "기본 가격", content: "160,000원", hasDescription: false },
     ],
     options: [
-      { title: "인원 추가", hasDescription: false, isFree: true },
-      { title: "인원 추가", hasDescription: false, isFree: true },
+      { title: "옵션1", hasDescription: false, isFree: false, price: 10000 },
+      { title: "옵션2", hasDescription: false, isFree: true },
     ],
   };
 

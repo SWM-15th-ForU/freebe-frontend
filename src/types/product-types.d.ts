@@ -60,8 +60,10 @@ declare module "product-types" {
     }
 
     export interface SelectedOption {
-      optionId: string;
-      count: number;
+      index: number;
+      title: string;
+      quantity: number;
+      price: number;
     }
 
     export interface FormType {

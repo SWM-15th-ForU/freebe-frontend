@@ -5,7 +5,7 @@ import { DropdownStyles } from "./common.css";
 interface DropdownProps<T> {
   datas: T[];
   renderItem: (item: T) => JSX.Element;
-  onClickItem: () => void;
+  onClickItem: (index: number) => void;
 }
 
 const Dropdown = <T extends object>({
@@ -19,6 +19,11 @@ const Dropdown = <T extends object>({
     setIsOpen((prev) => !prev);
   }
 
+  function handleClickItem(index: number) {
+    onClickItem(index);
+    handleClickContainer();
+  }
+
   return (
     <div className={DropdownStyles.area}>
       <div
@@ -30,14 +35,15 @@ const Dropdown = <T extends object>({
         <Image src="/icons/down-skyblue.svg" width={16} height={8} alt="열기" />
       </div>
       {isOpen && (
-        <div
-          className={DropdownStyles.list}
-          role="presentation"
-          onClick={onClickItem}
-        >
+        <div className={DropdownStyles.list}>
           {datas.map((data, index) => {
             return (
-              <div className={DropdownStyles.listItems} key={index}>
+              <div
+                className={DropdownStyles.listItems}
+                key={index}
+                onClick={() => handleClickItem(index)}
+                role="presentation"
+              >
                 {renderItem(data)}
               </div>
             );

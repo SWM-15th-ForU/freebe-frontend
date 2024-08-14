@@ -63,6 +63,7 @@ const buttonStyles = styleVariants({
     },
   ],
   bottom: {
+    zIndex: 5,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
