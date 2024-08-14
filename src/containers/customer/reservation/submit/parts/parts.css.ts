@@ -8,7 +8,46 @@ const baseText = style([
   }),
 ]);
 
-export const OptionFormsStyles = styleVariants({
+export const optionControllerStyles = styleVariants({
+  container: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      marginTop: 24,
+      borderBottomStyle: "solid",
+      borderBottomWidth: 1,
+      paddingBottom: 24,
+    },
+  ],
+  lastContainer: { marginTop: 24 },
+  title: [
+    sprinkles({
+      color: "text-01",
+      fontSize: "body-01",
+      fontWeight: "body-01",
+    }),
+  ],
+  wrapper: {
+    marginTop: 16,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  price: [
+    sprinkles({
+      color: "text-01",
+      fontSize: "headline-02",
+      fontWeight: "headline-02",
+    }),
+    {
+      marginLeft: "auto",
+      marginRight: 8,
+    },
+  ],
+});
+
+export const optionFormsStyles = styleVariants({
   wrapper: {
     width: "100%",
     display: "flex",
@@ -27,4 +66,7 @@ export const OptionFormsStyles = styleVariants({
     }),
     baseText,
   ],
+  controllerWrapper: {
+    position: "relative",
+  },
 });
