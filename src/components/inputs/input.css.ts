@@ -1,6 +1,25 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+const baseCheckbox = style({
+  borderRadius: 4,
+  height: 24,
+  width: 24,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+});
+
+export const checkboxStyles = styleVariants({
+  selected: [sprinkles({ backgroundColor: "blue" }), baseCheckbox],
+  unSelected: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    { borderWidth: 1, borderStyle: "solid" },
+    baseCheckbox,
+  ],
+});
+
 export const countInputStyles = styleVariants({
   container: [
     sprinkles({
