@@ -1,30 +1,43 @@
 import sprinkles from "@/styles/sprinkles.css";
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
+
+const baseDropdown = style([
+  sprinkles({
+    borderColor: "stroke-grey",
+  }),
+  {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    height: 56,
+    borderWidth: 1,
+    borderStyle: "solid",
+    margin: "24px 0px",
+    padding: "20px 24px",
+  },
+]);
 
 export const DropdownStyles = styleVariants({
   area: {
     position: "relative",
   },
-  container: [
-    sprinkles({
-      borderColor: "stroke-grey",
-    }),
-    {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      width: "100%",
-      height: 56,
-      borderWidth: 1,
-      borderStyle: "solid",
-      margin: "24px 0px",
-      padding: "20px 24px",
-    },
+  container: [baseDropdown],
+  disableContainer: [
+    baseDropdown,
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
   ],
   placeholder: [
     sprinkles({
       color: "text-02",
+      fontSize: "body-01",
+      fontWeight: "body-01",
+    }),
+  ],
+  disablePlaceholder: [
+    sprinkles({
+      color: "text-04",
       fontSize: "body-01",
       fontWeight: "body-01",
     }),

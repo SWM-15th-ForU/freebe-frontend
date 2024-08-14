@@ -7,7 +7,8 @@ import ProductInfoForm from "@/containers/customer/reservation/submit/parts/prod
 import RequestForm from "@/containers/customer/reservation/submit/parts/request-form";
 import SelectOptionForm from "@/containers/customer/reservation/submit/parts/select-option-form";
 import TotalPriceForm from "@/containers/customer/reservation/submit/parts/total-price-form";
-import { Item, Option } from "product-types";
+import { Item, Option, reservation } from "product-types";
+import { useEffect } from "react";
 
 const SubmitForm = ({
   name,
@@ -20,12 +21,17 @@ const SubmitForm = ({
   phoneNumber: string;
   items: Item[];
 }) => {
-  const { getValues } = useFormContext();
+  const { getValues, setValue } = useFormContext<reservation.FormType>();
 
   function handleSubmit() {
     const value = getValues();
     console.log(value);
   }
+
+  useEffect(() => {
+    setValue("name", name);
+    setValue("contanct", phoneNumber);
+  }, []);
 
   return (
     <div

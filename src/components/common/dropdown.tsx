@@ -16,7 +16,9 @@ const Dropdown = <T extends object>({
   const [isOpen, setIsOpen] = useState(false);
 
   function handleClickContainer() {
-    setIsOpen((prev) => !prev);
+    if (datas.length !== 0) {
+      setIsOpen((prev) => !prev);
+    }
   }
 
   function handleClickItem(index: number) {
@@ -27,11 +29,23 @@ const Dropdown = <T extends object>({
   return (
     <div className={DropdownStyles.area}>
       <div
-        className={DropdownStyles.container}
+        className={
+          datas.length === 0
+            ? DropdownStyles.disableContainer
+            : DropdownStyles.container
+        }
         role="presentation"
         onClick={handleClickContainer}
       >
-        <span className={DropdownStyles.placeholder}>추가 옵션</span>
+        <span
+          className={
+            datas.length === 0
+              ? DropdownStyles.disablePlaceholder
+              : DropdownStyles.placeholder
+          }
+        >
+          추가 옵션
+        </span>
         <Image src="/icons/down-skyblue.svg" width={16} height={8} alt="열기" />
       </div>
       {isOpen && (
