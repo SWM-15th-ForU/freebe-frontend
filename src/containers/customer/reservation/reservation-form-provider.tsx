@@ -16,6 +16,9 @@ const ReservationFormProvider = ({
     options: [],
     referenceImages: [],
     memo: "",
+    photographerAgreement: false,
+    serviceAgreement: false,
+    totalPrice: 0,
   };
   const form = useForm<reservation.FormType>({
     defaultValues,

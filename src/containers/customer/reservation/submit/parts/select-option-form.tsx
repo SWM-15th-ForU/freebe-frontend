@@ -29,12 +29,12 @@ const SelectOptionForm = ({ options }: { options: Option[] }) => {
     if (selectedIndexList.includes(index)) {
       alert("이미 선택된 옵션입니다.");
     } else {
-      const basePrice = options[index].price;
+      const basePrice = options[index].price || 0;
       append({
         index,
         quantity: 1,
         title: options[index].title,
-        price: basePrice || 0,
+        price: basePrice,
       });
     }
   }
@@ -46,6 +46,7 @@ const SelectOptionForm = ({ options }: { options: Option[] }) => {
   function handleChangeQuantity(index: number, newQuantity: number) {
     const optionIndex = selectedOptionList[index].index;
     const basePrice = options[optionIndex].price || 0;
+
     setValue(`options.${index}.quantity`, newQuantity);
     setValue(`options.${index}.price`, newQuantity * basePrice);
   }

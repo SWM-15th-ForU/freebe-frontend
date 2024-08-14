@@ -5,6 +5,7 @@ import CustomerInfoForm from "@/containers/customer/reservation/submit/parts/cus
 import ProductInfoForm from "@/containers/customer/reservation/submit/parts/product-info-form";
 import RequestForm from "@/containers/customer/reservation/submit/parts/request-form";
 import SelectOptionForm from "@/containers/customer/reservation/submit/parts/select-option-form";
+import TotalPriceForm from "@/containers/customer/reservation/submit/parts/total-price-form";
 import { Item, Option } from "product-types";
 import { useFormContext } from "react-hook-form";
 
@@ -42,6 +43,7 @@ const SubmitPage = () => {
       <ProductInfoForm items={datas.items} />
       <SelectOptionForm options={datas.options} />
       <RequestForm />
+      <TotalPriceForm />
       <BottomButton title="신청하기" onClick={handleSubmit} />
     </div>
   );

@@ -70,3 +70,20 @@ export const optionFormsStyles = styleVariants({
     position: "relative",
   },
 });
+
+export const priceFormStyles = styleVariants({
+  wrapper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  price: [
+    sprinkles({
+      fontSize: "headline-01",
+      fontWeight: "headline-01",
+      color: "blue",
+    }),
+  ],
+});

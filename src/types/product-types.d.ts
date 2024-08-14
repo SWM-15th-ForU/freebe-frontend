@@ -74,6 +74,9 @@ declare module "product-types" {
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
+      totalPrice: number;
+      serviceAgreement: boolean;
+      photographerAgreement: boolean;
     }
   }
 }
