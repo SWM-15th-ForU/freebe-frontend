@@ -1,6 +1,44 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const countInputStyles = styleVariants({
+  container: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      borderStyle: "solid",
+      borderWidth: 1,
+      width: "fit-content",
+      height: 40,
+    },
+  ],
+  button: [
+    sprinkles({
+      backgroundColor: "bg-lightgrey",
+    }),
+    {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      border: "none",
+      height: "100%",
+      width: 40,
+      aspectRatio: 1,
+    },
+  ],
+  input: [
+    sprinkles({
+      fontSize: "headline-02",
+      fontWeight: "headline-02",
+      color: "text-01",
+    }),
+    { textAlign: "center", border: "none", height: "100%", width: 52 },
+  ],
+});
+
 export const TimeInputStyles = styleVariants({
   container: {
     display: "flex",
