@@ -1,5 +1,5 @@
 import { Discount } from "product-types";
-import { infoStyle } from "../product.css";
+import { infoStyle } from "../products.css";
 
 const ProductDiscount = ({
   discountType,

@@ -1,5 +1,5 @@
 import { Item } from "product-types";
-import { infoStyle } from "../product.css";
+import { infoStyle } from "../products.css";
 
 const ProductItem = ({ content, hasDescription, title, description }: Item) => {
   return (

@@ -1,5 +1,5 @@
 import { Option } from "product-types";
-import { infoStyle } from "../product.css";
+import { infoStyle } from "../products.css";
 
 const ProductOption = ({ isFree, title, price }: Option) => {
   return (

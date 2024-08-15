@@ -100,21 +100,3 @@ export const iconStyle = {
     margin: 0,
   }),
 };
-
-export const infoStyle = {
-  wrapper: style({
-    display: "flex",
-    paddingLeft: 5,
-    paddingRight: 5,
-    flexDirection: "column",
-    gap: 5,
-  }),
-  container: style({
-    border: "solid",
-    display: "flex",
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#a5a5a5",
-    gap: 10,
-  }),
-};

@@ -1,6 +1,13 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const listContainer = style({
+  display: "flex",
+  flexWrap: "wrap",
+  columnCount: 2,
+  gap: 4,
+});
+
 export const headerStyles = styleVariants({
   container: [
     sprinkles({
@@ -56,9 +63,25 @@ export const headerStyles = styleVariants({
   ],
 });
 
-export const listContainer = style({
-  display: "flex",
-  flexWrap: "wrap",
-  columnCount: 2,
-  gap: 4,
+export const infoStyle = {
+  wrapper: style({
+    display: "flex",
+    paddingLeft: 5,
+    paddingRight: 5,
+    flexDirection: "column",
+    gap: 5,
+  }),
+  container: style({
+    border: "solid",
+    display: "flex",
+    flexDirection: "row",
+    borderWidth: 1,
+    borderColor: "#a5a5a5",
+    gap: 10,
+  }),
+};
+
+export const infoContainer = style({
+  flex: 1,
+  padding: 15,
 });

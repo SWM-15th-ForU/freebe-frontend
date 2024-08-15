@@ -4,7 +4,7 @@ import { SubmitButton } from "@/components/buttons/common-buttons";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
 import ProductDiscount from "./info/product-discount";
-import { infoContainer, infoStyle } from "./product.css";
+import { infoContainer, infoStyle } from "./products.css";
 
 const ProductInfo = ({
   discounts,

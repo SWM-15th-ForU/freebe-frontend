@@ -1,12 +1,12 @@
 "use client";
 
-import ProductInfo from "@/containers/product/product-info";
+import ProductInfo from "@/containers/customer/products/info";
 import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
 import { Product } from "product-types";
 import "@mantine/carousel/styles.css";
 
-const ProductPage = ({ params }: { params: { product: string } }) => {
+const ProductPage = ({ params }: { params: { productId: number } }) => {
   const productData: Product = {
     images: [],
     title: "스냅 이름",
