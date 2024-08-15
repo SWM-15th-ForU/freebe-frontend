@@ -29,32 +29,8 @@ const ProductPage = ({ params }: { params: { product: string } }) => {
         title: "정보3",
       },
     ],
-    options: [
-      {
-        isFree: true,
-        title: "옵션1",
-      },
-      {
-        isFree: false,
-        title: "옵션2",
-        price: 1000,
-      },
-    ],
-    discounts: [
-      {
-        discountType: "amount",
-        hasDescription: true,
-        title: "할인1",
-        amount: 1000,
-        description: "설명",
-      },
-      {
-        discountType: "rate",
-        hasDescription: false,
-        title: "할인2",
-        rate: 10,
-      },
-    ],
+    options: [],
+    discounts: [],
   };
 
   const imageData = ["", "", ""];

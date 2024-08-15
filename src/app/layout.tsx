@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
-const inter = Inter({ subsets: ["latin"] });
+const pretendard = localFont({
+  src: "./fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,7 +32,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body
-        className={inter.className}
+        className={pretendard.className}
         style={{ overflowX: "hidden", overflowY: "auto" }}
       >
         <div>

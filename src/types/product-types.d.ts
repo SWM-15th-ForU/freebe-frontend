@@ -41,4 +41,42 @@ declare module "product-types" {
     image: string;
     id: string;
   }
+
+  namespace reservation {
+    export interface ImageListType {
+      url: string;
+      selected: boolean;
+    }
+
+    export interface ScheduleListType {
+      date: Date | null;
+      startTime: Date | null;
+      endTime: Date | null;
+    }
+
+    export interface SelectedImageListType {
+      url: string;
+      index: number;
+    }
+
+    export interface SelectedOption {
+      index: number;
+      title: string;
+      quantity: number;
+      price: number;
+    }
+
+    export interface FormType {
+      referenceImages: string[];
+      name: string;
+      contact: string;
+      instagram: string;
+      schedules: ScheduleListType[];
+      options: SelectedOption[];
+      memo: string;
+      totalPrice: number;
+      serviceAgreement: boolean;
+      photographerAgreement: boolean;
+    }
+  }
 }

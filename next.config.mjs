@@ -3,6 +3,9 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    domains: ["picsum.photos"],
+  },
   reactStrictMode: false,
   webpack: (config) => {
     const fileLoaderRule = config.module.rules.find((rule) =>

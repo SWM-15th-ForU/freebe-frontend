@@ -1,24 +1,56 @@
+import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { LinkType } from "profile-types";
-import * as style from "./buttons.css";
+import { texts } from "@/styles/text.css";
+import buttonStyles from "./buttons.css";
 import { Body15SB } from "../texts/texts";
 
-interface ButtonProps {
+interface ButtonProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   onClick?: () => void;
   title: string;
 }
 
 export const AddButton = ({ onClick = () => {}, title }: ButtonProps) => {
   return (
-    <button type="button" onClick={onClick} className={style.AddContainer}>
+    <button type="button" onClick={onClick} className={buttonStyles.add}>
       {title}
     </button>
   );
 };
 
-export const SubmitButton = ({ onClick = () => {}, title }: ButtonProps) => {
+export const SubmitButton = ({
+  onClick = () => {},
+  title,
+  ...props
+}: ButtonProps) => {
   return (
-    <button type="submit" onClick={onClick} className={style.SubmitContainer}>
+    <button
+      type="submit"
+      onClick={onClick}
+      className={buttonStyles.submit}
+      {...props}
+    >
+      {title}
+    </button>
+  );
+};
+
+export const FinishButton = ({
+  onClick = () => {},
+  title,
+  ...props
+}: ButtonProps) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={buttonStyles.submit}
+      {...props}
+    >
       {title}
     </button>
   );
@@ -32,11 +64,19 @@ export const LinkButton = ({
   return (
     <Link href={src}>
       <div
-        className={style.LinkContainer}
+        className={buttonStyles.link}
         style={selected ? { backgroundColor: "#a9a9a9" } : {}}
       >
         <Body15SB>{name}</Body15SB>
       </div>
     </Link>
+  );
+};
+
+export const BottomButton = ({ title, onClick }: ButtonProps) => {
+  return (
+    <div className={buttonStyles.bottom} onClick={onClick} role="presentation">
+      <span className={texts.button1}>{title}</span>
+    </div>
   );
 };
