@@ -105,3 +105,15 @@ export const infoStyles = styleVariants({
     { margin: "8px 0px 0px 0px" },
   ],
 });
+
+export const indicatorStyle = style({
+  width: "8px",
+  height: "8px",
+  backgroundColor: "white",
+  borderRadius: "50%",
+  transition: "background-color 0.3s ease",
+
+  selectors: {
+    "&[data-active]": { transition: "none", backgroundColor: "#007AFF" },
+  },
+});

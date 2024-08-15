@@ -1,4 +1,3 @@
-import { Product } from "product-types";
 import { getProductDetails } from "@/services/server/customer/product";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
 import ProductInfo from "@/containers/customer/products/info";
@@ -6,33 +5,6 @@ import { PRODUCT_PROGRESS } from "@/constants/customer/product";
 
 const ProductPage = async ({ params }: { params: { product: number } }) => {
   const productDetails = await getProductDetails(params.product);
-
-  // TODO: 예시용 더미값 정리하기
-  const productData: Product = {
-    images: [],
-    title: "스냅 이름",
-    subtitle:
-      "상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글 상품 소개글",
-    items: [
-      {
-        content: "보정본 4장 +_ 네컷 or ID카드 3종 + 원본 전체",
-        hasDescription: true,
-        title: "정보1",
-        description:
-          "보정본을 추가할 때는 옵션을 선택해 주세요보정본을 추가할 때는 옵션을 선택해 주세요보정본을 추가할 때는 옵션을 선택해 주세요",
-      },
-    ],
-    options: [
-      {
-        title: "보정본 추가(1장)",
-        isFree: false,
-        price: 10000,
-        hasDescription: true,
-        description: "보정본을 추가합니다~",
-      },
-    ],
-    discounts: [],
-  };
 
   return (
     <ProductHeaderLayout
