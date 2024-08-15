@@ -56,7 +56,9 @@ export async function getProductDetails(productId: number): Promise<Product> {
     subtitle: data.productDescription,
     images: data.productImageUrls,
     items: normalizeDescription(data.productComponents),
-    options: normalizeDescription(data.productOptions),
+    options: normalizeDescription(data.productOptions).map((option) => {
+      return { ...option, isFree: option.price === 0 };
+    }),
     discounts: normalizeDescription(data.productDiscounts),
   };
 }

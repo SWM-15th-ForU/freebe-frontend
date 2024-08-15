@@ -9,7 +9,7 @@ declare module "product-types" {
 
   export interface Option {
     title: string;
-    isFree?: boolean;
+    isFree: boolean;
     price: number;
     hasDescription?: boolean;
     description: string;
