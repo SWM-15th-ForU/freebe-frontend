@@ -31,11 +31,6 @@ export const listDiv = style({
   width: 700,
 });
 
-export const infoContainer = style({
-  flex: 1,
-  padding: 15,
-});
-
 export const listHead = style({
   display: "flex",
   flexDirection: "row",

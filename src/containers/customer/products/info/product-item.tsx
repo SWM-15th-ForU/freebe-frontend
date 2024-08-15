@@ -1,12 +1,15 @@
 import { Item } from "product-types";
-import { infoStyle } from "../products.css";
+import AdditionInfo from "@/components/common/addition-info";
+import infoItemStyles from "./info.css";
 
-const ProductItem = ({ content, hasDescription, title, description }: Item) => {
+const ProductItem = ({ content, title, description }: Item) => {
   return (
-    <div className={infoStyle.container}>
-      <span>{title}</span>
-      {hasDescription && <span>{description}</span>}
-      <span>{content}</span>
+    <div className={infoItemStyles.wrapper}>
+      <div className={infoItemStyles.titleWrapper}>
+        <span className={infoItemStyles.title}>{title}</span>
+        {description && <AdditionInfo content={description} size={16} />}
+      </div>
+      <span className={infoItemStyles.content}>{content}</span>
     </div>
   );
 };

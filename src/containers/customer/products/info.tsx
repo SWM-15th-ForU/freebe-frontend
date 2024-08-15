@@ -1,43 +1,55 @@
+"use client";
+
+import Image from "next/image";
+import { Carousel } from "@mantine/carousel";
 import { Product } from "product-types";
-import { Body15SB } from "@/components/texts/texts";
-import { SubmitButton } from "@/components/buttons/common-buttons";
+import { BottomButton } from "@/components/buttons/common-buttons";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
-import ProductDiscount from "./info/product-discount";
-import { infoContainer, infoStyle } from "./products.css";
+import { infoStyles } from "./products.css";
 
-const ProductInfo = ({
-  discounts,
-  items,
-  options,
-  subtitle,
-  title,
-}: Omit<Product, "images">) => {
+const ProductInfo = ({ items, options, subtitle, title, images }: Product) => {
   const handleStartReservation = () => {};
 
   return (
-    <div className={infoContainer}>
-      <Body15SB>{title}</Body15SB>
-      <Body15SB>{subtitle}</Body15SB>
-      <Body15SB>촬영 정보</Body15SB>
-      <div className={infoStyle.wrapper}>
-        {items.map((item, index) => {
-          return <ProductItem key={index} {...item} />;
+    <div className={infoStyles.container}>
+      <Carousel
+        withIndicators
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "100vw",
+          backgroundColor: "#d9d9d9",
+        }}
+      >
+        {images.map((image, index) => {
+          return (
+            <Carousel.Slide key={index}>
+              <Image src={image} alt="" fill />
+            </Carousel.Slide>
+          );
         })}
+      </Carousel>
+      <div className={infoStyles.wrapper}>
+        <span className={infoStyles.title}>{title}</span>
+        <p className={infoStyles.content}>{subtitle}</p>
       </div>
-      <Body15SB>추가 옵션</Body15SB>
-      <div className={infoStyle.wrapper}>
-        {options.map((option, index) => {
-          return <ProductOption key={index} {...option} />;
-        })}
+      <div className={infoStyles.wrapper}>
+        <div className={infoStyles.itemsWrapper}>
+          {items.map((item, index) => {
+            return <ProductItem key={index} {...item} />;
+          })}
+        </div>
       </div>
-      <Body15SB>할인 정보</Body15SB>
-      <div className={infoStyle.wrapper}>
-        {discounts.map((discount, index) => {
-          return <ProductDiscount key={index} {...discount} />;
-        })}
+      <div className={infoStyles.wrapper}>
+        <p className={infoStyles.subtitle}>추가 옵션</p>
+        <div className={infoStyles.itemsWrapper}>
+          {options.map((option, index) => {
+            return <ProductOption key={index} {...option} />;
+          })}
+        </div>
       </div>
-      <SubmitButton title="예약 시작하기" onClick={handleStartReservation} />
+      <BottomButton title="예약 시작하기" onClick={handleStartReservation} />
     </div>
   );
 };

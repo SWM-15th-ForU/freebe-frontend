@@ -63,3 +63,25 @@ export const DropdownStyles = styleVariants({
     },
   ],
 });
+
+export const infoStyles = styleVariants({
+  container: {
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+  },
+  dropdown: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "white",
+    }),
+    {
+      maxWidth: "80%",
+      borderRadius: 8,
+      padding: "10px 14px",
+      backgroundColor: "#1E1E1ECC",
+      border: "none",
+    },
+  ],
+});

@@ -1,11 +1,17 @@
+import AdditionInfo from "@/components/common/addition-info";
 import { Option } from "product-types";
-import { infoStyle } from "../products.css";
+import infoItemStyles from "./info.css";
 
-const ProductOption = ({ isFree, title, price }: Option) => {
+const ProductOption = ({ isFree, title, price, description }: Option) => {
   return (
-    <div className={infoStyle.container}>
-      <span>{title}</span>
-      {isFree ? <span>무료 옵션</span> : <span>{price}원 추가</span>}
+    <div className={infoItemStyles.wrapper}>
+      <div className={infoItemStyles.titleWrapper}>
+        <span className={infoItemStyles.title}>{title}</span>
+        {description && <AdditionInfo content={description} size={16} />}
+      </div>
+      <span className={infoItemStyles.price}>
+        {isFree ? "무료 옵션" : `${price}원`}
+      </span>
     </div>
   );
 };

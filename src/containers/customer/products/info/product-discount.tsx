@@ -1,5 +1,4 @@
 import { Discount } from "product-types";
-import { infoStyle } from "../products.css";
 
 const ProductDiscount = ({
   discountType,
@@ -9,7 +8,7 @@ const ProductDiscount = ({
   discountValue,
 }: Discount) => {
   return (
-    <div className={infoStyle.container}>
+    <div>
       <span>{title}</span>
       {hasDescription && <span>{description}</span>}
       {discountType === "AMOUNT" ? (

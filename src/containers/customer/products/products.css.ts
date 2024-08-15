@@ -14,6 +14,7 @@ export const headerStyles = styleVariants({
       backgroundColor: "white",
     }),
     {
+      zIndex: 5,
       position: "fixed",
       width: "100%",
     },
@@ -63,25 +64,44 @@ export const headerStyles = styleVariants({
   ],
 });
 
-export const infoStyle = {
-  wrapper: style({
+export const infoStyles = styleVariants({
+  container: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    { paddingBottom: 72 },
+  ],
+  wrapper: [
+    sprinkles({ backgroundColor: "white" }),
+    {
+      padding: "28px 20px",
+      marginBottom: 8,
+    },
+  ],
+  itemsWrapper: {
     display: "flex",
-    paddingLeft: 5,
-    paddingRight: 5,
     flexDirection: "column",
-    gap: 5,
-  }),
-  container: style({
-    border: "solid",
-    display: "flex",
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#a5a5a5",
-    gap: 10,
-  }),
-};
-
-export const infoContainer = style({
-  flex: 1,
-  padding: 15,
+    gap: 16,
+  },
+  title: [
+    sprinkles({
+      fontSize: "headline-01",
+      fontWeight: "headline-01",
+      color: "text-point",
+    }),
+  ],
+  subtitle: [
+    sprinkles({
+      fontSize: "headline-02",
+      fontWeight: "headline-02",
+      color: "text-02",
+    }),
+    { margin: "0px 20px 20px 0px" },
+  ],
+  content: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-02",
+    }),
+    { margin: "8px 0px 0px 0px" },
+  ],
 });
