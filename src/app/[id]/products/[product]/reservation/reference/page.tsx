@@ -1,4 +1,4 @@
-import { getImageList } from "@/services/customer/reservation";
+import { getImageList } from "@/services/server/customer/reservation";
 import ReferenceForm from "@/containers/customer/reservation/reference-form";
 
 const ReferencePage = async ({ params }: { params: { id: string } }) => {

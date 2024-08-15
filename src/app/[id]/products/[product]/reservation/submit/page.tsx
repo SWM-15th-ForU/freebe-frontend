@@ -1,5 +1,5 @@
 import SubmitForm from "@/containers/customer/reservation/submit-form";
-import { getFormBase } from "@/services/customer/reservation";
+import { getFormBase } from "@/services/server/customer/reservation";
 
 const SubmitPage = async ({
   params,

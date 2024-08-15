@@ -1,5 +1,5 @@
-import { api } from "@/utils/apis/core";
-import { Item, Option, reservation } from "product-types";
+import { Item, Option } from "product-types";
+import { api } from "../core";
 
 interface FormDataResponse {
   name: string;
