@@ -1,8 +1,6 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { styleVariants } from "@vanilla-extract/css";
 
-const TimeStyles = styleVariants({});
-
 export const PickerStyles = styleVariants({
   list: {
     margin: 0,

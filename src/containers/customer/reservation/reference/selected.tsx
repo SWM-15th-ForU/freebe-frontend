@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { BLUE03, LIGHTGREY01 } from "@/styles/colors";
 import { texts } from "@/styles/text.css";
 import CloseButton from "@/components/buttons/close-button";
-import Image from "next/image";
-import { reservation } from "product-types";
 import { reservationStyles } from "../reservation.css";
 
+// TODO: vanilla extract 디자인 시스템 통합
 const ReferenceSelected = ({
   images,
   onClickDelete,

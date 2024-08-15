@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { reservation } from "product-types";
 import CountInput from "@/components/inputs/count-input";
 import CloseButton from "@/components/buttons/close-button";
