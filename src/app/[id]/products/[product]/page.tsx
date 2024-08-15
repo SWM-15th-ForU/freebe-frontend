@@ -1,12 +1,13 @@
-"use client";
-
-import ProductInfo from "@/containers/customer/products/info";
 import { Product } from "product-types";
-import "@mantine/carousel/styles.css";
+import { getProductDetails } from "@/services/server/customer/product";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
+import ProductInfo from "@/containers/customer/products/info";
 import { PRODUCT_PROGRESS } from "@/constants/customer/product";
 
-const ProductPage = ({ params }: { params: { productId: number } }) => {
+const ProductPage = async ({ params }: { params: { product: number } }) => {
+  const productDetails = await getProductDetails(params.product);
+
+  // TODO: 예시용 더미값 정리하기
   const productData: Product = {
     images: [],
     title: "스냅 이름",
@@ -19,16 +20,6 @@ const ProductPage = ({ params }: { params: { productId: number } }) => {
         title: "정보1",
         description:
           "보정본을 추가할 때는 옵션을 선택해 주세요보정본을 추가할 때는 옵션을 선택해 주세요보정본을 추가할 때는 옵션을 선택해 주세요",
-      },
-      {
-        content: "",
-        hasDescription: false,
-        title: "정보2",
-      },
-      {
-        content: "내용",
-        hasDescription: false,
-        title: "정보3",
       },
     ],
     options: [
@@ -43,8 +34,6 @@ const ProductPage = ({ params }: { params: { productId: number } }) => {
     discounts: [],
   };
 
-  const imageData = ["", "", ""];
-
   return (
     <ProductHeaderLayout
       header={{
@@ -55,7 +44,7 @@ const ProductPage = ({ params }: { params: { productId: number } }) => {
         },
       }}
     >
-      <ProductInfo {...productData} />
+      <ProductInfo {...productDetails} />
     </ProductHeaderLayout>
   );
 };
