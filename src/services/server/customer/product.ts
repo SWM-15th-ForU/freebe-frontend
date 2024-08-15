@@ -1,9 +1,15 @@
 import { api } from "../core";
 
-export async function getImageList(photographerId: string) {
+interface ProductResponseData {
+  productId: number;
+  productTitle: string;
+  productRepresentativeImageUrl: string;
+}
+
+export async function getProductList(photographerId: number) {
   const response = await api
-    .get(`customer/product/images/${photographerId}`)
-    .json<{ data: string[] }>();
+    .get(`customer/product/list/${photographerId}`)
+    .json<{ data: ProductResponseData[] }>();
   const { data } = response;
   return data;
 }
