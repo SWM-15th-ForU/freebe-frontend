@@ -10,7 +10,7 @@ const ReservationFormProvider = ({
 }) => {
   const defaultValues: reservation.FormType = {
     name: "",
-    contanct: "",
+    contact: "",
     instagram: "",
     schedules: [],
     options: [],

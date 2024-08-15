@@ -45,7 +45,7 @@ const SubmitForm = ({
 
   useEffect(() => {
     setValue("name", name);
-    setValue("contanct", phoneNumber);
+    setValue("contact", phoneNumber);
   }, []);
 
   return (

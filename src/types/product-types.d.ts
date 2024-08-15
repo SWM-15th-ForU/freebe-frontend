@@ -69,7 +69,7 @@ declare module "product-types" {
     export interface FormType {
       referenceImages: string[];
       name: string;
-      contanct: string;
+      contact: string;
       instagram: string;
       schedules: ScheduleListType[];
       options: SelectedOption[];

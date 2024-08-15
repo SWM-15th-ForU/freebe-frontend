@@ -19,7 +19,7 @@ const CustomerInfoForm = ({
       />
       <TextInput<reservation.FormType>
         title="연락처"
-        formField="contanct"
+        formField="contact"
         value={phoneNumber}
         type="tel"
         disabled
