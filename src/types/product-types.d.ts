@@ -36,6 +36,12 @@ declare module "product-types" {
 
   export interface ProductFormdata extends Omit<Product, "images"> {}
 
+  export interface ProductListData {
+    id: number;
+    title: string;
+    representImage: string;
+  }
+
   export interface Icon {
     title: string;
     image: string;

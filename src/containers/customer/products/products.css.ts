@@ -1,11 +1,16 @@
 import sprinkles from "@/styles/sprinkles.css";
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const headerStyles = styleVariants({
-  container: {
-    position: "fixed",
-    width: "100%",
-  },
+  container: [
+    sprinkles({
+      backgroundColor: "white",
+    }),
+    {
+      position: "fixed",
+      width: "100%",
+    },
+  ],
   wrapper: [
     sprinkles({
       borderColor: "stroke-grey",
@@ -49,4 +54,11 @@ export const headerStyles = styleVariants({
     }),
     { height: "100%" },
   ],
+});
+
+export const listContainer = style({
+  display: "flex",
+  flexWrap: "wrap",
+  columnCount: 2,
+  gap: 4,
 });

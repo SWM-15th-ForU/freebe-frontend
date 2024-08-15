@@ -1,3 +1,4 @@
+import ProductsList from "@/containers/customer/products/list";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
 import { getProductList } from "@/services/server/customer/product";
 
@@ -8,9 +9,7 @@ const ProductViewPage = async ({ params }: { params: { id: number } }) => {
     <ProductHeaderLayout
       header={{ title: "상품 선택", progress: { total: 3, current: 1 } }}
     >
-      {productList.map((product) => (
-        <span key={product.productId}>{product.productTitle}</span>
-      ))}
+      <ProductsList products={productList} />
     </ProductHeaderLayout>
   );
 };
