@@ -44,7 +44,7 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
       <span className={submitStyles.itemTitle}>촬영 일정</span>
       {schedules.map((field, index) => {
         return (
-          <ScheduleInput<reservation.FormType>
+          <ScheduleInput
             key={index}
             onClickValue={() => handleEditSchedule(index)}
             onClickDelete={() => handleDeleteSchedule(index)}
