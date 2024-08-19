@@ -4,7 +4,8 @@ const withVanillaExtract = createVanillaExtractPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["picsum.photos"],
+    // TODO: 이미지 허용 도메인 정리하기
+    domains: ["picsum.photos", "example.com"],
   },
   reactStrictMode: false,
   webpack: (config) => {

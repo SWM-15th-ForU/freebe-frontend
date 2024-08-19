@@ -2,7 +2,6 @@
 
 import ScheduleEdit from "@/containers/customer/reservation/submit/schedule/schedule-edit";
 import ScheduleSelect from "@/containers/customer/reservation/submit/schedule/schedule-select";
-import Modal from "@/containers/ui/modal";
 import { useSearchParams } from "next/navigation";
 
 const VALID_INDEXES = {

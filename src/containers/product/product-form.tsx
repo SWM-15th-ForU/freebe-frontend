@@ -18,8 +18,18 @@ const ProductForm = () => {
     title: "",
     subtitle: "",
     items: [
-      { title: "기본 가격", content: "", hasDescription: false },
-      { title: "촬영 시간", content: "1시간", hasDescription: false },
+      {
+        title: "기본 가격",
+        content: "",
+        hasDescription: false,
+        description: "",
+      },
+      {
+        title: "촬영 시간",
+        content: "1시간",
+        hasDescription: false,
+        description: "",
+      },
       {
         title: "보정본 수",
         content: "10장",
@@ -27,13 +37,22 @@ const ProductForm = () => {
         description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
       },
     ],
-    options: [{ title: "보정본 추가", hasDescription: false, isFree: false }],
+    options: [
+      {
+        title: "보정본 추가",
+        hasDescription: false,
+        isFree: false,
+        description: "",
+        price: 0,
+      },
+    ],
     discounts: [
       {
         title: "첫 주문 할인",
         discountType: "AMOUNT",
         hasDescription: false,
         discountValue: null,
+        description: "",
       },
     ],
   };

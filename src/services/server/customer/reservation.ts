@@ -1,5 +1,5 @@
-import { api } from "@/utils/apis/core";
-import { Item, Option, reservation } from "product-types";
+import { Item, Option } from "product-types";
+import { api } from "../core";
 
 interface FormDataResponse {
   name: string;
@@ -34,8 +34,8 @@ export async function getFormBase(productId: string) {
         title: option.title,
         hasDescription: option.description !== "",
         isFree: option.price === 0,
-        price: option.price || undefined,
-        description: option.description || undefined,
+        price: option.price,
+        description: option.description || "",
       };
     }),
     items: data.productComponentDtoList.map((item) => {
@@ -43,7 +43,7 @@ export async function getFormBase(productId: string) {
         title: item.title,
         content: item.content,
         hasDescription: item.description !== "",
-        description: item.description || undefined,
+        description: item.description || "",
       };
     }),
   };

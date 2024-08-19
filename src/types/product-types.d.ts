@@ -3,22 +3,22 @@ declare module "product-types" {
   export interface Item {
     title: string;
     content: string;
-    hasDescription: boolean;
-    description?: string;
+    hasDescription?: boolean;
+    description: string;
   }
 
   export interface Option {
     title: string;
     isFree: boolean;
-    price?: number;
-    hasDescription: boolean;
-    description?: string;
+    price: number;
+    hasDescription?: boolean;
+    description: string;
   }
 
   export interface Discount {
     title: string;
-    hasDescription: boolean;
-    description?: string;
+    hasDescription?: boolean;
+    description: string;
     discountType: "RATE" | "AMOUNT";
     discountValue: number | null;
   }
@@ -35,6 +35,12 @@ declare module "product-types" {
   }
 
   export interface ProductFormdata extends Omit<Product, "images"> {}
+
+  export interface ProductListData {
+    id: number;
+    title: string;
+    representImage: string;
+  }
 
   export interface Icon {
     title: string;
