@@ -11,7 +11,7 @@ export const headerContainer = style([
 
     padding: "10px 40px",
     width: "100%",
-    minWidth: 350,
+    minWidth: 400,
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
     display: "flex",
@@ -40,7 +40,7 @@ export const urlStyles = styleVariants({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-
+      minWidth: 400,
       padding: "7px 6px 7px 12px",
       gap: 15,
     },
