@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Switch } from "@mantine/core";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
 import { putProductStatus } from "@/services/client/photographer/products";
@@ -14,8 +15,14 @@ const ProductBanner = ({
   productTitle,
   reservationCount,
 }: ProductResponseData) => {
+  const router = useRouter();
+
   async function handleSwitchOpen() {
-    await putProductStatus(productId, activeStatus);
+    await putProductStatus(
+      productId,
+      activeStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE",
+    );
+    router.refresh();
   }
 
   return (

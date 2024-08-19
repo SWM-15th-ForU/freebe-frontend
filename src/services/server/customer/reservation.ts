@@ -52,8 +52,10 @@ export async function getFormBase(productId: string) {
 
 export async function getImageList(photographerId: string) {
   const response = await api
-    .get(`customer/product/images/${photographerId}`)
+    // TODO: photographerId로 수정
+    .get(`customer/product/images/1`)
     .json<{ data: string[] }>();
   const { data } = response;
+  console.log(data);
   return data;
 }

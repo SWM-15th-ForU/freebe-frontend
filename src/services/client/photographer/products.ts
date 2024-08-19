@@ -34,7 +34,7 @@ export async function postNewProduct(
   };
   console.log(body);
   const request = await clientApi
-    .post("photographer/product", { json: { body } })
+    .post("photographer/product", { json: body })
     .json();
   return request;
 }
@@ -44,7 +44,7 @@ export async function putProductStatus(
   activeStatus: "INACTIVE" | "ACTIVE",
 ) {
   const request = await clientApi
-    .put("photographer/product", { json: { productId, activeStatus } })
+    .put("photographer/product/status", { json: { productId, activeStatus } })
     .json();
   return request;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import useUserInfo from "@/hooks/useUserInfo";
 import * as styles from "./header/header.css";
 import Profile from "./header/profile";
@@ -13,11 +14,16 @@ const Header = () => {
 
   return (
     <header className={styles.headerContainer}>
-      <Link href="/photographer">
-        <div>메인</div>
+      <Link href="/photographer" style={{ height: 20 }}>
+        <Image
+          src="/icons/freebe-logo.svg"
+          width={100}
+          height={20}
+          alt="free:be"
+        />
       </Link>
-      <Profile name="ForU" />
       <Url myUrl={userRole === "photographer" ? userData.profileUrl : ""} />
+      <Profile />
     </header>
   );
 };

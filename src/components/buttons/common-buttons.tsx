@@ -62,7 +62,7 @@ export const LinkButton = ({
   selected = false,
 }: LinkType & { selected?: boolean }) => {
   return (
-    <Link href={src}>
+    <Link href={src} style={{ textDecoration: "none" }}>
       <div
         className={buttonStyles.link}
         style={selected ? { backgroundColor: "#a9a9a9" } : {}}

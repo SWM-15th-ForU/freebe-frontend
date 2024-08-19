@@ -37,15 +37,22 @@ const buttonStyles = styleVariants({
       padding: 10,
     },
   ],
-  link: {
-    backgroundColor: "#D9D9D9",
-    color: "#000",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    padding: 10,
-  },
+  link: [
+    sprinkles({
+      backgroundColor: "blue",
+      fontSize: "button-01",
+      fontWeight: "button-01",
+      color: "white",
+    }),
+    {
+      display: "flex",
+      borderRadius: 8,
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+      padding: 10,
+    },
+  ],
   submit: [
     sprinkles({
       backgroundColor: "blue",
