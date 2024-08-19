@@ -62,8 +62,8 @@ const ProductForm = () => {
   const { handleSubmit, control, register } = method;
   const [images, setImages] = useState<Image[]>([]);
 
-  const onSubmit: SubmitHandler<ProductFormdata> = (data) => {
-    postNewProduct(data, images);
+  const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
+    await postNewProduct(data, images);
     router.push("/photographer/mypage/products");
   };
 

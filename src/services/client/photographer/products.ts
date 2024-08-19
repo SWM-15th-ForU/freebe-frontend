@@ -38,3 +38,13 @@ export async function postNewProduct(
     .json();
   return request;
 }
+
+export async function putProductStatus(
+  productId: number,
+  activeStatus: "INACTIVE" | "ACTIVE",
+) {
+  const request = await clientApi
+    .put("photographer/product", { json: { productId, activeStatus } })
+    .json();
+  return request;
+}

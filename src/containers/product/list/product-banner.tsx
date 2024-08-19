@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Switch } from "@mantine/core";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
+import { putProductStatus } from "@/services/client/photographer/products";
 import { Body15SB } from "@/components/texts/texts";
 import { bannerDiv } from "../product.css";
 
@@ -13,7 +14,9 @@ const ProductBanner = ({
   productTitle,
   reservationCount,
 }: ProductResponseData) => {
-  function handleSwitchOpen() {}
+  async function handleSwitchOpen() {
+    await putProductStatus(productId, activeStatus);
+  }
 
   return (
     <div className={bannerDiv}>
