@@ -11,7 +11,8 @@
     "gitRoot": ""
   },
   "scripts": {
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "devInspect": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev",
     "tscheck": "tsc --noEmit",
     "build": "next build",
     "start": "next start",
