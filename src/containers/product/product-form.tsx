@@ -5,7 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Image, ProductFormdata } from "product-types";
 import { SubmitButton } from "@/components/buttons/common-buttons";
-import { postProduct } from "@/utils/apis/products";
+import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
 import ImagesInput from "./form/image-input";
@@ -63,9 +63,8 @@ const ProductForm = () => {
   const [images, setImages] = useState<Image[]>([]);
 
   const onSubmit: SubmitHandler<ProductFormdata> = (data) => {
-    console.log({ images, ...data });
-    postProduct(data, images);
-    router.push("/photographer");
+    postNewProduct(data, images);
+    router.push("/photographer/mypage/products");
   };
 
   return (
