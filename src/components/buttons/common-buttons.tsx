@@ -73,6 +73,20 @@ export const LinkButton = ({
   );
 };
 
+export const LinkTab = ({
+  name,
+  src,
+  selected = false,
+}: LinkType & { selected?: boolean }) => {
+  return (
+    <Link href={src} style={{ textDecoration: "none" }}>
+      <div className={selected ? buttonStyles.selectedTab : buttonStyles.tab}>
+        <span>{name}</span>
+      </div>
+    </Link>
+  );
+};
+
 export const BottomButton = ({ title, onClick }: ButtonProps) => {
   return (
     <div className={buttonStyles.bottom} onClick={onClick} role="presentation">

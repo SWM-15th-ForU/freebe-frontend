@@ -1,6 +1,16 @@
 import { BLUE01 } from "@/styles/colors";
 import sprinkles from "@/styles/sprinkles.css";
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
+
+const baseTab = style([
+  sprinkles({ borderColor: "stroke-grey" }),
+  {
+    width: "100%",
+    borderBottomWidth: 1,
+    borderBottomStyle: "solid",
+    padding: "10px 16px",
+  },
+]);
 
 const buttonStyles = styleVariants({
   kakao: {
@@ -52,6 +62,23 @@ const buttonStyles = styleVariants({
       width: "100%",
       padding: 10,
     },
+  ],
+  tab: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-02",
+    }),
+    baseTab,
+  ],
+  selectedTab: [
+    sprinkles({
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+      color: "text-01",
+      backgroundColor: "bg-lightgrey",
+    }),
+    baseTab,
   ],
   submit: [
     sprinkles({
