@@ -5,7 +5,7 @@ const Profile = () => {
   return (
     <div className={profileContainer}>
       <Image src="/icons/alarm.svg" alt="알림" width={20} height={24} />
-      <div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <Image
           src="/icons/profile.svg"
           alt="내 프로필"
