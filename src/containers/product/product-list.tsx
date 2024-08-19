@@ -26,7 +26,7 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
       </div>
       <div className={listBody}>
         {productDatas.map((data) => (
-          <ProductBanner key={data.id} {...data} />
+          <ProductBanner key={data.productId} {...data} />
         ))}
       </div>
     </div>
