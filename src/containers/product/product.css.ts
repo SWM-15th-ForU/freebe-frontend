@@ -210,6 +210,12 @@ export const inputBox = style([
 ]);
 
 export const inputStyles = styleVariants({
+  headWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 20,
+    marginBottom: 5,
+  },
   title: [
     sprinkles({
       fontSize: "headline-03",
@@ -230,7 +236,7 @@ export const inputStyles = styleVariants({
     {
       background: "none",
       border: "none",
-      width: "90%",
+      width: "100%",
     },
   ],
   content: [

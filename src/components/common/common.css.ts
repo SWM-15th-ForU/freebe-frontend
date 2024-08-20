@@ -85,3 +85,37 @@ export const infoStyles = styleVariants({
     },
   ],
 });
+
+const baseSwitch = style([
+  sprinkles({
+    fontSize: "button-02",
+    fontWeight: "button-01",
+  }),
+  {
+    padding: "5px 16px",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 100,
+  },
+]);
+
+export const switchStyles = styleVariants({
+  container: [
+    sprinkles({
+      backgroundColor: "white",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      borderRadius: 100,
+    },
+  ],
+  selected: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    baseSwitch,
+  ],
+  unselected: [sprinkles({ color: "text-03" }), baseSwitch],
+});

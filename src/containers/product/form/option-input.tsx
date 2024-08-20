@@ -1,6 +1,7 @@
 import { Product } from "product-types";
-import { UseFormRegister, useWatch } from "react-hook-form";
+import { UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
+import SwitchItem from "@/components/common/switch-item";
 import * as style from "../product.css";
 
 interface OptionInputProps {
@@ -14,22 +15,29 @@ const OptionInput = ({
   index,
   formRegister,
 }: OptionInputProps) => {
-  const options = useWatch({ name: "options" });
+  const { setValue, watch } = useFormContext<Product>();
+  const options = watch("options");
+
+  function handleSwitchIsFree() {
+    setValue(`options.${index}.isFree`, !options[index]?.isFree);
+  }
 
   return (
     <div className={style.inputBox}>
-      <input
-        className={style.inputStyles.title}
-        placeholder="이름을 입력해 주세요."
-        {...formRegister(`options.${index}.title`)}
-      />
-      <CloseButton
-        onClick={onClickRemove}
-        size={18}
-        color="grey"
-        container={{ position: "absolute", right: 20, top: 20 }}
-      />
-
+      <div className={style.inputStyles.headWrapper}>
+        <input
+          className={style.inputStyles.title}
+          placeholder="이름을 입력해 주세요."
+          {...formRegister(`options.${index}.title`)}
+          style={{ marginRight: "auto" }}
+        />
+        <SwitchItem
+          value={{ selected: "유료", unselected: "무료" }}
+          onSwitch={handleSwitchIsFree}
+          selected={options[index]?.isFree}
+        />
+        <CloseButton onClick={onClickRemove} size={18} color="grey" />
+      </div>
       <input
         className={style.inputStyles.description}
         placeholder="(선택) 설명을 입력해 주세요."
@@ -43,8 +51,6 @@ const OptionInput = ({
           {...formRegister(`options.${index}.price`)}
         />
       )}
-
-      <input type="checkbox" {...formRegister(`options.${index}.isFree`)} />
     </div>
   );
 };

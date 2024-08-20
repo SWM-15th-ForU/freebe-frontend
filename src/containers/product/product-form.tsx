@@ -41,7 +41,7 @@ const ProductForm = () => {
       {
         title: "보정본 추가",
         hasDescription: false,
-        isFree: false,
+        isFree: true,
         description: "",
         price: 0,
       },

@@ -1,6 +1,7 @@
 import { Product } from "product-types";
-import { UseFormRegister, useWatch } from "react-hook-form";
+import { UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
+import SwitchItem from "@/components/common/switch-item";
 import * as style from "../product.css";
 
 interface DiscountInputProps {
@@ -14,39 +15,38 @@ const DiscountInput = ({
   index,
   formRegister,
 }: DiscountInputProps) => {
-  const discounts = useWatch({ name: "discounts" });
+  const { setValue, watch } = useFormContext<Product>();
+  const discounts = watch("discounts");
+
+  function handleSwitchType() {
+    setValue(
+      `discounts.${index}.discountType`,
+      discounts[index].discountType === "AMOUNT" ? "RATE" : "AMOUNT",
+    );
+  }
 
   return (
     <div className={style.inputBox}>
-      <input
-        className={style.inputStyles.title}
-        placeholder="할인 종류를 입력해 주세요."
-        {...formRegister(`discounts.${index}.title`)}
-      />
-      <CloseButton
-        onClick={onClickRemove}
-        size={18}
-        color="grey"
-        container={{ position: "absolute", right: 20, top: 20 }}
-      />
-
+      <div className={style.inputStyles.headWrapper}>
+        <input
+          className={style.inputStyles.title}
+          placeholder="할인 종류를 입력해 주세요."
+          {...formRegister(`discounts.${index}.title`)}
+          style={{ marginRight: "auto" }}
+        />
+        <SwitchItem
+          value={{ selected: "금액 할인", unselected: "비율 할인" }}
+          onSwitch={handleSwitchType}
+          selected={discounts[index].discountType === "AMOUNT"}
+        />
+        <CloseButton onClick={onClickRemove} size={18} color="grey" />
+      </div>
       <input
         className={style.inputStyles.description}
         placeholder="(선택) 설명을 입력해 주세요."
         {...formRegister(`discounts.${index}.description`)}
       />
 
-      <select
-        id="discountType"
-        {...formRegister(`discounts.${index}.discountType`)}
-      >
-        <option id="discountType" value="AMOUNT">
-          금액 할인
-        </option>
-        <option id="discountType" value="RATE">
-          비율 할인
-        </option>
-      </select>
       <input
         className={style.inputStyles.content}
         placeholder={
