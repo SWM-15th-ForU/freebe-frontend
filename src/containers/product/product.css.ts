@@ -197,11 +197,59 @@ export const textInput = style({
   marginTop: 15,
 });
 
-export const inputBox = style({
-  backgroundColor: "#D9D9D9",
-  borderRadius: 10,
-  padding: 10,
-  marginTop: 20,
+export const inputBox = style([
+  sprinkles({
+    backgroundColor: "bg-lightgrey",
+  }),
+  {
+    position: "relative",
+    borderRadius: 8,
+    padding: 20,
+    marginTop: 20,
+  },
+]);
+
+export const inputStyles = styleVariants({
+  title: [
+    sprinkles({
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+      color: "text-02",
+    }),
+    {
+      background: "none",
+      border: "none",
+    },
+  ],
+  description: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-03",
+    }),
+    {
+      background: "none",
+      border: "none",
+      width: "90%",
+    },
+  ],
+  content: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-02",
+      backgroundColor: "white",
+      borderColor: "stroke-grey",
+    }),
+    {
+      marginTop: 16,
+      width: "100%",
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      padding: "8px 12px",
+    },
+  ],
 });
 
 export const headerStyle = {

@@ -1,5 +1,6 @@
 import { Product } from "product-types";
 import { UseFormRegister, useWatch } from "react-hook-form";
+import CloseButton from "@/components/buttons/close-button";
 import * as style from "../product.css";
 
 interface DiscountInputProps {
@@ -18,17 +19,23 @@ const DiscountInput = ({
   return (
     <div className={style.inputBox}>
       <input
-        className={style.textInput}
+        className={style.inputStyles.title}
         placeholder="할인 종류를 입력해 주세요."
         {...formRegister(`discounts.${index}.title`)}
       />
-      {discounts[index]?.hasDescription && (
-        <input
-          className={style.textInput}
-          placeholder="설명을 입력해 주세요."
-          {...formRegister(`discounts.${index}.description`)}
-        />
-      )}
+      <CloseButton
+        onClick={onClickRemove}
+        size={18}
+        color="grey"
+        container={{ position: "absolute", right: 20, top: 20 }}
+      />
+
+      <input
+        className={style.inputStyles.description}
+        placeholder="(선택) 설명을 입력해 주세요."
+        {...formRegister(`discounts.${index}.description`)}
+      />
+
       <select
         id="discountType"
         {...formRegister(`discounts.${index}.discountType`)}
@@ -41,7 +48,7 @@ const DiscountInput = ({
         </option>
       </select>
       <input
-        className={style.textInput}
+        className={style.inputStyles.content}
         placeholder={
           discounts[index]?.discountType === "AMOUNT"
             ? "할인 금액을 입력해 주세요."
@@ -49,13 +56,6 @@ const DiscountInput = ({
         }
         {...formRegister(`discounts.${index}.discountValue`)}
       />
-      <input
-        type="checkbox"
-        {...formRegister(`discounts.${index}.hasDescription`)}
-      />
-      <button type="button" onClick={onClickRemove}>
-        X
-      </button>
     </div>
   );
 };
