@@ -1,11 +1,68 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const formStyles = styleVariants({
+  container: {
+    width: "100%",
+    margin: "auto",
+    paddingTop: 50,
+    alignSelf: "flex-start",
+  },
+  title: [
+    sprinkles({
+      fontSize: "headline-02",
+      fontWeight: "headline-02",
+      color: "text-02",
+    }),
+  ],
+  wrapper: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      marginTop: 28,
+      padding: 40,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderStyle: "solid",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      gap: 15,
+    },
+  ],
+  split: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+      paddingBottom: 40,
+      width: "100%",
+    },
+  ],
+  subtitle: [
+    sprinkles({
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+      color: "text-02",
+    }),
+    { marginBottom: 20 },
+  ],
+  input: [
+    sprinkles({ fontSize: "body-02", fontWeight: "body-02", color: "text-02" }),
+    {
+      border: 0,
+      width: "100%",
+      marginTop: 10,
+    },
+  ],
+});
+
 export const formDiv = style({
-  width: "50%",
+  width: "100%",
   margin: "auto",
-  paddingTop: 50,
-  alignSelf: "center",
+
+  alignSelf: "flex-start",
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
@@ -136,7 +193,8 @@ export const listBody = style({
 
 export const textInput = style({
   border: 0,
-  width: "80%",
+  width: "100%",
+  marginTop: 15,
 });
 
 export const inputBox = style({

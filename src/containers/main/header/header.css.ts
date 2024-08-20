@@ -9,6 +9,7 @@ export const headerContainer = style([
     left: 0,
     position: "fixed",
 
+    zIndex: 15,
     padding: "10px 40px",
     width: "100%",
     minWidth: 400,

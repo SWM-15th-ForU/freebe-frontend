@@ -69,22 +69,38 @@ const ProductForm = () => {
 
   return (
     <FormProvider {...method}>
-      <form className={style.formDiv} onSubmit={handleSubmit(onSubmit)}>
-        <input
-          placeholder="상품 제목을 입력해 주세요."
-          className={style.textInput}
-          style={{ fontSize: 20 }}
-          {...register("title")}
-        />
-        <input
-          placeholder="(선택) 상품 소개글을 입력해 주세요."
-          className={style.textInput}
-          {...register("subtitle")}
-        />
-        <ImagesInput images={images} setImage={setImages} />
-        <ItemFieldArray formControl={control} formRegister={register} />
-        <OptionFieldArray formControl={control} formRegister={register} />
-        <DiscountFieldArray formControl={control} formRegister={register} />
+      <form
+        className={style.formStyles.container}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <span className={style.formStyles.title}>촬영 정보 등록하기</span>
+        <div className={style.formStyles.wrapper}>
+          <div className={style.formStyles.split}>
+            <span className={style.formStyles.subtitle}>상품 정보</span>
+            <input
+              placeholder="상품 제목을 입력해 주세요."
+              className={style.formStyles.input}
+              style={{ fontSize: 20 }}
+              {...register("title")}
+            />
+            <input
+              placeholder="(선택) 상품 소개글을 입력해 주세요."
+              className={style.formStyles.input}
+              {...register("subtitle")}
+            />
+          </div>
+          <div className={style.formStyles.split}>
+            <ImagesInput images={images} setImage={setImages} />
+          </div>
+          <div className={style.formStyles.split}>
+            <ItemFieldArray formControl={control} formRegister={register} />
+          </div>
+          <div className={style.formStyles.split}>
+            <OptionFieldArray formControl={control} formRegister={register} />
+          </div>
+
+          <DiscountFieldArray formControl={control} formRegister={register} />
+        </div>
         <SubmitButton title="다음" />
       </form>
     </FormProvider>

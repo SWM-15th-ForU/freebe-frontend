@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Image as ImageType } from "product-types";
+import CloseButton from "../buttons/close-button";
 
 interface ImageThumbnailProps {
   image: ImageType;
@@ -10,19 +11,24 @@ const THUMBNAIL_SIZE = 80;
 
 const ImageThumbnail = ({ image, onClickDelete }: ImageThumbnailProps) => {
   return (
-    <div>
+    <div
+      style={{
+        width: "20%",
+        aspectRatio: 1,
+        position: "relative",
+        marginTop: 15,
+      }}
+    >
+      <Image src={image} fill sizes="80px" alt="등록 이미지" />
+
       {onClickDelete && (
-        <button type="button" onClick={onClickDelete}>
-          X
-        </button>
+        <CloseButton
+          onClick={onClickDelete}
+          styleType="shadow"
+          container={{ padding: 4, justifyContent: "flex-end" }}
+          size={24}
+        />
       )}
-      <Image
-        src={image}
-        width={THUMBNAIL_SIZE}
-        height={THUMBNAIL_SIZE}
-        sizes="80px"
-        alt="등록 이미지"
-      />
     </div>
   );
 };
