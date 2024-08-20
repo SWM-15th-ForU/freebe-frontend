@@ -119,3 +119,43 @@ export const switchStyles = styleVariants({
   ],
   unselected: [sprinkles({ color: "text-03" }), baseSwitch],
 });
+
+export const toastStyles = styleVariants({
+  root: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    {
+      padding: 15,
+      borderRadius: 10,
+      "::before": { display: "none" },
+    },
+  ],
+  title: [
+    sprinkles({
+      color: "white",
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+    }),
+  ],
+  description: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "white",
+    }),
+  ],
+  closeButton: [
+    sprinkles({
+      color: "white",
+    }),
+    {
+      selectors: {
+        "&:hover": {
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
+  ],
+});

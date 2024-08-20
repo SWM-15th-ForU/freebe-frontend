@@ -3,7 +3,9 @@ import localFont from "next/font/local";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import "@mantine/carousel/styles.css";
+import "@mantine/notifications/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -37,7 +39,10 @@ export default function RootLayout({
         style={{ overflowX: "hidden", overflowY: "auto" }}
       >
         <div>
-          <MantineProvider>{children}</MantineProvider>
+          <MantineProvider>
+            <Notifications />
+            {children}
+          </MantineProvider>
         </div>
       </body>
     </html>
