@@ -8,18 +8,8 @@ const MyProductPage = async () => {
   return (
     <div style={{ padding: 40 }}>
       <span className={listStyles.title}>내 상품 목록</span>
-      <ProductList
-        productDatas={productDatas.filter(
-          (data) => data.activeStatus === "ACTIVE",
-        )}
-        status="ACTIVE"
-      />
-      <ProductList
-        productDatas={productDatas.filter(
-          (data) => data.activeStatus === "INACTIVE",
-        )}
-        status="INACTIVE"
-      />
+      <ProductList productDatas={productDatas} status="ACTIVE" />
+      <ProductList productDatas={productDatas} status="INACTIVE" />
     </div>
   );
 };

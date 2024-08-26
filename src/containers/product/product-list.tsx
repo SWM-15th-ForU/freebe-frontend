@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Status } from "product-types";
 import ProductBanner from "./list/product-banner";
@@ -26,9 +28,11 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
         )}
       </div>
       <div className={listStyles.body}>
-        {productDatas.map((data) => (
-          <ProductBanner key={data.productId} {...data} />
-        ))}
+        {productDatas
+          .filter((data) => data.activeStatus === status)
+          .map((data) => (
+            <ProductBanner key={data.productId} {...data} />
+          ))}
       </div>
     </div>
   );
