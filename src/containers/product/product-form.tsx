@@ -10,7 +10,7 @@ import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
 import ImagesInput from "./form/image-input";
 import DiscountFieldArray from "./form/discount-field-array";
-import * as style from "./product.css";
+import { formStyles } from "./product.css";
 
 const ProductForm = () => {
   const router = useRouter();
@@ -69,33 +69,30 @@ const ProductForm = () => {
 
   return (
     <FormProvider {...method}>
-      <form
-        className={style.formStyles.container}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <span className={style.formStyles.title}>촬영 정보 등록하기</span>
-        <div className={style.formStyles.wrapper}>
-          <div className={style.formStyles.split}>
-            <span className={style.formStyles.subtitle}>상품 정보</span>
+      <form className={formStyles.container} onSubmit={handleSubmit(onSubmit)}>
+        <span className={formStyles.title}>촬영 정보 등록하기</span>
+        <div className={formStyles.wrapper}>
+          <div className={formStyles.split}>
+            <span className={formStyles.subtitle}>상품 정보</span>
             <input
               placeholder="상품 제목을 입력해 주세요."
-              className={style.formStyles.input}
+              className={formStyles.input}
               style={{ fontSize: 20 }}
               {...register("title")}
             />
             <input
               placeholder="(선택) 상품 소개글을 입력해 주세요."
-              className={style.formStyles.input}
+              className={formStyles.input}
               {...register("subtitle")}
             />
           </div>
-          <div className={style.formStyles.split}>
+          <div className={formStyles.split}>
             <ImagesInput images={images} setImage={setImages} />
           </div>
-          <div className={style.formStyles.split}>
+          <div className={formStyles.split}>
             <ItemFieldArray formControl={control} formRegister={register} />
           </div>
-          <div className={style.formStyles.split}>
+          <div className={formStyles.split}>
             <OptionFieldArray formControl={control} formRegister={register} />
           </div>
 

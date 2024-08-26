@@ -1,4 +1,3 @@
-import { BLUE01 } from "@/styles/colors";
 import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
@@ -24,8 +23,10 @@ const buttonStyles = styleVariants({
     width: 184,
     height: 45,
     backgroundColor: "#FEE500",
-    color: "#000000",
     borderRadius: 12,
+    fontSize: 17,
+    fontWeight: 600,
+    color: "#1a1a1a",
     ":hover": {
       cursor: "pointer",
     },
@@ -96,18 +97,20 @@ const buttonStyles = styleVariants({
       border: "none",
     },
   ],
-  bottom: {
-    zIndex: 5,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "fixed",
-    width: "100%",
-    height: "72px",
-    backgroundColor: BLUE01,
-    bottom: 0,
-    color: "white",
-  },
+  bottom: [
+    sprinkles({ backgroundColor: "blue" }),
+    {
+      zIndex: 5,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position: "fixed",
+      width: "100%",
+      height: "72px",
+      bottom: 0,
+      color: "white",
+    },
+  ],
 });
 
 export const closeStyles = styleVariants({

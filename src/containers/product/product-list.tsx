@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Status } from "product-types";
-import { Body15SB } from "@/components/texts/texts";
 import ProductBanner from "./list/product-banner";
-import { listBody, listDiv, listHead, listStyles } from "./product.css";
+import { listStyles } from "./product.css";
 
 interface ProductListProps {
   productDatas: Parameters<typeof ProductBanner>[0][];
@@ -19,14 +18,14 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
   return (
     <div className={listStyles.div}>
       <div className={listStyles.head}>
-        <Body15SB>{titles[status]}</Body15SB>
+        {titles[status]}
         {status === "ACTIVE" && (
           <Link href="/photographer/new-product" className={listStyles.add}>
             추가
           </Link>
         )}
       </div>
-      <div className={listBody}>
+      <div className={listStyles.body}>
         {productDatas.map((data) => (
           <ProductBanner key={data.productId} {...data} />
         ))}

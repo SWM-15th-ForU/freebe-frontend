@@ -2,7 +2,6 @@ import { Image } from "product-types";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { AddButton } from "@/components/buttons/common-buttons";
 import ImageThumbnail from "@/components/common/image-thumbnail";
-import { Body15SB } from "@/components/texts/texts";
 import { getUrlFromFiles } from "@/utils/image";
 import { formStyles } from "../product.css";
 

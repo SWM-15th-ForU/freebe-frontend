@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Switch } from "@mantine/core";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
 import { putProductStatus } from "@/services/client/photographer/products";
-import { Body15SB } from "@/components/texts/texts";
 import { bannerStyles } from "../product.css";
 
 const ProductBanner = ({

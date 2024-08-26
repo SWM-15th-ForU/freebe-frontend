@@ -3,7 +3,6 @@ import Link from "next/link";
 import { LinkType } from "profile-types";
 import { texts } from "@/styles/text.css";
 import buttonStyles from "./buttons.css";
-import { Body15SB } from "../texts/texts";
 
 interface ButtonProps
   extends DetailedHTMLProps<
@@ -67,7 +66,7 @@ export const LinkButton = ({
         className={buttonStyles.link}
         style={selected ? { backgroundColor: "#a9a9a9" } : {}}
       >
-        <Body15SB>{name}</Body15SB>
+        {name}
       </div>
     </Link>
   );

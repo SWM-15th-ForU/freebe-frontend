@@ -3,12 +3,12 @@ import InfoSheet from "@/containers/customer/main/info-sheet";
 import { LinkType } from "profile-types";
 
 const CustomerMainPage = ({ params }: { params: { id: string } }) => {
+  // TODO: 사진작가 프로필 조회 api 연결
   const defaultLinks: LinkType[] = [
     { name: "상품 선택하기", src: "/products" },
     { name: "일정 확인하기 ", src: "/schedules" },
     { name: "자주 묻는 질문", src: "/faqs" },
   ];
-
   const photographerProfile = {
     src: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA0MDVfMTky%2FMDAxNjgwNjYzNzkzODE3.j2lbl0bhUKaVpUdl5AKcpxEakvopeSKngmwCKmblHjkg.WyMGUS53MdWtm1D-xDEAqZ6u7a7-3_1M_yNVP_iJuZIg.JPEG.syher0604%2FIMG_8332.JPG&type=a340",
     id: "photographerId",

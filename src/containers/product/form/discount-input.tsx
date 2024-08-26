@@ -2,7 +2,7 @@ import { Product } from "product-types";
 import { UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import SwitchItem from "@/components/common/switch-item";
-import * as style from "../product.css";
+import { inputStyles } from "../product.css";
 
 interface DiscountInputProps {
   formRegister: UseFormRegister<Product>;
@@ -26,10 +26,10 @@ const DiscountInput = ({
   }
 
   return (
-    <div className={style.inputBox}>
-      <div className={style.inputStyles.headWrapper}>
+    <div className={inputStyles.box}>
+      <div className={inputStyles.headWrapper}>
         <input
-          className={style.inputStyles.title}
+          className={inputStyles.title}
           placeholder="할인 종류를 입력해 주세요."
           {...formRegister(`discounts.${index}.title`)}
           style={{ marginRight: "auto" }}
@@ -42,13 +42,13 @@ const DiscountInput = ({
         <CloseButton onClick={onClickRemove} size={18} color="grey" />
       </div>
       <input
-        className={style.inputStyles.description}
+        className={inputStyles.description}
         placeholder="(선택) 설명을 입력해 주세요."
         {...formRegister(`discounts.${index}.description`)}
       />
 
       <input
-        className={style.inputStyles.content}
+        className={inputStyles.content}
         placeholder={
           discounts[index]?.discountType === "AMOUNT"
             ? "할인 금액을 입력해 주세요."

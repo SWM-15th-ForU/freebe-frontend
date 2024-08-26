@@ -58,17 +58,6 @@ export const formStyles = styleVariants({
   ],
 });
 
-export const formDiv = style({
-  width: "100%",
-  margin: "auto",
-
-  alignSelf: "flex-start",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  gap: 15,
-});
-
 export const bannerStyles = styleVariants({
   container: [
     sprinkles({
@@ -150,6 +139,11 @@ export const listStyles = styleVariants({
       marginBottom: 10,
     },
   ],
+  body: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 10,
+  },
   add: [
     sprinkles({
       backgroundColor: "blue",
@@ -168,46 +162,11 @@ export const listStyles = styleVariants({
   ],
 });
 
-export const listDiv = style({
-  backgroundColor: "#F5F5F5",
-  borderRadius: 10,
-
-  margin: 20,
-  width: 700,
-});
-
-export const listHead = style({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-around",
-  alignItems: "center",
-  gap: 300,
-  marginBottom: 20,
-});
-
-export const listBody = style({
-  display: "flex",
-  flexWrap: "wrap",
-  gap: 10,
-});
-
 export const textInput = style({
   border: 0,
   width: "100%",
   marginTop: 15,
 });
-
-export const inputBox = style([
-  sprinkles({
-    backgroundColor: "bg-lightgrey",
-  }),
-  {
-    position: "relative",
-    borderRadius: 8,
-    padding: 20,
-    marginTop: 20,
-  },
-]);
 
 export const inputStyles = styleVariants({
   headWrapper: {
@@ -237,6 +196,17 @@ export const inputStyles = styleVariants({
       background: "none",
       border: "none",
       width: "100%",
+    },
+  ],
+  box: [
+    sprinkles({
+      backgroundColor: "bg-lightgrey",
+    }),
+    {
+      position: "relative",
+      borderRadius: 8,
+      padding: 20,
+      marginTop: 20,
     },
   ],
   content: [

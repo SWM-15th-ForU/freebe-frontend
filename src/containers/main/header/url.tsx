@@ -7,9 +7,7 @@ import { urlStyles } from "./header.css";
 const Url = ({ myUrl }: { myUrl: string }) => {
   async function handleCopy() {
     try {
-      await navigator.clipboard.writeText(
-        "https://www.freebe.co.kr/soma_photo",
-      );
+      await navigator.clipboard.writeText(myUrl);
       popToast(
         "클립보드에 복사되었습니다.",
         "링크를 공유해 고객에게 전달해 보세요!",
@@ -21,9 +19,7 @@ const Url = ({ myUrl }: { myUrl: string }) => {
 
   return (
     <div className={urlStyles.container}>
-      <span className={urlStyles.content}>
-        https://www.freebe.co.kr/soma_photo
-      </span>
+      <span className={urlStyles.content}>{myUrl}</span>
       <Image
         src="/icons/copy.svg"
         alt="복사하기"
