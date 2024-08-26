@@ -1,3 +1,14 @@
+import Image from "next/image";
+
 export default function Loading() {
-  return <h2>Now loading</h2>;
+  return (
+    <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
+      <Image
+        src="/images/loading.png"
+        width={72}
+        height={72}
+        alt="now loading"
+      />
+    </div>
+  );
 }

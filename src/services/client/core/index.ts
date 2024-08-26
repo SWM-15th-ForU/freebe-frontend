@@ -7,7 +7,7 @@ const DEFAULT_API_RETRY_LIMIT = 2;
 // TODO: 클라이언트측 토큰관리와 연결
 const clientApi = ky
   .create({
-    prefixUrl: "https://f4ac-221-148-248-129.ngrok-free.app/",
+    prefixUrl: "https://api.freebe.co.kr/",
   })
   .extend({
     hooks: {

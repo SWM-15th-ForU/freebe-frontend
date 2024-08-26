@@ -49,7 +49,7 @@ const beforeRetry: BeforeRetryHook = async ({ request, error, retryCount }) => {
 };
 
 export const api = ky
-  .create({ prefixUrl: "https://f4ac-221-148-248-129.ngrok-free.app/" })
+  .create({ prefixUrl: "https://api.freebe.co.kr/" })
   .extend({
     hooks: {
       beforeRequest: [
