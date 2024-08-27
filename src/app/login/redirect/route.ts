@@ -9,7 +9,9 @@ export async function GET(request: NextRequest) {
   const state = searchParams.get("state");
 
   if (searchParams.get("error") || !code || !isUser(state)) {
-    return NextResponse.redirect("/login");
+    return NextResponse.redirect(
+      new URL("login/error", process.env.NEXT_PUBLIC_DOMAIN),
+    );
   }
 
   // const { accessToken, refreshToken, message } = await login(state, code);
@@ -23,10 +25,10 @@ export async function GET(request: NextRequest) {
   // TODO: 인증 처리 중 에러 시 리디렉션 페이지 구현
   function getRedirectDestination(responseMessage: string): string {
     if (responseMessage === "photographer join") {
-      return "/photographer/join";
+      return "photographer/join";
     }
     if (responseMessage === "photographer login") {
-      return "/photographer";
+      return "photographer";
     }
     if (
       responseMessage === "customer login" ||
@@ -34,9 +36,9 @@ export async function GET(request: NextRequest) {
     ) {
       const photographerId = searchParams.get("photographerId");
       const productId = searchParams.get("productId");
-      return `/${photographerId}/products/${productId}/reservation/reference`;
+      return `${photographerId}/products/${productId}/reservation/reference`;
     }
-    return "/login/error";
+    return "login/error";
   }
 
   const cookieStore = cookies();

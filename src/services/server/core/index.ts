@@ -1,4 +1,3 @@
-import returnFetch from "return-fetch";
 import ky, { BeforeRetryHook, HTTPError } from "ky";
 import { tokenKeys } from "@/constants/auth";
 import { cookies } from "next/headers";
@@ -12,7 +11,7 @@ export async function refreshAccessToken() {
   if (!refreshToken) {
     throw new Error("no refresh token");
   }
-  const response = await fetch("https://api.freebe.co.kr/reissue", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}reissue`, {
     headers: {
       refreshToken,
     },
@@ -49,7 +48,7 @@ const beforeRetry: BeforeRetryHook = async ({ request, error, retryCount }) => {
 };
 
 export const api = ky
-  .create({ prefixUrl: "https://api.freebe.co.kr/" })
+  .create({ prefixUrl: process.env.NEXT_PUBLIC_API_DOMAIN })
   .extend({
     hooks: {
       beforeRequest: [
@@ -63,7 +62,3 @@ export const api = ky
       beforeRetry: [beforeRetry],
     },
   });
-
-export const nextFetch = returnFetch({
-  baseUrl: "https://api.freebe.co.kr/",
-});
