@@ -43,7 +43,7 @@ jobs:
       - name: S3에 zip 업로드(전체 파일)
         run: aws s3 cp frontend_freebe.zip s3://cicd-frontend-develop-bucket/cicd-dev/frontend_freebe.zip --region ap-northeast-2
 
-      - name: Code Deploy 로 배포
+      - name: Code Deploy로 배포
         run: >
           aws deploy create-deployment --application-name ${{ secrets.AWS_CODE_DEPLOY_APPLICATION }}
           --deployment-config-name CodeDeployDefault.AllAtOnce
