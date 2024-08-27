@@ -34,7 +34,6 @@ jobs:
           echo "AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}" >> .env
           echo "AWS_ACCESS_KEY=${{ secrets.CICD_ACCESS_KEY }}" >> .env
           echo "AWS_SECRET_KEY=${{ secrets.CICD_SECRET_KEY }}" >> .env
-          echo "FREEBE_BASE_URL=${{ secrets.FREEBE_BASE_URL }}" >> .env
 
       - name: 압축
         run: zip -r ./frontend_freebe.zip .
