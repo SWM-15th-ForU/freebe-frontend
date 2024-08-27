@@ -17,7 +17,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "deploy": "pm2 start ecosystem.config.js --env production"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
