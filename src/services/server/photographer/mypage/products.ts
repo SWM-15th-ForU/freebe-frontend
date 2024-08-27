@@ -1,4 +1,3 @@
-import { error } from "console";
 import { api } from "../../core";
 
 export interface ProductResponseData {
@@ -8,6 +7,7 @@ export interface ProductResponseData {
   activeStatus: "ACTIVE" | "INACTIVE";
 }
 
+// TODO: error boundary & suspense 연결
 export async function getProductList(): Promise<ProductResponseData[]> {
   try {
     const response = await api
@@ -16,7 +16,7 @@ export async function getProductList(): Promise<ProductResponseData[]> {
     const { data } = response;
     if (!data) return [];
     return data;
-  } catch {
+  } catch (error) {
     console.error("Failed to fetch product list", error);
     return [];
   }
