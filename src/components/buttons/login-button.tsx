@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { cookieKeys, cookieValues } from "@/constants/cookies";
 import buttonStyles from "./buttons.css";
 
-const LoginButton = () => {
-  function loginToKakao() {
-    localStorage.setItem(
-      cookieKeys.requestUser,
-      cookieValues.requestUser.photographer,
-    );
-    window.location.href = `https://api.freebe.co.kr/oauth2/authorization/kakao`;
-  }
+export const PhotographerLoginButton = () => {
+  const redirectUri = "http://localhost:3000/login/redirect";
+  const roleType = "photographer";
 
+  function loginToKakao() {
+    window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${roleType}&scope=account_email%20name%20birthday%20birthyear%20phone_number`;
+  }
   return (
     <button type="button" onClick={loginToKakao} className={buttonStyles.kakao}>
       <Image
@@ -25,5 +22,3 @@ const LoginButton = () => {
     </button>
   );
 };
-
-export default LoginButton;
