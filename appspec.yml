@@ -1,19 +1,17 @@
 version: 0.0
-os: linux
+os: linux # Ubuntu니까 linux로 설정.
 
 files:
   - source: /
-    destination: /home/ubuntu/
+    destination: /home/ubuntu/deploy # EC2 인스턴스 안에 프로젝트를 저장할 경로.
     overwrite: yes
-
-permissions:
-  - object: /
-    pattern: "**"
+permissions: # EC2 인스턴스에 프로젝트를 저장하기 위한 권한 설정.
+  - object: /home/ubuntu/deploy # EC2 인스턴스 안에 프로젝트를 저장할 경로.
     owner: ubuntu
     group: ubuntu
-
+    mode: 755
 hooks:
-  AfterInstall:
-    - location: deploy.sh
-      timeout: 60
-      runas : root 
+  AfterInstall: # 배포 완료 후 실행할 동작 설정.
+    - location: ./deploy.sh # deploy.sh를 실행.
+      timeout: 60 # 제한 시간 1000초 으로 설정. 1000초가 넘어가면 실패함.
+      runas: ubuntu # ubuntu 권한으로 실행.
