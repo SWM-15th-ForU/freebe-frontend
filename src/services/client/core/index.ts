@@ -13,8 +13,7 @@ const clientApi = ky
     hooks: {
       beforeRequest: [
         (request) => {
-          const accessToken =
-            "eyJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIyIiwibWVtYmVySWQiOiIyIiwiaWF0IjoxNzIzNDI3ODUwLCJleHAiOjE3MjQ2Mzc0NTB9.xCbeUkOWaklnoi5GP8U9dKcIRjPz9BTDZRv0RuWqiJxm8e6WSzW2r7eETbQ5lAKR";
+          const accessToken = document.cookie;
 
           request.headers.set("Authorization", `Bearer ${accessToken}`);
         },
