@@ -1,0 +1,26 @@
+name: Backend Dev Server CI
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://freebe-database.cvqyku8gmbgo.ap-northeast-2.rds.amazonaws.com:3306/freebe_rds'
+      SPRING_DATASOURCE_USERNAME: 'yuseok'
+      SPRING_DATASOURCE_PASSWORD: 'dbtjrz123'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Node v # Node v 확인
+        run: node -v
+
+      - name: Install Dependencies # 의존 파일 설치
+        run: npm install
+
+      - name: Build # React Build
+        run: npm run build
