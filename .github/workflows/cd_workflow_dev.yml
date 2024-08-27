@@ -22,12 +22,7 @@ jobs:
 
       - name: Build # React Build
         run: npm run build
-
-      - name: pm2 setting
-        run: sudo npm install pm2 -g
-
-      - name: Start server with PM2          
-        run: pm2 start /home/ubuntu/freebe-frontend/ecosystem_3000.config.js
+        
       - name: env 설정
         run: |
           echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
