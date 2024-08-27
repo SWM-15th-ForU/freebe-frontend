@@ -3,7 +3,6 @@ import Link from "next/link";
 import { LinkType } from "profile-types";
 import { texts } from "@/styles/text.css";
 import buttonStyles from "./buttons.css";
-import { Body15SB } from "../texts/texts";
 
 interface ButtonProps
   extends DetailedHTMLProps<
@@ -62,12 +61,26 @@ export const LinkButton = ({
   selected = false,
 }: LinkType & { selected?: boolean }) => {
   return (
-    <Link href={src}>
+    <Link href={src} style={{ textDecoration: "none" }}>
       <div
         className={buttonStyles.link}
         style={selected ? { backgroundColor: "#a9a9a9" } : {}}
       >
-        <Body15SB>{name}</Body15SB>
+        {name}
+      </div>
+    </Link>
+  );
+};
+
+export const LinkTab = ({
+  name,
+  src,
+  selected = false,
+}: LinkType & { selected?: boolean }) => {
+  return (
+    <Link href={src} style={{ textDecoration: "none" }}>
+      <div className={selected ? buttonStyles.selectedTab : buttonStyles.tab}>
+        <span>{name}</span>
       </div>
     </Link>
   );

@@ -7,12 +7,9 @@ const MypageLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div
-      className={styles.center}
-      style={{ display: "flex", flexDirection: "row", width: "100vw" }}
-    >
+    <div style={{ display: "flex", flexDirection: "row", width: "100vw" }}>
       <Navbar />
-      <div style={{ flex: 1 }}>{children}</div>
+      <div style={{ flex: 1, backgroundColor: "#F4F8FD" }}>{children}</div>
     </div>
   );
 };

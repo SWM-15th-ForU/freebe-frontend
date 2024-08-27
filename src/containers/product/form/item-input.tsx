@@ -1,6 +1,7 @@
 import { Product } from "product-types";
-import { UseFormRegister, useWatch } from "react-hook-form";
-import * as style from "../product.css";
+import { UseFormRegister } from "react-hook-form";
+import CloseButton from "@/components/buttons/close-button";
+import { inputStyles } from "../product.css";
 
 interface ItemInputProps {
   formRegister: UseFormRegister<Product>;
@@ -9,34 +10,29 @@ interface ItemInputProps {
 }
 
 const ItemInput = ({ onClickRemove, index, formRegister }: ItemInputProps) => {
-  const items = useWatch({ name: "items" });
-
   return (
-    <div className={style.inputBox}>
+    <div className={inputStyles.box}>
       <input
-        className={style.textInput}
+        className={inputStyles.title}
         placeholder="이름을 입력해 주세요."
         {...formRegister(`items.${index}.title`)}
       />
-      {items[index]?.hasDescription && (
-        <input
-          className={style.textInput}
-          placeholder="설명을 입력해 주세요."
-          {...formRegister(`items.${index}.description`)}
-        />
-      )}
-      <input
-        type="checkbox"
-        {...formRegister(`items.${index}.hasDescription`)}
+      <CloseButton
+        onClick={onClickRemove}
+        size={18}
+        color="grey"
+        container={{ position: "absolute", right: 20, top: 20 }}
       />
       <input
-        className={style.textInput}
+        className={inputStyles.description}
+        placeholder="(선택) 설명을 입력해 주세요."
+        {...formRegister(`items.${index}.description`)}
+      />
+      <input
+        className={inputStyles.content}
         placeholder="내용을 입력해 주세요."
         {...formRegister(`items.${index}.content`)}
       />
-      <button type="button" onClick={onClickRemove}>
-        X
-      </button>
     </div>
   );
 };

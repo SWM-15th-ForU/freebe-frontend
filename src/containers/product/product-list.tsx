@@ -1,8 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Status } from "product-types";
-import { Body15SB } from "@/components/texts/texts";
 import ProductBanner from "./list/product-banner";
-import { listBody, listDiv, listHead } from "./product.css";
+import { listStyles } from "./product.css";
 
 interface ProductListProps {
   productDatas: Parameters<typeof ProductBanner>[0][];
@@ -17,17 +18,21 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
   };
 
   return (
-    <div className={listDiv}>
-      <div className={listHead}>
-        <Body15SB>{titles[status]}</Body15SB>
+    <div className={listStyles.div}>
+      <div className={listStyles.head}>
+        {titles[status]}
         {status === "ACTIVE" && (
-          <Link href="/photographer/new-product">추가</Link>
+          <Link href="/photographer/new-product" className={listStyles.add}>
+            추가
+          </Link>
         )}
       </div>
-      <div className={listBody}>
-        {productDatas.map((data) => (
-          <ProductBanner key={data.id} {...data} />
-        ))}
+      <div className={listStyles.body}>
+        {productDatas
+          .filter((data) => data.activeStatus === status)
+          .map((data) => (
+            <ProductBanner key={data.productId} {...data} />
+          ))}
       </div>
     </div>
   );

@@ -55,5 +55,6 @@ export async function getImageList(photographerId: string) {
     .get(`customer/product/images/${photographerId}`)
     .json<{ data: string[] }>();
   const { data } = response;
+  console.log(data);
   return data;
 }

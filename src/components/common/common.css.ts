@@ -85,3 +85,77 @@ export const infoStyles = styleVariants({
     },
   ],
 });
+
+const baseSwitch = style([
+  sprinkles({
+    fontSize: "button-02",
+    fontWeight: "button-01",
+  }),
+  {
+    padding: "5px 16px",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 100,
+  },
+]);
+
+export const switchStyles = styleVariants({
+  container: [
+    sprinkles({
+      backgroundColor: "white",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      borderRadius: 100,
+    },
+  ],
+  selected: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    baseSwitch,
+  ],
+  unselected: [sprinkles({ color: "text-03" }), baseSwitch],
+});
+
+export const toastStyles = styleVariants({
+  root: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    {
+      padding: 15,
+      borderRadius: 10,
+      "::before": { display: "none" },
+    },
+  ],
+  title: [
+    sprinkles({
+      color: "white",
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+    }),
+  ],
+  description: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "white",
+    }),
+  ],
+  closeButton: [
+    sprinkles({
+      color: "white",
+    }),
+    {
+      selectors: {
+        "&:hover": {
+          backgroundColor: "rgba(0, 0, 0, 0.1)",
+        },
+      },
+    },
+  ],
+});

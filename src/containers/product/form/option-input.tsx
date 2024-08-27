@@ -1,6 +1,8 @@
 import { Product } from "product-types";
-import { UseFormRegister, useWatch } from "react-hook-form";
-import * as style from "../product.css";
+import { UseFormRegister, useFormContext } from "react-hook-form";
+import CloseButton from "@/components/buttons/close-button";
+import SwitchItem from "@/components/common/switch-item";
+import { inputStyles } from "../product.css";
 
 interface OptionInputProps {
   formRegister: UseFormRegister<Product>;
@@ -13,38 +15,42 @@ const OptionInput = ({
   index,
   formRegister,
 }: OptionInputProps) => {
-  const options = useWatch({ name: "options" });
+  const { setValue, watch } = useFormContext<Product>();
+  const options = watch("options");
+
+  function handleSwitchIsFree() {
+    setValue(`options.${index}.isFree`, !options[index]?.isFree);
+  }
 
   return (
-    <div className={style.inputBox}>
-      <input
-        className={style.textInput}
-        placeholder="이름을 입력해 주세요."
-        {...formRegister(`options.${index}.title`)}
-      />
-      {options[index]?.hasDescription && (
+    <div className={inputStyles.box}>
+      <div className={inputStyles.headWrapper}>
         <input
-          className={style.textInput}
-          placeholder="설명을 입력해 주세요."
-          {...formRegister(`options.${index}.description`)}
+          className={inputStyles.title}
+          placeholder="이름을 입력해 주세요."
+          {...formRegister(`options.${index}.title`)}
+          style={{ marginRight: "auto" }}
         />
-      )}
+        <SwitchItem
+          value={{ selected: "유료", unselected: "무료" }}
+          onSwitch={handleSwitchIsFree}
+          selected={options[index]?.isFree}
+        />
+        <CloseButton onClick={onClickRemove} size={18} color="grey" />
+      </div>
+      <input
+        className={inputStyles.description}
+        placeholder="(선택) 설명을 입력해 주세요."
+        {...formRegister(`options.${index}.description`)}
+      />
+
       {options[index]?.isFree && (
         <input
-          className={style.textInput}
+          className={inputStyles.content}
           placeholder="가격을 입력해 주세요."
           {...formRegister(`options.${index}.price`)}
         />
       )}
-
-      <input type="checkbox" {...formRegister(`options.${index}.isFree`)} />
-      <input
-        type="checkbox"
-        {...formRegister(`options.${index}.hasDescription`)}
-      />
-      <button type="button" onClick={onClickRemove}>
-        X
-      </button>
     </div>
   );
 };

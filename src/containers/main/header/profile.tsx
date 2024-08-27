@@ -1,12 +1,24 @@
-import Link from "next/link";
-import { Body15SB } from "@/components/texts/texts";
+import Image from "next/image";
 import { profileContainer } from "./header.css";
 
-const Profile = ({ name }: { name: string }) => {
+const Profile = () => {
   return (
     <div className={profileContainer}>
-      <Link href="/photographer/mypage/products">마이페이지</Link>
-      <Body15SB>{name} 작가님</Body15SB>
+      <Image src="/icons/alarm.svg" alt="알림" width={20} height={24} />
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <Image
+          src="/icons/profile.svg"
+          alt="내 프로필"
+          width={30}
+          height={30}
+        />
+        <Image
+          src="/icons/down-skyblue.svg"
+          alt="내 프로필"
+          width={10}
+          height={5}
+        />
+      </div>
     </div>
   );
 };

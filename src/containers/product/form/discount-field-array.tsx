@@ -1,8 +1,8 @@
 import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
-import { Body15SB } from "@/components/texts/texts";
 import { AddButton } from "@/components/buttons/common-buttons";
 import DiscountInput from "./discount-input";
+import { formStyles } from "../product.css";
 
 const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   const { fields, append, remove } = useFieldArray({
@@ -12,7 +12,7 @@ const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Body15SB>상품 할인</Body15SB>
+      <span className={formStyles.subtitle}>상품 할인</span>
       {fields.map((item, index) => {
         return (
           <DiscountInput

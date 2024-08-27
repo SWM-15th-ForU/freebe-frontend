@@ -2,8 +2,8 @@ import { Image } from "product-types";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { AddButton } from "@/components/buttons/common-buttons";
 import ImageThumbnail from "@/components/common/image-thumbnail";
-import { Body15SB } from "@/components/texts/texts";
 import { getUrlFromFiles } from "@/utils/image";
+import { formStyles } from "../product.css";
 
 interface ImageInputProps {
   images: Image[];
@@ -55,8 +55,8 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Body15SB>상품 사진</Body15SB>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <span className={formStyles.subtitle}>상품 사진</span>
+      <div style={{ display: "flex", flexDirection: "row", gap: 8 }}>
         {images.map((image, index) => {
           return (
             <ImageThumbnail

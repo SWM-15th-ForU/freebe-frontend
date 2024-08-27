@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { cookieKeys, cookieValues } from "@/constants/cookies";
-import { Body15SB } from "../texts/texts";
 import buttonStyles from "./buttons.css";
 
 const LoginButton = () => {
@@ -22,7 +21,7 @@ const LoginButton = () => {
         height={12}
         width={12}
       />
-      <Body15SB>카카오 로그인</Body15SB>
+      카카오로 시작하기
     </button>
   );
 };

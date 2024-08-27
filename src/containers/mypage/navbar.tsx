@@ -1,6 +1,6 @@
 "use client";
 
-import { LinkButton } from "@/components/buttons/common-buttons";
+import { LinkButton, LinkTab } from "@/components/buttons/common-buttons";
 import { usePathname } from "next/navigation";
 import { LinkType } from "profile-types";
 import { navbarStyle } from "./mypage.css";
@@ -32,9 +32,12 @@ const Navbar = () => {
 
   return (
     <div className={navbarStyle.container}>
-      {mypageTabs.map((tab, index) => (
-        <LinkButton key={index} selected={currentTab === tab.src} {...tab} />
-      ))}
+      <span className={navbarStyle.title}>마이페이지</span>
+      <div className={navbarStyle.tabWrapper}>
+        {mypageTabs.map((tab, index) => (
+          <LinkTab key={index} selected={currentTab === tab.src} {...tab} />
+        ))}
+      </div>
     </div>
   );
 };

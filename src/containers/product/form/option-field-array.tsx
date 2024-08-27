@@ -1,8 +1,8 @@
 import { useFieldArray } from "react-hook-form";
 import { FieldArrayProps } from "@/types/form-types";
-import { Body15SB } from "@/components/texts/texts";
 import { AddButton } from "@/components/buttons/common-buttons";
 import OptionInput from "./option-input";
+import { formStyles } from "../product.css";
 
 const OptionFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
   const { fields, append, remove } = useFieldArray({
@@ -12,7 +12,8 @@ const OptionFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Body15SB>상품 옵션</Body15SB>
+      <span className={formStyles.subtitle}>상품 옵션</span>
+
       {fields.map((item, index) => {
         return (
           <OptionInput
