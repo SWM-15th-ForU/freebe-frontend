@@ -27,8 +27,6 @@ jobs:
         run: |
           echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
           echo "AWS_CODE_DEPLOY_APPLICATION=${{ secrets.AWS_CODE_DEPLOY_APPLICATION }}" >> .env
-          echo "AWS_CODE_DEPLOY_GROUP=${{ secrets.AWS_CODE_DEPLOY_GROUP }}" >> .env
-          echo "AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}" >> .env
           echo "AWS_ACCESS_KEY=${{ secrets.CICD_ACCESS_KEY }}" >> .env
           echo "AWS_SECRET_KEY=${{ secrets.CICD_SECRET_KEY }}" >> .env
 
@@ -43,11 +41,11 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: S3에 zip 업로드(전체 파일)
-        run: aws s3 cp frontend_freebe.zip s3://${{ secrets.AWS_S3_BUCKET }}/cicd-dev/frontend_freebe.zip --region ap-northeast-2
+        run: aws s3 cp frontend_freebe.zip s3://cicd-frontend-develop-bucket/cicd-dev/frontend_freebe.zip --region ap-northeast-2
 
       - name: Code Deploy 로 배포
         run: >
           aws deploy create-deployment --application-name ${{ secrets.AWS_CODE_DEPLOY_APPLICATION }}
           --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name ${{ secrets.AWS_CODE_DEPLOY_GROUP }}
-          --s3-location bucket=${{ secrets.AWS_S3_BUCKET }},bundleType=zip,key=cicd-dev/frontend_freebe.zip
+          --deployment-group-name cicd-front-develop-CD-group
+          --s3-location bucket=cicd-frontend-develop-bucket,bundleType=zip,key=cicd-dev/frontend_freebe.zip
