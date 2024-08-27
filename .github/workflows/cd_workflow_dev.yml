@@ -42,7 +42,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: S3에 zip 업로드(전체 파일)
-        run: aws s3 cp frontend_freebe.zip s3://cicd-frontend-develop-bucket /cicd-dev/frontend_freebe.zip --region ap-northeast-2
+        run: aws s3 cp frontend_freebe.zip s3://cicd-frontend-develop-bucket/cicd-dev/frontend_freebe.zip --region ap-northeast-2
 
       - name: Code Deploy 로 배포
         run: >
