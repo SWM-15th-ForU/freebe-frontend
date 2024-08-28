@@ -63,7 +63,7 @@ export const formStyles = styleVariants({
       fontWeight: "caption-01",
       color: "pink",
     }),
-    { margin: 3 },
+    { margin: 3, display: "block" },
   ],
 });
 

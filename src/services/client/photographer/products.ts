@@ -13,7 +13,7 @@ export async function postNewProduct(
       return {
         title: item.title,
         content: item.content,
-        description: item.hasDescription ? item.description : null,
+        description: item.description !== "" ? item.description : null,
       };
     }),
     productOptions: formData.options.map((option) => {
@@ -32,7 +32,6 @@ export async function postNewProduct(
       };
     }),
   };
-  console.log(body);
   const request = await clientApi
     .post("photographer/product", { json: body })
     .json();

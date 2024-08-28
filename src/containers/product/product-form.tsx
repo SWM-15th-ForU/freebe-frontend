@@ -23,19 +23,16 @@ const ProductForm = () => {
       {
         title: "기본 가격",
         content: "",
-        hasDescription: false,
         description: "",
       },
       {
         title: "촬영 시간",
         content: "1시간",
-        hasDescription: false,
         description: "",
       },
       {
         title: "보정본 수",
         content: "10장",
-        hasDescription: true,
         description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
       },
     ],
@@ -63,10 +60,11 @@ const ProductForm = () => {
     subtitle: z.string(),
     items: z.array(
       z.object({
-        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+        title: z
+          .string()
+          .min(1, { message: "구성의 이름을 필수로 입력해 주세요." }),
         content: z.string().min(1, { message: "내용을 필수로 입력해 주세요." }),
         description: z.string(),
-        hasDescription: z.boolean(),
       }),
     ),
     options: z.array(
