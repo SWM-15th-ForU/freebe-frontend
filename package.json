@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@egjs/react-grid": "^1.17.0",
+    "@hookform/resolvers": "^3.9.0",
     "@mantine/carousel": "^7.12.1",
     "@mantine/core": "^7.12.1",
     "@mantine/dates": "^7.12.1",
@@ -44,6 +45,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "return-fetch": "^0.4.6",
+    "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
