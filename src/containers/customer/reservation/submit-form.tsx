@@ -26,7 +26,11 @@ const SubmitForm = ({
   photographerId: number;
 }) => {
   const router = useRouter();
-  const { getValues, setValue } = useFormContext<reservation.FormType>();
+  const { getValues, setValue, watch } = useFormContext<reservation.FormType>();
+  const [serviceAgreement, photographerAgreement] = watch([
+    "serviceAgreement",
+    "photographerAgreement",
+  ]);
 
   async function handleSubmit() {
     const value = getValues();
@@ -46,7 +50,7 @@ const SubmitForm = ({
   useEffect(() => {
     setValue("name", name);
     setValue("contact", phoneNumber);
-  }, []);
+  }, [name, phoneNumber]);
 
   return (
     <div
@@ -62,7 +66,11 @@ const SubmitForm = ({
       <SelectOptionForm options={options} />
       <RequestForm />
       <TotalPriceForm />
-      <BottomButton title="신청하기" onClick={handleSubmit} />
+      <BottomButton
+        title="신청하기"
+        onClick={handleSubmit}
+        disabled={!serviceAgreement || !photographerAgreement}
+      />
     </div>
   );
 };
