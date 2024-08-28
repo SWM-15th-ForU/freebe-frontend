@@ -12,7 +12,7 @@ const PhotographerLayout = ({
       style={{ minWidth: "900px", width: "100vw", overflowX: "scroll" }}
     >
       <Header />
-      <div>{children}</div>
+      <div style={{ width: "100%" }}>{children}</div>
     </div>
   );
 };

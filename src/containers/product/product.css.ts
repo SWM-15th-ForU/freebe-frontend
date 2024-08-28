@@ -3,7 +3,8 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 export const formStyles = styleVariants({
   container: {
-    width: "100%",
+    width: "70%",
+    maxWidth: 750,
     margin: "auto",
     paddingTop: 50,
     alignSelf: "flex-start",
@@ -55,6 +56,14 @@ export const formStyles = styleVariants({
       width: "100%",
       marginTop: 10,
     },
+  ],
+  error: [
+    sprinkles({
+      fontSize: "caption-01",
+      fontWeight: "caption-01",
+      color: "pink",
+    }),
+    { margin: 3 },
   ],
 });
 

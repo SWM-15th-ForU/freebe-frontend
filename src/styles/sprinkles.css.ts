@@ -51,6 +51,7 @@ const fontSizes = {
   "body-02": 15,
   "button-01": 18,
   "button-02": 15,
+  "caption-01": 12,
   /*
     TODO: set responsible PC version size
     "headline-01": 21,
@@ -70,6 +71,8 @@ const fontWeights = {
   "body-01": 500,
   "body-02": 500,
   "button-01": 600,
+  "button-02": 600,
+  "caption-01": 500,
 };
 
 const textProperties = defineProperties({

@@ -119,13 +119,17 @@ const ProductForm = () => {
               style={{ fontSize: 20 }}
               {...register("title")}
             />
-            <span>{errors.title && errors.title.message}</span>
+            <span className={formStyles.error}>
+              {errors.title && errors.title.message}
+            </span>
             <input
               placeholder="(선택) 상품 소개글을 입력해 주세요."
               className={formStyles.input}
               {...register("subtitle")}
             />
-            <span>{errors.title && errors.title.message}</span>
+            <span className={formStyles.error}>
+              {errors.title && errors.title.message}
+            </span>
           </div>
           <div className={formStyles.split}>
             <ImagesInput images={images} setImage={setImages} />
