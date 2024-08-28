@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Image, ProductFormdata } from "product-types";
 import { SubmitButton } from "@/components/buttons/common-buttons";
 import { postNewProduct } from "@/services/client/photographer/products";
@@ -56,10 +58,47 @@ const ProductForm = () => {
       },
     ],
   };
-  const method = useForm({
+  const productFormSchema = z.object({
+    title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+    subtitle: z.string(),
+    items: z.array(
+      z.object({
+        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+        content: z.string().min(1, { message: "내용을 필수로 입력해 주세요." }),
+        description: z.string(),
+        hasDescription: z.boolean(),
+      }),
+    ),
+    options: z.array(
+      z.object({
+        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+        price: z.number().int({ message: "가격은 숫자로 입력해 주세요." }),
+        description: z.string(),
+        hasDescription: z.boolean(),
+        isFree: z.boolean(),
+      }),
+    ),
+    discounts: z.array(
+      z.object({
+        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+        discountValue: z.number().int({ message: "숫자로 입력해 주세요." }),
+        description: z.string(),
+        hasDescription: z.boolean(),
+        discountType: z.string(),
+      }),
+    ),
+  });
+
+  const method = useForm<ProductFormdata>({
+    resolver: zodResolver(productFormSchema),
     defaultValues,
   });
-  const { handleSubmit, control, register } = method;
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = method;
   const [images, setImages] = useState<Image[]>([]);
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
@@ -80,17 +119,19 @@ const ProductForm = () => {
               style={{ fontSize: 20 }}
               {...register("title")}
             />
+            <span>{errors.title && errors.title.message}</span>
             <input
               placeholder="(선택) 상품 소개글을 입력해 주세요."
               className={formStyles.input}
               {...register("subtitle")}
             />
+            <span>{errors.title && errors.title.message}</span>
           </div>
           <div className={formStyles.split}>
             <ImagesInput images={images} setImage={setImages} />
           </div>
           <div className={formStyles.split}>
-            <ItemFieldArray formControl={control} formRegister={register} />
+            <ItemFieldArray />
           </div>
           <div className={formStyles.split}>
             <OptionFieldArray formControl={control} formRegister={register} />
