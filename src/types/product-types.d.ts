@@ -10,7 +10,6 @@ declare module "product-types" {
     title: string;
     isFree: boolean;
     price: number;
-    hasDescription?: boolean;
     description: string;
   }
 

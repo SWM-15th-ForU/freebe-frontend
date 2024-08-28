@@ -20,7 +20,7 @@ export async function postNewProduct(
       return {
         title: option.title,
         price: option.isFree ? 0 : option.price,
-        description: option.hasDescription ? option.description : null,
+        description: option.description !== "" ? option.description : null,
       };
     }),
     productDiscounts: formData.discounts.map((discount) => {

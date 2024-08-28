@@ -39,7 +39,6 @@ const ProductForm = () => {
     options: [
       {
         title: "보정본 추가",
-        hasDescription: false,
         isFree: true,
         description: "",
         price: 0,
@@ -57,23 +56,22 @@ const ProductForm = () => {
   };
   const productFormSchema = z.object({
     title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
-    subtitle: z.string(),
     items: z.array(
       z.object({
         title: z
           .string()
           .min(1, { message: "구성의 이름을 필수로 입력해 주세요." }),
         content: z.string().min(1, { message: "내용을 필수로 입력해 주세요." }),
-        description: z.string(),
       }),
     ),
     options: z.array(
       z.object({
-        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
-        price: z.number().int({ message: "가격은 숫자로 입력해 주세요." }),
-        description: z.string(),
-        hasDescription: z.boolean(),
-        isFree: z.boolean(),
+        title: z
+          .string()
+          .min(1, { message: "옵션의 이름을 필수로 입력해 주세요." }),
+        price: z.coerce.number().positive({
+          message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
+        }),
       }),
     ),
     discounts: z.array(
@@ -126,7 +124,7 @@ const ProductForm = () => {
               {...register("subtitle")}
             />
             <span className={formStyles.error}>
-              {errors.title && errors.title.message}
+              {errors.subtitle && errors.subtitle.message}
             </span>
           </div>
           <div className={formStyles.split}>
@@ -136,7 +134,7 @@ const ProductForm = () => {
             <ItemFieldArray />
           </div>
           <div className={formStyles.split}>
-            <OptionFieldArray formControl={control} formRegister={register} />
+            <OptionFieldArray />
           </div>
 
           <DiscountFieldArray formControl={control} formRegister={register} />

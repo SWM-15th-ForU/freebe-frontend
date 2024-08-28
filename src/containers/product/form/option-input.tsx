@@ -1,11 +1,12 @@
-import { Product } from "product-types";
-import { UseFormRegister, useFormContext } from "react-hook-form";
+import { Product, ProductFormdata } from "product-types";
+import { FieldErrors, UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import SwitchItem from "@/components/common/switch-item";
-import { inputStyles } from "../product.css";
+import { formStyles, inputStyles, textInput } from "../product.css";
 
 interface OptionInputProps {
-  formRegister: UseFormRegister<Product>;
+  formRegister: UseFormRegister<ProductFormdata>;
+  errors: FieldErrors<ProductFormdata>;
   index: number;
   onClickRemove: () => void;
 }
@@ -14,6 +15,7 @@ const OptionInput = ({
   onClickRemove,
   index,
   formRegister,
+  errors,
 }: OptionInputProps) => {
   const { setValue, watch } = useFormContext<Product>();
   const options = watch("options");
@@ -38,19 +40,44 @@ const OptionInput = ({
         />
         <CloseButton onClick={onClickRemove} size={18} color="grey" />
       </div>
+      {errors.options?.[index]?.title && (
+        <span className={formStyles.error}>
+          {errors.options[index]?.title?.message}
+        </span>
+      )}
       <input
         className={inputStyles.description}
         placeholder="(선택) 설명을 입력해 주세요."
         {...formRegister(`options.${index}.description`)}
       />
-
-      {options[index]?.isFree && (
-        <input
-          className={inputStyles.content}
-          placeholder="가격을 입력해 주세요."
-          {...formRegister(`options.${index}.price`)}
-        />
+      {errors.options?.[index]?.description && (
+        <span className={formStyles.error}>
+          {errors.options[index]?.description?.message}
+        </span>
       )}
+
+      {
+        // TODO: 숫자만 입력 받으면서 입력 값 형식 관리할 수 있도록 확장
+        options[index]?.isFree && (
+          <>
+            <div className={inputStyles.content}>
+              <input
+                className={textInput}
+                placeholder="가격을 입력해 주세요."
+                type="number"
+                {...formRegister(`options.${index}.price`)}
+              />
+              <span>원</span>
+            </div>
+
+            {errors.options?.[index]?.price && (
+              <span className={formStyles.error}>
+                {errors.options[index]?.price?.message}
+              </span>
+            )}
+          </>
+        )
+      }
     </div>
   );
 };

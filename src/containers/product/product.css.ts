@@ -171,11 +171,26 @@ export const listStyles = styleVariants({
   ],
 });
 
-export const textInput = style({
-  border: 0,
-  width: "100%",
-  marginTop: 15,
-});
+export const textInput = style([
+  sprinkles({
+    fontSize: "body-02",
+    fontWeight: "body-02",
+    color: "text-02",
+  }),
+  {
+    border: 0,
+    flex: 1,
+    ":focus": {
+      outline: "none",
+    },
+    "::-webkit-inner-spin-button": {
+      WebkitAppearance: "none",
+    },
+    "::-webkit-outer-spin-button": {
+      WebkitAppearance: "none",
+    },
+  },
+]);
 
 export const inputStyles = styleVariants({
   headWrapper: {
@@ -227,12 +242,19 @@ export const inputStyles = styleVariants({
       borderColor: "stroke-grey",
     }),
     {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
       marginTop: 16,
       width: "100%",
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
       padding: "8px 12px",
+      ":focus": {
+        outline: "none",
+      },
     },
   ],
 });
