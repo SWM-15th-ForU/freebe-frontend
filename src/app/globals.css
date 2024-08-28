@@ -7,6 +7,15 @@ input {
   border: none;
 }
 
+input:focus {
+  outline: "none";
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

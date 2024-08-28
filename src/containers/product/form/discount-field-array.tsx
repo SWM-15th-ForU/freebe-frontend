@@ -1,12 +1,17 @@
-import { useFieldArray } from "react-hook-form";
-import { FieldArrayProps } from "@/types/form-types";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { ProductFormdata } from "product-types";
 import { AddButton } from "@/components/buttons/common-buttons";
 import DiscountInput from "./discount-input";
 import { formStyles } from "../product.css";
 
-const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
+const DiscountFieldArray = () => {
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<ProductFormdata>();
   const { fields, append, remove } = useFieldArray({
-    control: formControl,
+    control,
     name: "discounts",
   });
 
@@ -17,9 +22,10 @@ const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         return (
           <DiscountInput
             key={item.id}
-            formRegister={formRegister}
+            formRegister={register}
             index={index}
             onClickRemove={() => remove(index)}
+            errors={errors}
           />
         );
       })}
@@ -27,7 +33,6 @@ const DiscountFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         onClick={() =>
           append({
             title: "",
-            hasDescription: false,
             description: "",
             discountType: "AMOUNT",
             discountValue: null,

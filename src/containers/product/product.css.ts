@@ -183,12 +183,6 @@ export const textInput = style([
     ":focus": {
       outline: "none",
     },
-    "::-webkit-inner-spin-button": {
-      WebkitAppearance: "none",
-    },
-    "::-webkit-outer-spin-button": {
-      WebkitAppearance: "none",
-    },
   },
 ]);
 

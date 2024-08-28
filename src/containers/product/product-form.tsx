@@ -48,40 +48,55 @@ const ProductForm = () => {
       {
         title: "첫 주문 할인",
         discountType: "AMOUNT",
-        hasDescription: false,
         discountValue: null,
         description: "",
       },
     ],
   };
   const productFormSchema = z.object({
-    title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
+    title: z.string().min(1, { message: "제목을 입력해 주세요." }),
     items: z.array(
       z.object({
-        title: z
-          .string()
-          .min(1, { message: "구성의 이름을 필수로 입력해 주세요." }),
-        content: z.string().min(1, { message: "내용을 필수로 입력해 주세요." }),
+        title: z.string().min(1, { message: "구성의 이름을 입력해 주세요." }),
+        content: z.string().min(1, { message: "내용을 입력해 주세요." }),
       }),
     ),
     options: z.array(
       z.object({
-        title: z
-          .string()
-          .min(1, { message: "옵션의 이름을 필수로 입력해 주세요." }),
+        title: z.string().min(1, { message: "옵션의 이름을 입력해 주세요." }),
         price: z.coerce.number().positive({
           message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
         }),
       }),
     ),
     discounts: z.array(
-      z.object({
-        title: z.string().min(1, { message: "제목을 필수로 입력해 주세요." }),
-        discountValue: z.number().int({ message: "숫자로 입력해 주세요." }),
-        description: z.string(),
-        hasDescription: z.boolean(),
-        discountType: z.string(),
-      }),
+      z
+        .object({
+          title: z.string().min(1, { message: "이름을 입력해 주세요." }),
+          discountValue: z.coerce.number(),
+          discountType: z.string(),
+        })
+        .refine(
+          ({ discountType, discountValue }) => {
+            if (discountType === "RATE")
+              return discountValue > 0 && discountValue <= 100;
+            return true;
+          },
+          {
+            message: "할인율은 1에서 100 사이로 입력해 주세요.",
+            path: ["discountValue"],
+          },
+        )
+        .refine(
+          ({ discountType, discountValue }) => {
+            if (discountType === "AMOUNT") return discountValue > 0;
+            return true;
+          },
+          {
+            message: "할인 금액을 입력해 주세요.",
+            path: ["discountValue"],
+          },
+        ),
     ),
   });
 
@@ -91,7 +106,6 @@ const ProductForm = () => {
   });
   const {
     handleSubmit,
-    control,
     register,
     formState: { errors },
   } = method;
@@ -137,7 +151,7 @@ const ProductForm = () => {
             <OptionFieldArray />
           </div>
 
-          <DiscountFieldArray formControl={control} formRegister={register} />
+          <DiscountFieldArray />
         </div>
         <SubmitButton title="다음" />
       </form>

@@ -15,7 +15,6 @@ declare module "product-types" {
 
   export interface Discount {
     title: string;
-    hasDescription?: boolean;
     description: string;
     discountType: "RATE" | "AMOUNT";
     discountValue: number | null;

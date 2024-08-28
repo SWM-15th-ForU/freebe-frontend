@@ -28,7 +28,7 @@ export async function postNewProduct(
         title: discount.title,
         discountType: discount.discountType,
         discountValue: discount.discountValue,
-        description: discount.hasDescription ? discount.description : null,
+        description: discount.description !== "" ? discount.description : null,
       };
     }),
   };
