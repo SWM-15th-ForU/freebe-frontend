@@ -33,6 +33,7 @@ interface LoginResponse {
   message: string;
   accessToken: string;
   refreshToken: string;
+  data?: string;
 }
 
 export async function login(
@@ -44,10 +45,11 @@ export async function login(
   const message = response.statusText;
   const accessToken = response.headers.get("accessToken");
   const refreshToken = response.headers.get("refreshToken");
+  const { data } = (await response.json()) as { data?: string };
 
   if (!accessToken || !refreshToken) {
     throw new Error("failed login");
   } else {
-    return { message, accessToken, refreshToken } as LoginResponse;
+    return { message, accessToken, refreshToken, data } as LoginResponse;
   }
 }

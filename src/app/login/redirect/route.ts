@@ -2,41 +2,43 @@ import { tokenKeys } from "@/constants/auth";
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 import { isUser } from "@/utils/type-guards";
+import { login } from "@/services/server/login";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
   const code = searchParams.get("code");
   const state = searchParams.get("state");
 
-  if (searchParams.get("error") || !code || !isUser(state)) {
+  if (searchParams.get("error") || !code || !state) {
     return NextResponse.redirect(
       new URL("login/error", process.env.NEXT_PUBLIC_DOMAIN),
     );
   }
 
-  // const { accessToken, refreshToken, message } = await login(state, code);
+  const { roleType, destination } = JSON.parse(state);
+  if (!isUser(roleType)) {
+    return NextResponse.redirect(
+      new URL("login/error", process.env.NEXT_PUBLIC_DOMAIN),
+    );
+  }
 
-  const { accessToken, refreshToken, message } = {
-    accessToken: "access",
-    refreshToken: "refresh",
-    message: "photographer login",
-  };
+  const { accessToken, refreshToken, message, data } = await login(
+    roleType,
+    code,
+  );
 
-  // TODO: 인증 처리 중 에러 시 리디렉션 페이지 구현
   function getRedirectDestination(responseMessage: string): string {
     if (responseMessage === "photographer join") {
       return "photographer/join";
     }
     if (responseMessage === "photographer login") {
-      return "photographer";
+      return `photographer?url=${data}`;
     }
     if (
       responseMessage === "customer login" ||
       responseMessage === "customer join"
     ) {
-      const photographerId = searchParams.get("photographerId");
-      const productId = searchParams.get("productId");
-      return `${photographerId}/products/${productId}/reservation/reference`;
+      return destination as string;
     }
     return "login/error";
   }

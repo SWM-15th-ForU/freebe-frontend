@@ -10,8 +10,6 @@ import Url from "./header/url";
 const Header = () => {
   const { userData, userRole } = useUserInfo();
 
-  console.log(userData, userRole);
-
   return (
     <header className={styles.headerContainer}>
       <Link href="/photographer" style={{ height: 20 }}>
