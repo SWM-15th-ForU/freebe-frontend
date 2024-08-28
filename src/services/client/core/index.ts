@@ -9,6 +9,8 @@ const apiClient = ky
     hooks: {
       beforeRequest: [beforeRequest],
       beforeRetry: [beforeRetry],
+      // TODO: 공통 에러 핸들러 추가
+      afterResponse: [],
     },
   });
 
