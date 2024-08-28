@@ -12,7 +12,7 @@ const setAccessToken = (request: KyRequest) => {
   request.headers.set("Authorization", `Bearer ${accessToken}`);
 };
 
-export async function refreshAccessToken() {
+async function refreshAccessToken() {
   const cookieStore = cookies();
   const refreshToken = cookieStore.get(tokenKeys.refresh)?.value;
   if (!refreshToken) {
