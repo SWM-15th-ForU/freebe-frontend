@@ -24,16 +24,9 @@ const ReservationFormProvider = ({
     defaultValues,
   });
 
-  const { handleSubmit } = form;
-
-  function onSubmit(formValues: reservation.FormType) {
-    // TODO: connect to submit reservation api
-    alert(JSON.stringify(formValues));
-  }
-
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+      <form>{children}</form>
     </FormProvider>
   );
 };
