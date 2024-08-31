@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 import { isUser } from "@/utils/type-guards";
 import { login } from "@/services/server/login";
+import { setTokens } from "@/services/server/core/auth";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
@@ -43,13 +44,8 @@ export async function GET(request: NextRequest) {
     return "login/error";
   }
 
-  const cookieStore = cookies();
-  cookieStore.set(tokenKeys.access, accessToken);
-  cookieStore.set(tokenKeys.refresh, refreshToken);
-
-  const res = NextResponse.redirect(
+  setTokens(accessToken, refreshToken);
+  return NextResponse.redirect(
     new URL(getRedirectDestination(message), process.env.NEXT_PUBLIC_DOMAIN),
   );
-  res.cookies.set("accessToken", accessToken, { httpOnly: true, secure: true });
-  return res;
 }

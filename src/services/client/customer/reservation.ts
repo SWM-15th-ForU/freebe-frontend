@@ -43,6 +43,7 @@ export async function postReservation(
     serviceTermAgreement: formData.serviceAgreement,
     photographerTermAgreement: formData.photographerAgreement,
   };
+
   const response = await apiClient
     .post("customer/reservation", { json: body })
     .json<{ data: number }>();
