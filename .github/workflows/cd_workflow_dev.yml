@@ -14,14 +14,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check Node v # Node v 확인
+      - name: Check Node v 
         run: node -v
 
-      - name: Install Dependencies # 의존 파일 설치
-        run: npm install
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Build # React Build
-        run: npm run build
+        run: yarn build
         
       - name: env 설정
         run: |
@@ -31,7 +31,7 @@ jobs:
           echo "AWS_SECRET_KEY=${{ secrets.CICD_SECRET_KEY }}" >> .env
 
       - name: 압축
-        run: zip -r ./frontend_freebe.zip .
+        run: zip -qq -r ./frontend_freebe.zip .
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
