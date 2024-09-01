@@ -18,10 +18,10 @@ jobs:
         run: node -v
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
-      - name: Build # React Build
-        run: yarn build
+      - name: Build
+        run: npm run build
         
       - name: env 설정
         run: |
