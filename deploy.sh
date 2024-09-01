@@ -4,4 +4,6 @@ REPOSITORY=/home/ubuntu/deploy
 
 cd $REPOSITORY
 
+yarn install --frozen-lockfile
+
 yarn deploy
