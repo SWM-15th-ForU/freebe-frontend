@@ -106,6 +106,38 @@ export const infoStyles = styleVariants({
   ],
 });
 
+export const modalStyles = styleVariants({
+  content: {
+    borderRadius: 16,
+  },
+  header: {
+    paddingBottom: 0,
+    alignItems: "flex-start",
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    margin: "0 16px",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+  title: [
+    sprinkles({
+      fontSize: "headline-02",
+      fontWeight: "headline-02",
+      color: "text-point",
+    }),
+  ],
+  info: [
+    sprinkles({
+      fontSize: "body-02",
+      fontWeight: "body-02",
+      color: "text-02",
+    }),
+  ],
+});
+
 export const indicatorStyle = style({
   width: "8px",
   height: "8px",
