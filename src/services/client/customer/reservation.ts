@@ -30,13 +30,15 @@ export async function postReservation(
         };
       }),
     ),
-    productOptions: formData.options.map((option) => {
-      return {
-        title: option.title,
-        quantity: option.quantity,
-        price: option.price,
-      };
-    }),
+    photoOptions: arrayToObject(
+      formData.options.map((option) => {
+        return {
+          title: option.title,
+          quantity: option.quantity,
+          price: option.price,
+        };
+      }),
+    ),
     customerMemo: formData.memo,
     preferredImages: formData.referenceImages,
     totalPrice: formData.totalPrice,
