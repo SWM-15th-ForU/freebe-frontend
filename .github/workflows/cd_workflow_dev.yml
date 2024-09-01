@@ -2,9 +2,9 @@ name: Frontend Dev Server CD
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "feat/FU-180-CICD-Connection" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "feat/FU-180-CICD-Connection" ]
 
 jobs:
   build:
