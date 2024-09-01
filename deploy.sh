@@ -4,6 +4,6 @@ REPOSITORY=/home/ubuntu/deploy
 
 cd $REPOSITORY
 
-yarn install --frozen-lockfile
+sudo yarn install # 의존성 파일 설치.
 
-yarn deploy
+sudo npx pm2 start ecosystem.config.js # 프로젝트에서 변경된 내용을 반영하기 위해 pm2를 reload.
