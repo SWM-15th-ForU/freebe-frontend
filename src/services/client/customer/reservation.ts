@@ -15,7 +15,6 @@ export async function postReservation(
   formData: reservation.FormType,
   productData: ProductDatas,
 ) {
-  // TODO: request body 형식 일부 수정
   const body = {
     photographerId: productData.photographerId,
     instagramId: formData.instagram,
