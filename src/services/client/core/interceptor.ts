@@ -1,3 +1,4 @@
+import { countInputStyles } from "@/components/inputs/input.css";
 import { BeforeRequestHook, BeforeRetryHook, HTTPError } from "ky";
 
 export const beforeRequest: BeforeRequestHook = async (request) => {
@@ -8,7 +9,7 @@ export const beforeRequest: BeforeRequestHook = async (request) => {
       request.headers.set("Authorization", `Bearer ${data.accessToken}`);
     }
   }
-  request.headers.set("Access-Control-Allow-Credentials", `true`);
+  console.log(request);
 };
 
 export const beforeRetry: BeforeRetryHook = async ({ request, error }) => {
