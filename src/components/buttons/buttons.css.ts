@@ -131,6 +131,10 @@ export const closeStyles = styleVariants({
       color: "white",
     }),
   ],
+  background: {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    height: "auto",
+  },
 });
 
 export default buttonStyles;
