@@ -59,11 +59,14 @@ export const imageStackStyles = styleVariants({
       alignSelf: "center",
       margin: "80px 0",
       width: "100%",
-
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-evenly",
+      backgroundImage: `url("/images/freebe-background.png")`,
+      backgroundSize: "100%",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
     },
   ],
   stack: {
