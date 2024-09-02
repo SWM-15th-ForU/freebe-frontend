@@ -42,10 +42,12 @@ export async function login(
 ): Promise<LoginResponse> {
   const response = await api.post("login", { json: { roleType, code } });
 
-  const message = response.statusText;
   const accessToken = response.headers.get("accessToken");
   const refreshToken = response.headers.get("refreshToken");
-  const { data } = (await response.json()) as { data?: string };
+  const { data, message } = (await response.json()) as {
+    data?: string;
+    message: string;
+  };
 
   if (!accessToken || !refreshToken) {
     throw new Error("failed login");
