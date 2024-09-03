@@ -64,6 +64,40 @@ export const DropdownStyles = styleVariants({
   ],
 });
 
+export const searchStyles = styleVariants({
+  container: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      padding: "0px 8px",
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      ":focus-within": {
+        outline: "1px solid #007AFF",
+      },
+    },
+  ],
+  input: [
+    sprinkles({
+      fontSize: "body-01",
+      fontWeight: "body-01",
+      color: "text-03",
+    }),
+    {
+      border: "none",
+      ":focus": {
+        outline: "none",
+        border: "none",
+      },
+    },
+  ],
+});
+
 export const infoStyles = styleVariants({
   container: {
     height: "100%",
@@ -124,9 +158,6 @@ export const switchStyles = styleVariants({
       borderRadius: 100,
       borderStyle: "solid",
       borderWidth: 1,
-      top: 50,
-      left: 0,
-      position: "absolute",
       padding: 1,
     },
   ],
@@ -142,6 +173,59 @@ export const switchStyles = styleVariants({
     baseSwitch,
     { background: "none" },
   ],
+});
+
+const commonChipStyle = style([
+  sprinkles({
+    fontSize: "headline-03",
+    fontWeight: "headline-03",
+    borderColor: "stroke-grey",
+  }),
+  {
+    borderWidth: 1,
+    borderStyle: "solid",
+    padding: "8px 16px",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 100,
+    gap: 6,
+    margin: 0,
+    transition: "background-color 0.5s ease-in-out",
+  },
+]);
+
+export const chipStyles = styleVariants({
+  container: [
+    sprinkles({
+      backgroundColor: "white",
+      color: "text-02",
+    }),
+    commonChipStyle,
+  ],
+  selectedContainer: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    commonChipStyle,
+  ],
+  caption: [
+    sprinkles({
+      color: "text-04",
+    }),
+    { fontSize: 12, fontWeight: 500 },
+  ],
+});
+
+export const filterStyles = styleVariants({
+  dropdown: {
+    padding: "16px 20px",
+  },
+  list: {
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 
 export const toastStyles = styleVariants({
