@@ -90,7 +90,8 @@ body {
   background-color: var(--background-end-rgb);
 }
 
-a {
+a,
+a:-webkit-any(link) {
   color: inherit;
   text-decoration: none;
 }

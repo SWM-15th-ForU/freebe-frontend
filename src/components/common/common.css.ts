@@ -219,13 +219,42 @@ export const chipStyles = styleVariants({
 });
 
 export const filterStyles = styleVariants({
-  dropdown: {
-    padding: "16px 20px",
-  },
+  dropdown: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      padding: "16px 20px",
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
+  ],
   list: {
     display: "flex",
     flexDirection: "column",
+    gap: 16,
+    margin: "16px 0px",
+    height: "auto",
+    maxHeight: 216,
+    overflowY: "scroll",
+    justifyContent: "space-evenly",
   },
+  item: [
+    sprinkles({
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+      color: "text-02",
+    }),
+    {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      border: "none",
+      background: "none",
+      gap: 8,
+      cursor: "pointer",
+    },
+  ],
 });
 
 export const toastStyles = styleVariants({
