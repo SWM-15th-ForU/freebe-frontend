@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const mainviewStyles = styleVariants({
@@ -16,10 +17,9 @@ export const mainviewStyles = styleVariants({
     gap: 10,
   },
   link: [
+    texts["headline-03"],
     sprinkles({
       color: "blue",
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
     }),
     {
       display: "flex",

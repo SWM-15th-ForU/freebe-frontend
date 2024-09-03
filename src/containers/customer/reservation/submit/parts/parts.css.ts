@@ -1,12 +1,8 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
-const baseText = style([
-  sprinkles({
-    fontSize: "body-01",
-    fontWeight: "body-01",
-  }),
-]);
+const baseText = style([texts["body-01"]]);
 
 export const optionControllerStyles = styleVariants({
   container: [
@@ -22,10 +18,9 @@ export const optionControllerStyles = styleVariants({
   ],
   lastContainer: { marginTop: 24 },
   title: [
+    texts["body-01"],
     sprinkles({
       color: "text-01",
-      fontSize: "body-01",
-      fontWeight: "body-01",
     }),
   ],
   wrapper: {
@@ -35,10 +30,9 @@ export const optionControllerStyles = styleVariants({
     alignItems: "center",
   },
   price: [
+    texts["headline-02"],
     sprinkles({
       color: "text-01",
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
     }),
     {
       marginLeft: "auto",
@@ -80,9 +74,8 @@ export const priceFormStyles = styleVariants({
     alignItems: "center",
   },
   price: [
+    texts["headline-01"],
     sprinkles({
-      fontSize: "headline-01",
-      fontWeight: "headline-01",
       color: "blue",
     }),
   ],

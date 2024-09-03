@@ -1,5 +1,6 @@
 import sprinkles from "@/styles/sprinkles.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { texts } from "@/styles/text.css";
+import { styleVariants } from "@vanilla-extract/css";
 
 export const navbarStyle = styleVariants({
   container: {
@@ -8,17 +9,15 @@ export const navbarStyle = styleVariants({
     width: 240,
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-02",
     }),
   ],
   tabWrapper: [
+    texts["body-02"],
     sprinkles({
       borderColor: "stroke-grey",
-      fontSize: "body-02",
-      fontWeight: "body-02",
     }),
     {
       borderTopWidth: 1,

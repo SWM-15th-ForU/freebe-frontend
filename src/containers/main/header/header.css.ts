@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const headerContainer = style([
@@ -32,8 +33,8 @@ export const profileContainer = style({
 
 export const urlStyles = styleVariants({
   container: [
+    texts["body-01"],
     sprinkles({
-      fontSize: "body-01",
       backgroundColor: "bg-lightgrey",
     }),
     {
@@ -47,9 +48,8 @@ export const urlStyles = styleVariants({
     },
   ],
   content: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-04",
     }),
     {
@@ -69,10 +69,9 @@ export const menuStyles = styleVariants({
     },
   ],
   item: [
+    texts["headline-03"],
     sprinkles({
       color: "text-02",
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
     }),
     {
       width: 200,

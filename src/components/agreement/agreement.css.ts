@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const checkAgreementStyles = styleVariants({
@@ -11,18 +12,16 @@ export const checkAgreementStyles = styleVariants({
   },
   title: [
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
     {
       marginLeft: 8,
     },
+    texts["headline-03"],
   ],
   link: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-04",
     }),
     { marginLeft: 20, textDecoration: "none" },

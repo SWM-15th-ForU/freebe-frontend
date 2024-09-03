@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseDropdown = style([
@@ -31,16 +32,14 @@ export const DropdownStyles = styleVariants({
   placeholder: [
     sprinkles({
       color: "text-02",
-      fontSize: "body-01",
-      fontWeight: "body-01",
     }),
+    texts["body-01"],
   ],
   disablePlaceholder: [
     sprinkles({
       color: "text-04",
-      fontSize: "body-01",
-      fontWeight: "body-01",
     }),
+    texts["body-01"],
   ],
   icon: [sprinkles({ color: "skyblue" })],
   list: [
@@ -84,8 +83,6 @@ export const searchStyles = styleVariants({
   ],
   input: [
     sprinkles({
-      fontSize: "body-01",
-      fontWeight: "body-01",
       color: "text-03",
     }),
     {
@@ -95,6 +92,7 @@ export const searchStyles = styleVariants({
         border: "none",
       },
     },
+    texts["body-01"],
   ],
 });
 
@@ -106,8 +104,6 @@ export const infoStyles = styleVariants({
   },
   dropdown: [
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "white",
     }),
     {
@@ -117,14 +113,12 @@ export const infoStyles = styleVariants({
       backgroundColor: "#1E1E1ECC",
       border: "none",
     },
+    texts["body-02"],
   ],
 });
 
 const baseSwitch = style([
-  sprinkles({
-    fontSize: "button-02",
-    fontWeight: "button-01",
-  }),
+  texts["button-01"],
   {
     padding: "8px 16px",
     display: "flex",
@@ -177,8 +171,6 @@ export const switchStyles = styleVariants({
 
 const commonChipStyle = style([
   sprinkles({
-    fontSize: "headline-03",
-    fontWeight: "headline-03",
     borderColor: "stroke-grey",
   }),
   {
@@ -193,6 +185,7 @@ const commonChipStyle = style([
     margin: 0,
     transition: "background-color 0.5s ease-in-out",
   },
+  texts["headline-03"],
 ]);
 
 export const chipStyles = styleVariants({
@@ -241,8 +234,6 @@ export const filterStyles = styleVariants({
   },
   item: [
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
     {
@@ -254,6 +245,7 @@ export const filterStyles = styleVariants({
       gap: 8,
       cursor: "pointer",
     },
+    texts["headline-03"],
   ],
 });
 
@@ -272,16 +264,14 @@ export const toastStyles = styleVariants({
   title: [
     sprinkles({
       color: "white",
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
     }),
+    texts["headline-03"],
   ],
   description: [
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "white",
     }),
+    texts["body-02"],
   ],
   closeButton: [
     sprinkles({
