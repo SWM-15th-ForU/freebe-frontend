@@ -92,10 +92,13 @@ const baseSwitch = style([
     fontWeight: "button-01",
   }),
   {
-    padding: "5px 16px",
+    padding: "8px 16px",
     display: "flex",
     alignItems: "center",
     borderRadius: 100,
+    border: "none",
+    gap: 6,
+    transition: "background-color 0.5s",
   },
 ]);
 
@@ -110,6 +113,23 @@ export const switchStyles = styleVariants({
       borderRadius: 100,
     },
   ],
+  borderContainer: [
+    sprinkles({
+      backgroundColor: "bg-lightgrey",
+      borderColor: "stroke-grey",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      borderRadius: 100,
+      borderStyle: "solid",
+      borderWidth: 1,
+      top: 50,
+      left: 0,
+      position: "absolute",
+      padding: 1,
+    },
+  ],
   selected: [
     sprinkles({
       backgroundColor: "blue",
@@ -117,7 +137,11 @@ export const switchStyles = styleVariants({
     }),
     baseSwitch,
   ],
-  unselected: [sprinkles({ color: "text-03" }), baseSwitch],
+  unselected: [
+    sprinkles({ color: "text-03" }),
+    baseSwitch,
+    { background: "none" },
+  ],
 });
 
 export const toastStyles = styleVariants({
