@@ -26,7 +26,6 @@ export const mainviewStyles = styleVariants({
       alignItems: "center",
       gap: 8,
       textDecoration: "none",
-      marginTop: 16,
     },
   ],
 });

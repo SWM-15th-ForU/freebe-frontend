@@ -57,3 +57,27 @@ export const urlStyles = styleVariants({
     },
   ],
 });
+
+export const menuStyles = styleVariants({
+  dropdown: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
+  ],
+  item: [
+    sprinkles({
+      color: "text-02",
+      fontSize: "headline-03",
+      fontWeight: "headline-03",
+    }),
+    {
+      width: 200,
+      textDecoration: "none",
+    },
+  ],
+  logout: [sprinkles({ color: "pink" })],
+});
