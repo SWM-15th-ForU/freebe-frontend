@@ -6,6 +6,7 @@ export const viewContainer = style({
   display: "flex",
   gap: 8,
   padding: "28px 0px",
+  width: "100%",
 });
 
 export const listStyles = styleVariants({
@@ -14,7 +15,9 @@ export const listStyles = styleVariants({
       position: "relative",
       marginTop: 10,
       height: "fit-content",
-      width: 300,
+      width: "100%",
+      minWidth: 300,
+      minHeight: 100,
       borderRadius: 16,
 
       background: "linear-gradient(to bottom, #F4F8FD 0%, #E6F1FD 100%)",

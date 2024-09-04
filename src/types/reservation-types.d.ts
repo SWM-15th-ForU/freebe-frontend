@@ -7,22 +7,23 @@ declare module "reservation-types" {
 
   interface BaseInfos {
     customerName: string;
-    productName: string;
+    productTitle: string;
     reservationId: number;
-    createdAt: string;
+    reservationSubmissionDate: string;
   }
 
   interface DateFixed extends BaseInfos {
-    status: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
-    date: {
+    reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
+    shootingDate: {
       date: string;
       startTime: string;
+      endTime: string;
     };
   }
 
   interface DateNotFixed extends BaseInfos {
-    status: "NEW" | "IN_PROGRESS";
-    date?: undefined;
+    reservationStatus: "NEW" | "IN_PROGRESS";
+    shootingDate: null;
   }
 
   export type Infos = DateFixed | DateNotFixed;

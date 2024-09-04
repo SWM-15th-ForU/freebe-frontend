@@ -1,9 +1,4 @@
-import {
-  dateToDayText,
-  formatDate,
-  formatTimeString,
-  getDateDifference,
-} from "@/utils/date";
+import { formatDate, formatTimeString, getDateDifference } from "@/utils/date";
 import Image from "next/image";
 import Link from "next/link";
 import { Infos, Status } from "reservation-types";
@@ -35,7 +30,7 @@ const DateCover = ({
   return (
     <div className={coverStyles.wrapper}>
       <span className={`${reservationColors[status]} ${coverStyles.sub}`}>
-        {dateToDayText(shootDate)}
+        {shootDate.toLocaleString("EN", { weekday: "short" })}
       </span>
       <span className={`${reservationColors[status]} ${coverStyles.main}`}>
         {shootDate.getDate()}
@@ -46,12 +41,12 @@ const DateCover = ({
 };
 
 const ReservationCard = ({
-  status,
+  reservationStatus,
   customerName,
-  productName,
-  date,
+  productTitle,
+  shootingDate,
   reservationId,
-  createdAt,
+  reservationSubmissionDate,
 }: Infos) => {
   return (
     <Link
@@ -59,18 +54,22 @@ const ReservationCard = ({
       style={{ textDecoration: "none" }}
     >
       <div className={cardStyles.container}>
-        {status === "WAITING_FOR_DEPOSIT" || status === "WAITING_FOR_PHOTO" ? (
+        {reservationStatus === "WAITING_FOR_DEPOSIT" ||
+        reservationStatus === "WAITING_FOR_PHOTO" ? (
           <DateCover
-            date={date.date}
-            startTime={date.startTime}
-            status={status}
+            date={shootingDate?.date || ""}
+            startTime={shootingDate?.startTime || ""}
+            status={reservationStatus}
           />
         ) : (
-          <DdayCover day={`${getDateDifference(createdAt)}`} status={status} />
+          <DdayCover
+            day={`${getDateDifference(reservationSubmissionDate)}`}
+            status={reservationStatus}
+          />
         )}
         <div className={cardStyles.infoWrapper}>
           <div className={cardStyles.header}>
-            <span className={cardStyles.title}>{productName}</span>
+            <span className={cardStyles.title}>{productTitle}</span>
             <Image
               src="/icons/right.svg"
               width={8}
@@ -86,7 +85,7 @@ const ReservationCard = ({
             />
             <CardContent
               id="생성일"
-              name={formatDate(createdAt)}
+              name={formatDate(reservationSubmissionDate)}
               icon="/icons/reservation/created.svg"
             />
           </div>
