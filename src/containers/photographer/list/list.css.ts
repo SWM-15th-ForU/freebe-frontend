@@ -1,6 +1,12 @@
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
+
+export const viewContainer = style({
+  display: "flex",
+  gap: 8,
+  padding: "28px 0px",
+});
 
 export const listStyles = styleVariants({
   container: [
