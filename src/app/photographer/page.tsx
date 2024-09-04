@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import useUserInfo from "@/hooks/useUserInfo";
-import styles from "@/styles/page.module.css";
+import MainView from "@/containers/photographer/main";
 
 export default function Home({
   searchParams,
@@ -22,9 +22,6 @@ export default function Home({
       router.replace("/photographer");
     }
   }, [router, setUserInfo, searchParams]);
-  return (
-    <div className={styles.main}>
-      <h3>안녕하세요.</h3>
-    </div>
-  );
+
+  return <MainView />;
 }

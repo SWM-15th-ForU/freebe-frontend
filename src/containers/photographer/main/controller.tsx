@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { MainViewType } from "service-types";
 import { MenuItem } from "@mantine/core";
 import Filter from "@/components/common/filter";
 import Slider from "@/components/common/slider";
@@ -12,7 +13,12 @@ interface FilterItem {
   selected: boolean;
 }
 
-const Controller = () => {
+interface ControllerProps {
+  view: MainViewType;
+  setView: Dispatch<SetStateAction<MainViewType>>;
+}
+
+const Controller = ({ view, setView }: ControllerProps) => {
   const [filterList, setFilterList] = useState<FilterItem[]>([
     { id: "1", name: "상품 1", selected: false },
     { id: "2", name: "상품 2", selected: false },
@@ -20,7 +26,7 @@ const Controller = () => {
   ]);
 
   function handleChangeView(id: string) {
-    console.log(id);
+    if (id === "list" || id === "calender") setView(id);
   }
 
   function handleFilterChange(itemId: string) {
@@ -44,7 +50,7 @@ const Controller = () => {
           { id: "list", icon: "list", name: "리스트" },
           { id: "calender", icon: "calender", name: "캘린더" },
         ]}
-        defaultId="list"
+        defaultId={view}
         onChange={handleChangeView}
       />
       <Filter
