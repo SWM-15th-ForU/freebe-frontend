@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
@@ -5,8 +6,13 @@ import { styleVariants } from "@vanilla-extract/css";
 export const mainviewStyles = styleVariants({
   container: {
     width: "100%",
-    height: "calc(100vh - 51px)",
+    minWidth: 375,
     padding: "32px 40px 80px 40px",
+    "@media": {
+      [breakpoints.mobile]: {
+        padding: "24px 20px 50px 20px",
+      },
+    },
   },
   controller: {
     position: "relative",

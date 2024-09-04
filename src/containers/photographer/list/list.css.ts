@@ -57,6 +57,26 @@ export const listStyles = styleVariants({
     texts["headline-03"],
     { padding: "8px 4px" },
   ],
+  collapse: [
+    sprinkles({ color: "text-03" }),
+    texts["button-02"],
+    {
+      display: "none",
+
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "none",
+          border: "none",
+          width: "100%",
+          padding: "0px 0px 10px 0px",
+          gap: 5,
+        },
+      },
+    },
+  ],
 });
 
 export const cardStyles = styleVariants({

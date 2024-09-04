@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Infos, Status } from "reservation-types";
 import { statusTitles } from "@/constants/common/reservation";
 import { reservationColors } from "@/styles/colors.css";
 import { texts } from "@/styles/text.css";
+import { breakpoints } from "@/styles/breakpoints.css";
 import ReservationCard from "./card";
 import { listStyles } from "./list.css";
 
@@ -11,6 +14,8 @@ interface StatusListProps {
 }
 
 const StatusList = ({ status, reservations }: StatusListProps) => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   function renderReservationCard(reservation: Infos, index: number) {
     if (
       reservation.shootingDate &&
@@ -36,6 +41,25 @@ const StatusList = ({ status, reservations }: StatusListProps) => {
     return <ReservationCard {...reservation} />;
   }
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(breakpoints.mobile);
+    setIsCollapsed(mediaQuery.matches);
+
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsCollapsed(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaChange);
+    };
+  }, []);
+
+  function handleSwitchIsCollapsed() {
+    setIsCollapsed((prev) => !prev);
+  }
+
   return (
     <div>
       <div className={listStyles.header}>
@@ -56,8 +80,29 @@ const StatusList = ({ status, reservations }: StatusListProps) => {
             {(status === "NEW" || status === "IN_PROGRESS") && (
               <div className={listStyles.subtitle}>신청 시작일로부터</div>
             )}
-            {reservations.map(renderReservationCard)}
+            {(isCollapsed ? reservations.slice(0, 2) : reservations).map(
+              renderReservationCard,
+            )}
           </div>
+        )}
+        {reservations.length > 2 && (
+          <button
+            type="button"
+            onClick={handleSwitchIsCollapsed}
+            className={listStyles.collapse}
+          >
+            <span>{isCollapsed ? "펼치기" : "접기"}</span>
+            <Image
+              src="/icons/down-grey.svg"
+              width={12}
+              height={7}
+              alt={isCollapsed ? "펼치기" : "접기"}
+              style={{
+                transform: isCollapsed ? "" : "rotate(180deg)",
+                transition: "transform 0.5s ease",
+              }}
+            />
+          </button>
         )}
       </div>
     </div>

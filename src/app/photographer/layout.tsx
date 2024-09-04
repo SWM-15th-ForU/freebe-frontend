@@ -8,7 +8,6 @@ const PhotographerLayout = ({
   return (
     <div
       style={{
-        minWidth: "900px",
         width: "100vw",
         overflowX: "scroll",
         paddingTop: 51,
