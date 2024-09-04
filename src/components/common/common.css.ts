@@ -82,6 +82,7 @@ export const searchStyles = styleVariants({
     },
   ],
   input: [
+    texts["body-01"],
     sprinkles({
       color: "text-03",
     }),
@@ -92,7 +93,6 @@ export const searchStyles = styleVariants({
         border: "none",
       },
     },
-    texts["body-01"],
   ],
 });
 
@@ -118,7 +118,7 @@ export const infoStyles = styleVariants({
 });
 
 const baseSwitch = style([
-  texts["button-01"],
+  texts["headline-03"],
   {
     padding: "8px 16px",
     display: "flex",

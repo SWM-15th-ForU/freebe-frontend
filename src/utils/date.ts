@@ -14,3 +14,16 @@ export function parseTimeRequest(target: Date | null, ifNull: string) {
   }
   return ifNull;
 }
+
+export function dateToDayText(target: Date) {
+  const dayTexts = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return dayTexts[target.getDay()];
+}
+
+export function formatTimeString(timeString: string): string {
+  const [hours, minutes] = timeString.split(":");
+  const hoursNumeric = parseInt(hours, 10);
+  const period = hoursNumeric >= 12 ? "PM" : "AM";
+  const parsedHour = hoursNumeric % 12 === 0 ? 12 : hoursNumeric % 12;
+  return `${period} ${parsedHour}:${minutes}`;
+}

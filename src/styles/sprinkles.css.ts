@@ -46,7 +46,7 @@ const colorProperties = defineProperties({
 const textProperties = defineProperties({
   conditions: {
     mobile: {},
-    desktop: { "@media": "screen and (min-width: 1024px)" },
+    desktop: { "@media": "screen and (min-width: 700px)" },
   },
   defaultCondition: "mobile",
   properties: {
