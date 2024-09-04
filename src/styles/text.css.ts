@@ -59,7 +59,7 @@ export const texts = styleVariants({
       fontWeight: "semibold",
     }),
   ],
-  caption: [
+  "caption-01": [
     sprinkles({
       fontSize: "xxs",
       fontWeight: "medium",

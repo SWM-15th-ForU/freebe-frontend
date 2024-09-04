@@ -2,16 +2,44 @@ import { styleVariants } from "@vanilla-extract/css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 
+export const listStyles = styleVariants({
+  container: [
+    {
+      position: "relative",
+      marginTop: 10,
+      height: "fit-content",
+      width: 300,
+      borderRadius: 16,
+
+      background: "linear-gradient(to bottom, #F4F8FD 0%, #E6F1FD 100%)",
+    },
+  ],
+  wrapper: {
+    margin: "0px 8px",
+    padding: "8px 0px 12px 0px",
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
+  },
+  header: [{ display: "flex", alignItems: "center", gap: 6, paddingLeft: 8 }],
+  title: [sprinkles({ color: "text-01" }), texts["headline-02"]],
+  subtitle: [
+    sprinkles({ color: "text-03" }),
+    texts["headline-03"],
+    { padding: "8px 4px" },
+  ],
+});
+
 export const cardStyles = styleVariants({
   container: [
-    sprinkles({ borderColor: "stroke-grey" }),
+    sprinkles({ borderColor: "stroke-grey", backgroundColor: "white" }),
     {
       position: "relative",
       display: "flex",
       flexDirection: "row",
-
+      boxSizing: "border-box",
       alignItems: "center",
-      width: 300,
       borderRadius: 8,
       borderWidth: 1,
       borderStyle: "solid",

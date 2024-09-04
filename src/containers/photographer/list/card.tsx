@@ -1,30 +1,15 @@
-import { dateToDayText, formatTimeString } from "@/utils/date";
+import {
+  dateToDayText,
+  formatDate,
+  formatTimeString,
+  getDateDifference,
+} from "@/utils/date";
 import Image from "next/image";
 import Link from "next/link";
-import { Status } from "reservation-types";
+import { Infos, Status } from "reservation-types";
 import { reservationColors } from "@/styles/colors.css";
 import CardContent from "./content";
 import { cardStyles, coverStyles } from "./list.css";
-
-interface BaseCardProps {
-  customerName: string;
-  productName: string;
-  reservationId: number;
-  createdAt: string;
-}
-
-interface CardWithDateProps extends BaseCardProps {
-  status: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
-  date: {
-    date: string;
-    startTime: string;
-  };
-}
-
-interface CardProps extends BaseCardProps {
-  status: "NEW" | "IN_PROGRESS";
-  date?: undefined;
-}
 
 const DdayCover = ({ day, status }: { day: string; status: Status }) => {
   return (
@@ -67,7 +52,7 @@ const ReservationCard = ({
   date,
   reservationId,
   createdAt,
-}: CardWithDateProps | CardProps) => {
+}: Infos) => {
   return (
     <Link
       href={`/photographer/reservation/${reservationId}`}
@@ -81,7 +66,7 @@ const ReservationCard = ({
             status={status}
           />
         ) : (
-          <DdayCover day="3" status={status} />
+          <DdayCover day={`${getDateDifference(createdAt)}`} status={status} />
         )}
         <div className={cardStyles.infoWrapper}>
           <div className={cardStyles.header}>
@@ -101,7 +86,7 @@ const ReservationCard = ({
             />
             <CardContent
               id="생성일"
-              name={createdAt}
+              name={formatDate(createdAt)}
               icon="/icons/reservation/created.svg"
             />
           </div>
