@@ -1,12 +1,19 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
+import { breakpoints } from "@/styles/breakpoints.css";
 
 export const viewContainer = style({
   display: "flex",
   gap: 8,
   padding: "28px 0px",
+  overflowX: "scroll",
   width: "100%",
+  "@media": {
+    [breakpoints.mobile]: {
+      flexDirection: "column",
+    },
+  },
 });
 
 export const listStyles = styleVariants({
@@ -31,7 +38,19 @@ export const listStyles = styleVariants({
     flexDirection: "column",
     gap: 4,
   },
-  header: [{ display: "flex", alignItems: "center", gap: 6, paddingLeft: 8 }],
+  header: [
+    {
+      display: "flex",
+      alignItems: "center",
+      gap: 6,
+      paddingLeft: 8,
+      "@media": {
+        [breakpoints.mobile]: {
+          marginTop: 20,
+        },
+      },
+    },
+  ],
   title: [sprinkles({ color: "text-01" }), texts["headline-02"]],
   subtitle: [
     sprinkles({ color: "text-03" }),
