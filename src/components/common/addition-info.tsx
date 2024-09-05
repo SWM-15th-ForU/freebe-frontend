@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { Popover } from "@mantine/core";
 import { infoStyles } from "./common.css";

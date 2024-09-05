@@ -38,7 +38,7 @@ declare module "reservation-types" {
   export interface Details {
     reservationNumber: number;
     currentStatus: Status;
-    statusHistory: { status: Status; updatedDate: string }[];
+    statusHistory: { [key in Status]: { updatedDate: string | null } };
     productTitle: string;
     customer: Customer;
     productInfo: { title: string; content: string }[];
