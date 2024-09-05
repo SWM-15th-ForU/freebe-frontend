@@ -1,4 +1,4 @@
-import Preparing from "@/containers/mypage/preparing";
+import Preparing from "@/containers/photographer/mypage/preparing";
 
 const MyPreviousPage = () => {
   return (

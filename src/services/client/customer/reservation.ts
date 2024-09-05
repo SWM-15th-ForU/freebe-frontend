@@ -15,7 +15,6 @@ export async function postReservation(
   formData: reservation.FormType,
   productData: ProductDatas,
 ) {
-  // TODO: request body 형식 일부 수정
   const body = {
     photographerId: productData.photographerId,
     instagramId: formData.instagram,
@@ -30,13 +29,15 @@ export async function postReservation(
         };
       }),
     ),
-    productOptions: formData.options.map((option) => {
-      return {
-        title: option.title,
-        quantity: option.quantity,
-        price: option.price,
-      };
-    }),
+    photoOptions: arrayToObject(
+      formData.options.map((option) => {
+        return {
+          title: option.title,
+          quantity: option.quantity,
+          price: option.price,
+        };
+      }),
+    ),
     customerMemo: formData.memo,
     preferredImages: formData.referenceImages,
     totalPrice: formData.totalPrice,

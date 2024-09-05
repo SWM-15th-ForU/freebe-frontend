@@ -38,12 +38,10 @@ export default function RootLayout({
         className={pretendard.className}
         style={{ overflowX: "hidden", overflowY: "auto" }}
       >
-        <div>
-          <MantineProvider>
-            <Notifications />
-            {children}
-          </MantineProvider>
-        </div>
+        <MantineProvider>
+          <Notifications />
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );

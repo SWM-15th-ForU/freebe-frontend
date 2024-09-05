@@ -16,14 +16,15 @@ const buttonStyles = styleVariants({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    padding: 20,
     margin: 30,
-    gap: 12,
+    gap: 42,
     border: 0,
-    width: 184,
-    height: 45,
+    width: 280,
+    height: 54,
     backgroundColor: "#FEE500",
-    borderRadius: 12,
+    borderRadius: 8,
     fontSize: 17,
     fontWeight: 600,
     color: "#1a1a1a",
@@ -130,6 +131,10 @@ export const closeStyles = styleVariants({
       color: "white",
     }),
   ],
+  background: {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    height: "auto",
+  },
 });
 
 export default buttonStyles;
