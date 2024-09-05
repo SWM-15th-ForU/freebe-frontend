@@ -4,7 +4,7 @@ import { getReservationList } from "@/services/client/photographer/reservations"
 import StatusList from "./status-list";
 import { viewContainer } from "./list.css";
 
-const ReservationList = async () => {
+const ReservationList = () => {
   const [datas, setDatas] = useState<{ [key in Status]: Infos[] }>({
     NEW: [],
     IN_PROGRESS: [],
