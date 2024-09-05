@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 const submitStyles = styleVariants({
@@ -29,16 +30,14 @@ const submitStyles = styleVariants({
     },
   ],
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
       color: "text-02",
-      fontWeight: "headline-02",
     }),
   ],
   itemTitle: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
   ],

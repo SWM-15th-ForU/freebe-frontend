@@ -32,7 +32,6 @@ export async function postNewProduct(
       };
     }),
   };
-  console.log(body);
   const response = await apiClient
     .post("photographer/product", {
       json: body,

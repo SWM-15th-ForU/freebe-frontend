@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseCheckbox = style({
@@ -49,9 +50,8 @@ export const countInputStyles = styleVariants({
     },
   ],
   input: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-01",
     }),
     { textAlign: "center", border: "none", height: "100%", width: 52 },
@@ -68,9 +68,8 @@ export const TimeInputStyles = styleVariants({
     marginTop: 10,
   },
   title: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
     {
@@ -78,9 +77,8 @@ export const TimeInputStyles = styleVariants({
     },
   ],
   date: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-04",
     }),
     {
@@ -90,7 +88,7 @@ export const TimeInputStyles = styleVariants({
 });
 
 const baseInput = style([
-  sprinkles({ fontWeight: "body-02" }),
+  texts["body-02"],
   {
     border: "none",
     width: "100%",
@@ -124,9 +122,8 @@ const InputStyles = styleVariants({
     marginBottom: 20,
   },
   title: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
   ],
@@ -148,9 +145,9 @@ const InputStyles = styleVariants({
     baseInput,
   ],
   contentWrapper: [
+    texts["body-02"],
     sprinkles({
       color: "text-02",
-      fontWeight: "body-02",
     }),
     {
       display: "flex",

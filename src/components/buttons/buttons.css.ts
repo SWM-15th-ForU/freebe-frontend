@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseTab = style([
@@ -33,11 +34,11 @@ const buttonStyles = styleVariants({
     },
   },
   add: [
+    texts["button-01"],
     sprinkles({
       borderColor: "blue",
       color: "blue",
       backgroundColor: "white",
-      fontWeight: "button-01",
     }),
     {
       width: "100%",
@@ -50,10 +51,10 @@ const buttonStyles = styleVariants({
     },
   ],
   link: [
+    texts["button-01"],
     sprinkles({
       backgroundColor: "blue",
-      fontSize: "button-01",
-      fontWeight: "button-01",
+
       color: "white",
     }),
     {
@@ -66,28 +67,25 @@ const buttonStyles = styleVariants({
     },
   ],
   tab: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
     baseTab,
   ],
   selectedTab: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-01",
       backgroundColor: "bg-lightgrey",
     }),
     baseTab,
   ],
   submit: [
+    texts["button-01"],
     sprinkles({
       backgroundColor: "blue",
       color: "white",
-      fontSize: "button-01",
-      fontWeight: "button-01",
     }),
     {
       width: "100%",

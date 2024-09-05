@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 const rotateAnimation = keyframes({
@@ -25,9 +26,8 @@ export const handlerStyles = styleVariants({
   container: [baseContainer],
   fullContainer: [baseContainer, { height: "100vh" }],
   message: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-point",
     }),
   ],

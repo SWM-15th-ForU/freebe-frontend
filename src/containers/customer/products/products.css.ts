@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const listContainer = style({
@@ -41,9 +42,8 @@ export const headerStyles = styleVariants({
     left: 12,
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-01",
     }),
   ],
@@ -82,24 +82,21 @@ export const infoStyles = styleVariants({
     gap: 16,
   },
   title: [
+    texts["headline-01"],
     sprinkles({
-      fontSize: "headline-01",
-      fontWeight: "headline-01",
       color: "text-point",
     }),
   ],
   subtitle: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-02",
     }),
     { margin: "0px 20px 20px 0px" },
   ],
   content: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
     { margin: "8px 0px 0px 0px" },
@@ -123,16 +120,14 @@ export const modalStyles = styleVariants({
     gap: 10,
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-point",
     }),
   ],
   info: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
   ],

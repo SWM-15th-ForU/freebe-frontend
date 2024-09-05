@@ -21,7 +21,7 @@ const ReferenceSelected = ({
         borderBottomStyle: "solid",
       }}
     >
-      <span className={texts.body1} style={{ color: BLUE03 }}>
+      <span className={texts["body-01"]} style={{ color: BLUE03 }}>
         최대 3장 선택 가능하며, 고른 사진은 작가님께 촬영용 레퍼런스로 전달돼요.
       </span>
       <div className={reservationStyles.imageWrapper}>

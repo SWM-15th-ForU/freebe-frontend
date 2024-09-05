@@ -1,10 +1,10 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseContent = style([
+  texts["body-02"],
   sprinkles({
-    fontSize: "body-02",
-    fontWeight: "body-02",
     color: "text-01",
   }),
   { marginLeft: "auto" },
@@ -25,9 +25,8 @@ const infoItemStyles = styleVariants({
     alignItems: "center",
   },
   title: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-03",
     }),
   ],
