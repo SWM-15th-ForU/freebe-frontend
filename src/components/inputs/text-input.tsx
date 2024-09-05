@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
-import { FieldValues, useFormContext } from "react-hook-form";
+import { FieldValues, Path, useFormContext } from "react-hook-form";
 import InputStyles from "./input.css";
 
 interface TextInputProps<T extends FieldValues>
@@ -11,7 +11,7 @@ interface TextInputProps<T extends FieldValues>
   placeholder?: string;
   disabled?: boolean;
   multiline?: boolean;
-  formField?: keyof T;
+  formField?: Path<T>;
 }
 
 const TextInput = <T extends FieldValues>({
@@ -38,13 +38,13 @@ const TextInput = <T extends FieldValues>({
               disabled ? InputStyles.disabledInput : InputStyles.multilineInput
             }
             placeholder={placeholder}
-            {...(formField && register(formField.toString()))}
+            {...(formField && register(formField))}
           />
         ) : (
           <input
             className={disabled ? InputStyles.disabledInput : InputStyles.input}
             placeholder={placeholder}
-            {...(formField && register(formField.toString()))}
+            {...(formField && register(formField))}
             disabled={disabled}
             {...props}
           />

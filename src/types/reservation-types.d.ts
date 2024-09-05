@@ -46,5 +46,13 @@ declare module "reservation-types" {
     originalImage: string[];
     thumbnailImage: string[];
     requestMemo: string;
+    // TODO: 신청서 상세 조회 api response에 맞춰 수정
+    options: Option[];
+    photographerMemo: string;
   }
+
+  export type DetailsField = Pick<
+    Details,
+    "productInfo" | "preferredDates" | "options" | "photographerMemo"
+  >;
 }

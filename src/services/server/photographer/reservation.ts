@@ -19,6 +19,8 @@ interface ReservationDetailResponse {
   originalImage: string[];
   thumbnailImage: string[];
   requestMemo: string;
+  options: unknown[];
+  photographerMemo: string;
 }
 
 export async function getReservationDetail(
