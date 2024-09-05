@@ -1,5 +1,5 @@
-import ProductList from "@/containers/product/product-list";
-import { listStyles } from "@/containers/product/product.css";
+import ProductList from "@/containers/photographer/product/product-list";
+import { listStyles } from "@/containers/photographer/product/product.css";
 import { getProductList } from "@/services/server/photographer/mypage/products";
 
 const MyProductPage = async () => {

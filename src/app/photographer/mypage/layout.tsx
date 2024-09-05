@@ -1,4 +1,4 @@
-import Navbar from "@/containers/mypage/navbar";
+import Navbar from "@/containers/photographer/mypage/navbar";
 import styles from "@/styles/page.module.css";
 
 const MypageLayout = ({

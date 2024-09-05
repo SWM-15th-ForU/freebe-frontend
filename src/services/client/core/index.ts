@@ -4,6 +4,8 @@ import { beforeRequest, beforeRetry } from "./interceptor";
 const apiClient = ky
   .create({
     prefixUrl: process.env.NEXT_PUBLIC_API_DOMAIN,
+    credentials: "include",
+    mode: "cors",
   })
   .extend({
     hooks: {

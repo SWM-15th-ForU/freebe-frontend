@@ -286,3 +286,25 @@ export const toastStyles = styleVariants({
     },
   ],
 });
+
+export const thumbnailStyles = styleVariants({
+  container: {
+    aspectRatio: "1",
+    position: "relative",
+    marginTop: 15,
+  },
+  represent: [
+    sprinkles({ borderColor: "blue" }),
+    {
+      borderWidth: 2,
+      borderStyle: "solid",
+    },
+  ],
+  representMark: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    { padding: "4px 8px", zIndex: 3, position: "absolute", bottom: 0, left: 0 },
+  ],
+});

@@ -1,12 +1,15 @@
 "use client";
 
+import { SubmitButton } from "@/components/buttons/common-buttons";
+import Image from "next/image";
 import { useEffect } from "react";
+import { handlerStyles } from "./root.css";
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error;
+  error: Error & { digest?: string };
   reset: () => void;
 }) {
   useEffect(() => {
@@ -14,11 +17,10 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong.</h2>
-      <button type="button" onClick={() => reset()}>
-        재시도
-      </button>
+    <div className={handlerStyles.container}>
+      <Image src="/icons/error.svg" width={24} height={24} alt="error" />
+      <span className={handlerStyles.message}>오류가 발생했습니다.</span>
+      <SubmitButton title="재시도" onClick={() => reset()} />
     </div>
   );
 }

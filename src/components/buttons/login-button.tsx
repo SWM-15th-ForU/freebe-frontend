@@ -30,8 +30,8 @@ const LoginButton = ({
       <Image
         src="/icons/kakao-logo.svg"
         alt="login-logo"
-        height={12}
-        width={12}
+        height={20}
+        width={20}
       />
       카카오로 시작하기
     </button>

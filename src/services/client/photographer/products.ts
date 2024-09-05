@@ -33,7 +33,9 @@ export async function postNewProduct(
     }),
   };
   const response = await apiClient
-    .post("photographer/product", { json: body })
+    .post("photographer/product", {
+      json: body,
+    })
     .json();
   return response;
 }

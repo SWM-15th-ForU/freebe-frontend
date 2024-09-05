@@ -1,4 +1,4 @@
-import Header from "@/containers/main/header";
+import Header from "@/containers/photographer/main/header";
 
 const PhotographerLayout = ({
   children,
