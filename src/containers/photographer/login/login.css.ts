@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 export const loginStyles = styleVariants({
@@ -8,16 +9,14 @@ export const loginStyles = styleVariants({
     alignItems: "center",
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "blue",
     }),
   ],
   subtitle: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-01",
     }),
   ],
@@ -29,10 +28,9 @@ const navButtonFrames = keyframes({
 });
 
 const navButtonStyle = style([
+  texts["button-01"],
   sprinkles({
     color: "blue",
-    fontSize: "button-01",
-    fontWeight: "button-01",
     borderColor: "stroke-grey",
   }),
   {
