@@ -5,6 +5,11 @@ declare module "reservation-types" {
     | "WAITING_FOR_DEPOSIT"
     | "WAITING_FOR_PHOTO";
 
+  export interface ReservationDate {
+    date: string;
+    startTime: string;
+    endTime: string;
+  }
   interface BaseInfos {
     customerName: string;
     productTitle: string;
@@ -14,11 +19,7 @@ declare module "reservation-types" {
 
   interface DateFixed extends BaseInfos {
     reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
-    shootingDate: {
-      date: string;
-      startTime: string;
-      endTime: string;
-    };
+    shootingDate: ReservationDate;
   }
 
   interface DateNotFixed extends BaseInfos {
@@ -27,4 +28,23 @@ declare module "reservation-types" {
   }
 
   export type Infos = DateFixed | DateNotFixed;
+
+  interface Customer {
+    name: string;
+    phoneNumber: string;
+    instagramId: string;
+  }
+
+  export interface Details {
+    reservationNumber: number;
+    currentStatus: Status;
+    statusHistory: { status: Status; updatedDate: string }[];
+    productTitle: string;
+    customer: Customer;
+    productInfo: { title: string; content: string }[];
+    preferredDates: ReservationDate[];
+    originalImage: string[];
+    thumbnailImage: string[];
+    requestMemo: string;
+  }
 }
