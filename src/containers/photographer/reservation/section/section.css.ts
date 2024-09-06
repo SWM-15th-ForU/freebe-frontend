@@ -73,6 +73,13 @@ export const sectionStyles = styleVariants({
     flexDirection: "column",
     gap: 10,
   },
+  headlineWrapper: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    height: 32,
+  },
 });
 
 export const fieldStyles = styleVariants({
@@ -81,7 +88,7 @@ export const fieldStyles = styleVariants({
     flex: 1,
   },
   schedule: {
-    minWidth: "fit-content",
+    minWidth: "max-content",
     flex: 1,
   },
   option: {
