@@ -1,5 +1,16 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import { BLUE01 } from "@/styles/colors";
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
+
+const baseButton = style({
+  background: "none",
+  border: "none",
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
 
 export const GridStyles = styleVariants({
   container: {
@@ -14,5 +25,64 @@ export const GridStyles = styleVariants({
     outlineOffset: -1,
     outlineColor: BLUE01,
     boxSizing: "content-box",
+  },
+});
+
+export const fullStyles = styleVariants({
+  root: {
+    width: "100vw",
+    padding: 0,
+  },
+  inner: {
+    padding: 0,
+    alignItems: "center",
+  },
+  content: {
+    background: "none",
+    width: "100vw",
+    height: "100vh",
+    position: "relative",
+    boxShadow: "none",
+    borderRadius: 0,
+    flex: 1,
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  move: [baseButton],
+  disabledMove: [baseButton, { visibility: "hidden" }],
+  wrapper: {
+    display: "flex",
+    gap: 12,
+    width: "100%",
+    overflowX: "scroll",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  main: {
+    height: "60vh",
+    width: "100%",
+    display: "flex",
+    gap: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+    position: "relative",
+  },
+  image: {
+    display: "block",
+    width: "auto",
+    height: "auto",
+    margin: "auto",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    position: "relative",
+  },
+  imageContainer: {
+    flex: 1,
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
   },
 });

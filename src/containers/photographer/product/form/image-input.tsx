@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { Image } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import ImageThumbnail from "@/components/common/image-thumbnail";
+import ImageThumbnail from "@/components/images/image-thumbnail";
 import { AddButton, FinishButton } from "@/components/buttons/common-buttons";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { getUrlFromFiles } from "@/utils/image";
