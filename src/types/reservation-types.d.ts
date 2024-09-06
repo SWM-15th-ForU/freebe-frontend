@@ -1,33 +1,33 @@
+interface BaseInfos {
+  customerName: string;
+  productTitle: string;
+  reservationId: number;
+  reservationSubmissionDate: string;
+}
+
+interface DateFixed extends BaseInfos {
+  reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
+  shootingDate: ReservationDate;
+}
+
+interface DateNotFixed extends BaseInfos {
+  reservationStatus: "NEW" | "IN_PROGRESS";
+  shootingDate: null;
+}
 declare module "reservation-types" {
-  export type Status =
+  type Status =
     | "NEW"
     | "IN_PROGRESS"
     | "WAITING_FOR_DEPOSIT"
     | "WAITING_FOR_PHOTO";
 
-  export interface ReservationDate {
+  interface ReservationDate {
     date: string;
     startTime: string;
     endTime: string;
   }
-  interface BaseInfos {
-    customerName: string;
-    productTitle: string;
-    reservationId: number;
-    reservationSubmissionDate: string;
-  }
 
-  interface DateFixed extends BaseInfos {
-    reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
-    shootingDate: ReservationDate;
-  }
-
-  interface DateNotFixed extends BaseInfos {
-    reservationStatus: "NEW" | "IN_PROGRESS";
-    shootingDate: null;
-  }
-
-  export type Infos = DateFixed | DateNotFixed;
+  type Infos = DateFixed | DateNotFixed;
 
   interface Customer {
     name: string;
@@ -35,7 +35,13 @@ declare module "reservation-types" {
     instagramId: string;
   }
 
-  export interface Details {
+  interface Option {
+    title: string;
+    quantity: number;
+    price: number;
+  }
+
+  interface Details {
     reservationNumber: number;
     currentStatus: Status;
     statusHistory: { [key in Status]: { updatedDate: string | null } };
@@ -46,12 +52,11 @@ declare module "reservation-types" {
     originalImage: string[];
     thumbnailImage: string[];
     requestMemo: string;
-    // TODO: 신청서 상세 조회 api response에 맞춰 수정
     options: Option[];
     photographerMemo: string;
   }
 
-  export type DetailsField = Pick<
+  type DetailsField = Pick<
     Details,
     "productInfo" | "preferredDates" | "options" | "photographerMemo"
   >;
