@@ -2,6 +2,13 @@ import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+const baseWrapper = style({
+  position: "relative",
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+});
+
 export const sectionStyles = styleVariants({
   container: [
     sprinkles({
@@ -13,20 +20,30 @@ export const sectionStyles = styleVariants({
       borderBottomStyle: "solid",
     },
   ],
-  wrapper: {
-    position: "relative",
-    width: "100%",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    columnGap: "20px",
-  },
+  wrapper: [
+    baseWrapper,
+    {
+      flexWrap: "wrap",
+
+      columnGap: "20px",
+    },
+  ],
+  scheduleWrapper: [
+    baseWrapper,
+    { gap: 20, width: "100%", overflowX: "scroll" },
+  ],
   title: [texts["headline-02"], sprinkles({ color: "text-02" })],
 });
 
-export const fieldStyles = style({
-  minWidth: "45%",
-  flex: 1,
+export const fieldStyles = styleVariants({
+  text: {
+    minWidth: "45%",
+    flex: 1,
+  },
+  schedule: {
+    minWidth: "fit-content",
+    flex: 1,
+  },
 });
 
 export const titleStyles = styleVariants({

@@ -11,7 +11,7 @@ interface FieldProps {
 
 const Field = ({ name, isEditing = false, formField }: FieldProps) => {
   return (
-    <div className={fieldStyles}>
+    <div className={fieldStyles.text}>
       <TextInput<Details>
         title={name}
         disabled={!isEditing}
