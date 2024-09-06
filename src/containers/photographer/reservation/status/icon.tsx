@@ -13,6 +13,8 @@ const Banner = ({
     IN_PROGRESS: "2",
     WAITING_FOR_DEPOSIT: "3",
     WAITING_FOR_PHOTO: "4",
+    CANCELLED: "-",
+    PHOTO_COMPLETED: "5",
   };
 
   return (

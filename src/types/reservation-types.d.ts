@@ -15,11 +15,15 @@ interface DateNotFixed extends BaseInfos {
   shootingDate: null;
 }
 declare module "reservation-types" {
-  type Status =
+  type ActiveStatus =
     | "NEW"
     | "IN_PROGRESS"
     | "WAITING_FOR_DEPOSIT"
     | "WAITING_FOR_PHOTO";
+
+  type InactiveStatus = "PHOTO_COMPLETED" | "CANCELLED";
+
+  type Status = ActiveStatus | InactiveStatus;
 
   interface ReservationDate {
     date: string;

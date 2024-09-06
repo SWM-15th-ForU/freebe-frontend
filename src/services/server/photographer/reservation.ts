@@ -26,9 +26,9 @@ interface ReservationDetailResponse {
 export async function getReservationDetail(
   reservationId: number,
 ): Promise<Details> {
-  const response = await api.get(
-    `photographer/reservation/details/${reservationId}`,
-  );
+  // const response = await api.get(
+  //   `photographer/reservation/details/${reservationId}`,
+  // );
   // TODO: 더미 데이터 삭제
   // const { data } = await response.json<{ data: ReservationDetailResponse }>();
   const data: ReservationDetailResponse = {
@@ -91,6 +91,8 @@ export async function getReservationDetail(
       IN_PROGRESS: { updatedDate: null },
       WAITING_FOR_DEPOSIT: { updatedDate: null },
       WAITING_FOR_PHOTO: { updatedDate: null },
+      CANCELLED: { updatedDate: null },
+      PHOTO_COMPLETED: { updatedDate: null },
     },
   };
   data.statusHistory.forEach((history) => {

@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import ReservationDetails from "./section/details";
 import ReservationStatus from "./status";
 import { containerStyle } from "./reservation.css";
+import Control from "./section/control";
 
 const ReservationDetailsPage = ({ detailsData }: { detailsData: Details }) => {
   const method = useForm<Details>({ defaultValues: detailsData });
@@ -21,11 +22,14 @@ const ReservationDetailsPage = ({ detailsData }: { detailsData: Details }) => {
               IN_PROGRESS: { updatedDate: null },
               WAITING_FOR_DEPOSIT: { updatedDate: null },
               WAITING_FOR_PHOTO: { updatedDate: null },
+              PHOTO_COMPLETED: { updatedDate: null },
+              CANCELLED: { updatedDate: null },
             }}
             currentStatus="IN_PROGRESS"
           />
           <ReservationDetails />
         </div>
+        <Control />
       </div>
     </FormProvider>
   );

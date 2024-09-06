@@ -1,8 +1,8 @@
-import { Infos, Status } from "reservation-types";
+import { ActiveStatus, Infos } from "reservation-types";
 import apiClient from "../core";
 
 interface StatusListData {
-  reservationStatus: Status;
+  reservationStatus: ActiveStatus;
   formComponent: Infos[];
 }
 
@@ -11,7 +11,7 @@ export async function getReservationList() {
   const { data } = await apiClient
     .post("photographer/reservation")
     .json<{ data: StatusListData[] }>();
-  const reservationData: { [key in Status]: Infos[] } = {
+  const reservationData: { [key in ActiveStatus]: Infos[] } = {
     NEW: [],
     IN_PROGRESS: [],
     WAITING_FOR_DEPOSIT: [],

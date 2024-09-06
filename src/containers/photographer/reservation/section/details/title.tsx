@@ -1,5 +1,5 @@
 import { Details } from "reservation-types";
-import { titleStyles } from "./section.css";
+import { titleStyles } from "../section.css";
 
 const ReservationTitle = ({
   reservationNumber,

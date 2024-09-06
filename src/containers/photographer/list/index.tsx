@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Infos, Status } from "reservation-types";
+import { ActiveStatus, Infos } from "reservation-types";
 import { getReservationList } from "@/services/client/photographer/reservations";
 import StatusList from "./status-list";
 import { viewContainer } from "./list.css";
 
 const ReservationList = () => {
-  const [datas, setDatas] = useState<{ [key in Status]: Infos[] }>({
+  const [datas, setDatas] = useState<{ [key in ActiveStatus]: Infos[] }>({
     NEW: [],
     IN_PROGRESS: [],
     WAITING_FOR_DEPOSIT: [],
