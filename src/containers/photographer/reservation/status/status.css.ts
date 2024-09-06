@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -22,6 +23,13 @@ export const statusStyles = styleVariants({
     borderRadius: 16,
     gap: 15,
     padding: "15px 40px",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        width: "100%",
+        maxWidth: "100%",
+      },
+    },
   },
   doneProgress: [sprinkles({ backgroundColor: "blue" }), baseProgress],
   progress: [sprinkles({ backgroundColor: "white" }), baseProgress],
@@ -37,6 +45,7 @@ export const iconStyles = styleVariants({
     position: "relative",
     width: "10%",
     overflow: "visible",
+    maxWidth: 50,
   },
   wrapper: {
     overflow: "visible",

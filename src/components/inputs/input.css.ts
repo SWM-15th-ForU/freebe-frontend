@@ -106,7 +106,6 @@ const baseWrapper = style([
     alignItems: "center",
     justifyContent: "flex-start",
     position: "relative",
-    minWidth: "fit-content",
     height: "fit-content",
     borderRadius: 8,
     borderWidth: 1,
@@ -120,7 +119,7 @@ const baseWrapper = style([
 const InputStyles = styleVariants({
   container: {
     width: "100%",
-    minWidth: "fit-content",
+
     height: "fit-content",
     marginTop: 20,
     marginBottom: 20,

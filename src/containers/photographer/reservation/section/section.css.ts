@@ -88,8 +88,9 @@ export const fieldStyles = styleVariants({
     flex: 1,
   },
   schedule: {
-    minWidth: "max-content",
-    flex: 1,
+    width: "40%",
+    flexShrink: 0,
+    flexGrow: 1,
   },
   option: {
     width: "100%",
@@ -103,6 +104,7 @@ export const titleStyles = styleVariants({
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    marginTop: 40,
   },
   title: [texts["headline-01"], sprinkles({ color: "text-point" })],
   id: [texts["body-01"], sprinkles({ color: "text-04" })],
