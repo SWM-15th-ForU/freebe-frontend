@@ -29,7 +29,7 @@ export const CustomButton = ({
       type="button"
       onClick={onClick}
       className={buttonStyles[styleType]}
-      style={{ width: size === "sm" ? 48 : 56 }}
+      style={{ height: size === "sm" ? 48 : 56 }}
     >
       {title}
     </button>

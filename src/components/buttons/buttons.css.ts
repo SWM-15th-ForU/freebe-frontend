@@ -119,7 +119,6 @@ const buttonStyles = styleVariants({
     {
       width: "100%",
       borderRadius: 8,
-      marginTop: 20,
       padding: 5,
       border: "none",
     },
@@ -133,17 +132,25 @@ const buttonStyles = styleVariants({
     }),
     {
       width: "100%",
-      height: 56,
       borderStyle: "solid",
       borderRadius: 8,
       borderWidth: 1,
-      marginTop: 15,
       padding: 10,
     },
   ],
-  secondary: {
-    height: 56,
-  },
+  secondary: [
+    texts["button-01"],
+    sprinkles({
+      backgroundColor: "bg-lightblue",
+      color: "text-02",
+    }),
+    {
+      width: "100%",
+      borderRadius: 8,
+      padding: 5,
+      border: "none",
+    },
+  ],
 });
 
 export const closeStyles = styleVariants({
