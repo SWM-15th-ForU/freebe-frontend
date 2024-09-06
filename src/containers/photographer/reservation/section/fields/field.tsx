@@ -1,7 +1,7 @@
 import TextInput from "@/components/inputs/text-input";
 import { Path } from "react-hook-form";
 import { Details } from "reservation-types";
-import { fieldStyles } from "./section.css";
+import { fieldStyles } from "../section.css";
 
 interface FieldProps {
   name: string;

@@ -1,7 +1,7 @@
 import { ReservationDate } from "reservation-types";
 import TextInput from "@/components/inputs/text-input";
 import { formatDate, formatTimeString } from "@/utils/date";
-import { fieldStyles } from "./section.css";
+import { fieldStyles } from "../section.css";
 
 interface FieldProps {
   name: string;

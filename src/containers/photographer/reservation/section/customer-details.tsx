@@ -1,5 +1,5 @@
 import SectionLayout from "./section-layout";
-import Field from "./field";
+import Field from "./fields/field";
 import { sectionStyles } from "./section.css";
 
 const CustomerDetails = () => {

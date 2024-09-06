@@ -1,7 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import SectionLayout from "./section-layout";
-import Field from "./field";
+import Field from "./fields/field";
 import { sectionStyles } from "./section.css";
 
 const PhotoDetails = () => {

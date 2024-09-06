@@ -2,7 +2,7 @@ import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import SectionLayout from "./section-layout";
 import { sectionStyles } from "./section.css";
-import ScheduleField from "./schedule-field";
+import ScheduleField from "./fields/schedule-field";
 
 const ScheduleDetails = () => {
   const { watch } = useFormContext<Details>();
