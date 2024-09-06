@@ -176,7 +176,7 @@ const commonChipStyle = style([
   {
     borderWidth: 1,
     borderStyle: "solid",
-    padding: "8px 16px",
+    padding: "4px 14px",
     height: "100%",
     display: "flex",
     alignItems: "center",
