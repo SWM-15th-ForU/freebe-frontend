@@ -110,6 +110,40 @@ const buttonStyles = styleVariants({
       color: "white",
     },
   ],
+  primary: [
+    texts["button-01"],
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    {
+      width: "100%",
+      borderRadius: 8,
+      marginTop: 20,
+      padding: 5,
+      border: "none",
+    },
+  ],
+  line: [
+    texts["button-01"],
+    sprinkles({
+      borderColor: "blue",
+      color: "blue",
+      backgroundColor: "white",
+    }),
+    {
+      width: "100%",
+      height: 56,
+      borderStyle: "solid",
+      borderRadius: 8,
+      borderWidth: 1,
+      marginTop: 15,
+      padding: 10,
+    },
+  ],
+  secondary: {
+    height: 56,
+  },
 });
 
 export const closeStyles = styleVariants({
