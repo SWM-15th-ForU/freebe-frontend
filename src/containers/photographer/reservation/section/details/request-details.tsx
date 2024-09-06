@@ -1,6 +1,6 @@
 import TextInput from "@/components/inputs/text-input";
 import { Details } from "reservation-types";
-import { sectionStyles } from "./section.css";
+import { sectionStyles } from "../section.css";
 
 const RequestDetails = () => {
   return (

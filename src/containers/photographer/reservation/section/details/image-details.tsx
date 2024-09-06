@@ -4,8 +4,8 @@ import { Details } from "reservation-types";
 import { useDisclosure } from "@mantine/hooks";
 import FullImage from "@/components/images/full-image";
 import ImageThumbnail from "@/components/images/image-thumbnail";
-import SectionLayout from "./section-layout";
-import { sectionStyles } from "./section.css";
+import SectionLayout from "../section-layout";
+import { sectionStyles } from "../section.css";
 
 const ImageDetails = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);

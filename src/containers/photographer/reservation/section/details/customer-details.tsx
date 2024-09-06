@@ -1,6 +1,6 @@
-import SectionLayout from "./section-layout";
-import Field from "./fields/field";
-import { sectionStyles } from "./section.css";
+import SectionLayout from "../section-layout";
+import Field from "../fields/field";
+import { sectionStyles } from "../section.css";
 
 const CustomerDetails = () => {
   return (
