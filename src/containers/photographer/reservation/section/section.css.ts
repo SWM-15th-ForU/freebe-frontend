@@ -28,3 +28,13 @@ export const fieldStyles = style({
   minWidth: "45%",
   flex: 1,
 });
+
+export const titleStyles = styleVariants({
+  wrapper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  title: [texts["headline-01"], sprinkles({ color: "text-point" })],
+  id: [texts["body-01"], sprinkles({ color: "text-04" })],
+});
