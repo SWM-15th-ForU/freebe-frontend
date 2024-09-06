@@ -40,7 +40,9 @@ export async function login(
   roleType: User,
   code: string,
 ): Promise<LoginResponse> {
-  const response = await api.post("login", { json: { roleType, code } });
+  const response = await api.post("login", {
+    json: { roleType: roleType.toUpperCase(), code },
+  });
 
   const accessToken = response.headers.get("accessToken");
   const refreshToken = response.headers.get("refreshToken");
