@@ -109,7 +109,8 @@ const baseWrapper = style([
     borderRadius: 8,
     borderWidth: 1,
     borderStyle: "solid",
-    padding: "12px",
+    paddingLeft: "12px",
+    paddingRight: "12px",
     marginTop: 8,
   },
 ]);
@@ -132,6 +133,14 @@ const InputStyles = styleVariants({
     sprinkles({ backgroundColor: "lightgrey" }),
     baseWrapper,
   ],
+  smWrapper: {
+    paddingTop: 8,
+    paddingBottom: 8,
+  },
+  mdWrapper: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
   input: [
     sprinkles({
       color: "text-02",

@@ -1,20 +1,24 @@
 import TextInput from "@/components/inputs/text-input";
 import { Path } from "react-hook-form";
-import { DetailsField } from "reservation-types";
+import { Details } from "reservation-types";
+import { fieldStyles } from "./section.css";
 
 interface FieldProps {
   name: string;
   isEditing?: boolean;
-  formField: Path<DetailsField>;
+  formField: Path<Details>;
 }
 
 const Field = ({ name, isEditing = false, formField }: FieldProps) => {
   return (
-    <TextInput<DetailsField>
-      title={name}
-      disabled={!isEditing}
-      formField={formField}
-    />
+    <div className={fieldStyles}>
+      <TextInput<Details>
+        title={name}
+        disabled={!isEditing}
+        formField={formField}
+        container={{ marginBottom: 0 }}
+      />
+    </div>
   );
 };
 
