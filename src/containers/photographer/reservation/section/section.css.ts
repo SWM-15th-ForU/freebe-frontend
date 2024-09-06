@@ -6,7 +6,6 @@ const baseWrapper = style({
   position: "relative",
   width: "100%",
   display: "flex",
-  justifyContent: "space-between",
 });
 
 export const sectionStyles = styleVariants({
@@ -24,7 +23,7 @@ export const sectionStyles = styleVariants({
     baseWrapper,
     {
       flexWrap: "wrap",
-
+      justifyContent: "space-between",
       columnGap: "20px",
     },
   ],

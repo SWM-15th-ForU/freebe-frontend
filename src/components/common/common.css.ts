@@ -307,4 +307,14 @@ export const thumbnailStyles = styleVariants({
     }),
     { padding: "4px 8px", zIndex: 3, position: "absolute", bottom: 0, left: 0 },
   ],
+  button: {
+    zIndex: 3,
+    position: "relative",
+    width: "100%",
+    background: "none",
+    border: "none",
+    justifyContent: "flex-end",
+    display: "flex",
+    padding: 4,
+  },
 });

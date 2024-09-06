@@ -7,6 +7,7 @@ import { thumbnailStyles } from "./common.css";
 interface ImageThumbnailProps {
   image: ImageType;
   onClickDelete?: () => void;
+  onClickFullsize?: () => void;
   onClick?: () => void;
   isRepresentative?: boolean;
   size?: string;
@@ -18,6 +19,7 @@ const THUMBNAIL_SIZE = "80px";
 const ImageThumbnail = ({
   image,
   onClickDelete,
+  onClickFullsize,
   onClick,
   isRepresentative,
   size = THUMBNAIL_SIZE,
@@ -46,6 +48,20 @@ const ImageThumbnail = ({
           }}
           size={24}
         />
+      )}
+      {onClickFullsize && (
+        <button
+          type="button"
+          onClick={onClickFullsize}
+          className={thumbnailStyles.button}
+        >
+          <Image
+            src="/icons/full-size.svg"
+            width={24}
+            height={24}
+            alt="전체 보기"
+          />
+        </button>
       )}
       {isRepresentative && (
         <div className={thumbnailStyles.representMark}>대표</div>
