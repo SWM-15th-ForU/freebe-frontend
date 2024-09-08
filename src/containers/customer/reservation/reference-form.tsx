@@ -57,7 +57,11 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
         handleSelect={changeSelected}
         selectedImages={selectedImageList}
       />
-      <BottomButton title="다음" onClick={handleNext} />
+      <BottomButton
+        title="다음"
+        onClick={handleNext}
+        disabled={selectedImageList.length === 0}
+      />
     </div>
   );
 };
