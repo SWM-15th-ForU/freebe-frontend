@@ -1,7 +1,9 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { reservation } from "product-types";
 import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const ReservationFormProvider = ({
   children,
@@ -20,12 +22,19 @@ const ReservationFormProvider = ({
     serviceAgreement: false,
     totalPrice: 0,
   };
-  const form = useForm<reservation.FormType>({
+  const reservationFormSchema = z.object({
+    instagram: z
+      .string()
+      .min(1, { message: "인스타그램 아이디를 입력해 주세요." }),
+  });
+
+  const method = useForm<reservation.FormType>({
+    resolver: zodResolver(reservationFormSchema),
     defaultValues,
   });
 
   return (
-    <FormProvider {...form}>
+    <FormProvider {...method}>
       <form>{children}</form>
     </FormProvider>
   );
