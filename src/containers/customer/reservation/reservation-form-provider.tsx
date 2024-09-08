@@ -26,6 +26,7 @@ const ReservationFormProvider = ({
     instagram: z
       .string()
       .min(1, { message: "인스타그램 아이디를 입력해 주세요." }),
+    memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
   });
 
   const method = useForm<reservation.FormType>({

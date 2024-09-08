@@ -22,8 +22,7 @@ const ReferenceSelected = ({
       }}
     >
       <span className={texts.body1} style={{ color: BLUE03 }}>
-        최소 1장, 최대 3장 선택해 주세요. 고른 사진은 작가님께 촬영용 레퍼런스로
-        전달돼요.
+        최대 3장 선택 가능하며, 고른 사진은 작가님께 촬영용 레퍼런스로 전달돼요.
       </span>
       <div className={reservationStyles.imageWrapper}>
         {images.map((image, index) => {

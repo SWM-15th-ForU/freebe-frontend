@@ -54,16 +54,28 @@ const ProductForm = () => {
     ],
   };
   const productFormSchema = z.object({
-    title: z.string().min(1, { message: "제목을 입력해 주세요." }),
+    title: z
+      .string()
+      .min(1, { message: "제목을 입력해 주세요." })
+      .max(30, { message: "최대 30자까지 입력 가능합니다." }),
     items: z.array(
       z.object({
-        title: z.string().min(1, { message: "구성의 이름을 입력해 주세요." }),
-        content: z.string().min(1, { message: "내용을 입력해 주세요." }),
+        title: z
+          .string()
+          .min(1, { message: "구성의 이름을 입력해 주세요." })
+          .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+        content: z
+          .string()
+          .min(1, { message: "내용을 입력해 주세요." })
+          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
       }),
     ),
     options: z.array(
       z.object({
-        title: z.string().min(1, { message: "옵션의 이름을 입력해 주세요." }),
+        title: z
+          .string()
+          .min(1, { message: "옵션의 이름을 입력해 주세요." })
+          .max(30, { message: "최대 30자까지 입력 가능합니다." }),
         price: z.coerce.number().positive({
           message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
         }),
@@ -72,7 +84,10 @@ const ProductForm = () => {
     discounts: z.array(
       z
         .object({
-          title: z.string().min(1, { message: "이름을 입력해 주세요." }),
+          title: z
+            .string()
+            .min(1, { message: "이름을 입력해 주세요." })
+            .max(30, { message: "최대 30자까지 입력 가능합니다." }),
           discountValue: z.coerce.number(),
           discountType: z.string(),
         })
