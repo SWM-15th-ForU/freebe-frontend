@@ -30,7 +30,7 @@ export const CustomButton = ({
     <button
       type="button"
       onClick={onClick}
-      className={buttonStyles[styleType]}
+      className={disabled ? buttonStyles.disabled : buttonStyles[styleType]}
       style={{ height: size === "sm" ? 48 : 56 }}
       disabled={disabled}
       {...props}

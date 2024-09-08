@@ -9,6 +9,20 @@ const baseTab = style([
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
     padding: "10px 16px",
+    cursor: "pointer",
+  },
+]);
+
+const baseButton = style([
+  texts["button-01"],
+  {
+    width: "100%",
+    borderRadius: 8,
+    padding: 10,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
   },
 ]);
 
@@ -111,44 +125,46 @@ const buttonStyles = styleVariants({
     },
   ],
   primary: [
-    texts["button-01"],
+    baseButton,
     sprinkles({
       backgroundColor: "blue",
       color: "white",
     }),
     {
-      width: "100%",
-      borderRadius: 8,
-      padding: 5,
       border: "none",
     },
   ],
   line: [
-    texts["button-01"],
     sprinkles({
       borderColor: "blue",
       color: "blue",
       backgroundColor: "white",
     }),
     {
-      width: "100%",
       borderStyle: "solid",
       borderRadius: 8,
       borderWidth: 1,
-      padding: 10,
     },
   ],
   secondary: [
-    texts["button-01"],
+    baseButton,
     sprinkles({
       backgroundColor: "bg-lightblue",
       color: "text-02",
     }),
     {
-      width: "100%",
-      borderRadius: 8,
-      padding: 5,
       border: "none",
+    },
+  ],
+  disabled: [
+    baseButton,
+    sprinkles({
+      backgroundColor: "bg-lightblue",
+      color: "text-04",
+    }),
+    {
+      border: "none",
+      cursor: "initial",
     },
   ],
 });
