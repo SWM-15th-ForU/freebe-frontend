@@ -23,6 +23,8 @@ export const CustomButton = ({
   title,
   size,
   styleType,
+  disabled,
+  ...props
 }: ButtonProps & ButtonOptions) => {
   return (
     <button
@@ -30,6 +32,8 @@ export const CustomButton = ({
       onClick={onClick}
       className={buttonStyles[styleType]}
       style={{ height: size === "sm" ? 48 : 56 }}
+      disabled={disabled}
+      {...props}
     >
       {title}
     </button>

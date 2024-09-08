@@ -1,4 +1,4 @@
-import { ActiveStatus, Infos } from "reservation-types";
+import { ActiveStatus, Infos, Status } from "reservation-types";
 import apiClient from "../core";
 
 interface StatusListData {
@@ -23,4 +23,21 @@ export async function getReservationList() {
     );
   });
   return reservationData;
+}
+
+export async function putReservationStatus(
+  id: number,
+  targetStatus: Status,
+  cancel?: string,
+) {
+  const body = {
+    updateStatus: targetStatus,
+    cancellationReason: cancel,
+  };
+  const response = await apiClient.put(
+    `photographer/reservation/details/${id}`,
+    {
+      body: JSON.stringify(body),
+    },
+  );
 }
