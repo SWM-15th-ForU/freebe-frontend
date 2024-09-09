@@ -13,13 +13,10 @@ const ImageDetails = () => {
     onClose: () => setSelectedIndex(-1),
   });
   const { getValues } = useFormContext<Details>();
-  // TODO: form 내부 데이터 연결
-  // const images = getValues("thumbnailImage");
-  const images = [
-    "https://picsum.photos/600/700",
-    "https://picsum.photos/500/800",
-    "https://picsum.photos/200/400",
-  ];
+  const [thumbnailImage, originalImage] = getValues([
+    "thumbnailImage",
+    "originalImage",
+  ]);
 
   function handleFullsizeImage(index: number) {
     setSelectedIndex(index);
@@ -34,7 +31,7 @@ const ImageDetails = () => {
   return (
     <SectionLayout title="이런 사진이 좋아요">
       <div className={sectionStyles.imageWrapper}>
-        {images.map((image, index) => (
+        {thumbnailImage.map((image, index) => (
           <ImageThumbnail
             key={`image ${index + 1}`}
             image={image}
@@ -46,8 +43,8 @@ const ImageDetails = () => {
       <FullImage
         opened={opened}
         onClose={close}
-        imageList={images}
-        thumbnailList={images}
+        imageList={originalImage}
+        thumbnailList={thumbnailImage}
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
       />
