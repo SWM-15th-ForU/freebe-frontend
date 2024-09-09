@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const formStyles = styleVariants({
@@ -10,9 +11,8 @@ export const formStyles = styleVariants({
     alignSelf: "flex-start",
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-02",
     }),
   ],
@@ -42,15 +42,15 @@ export const formStyles = styleVariants({
     },
   ],
   subtitle: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
     { marginBottom: 20 },
   ],
   input: [
-    sprinkles({ fontSize: "body-02", fontWeight: "body-02", color: "text-02" }),
+    texts["body-02"],
+    sprinkles({ color: "text-02" }),
     {
       border: 0,
       width: "100%",
@@ -89,23 +89,20 @@ export const bannerStyles = styleVariants({
     { padding: 16, display: "flex", flexDirection: "column", flex: 1 },
   ],
   title: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-point",
     }),
   ],
   content: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
   ],
   statusWrapper: [
+    texts["button-01"],
     sprinkles({
-      fontSize: "button-02",
-      fontWeight: "button-01",
       color: "text-03",
     }),
     {
@@ -120,9 +117,8 @@ export const bannerStyles = styleVariants({
 
 export const listStyles = styleVariants({
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-02",
     }),
   ],
@@ -133,9 +129,8 @@ export const listStyles = styleVariants({
     padding: 24,
   },
   head: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-02",
     }),
     {
@@ -154,10 +149,9 @@ export const listStyles = styleVariants({
     gap: 10,
   },
   add: [
+    texts["button-01"],
     sprinkles({
       backgroundColor: "blue",
-      fontSize: "button-02",
-      fontWeight: "button-01",
       color: "white",
     }),
     {
@@ -194,9 +188,8 @@ export const inputStyles = styleVariants({
     marginBottom: 5,
   },
   title: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-02",
     }),
     {
@@ -205,9 +198,8 @@ export const inputStyles = styleVariants({
     },
   ],
   description: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-03",
     }),
     {
@@ -228,9 +220,8 @@ export const inputStyles = styleVariants({
     },
   ],
   content: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
       backgroundColor: "white",
       borderColor: "stroke-grey",

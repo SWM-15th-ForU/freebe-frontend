@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseDropdown = style([
@@ -31,16 +32,14 @@ export const DropdownStyles = styleVariants({
   placeholder: [
     sprinkles({
       color: "text-02",
-      fontSize: "body-01",
-      fontWeight: "body-01",
     }),
+    texts["body-01"],
   ],
   disablePlaceholder: [
     sprinkles({
       color: "text-04",
-      fontSize: "body-01",
-      fontWeight: "body-01",
     }),
+    texts["body-01"],
   ],
   icon: [sprinkles({ color: "skyblue" })],
   list: [
@@ -64,6 +63,39 @@ export const DropdownStyles = styleVariants({
   ],
 });
 
+export const searchStyles = styleVariants({
+  container: [
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      padding: "0px 8px",
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      ":focus-within": {
+        outline: "1px solid #007AFF",
+      },
+    },
+  ],
+  input: [
+    texts["body-01"],
+    sprinkles({
+      color: "text-03",
+    }),
+    {
+      border: "none",
+      ":focus": {
+        outline: "none",
+        border: "none",
+      },
+    },
+  ],
+});
+
 export const infoStyles = styleVariants({
   container: {
     height: "100%",
@@ -72,8 +104,6 @@ export const infoStyles = styleVariants({
   },
   dropdown: [
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "white",
     }),
     {
@@ -83,19 +113,20 @@ export const infoStyles = styleVariants({
       backgroundColor: "#1E1E1ECC",
       border: "none",
     },
+    texts["body-02"],
   ],
 });
 
 const baseSwitch = style([
-  sprinkles({
-    fontSize: "button-02",
-    fontWeight: "button-01",
-  }),
+  texts["headline-03"],
   {
-    padding: "5px 16px",
+    padding: "8px 16px",
     display: "flex",
     alignItems: "center",
     borderRadius: 100,
+    border: "none",
+    gap: 6,
+    transition: "background-color 0.5s",
   },
 ]);
 
@@ -110,6 +141,20 @@ export const switchStyles = styleVariants({
       borderRadius: 100,
     },
   ],
+  borderContainer: [
+    sprinkles({
+      backgroundColor: "bg-lightgrey",
+      borderColor: "stroke-grey",
+    }),
+    {
+      display: "flex",
+      flexDirection: "row",
+      borderRadius: 100,
+      borderStyle: "solid",
+      borderWidth: 1,
+      padding: 1,
+    },
+  ],
   selected: [
     sprinkles({
       backgroundColor: "blue",
@@ -117,7 +162,91 @@ export const switchStyles = styleVariants({
     }),
     baseSwitch,
   ],
-  unselected: [sprinkles({ color: "text-03" }), baseSwitch],
+  unselected: [
+    sprinkles({ color: "text-03" }),
+    baseSwitch,
+    { background: "none" },
+  ],
+});
+
+const commonChipStyle = style([
+  sprinkles({
+    borderColor: "stroke-grey",
+  }),
+  {
+    borderWidth: 1,
+    borderStyle: "solid",
+    padding: "8px 16px",
+    height: "100%",
+    display: "flex",
+    alignItems: "center",
+    borderRadius: 100,
+    gap: 6,
+    margin: 0,
+    transition: "background-color 0.5s ease-in-out",
+  },
+  texts["headline-03"],
+]);
+
+export const chipStyles = styleVariants({
+  container: [
+    sprinkles({
+      backgroundColor: "white",
+      color: "text-02",
+    }),
+    commonChipStyle,
+  ],
+  selectedContainer: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    commonChipStyle,
+  ],
+  caption: [
+    sprinkles({
+      color: "text-04",
+    }),
+    { fontSize: 12, fontWeight: 500 },
+  ],
+});
+
+export const filterStyles = styleVariants({
+  dropdown: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      padding: "16px 20px",
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
+  ],
+  list: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+    margin: "16px 0px",
+    height: "auto",
+    maxHeight: 216,
+    overflowY: "scroll",
+    justifyContent: "space-evenly",
+  },
+  item: [
+    sprinkles({
+      color: "text-02",
+    }),
+    {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      border: "none",
+      background: "none",
+      gap: 8,
+      cursor: "pointer",
+    },
+    texts["headline-03"],
+  ],
 });
 
 export const toastStyles = styleVariants({
@@ -135,16 +264,14 @@ export const toastStyles = styleVariants({
   title: [
     sprinkles({
       color: "white",
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
     }),
+    texts["headline-03"],
   ],
   description: [
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "white",
     }),
+    texts["body-02"],
   ],
   closeButton: [
     sprinkles({
@@ -157,5 +284,27 @@ export const toastStyles = styleVariants({
         },
       },
     },
+  ],
+});
+
+export const thumbnailStyles = styleVariants({
+  container: {
+    aspectRatio: "1",
+    position: "relative",
+    marginTop: 15,
+  },
+  represent: [
+    sprinkles({ borderColor: "blue" }),
+    {
+      borderWidth: 2,
+      borderStyle: "solid",
+    },
+  ],
+  representMark: [
+    sprinkles({
+      backgroundColor: "blue",
+      color: "white",
+    }),
+    { padding: "4px 8px", zIndex: 3, position: "absolute", bottom: 0, left: 0 },
   ],
 });

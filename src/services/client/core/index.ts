@@ -1,25 +1,19 @@
-import ky, { BeforeRetryHook, HTTPError } from "ky";
-import { tokenKeys } from "@/constants/auth";
-import { redirect } from "next/navigation";
+import ky from "ky";
+import { beforeRequest, beforeRetry } from "./interceptor";
 
-const DEFAULT_API_RETRY_LIMIT = 2;
-
-// TODO: 클라이언트측 토큰관리와 연결
-const clientApi = ky
+const apiClient = ky
   .create({
-    prefixUrl: "https://api.freebe.co.kr/",
+    prefixUrl: process.env.NEXT_PUBLIC_API_DOMAIN,
+    credentials: "include",
+    mode: "cors",
   })
   .extend({
     hooks: {
-      beforeRequest: [
-        (request) => {
-          const accessToken =
-            "eyJhbGciOiJIUzM4NCJ9.eyJpc3MiOiIyIiwibWVtYmVySWQiOiIyIiwiaWF0IjoxNzIzNDI3ODUwLCJleHAiOjE3MjQ2Mzc0NTB9.xCbeUkOWaklnoi5GP8U9dKcIRjPz9BTDZRv0RuWqiJxm8e6WSzW2r7eETbQ5lAKR";
-
-          request.headers.set("Authorization", `Bearer ${accessToken}`);
-        },
-      ],
+      beforeRequest: [beforeRequest],
+      beforeRetry: [beforeRetry],
+      // TODO: 공통 에러 핸들러 추가
+      afterResponse: [],
     },
   });
 
-export default clientApi;
+export default apiClient;

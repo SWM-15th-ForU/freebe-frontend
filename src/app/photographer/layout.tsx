@@ -1,5 +1,4 @@
-import styles from "@/styles/page.module.css";
-import Header from "@/containers/main/header";
+import Header from "@/containers/photographer/main/header";
 
 const PhotographerLayout = ({
   children,
@@ -8,11 +7,14 @@ const PhotographerLayout = ({
 }>) => {
   return (
     <div
-      className={styles.center}
-      style={{ minWidth: "900px", width: "100vw", overflowX: "scroll" }}
+      style={{
+        width: "100vw",
+        overflowX: "scroll",
+        paddingTop: 51,
+      }}
     >
       <Header />
-      <div style={{ width: "100%" }}>{children}</div>
+      {children}
     </div>
   );
 };

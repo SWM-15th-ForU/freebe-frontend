@@ -93,7 +93,7 @@ export const BottomButton = ({ title, onClick, disabled }: ButtonProps) => {
       onClick={disabled ? () => {} : onClick}
       role="presentation"
     >
-      <span className={texts.button1}>{title}</span>
+      {title}
     </div>
   );
 };

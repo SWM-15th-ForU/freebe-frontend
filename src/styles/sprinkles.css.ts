@@ -43,42 +43,27 @@ const colorProperties = defineProperties({
   },
 });
 
-const fontSizes = {
-  "headline-01": 25,
-  "headline-02": 19,
-  "headline-03": 15,
-  "body-01": 18,
-  "body-02": 15,
-  "button-01": 18,
-  "button-02": 15,
-  "caption-01": 12,
-  /*
-    TODO: set responsible PC version size
-    "headline-01": 21,
-    "headline-02": 18,
-    "headline-03": 15,
-    "body-01": 15, 
-    "button-01": 16,
-    "button-02": 12,
-    "caption-01": 12,
-    */
-};
-
-const fontWeights = {
-  "headline-01": 600,
-  "headline-02": 600,
-  "headline-03": 600,
-  "body-01": 500,
-  "body-02": 500,
-  "button-01": 600,
-  "button-02": 600,
-  "caption-01": 500,
-};
-
 const textProperties = defineProperties({
+  conditions: {
+    mobile: {},
+    desktop: { "@media": "screen and (min-width: 700px)" },
+  },
+  defaultCondition: "mobile",
   properties: {
-    fontSize: fontSizes,
-    fontWeight: fontWeights,
+    fontSize: {
+      xxl: 25,
+      xl: 21,
+      lg: 19,
+      md: 18,
+      sm: 16,
+      xs: 15,
+      xxs: 12,
+    },
+    fontWeight: {
+      semibold: 600,
+      medium: 500,
+      regular: 400,
+    },
   },
 });
 

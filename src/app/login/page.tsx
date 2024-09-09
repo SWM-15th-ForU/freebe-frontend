@@ -1,13 +1,17 @@
-"use client";
-
-import LoginButton from "@/components/buttons/login-button";
+import Login from "@/containers/photographer/login";
+import { loginPageStyles } from "./page.css";
 
 const Page = () => {
+  // TODO: 실제 사진 반환받아 데이터 연결
+  const images = [
+    "https://picsum.photos/200/200",
+    "https://picsum.photos/200/300",
+    "https://picsum.photos/200/400",
+  ];
+
   return (
-    <div>
-      <h3>사진작가의 든든한 업무 파트너</h3>
-      <h3>프리비와 함께 더 자유롭게 촬영하세요</h3>
-      <LoginButton />
+    <div className={loginPageStyles.background}>
+      <Login images={images} />
     </div>
   );
 };

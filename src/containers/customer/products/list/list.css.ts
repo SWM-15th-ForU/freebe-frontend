@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const cardStyles = styleVariants({
@@ -17,9 +18,8 @@ export const cardStyles = styleVariants({
     justifyContent: "space-between",
   },
   title: [
+    texts["headline-02"],
     sprinkles({
-      fontSize: "headline-02",
-      fontWeight: "headline-02",
       color: "text-01",
     }),
   ],

@@ -1,4 +1,5 @@
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseTab = style([
@@ -16,14 +17,15 @@ const buttonStyles = styleVariants({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    padding: 20,
     margin: 30,
-    gap: 12,
+    gap: 42,
     border: 0,
-    width: 184,
-    height: 45,
+    width: 280,
+    height: 54,
     backgroundColor: "#FEE500",
-    borderRadius: 12,
+    borderRadius: 8,
     fontSize: 17,
     fontWeight: 600,
     color: "#1a1a1a",
@@ -32,11 +34,11 @@ const buttonStyles = styleVariants({
     },
   },
   add: [
+    texts["button-01"],
     sprinkles({
       borderColor: "blue",
       color: "blue",
       backgroundColor: "white",
-      fontWeight: "button-01",
     }),
     {
       width: "100%",
@@ -49,10 +51,10 @@ const buttonStyles = styleVariants({
     },
   ],
   link: [
+    texts["button-01"],
     sprinkles({
       backgroundColor: "blue",
-      fontSize: "button-01",
-      fontWeight: "button-01",
+
       color: "white",
     }),
     {
@@ -65,28 +67,25 @@ const buttonStyles = styleVariants({
     },
   ],
   tab: [
+    texts["body-02"],
     sprinkles({
-      fontSize: "body-02",
-      fontWeight: "body-02",
       color: "text-02",
     }),
     baseTab,
   ],
   selectedTab: [
+    texts["headline-03"],
     sprinkles({
-      fontSize: "headline-03",
-      fontWeight: "headline-03",
       color: "text-01",
       backgroundColor: "bg-lightgrey",
     }),
     baseTab,
   ],
   submit: [
+    texts["button-01"],
     sprinkles({
       backgroundColor: "blue",
       color: "white",
-      fontSize: "button-01",
-      fontWeight: "button-01",
     }),
     {
       width: "100%",
@@ -136,6 +135,10 @@ export const closeStyles = styleVariants({
       color: "white",
     }),
   ],
+  background: {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    height: "auto",
+  },
 });
 
 export default buttonStyles;

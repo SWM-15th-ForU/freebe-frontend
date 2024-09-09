@@ -1,6 +1,7 @@
 import { parseTimeRequest } from "@/utils/date";
 import { arrayToObject } from "@/utils/parse";
 import { reservation } from "product-types";
+import apiClient from "../core";
 
 interface ProductDatas {
   photographerId: number;
@@ -28,20 +29,25 @@ export async function postReservation(
         };
       }),
     ),
-    productOptions: formData.options.map((option) => {
-      return {
-        title: option.title,
-        quantity: option.quantity,
-        price: option.price,
-      };
-    }),
+    photoOptions: arrayToObject(
+      formData.options.map((option) => {
+        return {
+          title: option.title,
+          quantity: option.quantity,
+          price: option.price,
+        };
+      }),
+    ),
     customerMemo: formData.memo,
     preferredImages: formData.referenceImages,
     totalPrice: formData.totalPrice,
     serviceTermAgreement: formData.serviceAgreement,
     photographerTermAgreement: formData.photographerAgreement,
   };
-  console.log(body);
-  // TODO: client측 ky 인스턴스 생성 후 연결, reservationId 받아 반환
-  return "reservation-id";
+
+  const response = await apiClient
+    .post("customer/reservation", { json: body })
+    .json<{ data: number }>();
+  const { data } = response;
+  return data;
 }

@@ -1,5 +1,5 @@
 import { Image, ProductFormdata } from "product-types";
-import clientApi from "../core";
+import apiClient from "../core";
 
 export async function postNewProduct(
   formData: ProductFormdata,
@@ -32,18 +32,20 @@ export async function postNewProduct(
       };
     }),
   };
-  const request = await clientApi
-    .post("photographer/product", { json: body })
+  const response = await apiClient
+    .post("photographer/product", {
+      json: body,
+    })
     .json();
-  return request;
+  return response;
 }
 
 export async function putProductStatus(
   productId: number,
   activeStatus: "INACTIVE" | "ACTIVE",
 ) {
-  const request = await clientApi
+  const response = await apiClient
     .put("photographer/product/status", { json: { productId, activeStatus } })
     .json();
-  return request;
+  return response;
 }

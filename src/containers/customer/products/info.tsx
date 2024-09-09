@@ -1,23 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import { Product } from "product-types";
 import { Carousel } from "@mantine/carousel";
+import { useDisclosure } from "@mantine/hooks";
+import { Modal } from "@mantine/core";
 import { BottomButton } from "@/components/buttons/common-buttons";
+import LoginButton from "@/components/buttons/login-button";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
-import { indicatorStyle, infoStyles } from "./products.css";
+import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
 
-const ProductInfo = ({ items, options, subtitle, title, images }: Product) => {
-  const router = useRouter();
-  const currentPath = usePathname();
-  const handleStartReservation = () => {
-    router.push(`${currentPath}/reservation/reference`);
-  };
+const ProductInfo = ({
+  items,
+  options,
+  subtitle,
+  title,
+  images,
+  id,
+  product,
+}: Product & { product: number; id: number }) => {
+  const [opened, { open, close }] = useDisclosure(false);
 
   return (
     <div className={infoStyles.container}>
+      <Modal
+        opened={opened}
+        onClose={close}
+        centered
+        classNames={{
+          body: modalStyles.body,
+          content: modalStyles.content,
+          header: modalStyles.header,
+        }}
+      >
+        <span className={modalStyles.title}>예약을 시작하시겠어요?</span>
+        <span className={modalStyles.info}>
+          작가님께 신청자 정보를 간편하게 전달하기 위해 로그인을 해 주세요!
+        </span>
+        <LoginButton roleType="customer" id={id} product={product} />
+      </Modal>
       <Carousel
         withIndicators
         withControls={false}
@@ -58,7 +80,7 @@ const ProductInfo = ({ items, options, subtitle, title, images }: Product) => {
           })}
         </div>
       </div>
-      <BottomButton title="예약 시작하기" onClick={handleStartReservation} />
+      <BottomButton title="예약 시작하기" onClick={open} />
     </div>
   );
 };
