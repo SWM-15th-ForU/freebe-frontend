@@ -17,7 +17,7 @@ const DiscountInput = ({
   formRegister,
   errors,
 }: DiscountInputProps) => {
-  const { setValue, watch } = useFormContext<Product>();
+  const { setValue, watch, trigger } = useFormContext<Product>();
   const discounts = watch("discounts");
 
   function handleSwitchType() {
@@ -54,7 +54,11 @@ const DiscountInput = ({
         placeholder="(선택) 설명을 입력해 주세요."
         {...formRegister(`discounts.${index}.description`)}
       />
-
+      {errors.discounts?.[index]?.description && (
+        <span className={formStyles.error}>
+          {errors.discounts[index]?.description?.message}
+        </span>
+      )}
       <input
         className={inputStyles.content}
         type="number"

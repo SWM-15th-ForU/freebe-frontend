@@ -5,7 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Image, ProductFormdata } from "product-types";
+import { Image, Item, ProductFormdata } from "product-types";
 import { SubmitButton } from "@/components/buttons/common-buttons";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
@@ -58,12 +58,18 @@ const ProductForm = () => {
       .string()
       .min(1, { message: "제목을 입력해 주세요." })
       .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+    subtitle: z
+      .string()
+      .max(100, { message: "최대 100자까지 입력 가능합니다." }),
     items: z.array(
       z.object({
         title: z
           .string()
           .min(1, { message: "구성의 이름을 입력해 주세요." })
           .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+        description: z
+          .string()
+          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
         content: z
           .string()
           .min(1, { message: "내용을 입력해 주세요." })
@@ -76,6 +82,9 @@ const ProductForm = () => {
           .string()
           .min(1, { message: "옵션의 이름을 입력해 주세요." })
           .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+        description: z
+          .string()
+          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
         price: z.coerce.number().positive({
           message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
         }),
@@ -88,6 +97,9 @@ const ProductForm = () => {
             .string()
             .min(1, { message: "이름을 입력해 주세요." })
             .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+          description: z
+            .string()
+            .max(100, { message: "최대 100자까지 입력 가능합니다." }),
           discountValue: z.coerce.number(),
           discountType: z.string(),
         })
