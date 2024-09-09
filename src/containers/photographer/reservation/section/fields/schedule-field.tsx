@@ -16,7 +16,7 @@ const ScheduleField = ({ name, isEditing = false, value }: FieldProps) => {
         title={name}
         disabled={!isEditing}
         value={`${formatDate(value.date)}    ${formatTimeString(value.startTime)} ~ ${formatTimeString(value.endTime)}`}
-        style={{ minWidth: "fit-content" }}
+        container={{ minWidth: "30ch", marginBottom: 0 }}
       />
     </div>
   );

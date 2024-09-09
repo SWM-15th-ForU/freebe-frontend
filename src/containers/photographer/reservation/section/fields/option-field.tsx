@@ -14,19 +14,20 @@ const OptionField = ({ isEditing = false, optionIndex }: FieldProps) => {
         disabled
         inputSize="sm"
         formField={`options.${optionIndex}.title`}
-        container={{ flex: 1, margin: 0, width: "35%" }}
+        container={{ flex: 1, margin: 0, width: "35%", minWidth: 0 }}
       />
       <TextInput<Details>
+        placeholder="0"
         disabled={!isEditing}
         inputSize="sm"
         formField={`options.${optionIndex}.quantity`}
-        container={{ flex: 0.5, margin: 0, width: "25%" }}
+        container={{ flex: 0.6, margin: 0, width: "25%", minWidth: 0 }}
       />
       <TextInput<Details>
         disabled
         inputSize="sm"
         formField={`options.${optionIndex}.price`}
-        container={{ flex: 1, margin: 0, width: "35%" }}
+        container={{ flex: 1, margin: 0, width: "35%", minWidth: 0 }}
       />
     </div>
   );

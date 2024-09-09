@@ -33,7 +33,7 @@ const ImageDetails = () => {
 
   return (
     <SectionLayout title="이런 사진이 좋아요">
-      <div className={sectionStyles.scheduleWrapper}>
+      <div className={sectionStyles.imageWrapper}>
         {images.map((image, index) => (
           <ImageThumbnail
             key={`image ${index + 1}`}

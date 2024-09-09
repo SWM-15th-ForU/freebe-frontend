@@ -11,15 +11,18 @@ export const containerStyle = style({
     [breakpoints.mobile]: {
       padding: "20px 24px",
       flexDirection: "column",
+      overflow: "hidden",
     },
   },
 });
 
 export const detailStyle = style({
   flex: 1,
+  maxWidth: "60%",
   "@media": {
     [breakpoints.mobile]: {
       width: "100%",
+      maxWidth: "100%",
     },
   },
 });

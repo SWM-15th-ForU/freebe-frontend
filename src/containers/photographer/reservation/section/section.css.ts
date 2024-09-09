@@ -53,7 +53,27 @@ export const sectionStyles = styleVariants({
       borderBottomStyle: "solid",
     },
   ],
-  scheduleWrapper: [baseWrapper, { gap: 20, overflowX: "scroll" }],
+  scheduleWrapper: [
+    baseWrapper,
+    {
+      gap: 20,
+      overflowX: "scroll",
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "flex",
+          flexDirection: "column",
+          gap: 0,
+        },
+      },
+    },
+  ],
+  imageWrapper: [
+    baseWrapper,
+    {
+      gap: 20,
+      overflowX: "scroll",
+    },
+  ],
   optionWrapper: [
     baseWrapper,
     { gap: 10, flexDirection: "column", padding: "10px 0px" },
@@ -84,11 +104,12 @@ export const sectionStyles = styleVariants({
 
 export const fieldStyles = styleVariants({
   text: {
-    minWidth: "45%",
-    flex: 1,
+    minWidth: "fit-content",
+    width: "45%",
+    flexGrow: 1,
   },
   schedule: {
-    width: "40%",
+    minWidth: "max-content",
     flexShrink: 0,
     flexGrow: 1,
   },
@@ -96,6 +117,7 @@ export const fieldStyles = styleVariants({
     width: "100%",
     gap: 12,
     display: "flex",
+    position: "relative",
   },
 });
 

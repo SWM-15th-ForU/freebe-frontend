@@ -119,7 +119,7 @@ const baseWrapper = style([
 const InputStyles = styleVariants({
   container: {
     width: "100%",
-
+    minWidth: "fit-content",
     height: "fit-content",
     marginTop: 20,
     marginBottom: 20,

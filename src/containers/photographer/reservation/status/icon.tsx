@@ -21,10 +21,14 @@ const Banner = ({
     <div className={bannerStyles[current]}>
       <div className={bannerStyles.wrapper}>
         {current === "DONE" && (
-          <Image src="/icons/components/check.svg" alt="check" fill />
+          <div className={bannerStyles.image}>
+            <Image src="/icons/components/check.svg" alt="check" fill />
+          </div>
         )}
         {current === "NOW" && (
-          <Image src="/icons/options.svg" alt="check" fill />
+          <div className={bannerStyles.image}>
+            <Image src="/icons/options.svg" alt="check" fill />
+          </div>
         )}
         {current === "NOT_STARTED" && statusIndex[status]}
       </div>

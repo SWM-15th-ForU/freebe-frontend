@@ -27,7 +27,10 @@ export const statusStyles = styleVariants({
     "@media": {
       [breakpoints.mobile]: {
         width: "100%",
+        height: 120,
         maxWidth: "100%",
+        padding: "20px 30px",
+        gap: 10,
       },
     },
   },
@@ -58,8 +61,16 @@ export const iconStyles = styleVariants({
     justifyContent: "center",
     gap: 3,
   },
-  name: [baseName, sprinkles({ color: "text-01" })],
-  caption: [baseName, sprinkles({ color: "text-03" })],
+  name: [
+    baseName,
+    sprinkles({ color: "text-01" }),
+    { height: "100%", "@media": { [breakpoints.mobile]: { fontSize: 13 } } },
+  ],
+  caption: [
+    baseName,
+    sprinkles({ color: "text-03" }),
+    { "@media": { [breakpoints.mobile]: { fontSize: 13 } } },
+  ],
 });
 
 const baseBanner = style([
@@ -68,9 +79,6 @@ const baseBanner = style([
     aspectRatio: "1",
     borderRadius: 100,
     position: "relative",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
   },
 ]);
 
@@ -98,10 +106,18 @@ export const bannerStyles = styleVariants({
       color: "text-04",
     }),
     {
-      width: "50%",
-      height: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      height: "100%",
       position: "relative",
       textAlign: "center",
     },
   ],
+  image: {
+    width: "50%",
+    height: "50%",
+    position: "relative",
+  },
 });
