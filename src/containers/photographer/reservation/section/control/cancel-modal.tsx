@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "next/navigation";
 import { Modal } from "@mantine/core";
 import { putReservationStatus } from "@/services/client/photographer/reservations";
 import { modalStyles } from "@/containers/customer/products/products.css";
@@ -13,6 +14,7 @@ const CancelModal = ({
   opened: boolean;
   close: () => void;
 }) => {
+  const { reservationId } = useParams<{ reservationId: string }>();
   const [cancellationReason, setCancellationReason] = useState("");
 
   return (
@@ -36,7 +38,13 @@ const CancelModal = ({
         styleType="primary"
         title="취소하기"
         disabled={cancellationReason === ""}
-        onClick={() => putReservationStatus(1, "CANCELLED", cancellationReason)}
+        onClick={() =>
+          putReservationStatus(
+            parseInt(reservationId, 10),
+            "CANCELLED",
+            cancellationReason,
+          )
+        }
       />
     </Modal>
   );
