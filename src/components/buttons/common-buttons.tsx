@@ -113,10 +113,14 @@ export const LinkTab = ({
   );
 };
 
-export const BottomButton = ({ title, onClick }: ButtonProps) => {
+export const BottomButton = ({ title, onClick, disabled }: ButtonProps) => {
   return (
-    <div className={buttonStyles.bottom} onClick={onClick} role="presentation">
-      <span className={texts["button-01"]}>{title}</span>
+    <div
+      className={`${buttonStyles.bottom} ${disabled && buttonStyles.disabled}`}
+      onClick={disabled ? () => {} : onClick}
+      role="presentation"
+    >
+      {title}
     </div>
   );
 };

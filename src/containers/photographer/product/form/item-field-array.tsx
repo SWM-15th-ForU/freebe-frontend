@@ -1,12 +1,17 @@
-import { useFieldArray } from "react-hook-form";
-import { FieldArrayProps } from "@/types/form-types";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { ProductFormdata } from "product-types";
 import { AddButton } from "@/components/buttons/common-buttons";
 import ItemInput from "./item-input";
 import { formStyles } from "../product.css";
 
-const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
+const ItemFieldArray = () => {
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<ProductFormdata>();
   const { fields, append, remove } = useFieldArray({
-    control: formControl,
+    control,
     name: "items",
   });
 
@@ -18,9 +23,10 @@ const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         return (
           <ItemInput
             key={item.id}
-            formRegister={formRegister}
+            formRegister={register}
             index={index}
             onClickRemove={() => remove(index)}
+            errors={errors}
           />
         );
       })}
@@ -30,7 +36,6 @@ const ItemFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
             title: "",
             content: "",
             description: "",
-            hasDescription: false,
           })
         }
         title="추가하기"

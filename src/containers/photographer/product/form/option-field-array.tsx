@@ -1,12 +1,17 @@
-import { useFieldArray } from "react-hook-form";
-import { FieldArrayProps } from "@/types/form-types";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import { ProductFormdata } from "product-types";
 import { AddButton } from "@/components/buttons/common-buttons";
 import OptionInput from "./option-input";
 import { formStyles } from "../product.css";
 
-const OptionFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
+const OptionFieldArray = () => {
+  const {
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<ProductFormdata>();
   const { fields, append, remove } = useFieldArray({
-    control: formControl,
+    control,
     name: "options",
   });
 
@@ -18,14 +23,17 @@ const OptionFieldArray = ({ formControl, formRegister }: FieldArrayProps) => {
         return (
           <OptionInput
             key={item.id}
-            formRegister={formRegister}
+            formRegister={register}
             index={index}
             onClickRemove={() => remove(index)}
+            errors={errors}
           />
         );
       })}
       <AddButton
-        onClick={() => append({ title: "", price: "", isFree: false })}
+        onClick={() =>
+          append({ title: "", price: 0, isFree: false, description: "" })
+        }
         title="추가하기"
       />
     </div>
