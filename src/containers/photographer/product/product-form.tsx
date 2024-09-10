@@ -4,8 +4,9 @@ import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
+import { Image, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Image, Item, ProductFormdata } from "product-types";
+import popToast from "@/components/common/toast";
 import { SubmitButton } from "@/components/buttons/common-buttons";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
@@ -39,7 +40,7 @@ const ProductForm = () => {
     options: [
       {
         title: "보정본 추가",
-        isFree: true,
+        isFree: false,
         description: "",
         price: 0,
       },
@@ -77,18 +78,30 @@ const ProductForm = () => {
       }),
     ),
     options: z.array(
-      z.object({
-        title: z
-          .string()
-          .min(1, { message: "옵션의 이름을 입력해 주세요." })
-          .max(30, { message: "최대 30자까지 입력 가능합니다." }),
-        description: z
-          .string()
-          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
-        price: z.coerce.number().positive({
-          message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
-        }),
-      }),
+      z
+        .object({
+          title: z
+            .string()
+            .min(1, { message: "옵션의 이름을 입력해 주세요." })
+            .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+          description: z
+            .string()
+            .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+          price: z.coerce.number(),
+          isFree: z.boolean(),
+        })
+        .refine(
+          ({ price, isFree }) => {
+            if (!isFree) {
+              return price > 0;
+            }
+            return true;
+          },
+          {
+            message: "추가 비용이 없는 옵션이라면 무료로 선택해 주세요.",
+            path: ["price"],
+          },
+        ),
     ),
     discounts: z.array(
       z
@@ -139,8 +152,12 @@ const ProductForm = () => {
   const [images, setImages] = useState<Image[]>([]);
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
-    await postNewProduct(data, images);
-    router.push("/photographer/mypage/products");
+    if (images.length === 0) {
+      popToast("이미지를 등록해 주세요.", "최소 한 장의 이미지가 필요합니다.");
+    } else {
+      await postNewProduct(data, images);
+      router.push("/photographer/mypage/products");
+    }
   };
 
   return (

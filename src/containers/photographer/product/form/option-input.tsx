@@ -34,7 +34,7 @@ const OptionInput = ({
           style={{ marginRight: "auto" }}
         />
         <SwitchItem
-          value={{ selected: "유료", unselected: "무료" }}
+          value={{ selected: "무료", unselected: "유료" }}
           onSwitch={handleSwitchIsFree}
           selected={options[index]?.isFree}
         />
@@ -58,7 +58,7 @@ const OptionInput = ({
 
       {
         // TODO: 숫자만 입력 받으면서 입력 값 형식 관리할 수 있도록 확장
-        options[index]?.isFree && (
+        !options[index]?.isFree && (
           <>
             <div className={inputStyles.content}>
               <input

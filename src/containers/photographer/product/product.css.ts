@@ -58,9 +58,8 @@ export const formStyles = styleVariants({
     },
   ],
   error: [
+    texts["caption-01"],
     sprinkles({
-      fontSize: "caption-01",
-      fontWeight: "caption-01",
       color: "pink",
     }),
     { margin: 3, display: "block" },
@@ -166,9 +165,8 @@ export const listStyles = styleVariants({
 });
 
 export const textInput = style([
+  texts["body-02"],
   sprinkles({
-    fontSize: "body-02",
-    fontWeight: "body-02",
     color: "text-02",
   }),
   {
