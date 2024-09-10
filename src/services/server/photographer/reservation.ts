@@ -1,4 +1,5 @@
 import { Details, Option, ReservationDate, Status } from "reservation-types";
+import { objectToArray } from "@/utils/parse";
 import { api } from "../core";
 
 interface ReservationDetailResponse {
@@ -51,13 +52,17 @@ export async function getReservationDetail(
     currentStatus: data.currentReservationStatus,
     customer: data.customerDetails,
     photographerMemo: data.photographerMemo || "",
-    productInfo: Object.entries(data.photoInfo).map(([title, content]) => ({
-      title,
-      content,
-    })),
-    preferredDates: Object.entries(data.preferredDates).map(
-      ([_, content]) => content,
+    productInfo: objectToArray(data.photoInfo, (arr) =>
+      arr.map(([title, content]) => ({
+        title,
+        content,
+      })),
     ),
-    options: Object.entries(data.photoOptions).map(([_, content]) => content),
+    preferredDates: objectToArray(data.preferredDates, (arr) =>
+      arr.sort().map(([_, content]) => content),
+    ),
+    options: objectToArray(data.photoOptions, (arr) =>
+      arr.map(([_, content]) => content),
+    ),
   };
 }
