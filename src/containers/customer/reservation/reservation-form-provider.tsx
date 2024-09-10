@@ -1,7 +1,9 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { reservation } from "product-types";
 import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const ReservationFormProvider = ({
   children,
@@ -20,20 +22,21 @@ const ReservationFormProvider = ({
     serviceAgreement: false,
     totalPrice: 0,
   };
-  const form = useForm<reservation.FormType>({
+  const reservationFormSchema = z.object({
+    instagram: z
+      .string()
+      .min(1, { message: "인스타그램 아이디를 입력해 주세요." }),
+    memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
+  });
+
+  const method = useForm<reservation.FormType>({
+    resolver: zodResolver(reservationFormSchema),
     defaultValues,
   });
 
-  const { handleSubmit } = form;
-
-  function onSubmit(formValues: reservation.FormType) {
-    // TODO: connect to submit reservation api
-    alert(JSON.stringify(formValues));
-  }
-
   return (
-    <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+    <FormProvider {...method}>
+      <form>{children}</form>
     </FormProvider>
   );
 };

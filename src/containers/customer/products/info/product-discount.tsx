@@ -1,8 +1,8 @@
 import { Discount } from "product-types";
+import AdditionInfo from "@/components/common/addition-info";
 
 const ProductDiscount = ({
   discountType,
-  hasDescription,
   title,
   description,
   discountValue,
@@ -10,7 +10,7 @@ const ProductDiscount = ({
   return (
     <div>
       <span>{title}</span>
-      {hasDescription && <span>{description}</span>}
+      {description && <AdditionInfo content={description} size={16} />}
       {discountType === "AMOUNT" ? (
         <span>{discountValue}원 할인</span>
       ) : (

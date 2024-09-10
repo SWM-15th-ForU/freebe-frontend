@@ -13,14 +13,14 @@ export async function postNewProduct(
       return {
         title: item.title,
         content: item.content,
-        description: item.hasDescription ? item.description : null,
+        description: item.description !== "" ? item.description : null,
       };
     }),
     productOptions: formData.options.map((option) => {
       return {
         title: option.title,
         price: option.isFree ? 0 : option.price,
-        description: option.hasDescription ? option.description : null,
+        description: option.description !== "" ? option.description : null,
       };
     }),
     productDiscounts: formData.discounts.map((discount) => {
@@ -28,7 +28,7 @@ export async function postNewProduct(
         title: discount.title,
         discountType: discount.discountType,
         discountValue: discount.discountValue,
-        description: discount.hasDescription ? discount.description : null,
+        description: discount.description !== "" ? discount.description : null,
       };
     }),
   };

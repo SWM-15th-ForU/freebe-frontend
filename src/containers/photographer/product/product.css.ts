@@ -4,7 +4,8 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 export const formStyles = styleVariants({
   container: {
-    width: "100%",
+    width: "70%",
+    maxWidth: 750,
     margin: "auto",
     paddingTop: 50,
     alignSelf: "flex-start",
@@ -55,6 +56,13 @@ export const formStyles = styleVariants({
       width: "100%",
       marginTop: 10,
     },
+  ],
+  error: [
+    texts["caption-01"],
+    sprinkles({
+      color: "pink",
+    }),
+    { margin: 3, display: "block" },
   ],
 });
 
@@ -156,11 +164,19 @@ export const listStyles = styleVariants({
   ],
 });
 
-export const textInput = style({
-  border: 0,
-  width: "100%",
-  marginTop: 15,
-});
+export const textInput = style([
+  texts["body-02"],
+  sprinkles({
+    color: "text-02",
+  }),
+  {
+    border: 0,
+    flex: 1,
+    ":focus": {
+      outline: "none",
+    },
+  },
+]);
 
 export const inputStyles = styleVariants({
   headWrapper: {
@@ -209,12 +225,19 @@ export const inputStyles = styleVariants({
       borderColor: "stroke-grey",
     }),
     {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
       marginTop: 16,
       width: "100%",
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
       padding: "8px 12px",
+      ":focus": {
+        outline: "none",
+      },
     },
   ],
 });

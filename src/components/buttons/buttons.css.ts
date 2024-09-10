@@ -110,6 +110,12 @@ const buttonStyles = styleVariants({
       color: "white",
     },
   ],
+  disabled: [
+    sprinkles({
+      color: "text-point",
+    }),
+    { filter: ["grayscale(100%)"] },
+  ],
 });
 
 export const closeStyles = styleVariants({
