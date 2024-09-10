@@ -37,7 +37,7 @@ export default function RootLayout({
       </head>
       <body
         className={pretendard.className}
-        style={{ overflowX: "hidden", overflowY: "auto" }}
+        style={{ overflowX: "hidden", overflowY: "hidden" }}
       >
         <MantineProvider>
           <Notifications />

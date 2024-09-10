@@ -1,6 +1,7 @@
 import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { LinkType } from "profile-types";
+import { mainStyle } from "./customer.css";
 
 const CustomerMainPage = ({ params }: { params: { id: string } }) => {
   // TODO: 사진작가 프로필 조회 api 연결
@@ -19,7 +20,7 @@ const CustomerMainPage = ({ params }: { params: { id: string } }) => {
   };
 
   return (
-    <div>
+    <div className={mainStyle}>
       <BackgroundImage mainImage={photographerProfile.src} />
       <InfoSheet
         message={photographerProfile.message}
