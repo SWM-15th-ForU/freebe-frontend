@@ -1,17 +1,17 @@
-import { Infos, Status } from "reservation-types";
+import { ActiveStatus, Infos, Status } from "reservation-types";
 import apiClient from "../core";
 
 interface StatusListData {
-  reservationStatus: Status;
+  reservationStatus: ActiveStatus;
   formComponent: Infos[];
 }
 
 // TODO: url의 상수화 리팩토링
 export async function getReservationList() {
   const { data } = await apiClient
-    .post("photographer/reservation")
+    .get("photographer/reservation")
     .json<{ data: StatusListData[] }>();
-  const reservationData: { [key in Status]: Infos[] } = {
+  const reservationData: { [key in ActiveStatus]: Infos[] } = {
     NEW: [],
     IN_PROGRESS: [],
     WAITING_FOR_DEPOSIT: [],
@@ -23,4 +23,21 @@ export async function getReservationList() {
     );
   });
   return reservationData;
+}
+
+export async function putReservationStatus(
+  id: number,
+  targetStatus: Status,
+  cancel?: string,
+) {
+  const body = {
+    updateStatus: targetStatus,
+    cancellationReason: cancel,
+  };
+  const response = await apiClient.put(
+    `photographer/reservation/details/${id}`,
+    {
+      body: JSON.stringify(body),
+    },
+  );
 }

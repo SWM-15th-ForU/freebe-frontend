@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Infos, Status } from "reservation-types";
+import { ActiveStatus, Infos } from "reservation-types";
 import { statusTitles } from "@/constants/common/reservation";
 import { reservationColors } from "@/styles/colors.css";
 import { texts } from "@/styles/text.css";
@@ -9,7 +9,7 @@ import ReservationCard from "./card";
 import { listStyles } from "./list.css";
 
 interface StatusListProps {
-  status: Status;
+  status: ActiveStatus;
   reservations: Infos[];
 }
 

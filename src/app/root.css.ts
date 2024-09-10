@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { keyframes, style, styleVariants } from "@vanilla-extract/css";
@@ -20,6 +21,9 @@ const baseContainer = style({
   alignItems: "center",
   justifyContent: "center",
   gap: 30,
+  "@media": {
+    [breakpoints.mobile]: { width: "100vw" },
+  },
 });
 
 export const handlerStyles = styleVariants({

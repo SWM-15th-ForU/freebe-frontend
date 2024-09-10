@@ -1,9 +1,9 @@
 import { styleVariants, ComplexStyleRule } from "@vanilla-extract/css";
-import { Status } from "reservation-types";
+import { ActiveStatus } from "reservation-types";
 import sprinkles from "./sprinkles.css";
 
 export const reservationColors = styleVariants<
-  Record<Status, ComplexStyleRule>
+  Record<ActiveStatus, ComplexStyleRule>
 >({
   NEW: [sprinkles({ color: "blue" })],
   IN_PROGRESS: [sprinkles({ color: "green" })],

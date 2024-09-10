@@ -13,6 +13,33 @@ interface ButtonProps
   title: string;
 }
 
+interface ButtonOptions {
+  size: "sm" | "md";
+  styleType: "primary" | "secondary" | "line";
+}
+
+export const CustomButton = ({
+  onClick = () => {},
+  title,
+  size,
+  styleType,
+  disabled,
+  ...props
+}: ButtonProps & ButtonOptions) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={disabled ? buttonStyles.disabled : buttonStyles[styleType]}
+      style={{ height: size === "sm" ? 48 : 56 }}
+      disabled={disabled}
+      {...props}
+    >
+      {title}
+    </button>
+  );
+};
+
 export const AddButton = ({ onClick = () => {}, title }: ButtonProps) => {
   return (
     <button type="button" onClick={onClick} className={buttonStyles.add}>

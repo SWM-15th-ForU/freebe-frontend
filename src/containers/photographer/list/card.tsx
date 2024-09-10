@@ -1,12 +1,12 @@
 import { formatDate, formatTimeString, getDateDifference } from "@/utils/date";
 import Image from "next/image";
 import Link from "next/link";
-import { Infos, Status } from "reservation-types";
+import { ActiveStatus, Infos } from "reservation-types";
 import { reservationColors } from "@/styles/colors.css";
 import CardContent from "./content";
 import { cardStyles, coverStyles } from "./list.css";
 
-const DdayCover = ({ day, status }: { day: string; status: Status }) => {
+const DdayCover = ({ day, status }: { day: string; status: ActiveStatus }) => {
   return (
     <div className={coverStyles.wrapper}>
       <span className={`${reservationColors[status]} ${coverStyles.main}`}>
@@ -23,7 +23,7 @@ const DateCover = ({
 }: {
   date: string;
   startTime: string;
-  status: Status;
+  status: ActiveStatus;
 }) => {
   const shootDate = new Date(date);
 

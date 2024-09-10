@@ -1,8 +1,10 @@
 "use server";
 
-import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { AfterResponseHook } from "ky";
 import { User } from "user-types";
+import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { api } from "./core";
 
 export async function customerKakaoLogin(postLogin: string) {
@@ -40,7 +42,14 @@ export async function login(
   roleType: User,
   code: string,
 ): Promise<LoginResponse> {
-  const response = await api.post("login", { json: { roleType, code } });
+  const handleLoginError: AfterResponseHook = () => {
+    redirect("error");
+  };
+
+  const response = await api.post("login", {
+    json: { roleType: roleType.toUpperCase(), code },
+    hooks: { afterResponse: [handleLoginError] },
+  });
 
   const accessToken = response.headers.get("accessToken");
   const refreshToken = response.headers.get("refreshToken");

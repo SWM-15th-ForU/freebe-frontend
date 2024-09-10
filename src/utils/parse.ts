@@ -9,3 +9,11 @@ export const arrayToObject = <T extends object>(
     {} as { [key: string]: T },
   );
 };
+
+export const objectToArray = <T extends object>(
+  object: T,
+  callback?: (arr: [string, T][]) => any[],
+): any[] => {
+  const parsedArray = Object.entries(object);
+  return callback ? callback(parsedArray) : parsedArray;
+};

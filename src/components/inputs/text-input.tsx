@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, InputHTMLAttributes } from "react";
-import { FieldValues, useFormContext } from "react-hook-form";
+import { CSSProperties, DetailedHTMLProps, InputHTMLAttributes } from "react";
+import { FieldValues, Path, useFormContext } from "react-hook-form";
 import InputStyles from "./input.css";
 
 interface TextInputProps<T extends FieldValues>
@@ -8,10 +8,12 @@ interface TextInputProps<T extends FieldValues>
     HTMLInputElement
   > {
   title?: string;
+  inputSize?: "sm" | "md";
   placeholder?: string;
   disabled?: boolean;
   multiline?: boolean;
-  formField?: keyof T;
+  formField?: Path<T>;
+  container?: CSSProperties;
 }
 
 const TextInput = <T extends FieldValues>({
@@ -20,17 +22,19 @@ const TextInput = <T extends FieldValues>({
   disabled,
   multiline,
   formField,
+  container,
+  inputSize = "sm",
   ...props
 }: TextInputProps<T>) => {
   const { register } = useFormContext();
 
   return (
-    <div className={InputStyles.container}>
+    <div className={InputStyles.container} style={container}>
       {title && <span className={InputStyles.title}>{title}</span>}
       <div
-        className={
+        className={`${
           disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
-        }
+        } ${inputSize === "sm" ? InputStyles.smWrapper : InputStyles.mdWrapper}`}
       >
         {multiline ? (
           <textarea
@@ -38,13 +42,13 @@ const TextInput = <T extends FieldValues>({
               disabled ? InputStyles.disabledInput : InputStyles.multilineInput
             }
             placeholder={placeholder}
-            {...(formField && register(formField.toString()))}
+            {...(formField && register(formField))}
           />
         ) : (
           <input
             className={disabled ? InputStyles.disabledInput : InputStyles.input}
             placeholder={placeholder}
-            {...(formField && register(formField.toString()))}
+            {...(formField && register(formField))}
             disabled={disabled}
             {...props}
           />

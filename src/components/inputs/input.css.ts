@@ -91,8 +91,9 @@ const baseInput = style([
   texts["body-02"],
   {
     border: "none",
-    width: "100%",
-    margin: "auto",
+    minWidth: "fit-content",
+    flex: 1,
+    margin: 0,
     verticalAlign: "middle",
     backgroundColor: "transparent",
   },
@@ -103,13 +104,14 @@ const baseWrapper = style([
   {
     display: "flex",
     alignItems: "center",
+    justifyContent: "flex-start",
     position: "relative",
-    width: "100%",
     height: "fit-content",
     borderRadius: 8,
     borderWidth: 1,
     borderStyle: "solid",
-    padding: "12px",
+    paddingLeft: "12px",
+    paddingRight: "12px",
     marginTop: 8,
   },
 ]);
@@ -117,9 +119,11 @@ const baseWrapper = style([
 const InputStyles = styleVariants({
   container: {
     width: "100%",
+    minWidth: "fit-content",
     height: "fit-content",
     marginTop: 20,
     marginBottom: 20,
+    position: "relative",
   },
   title: [
     texts["headline-03"],
@@ -132,6 +136,14 @@ const InputStyles = styleVariants({
     sprinkles({ backgroundColor: "lightgrey" }),
     baseWrapper,
   ],
+  smWrapper: {
+    paddingTop: 8,
+    paddingBottom: 8,
+  },
+  mdWrapper: {
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
   input: [
     sprinkles({
       color: "text-02",
@@ -157,7 +169,7 @@ const InputStyles = styleVariants({
       marginRight: "auto",
     },
   ],
-  multilineInput: [baseInput, { height: "80px" }],
+  multilineInput: [baseInput],
 });
 
 export default InputStyles;
