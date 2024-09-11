@@ -1,4 +1,10 @@
 import { Item, Option } from "product-types";
+import {
+  CustomerDetails,
+  CustomerReservationResponse,
+  Option as OptionDetails,
+} from "reservation-types";
+import { objectToArray } from "@/utils/parse";
 import { api } from "../core";
 
 interface FormDataResponse {
@@ -57,4 +63,33 @@ export async function getImageList(photographerId: string) {
   const { data } = response;
   console.log(data);
   return data;
+}
+
+export async function getReservationDetails(
+  reservationId: number,
+): Promise<CustomerDetails> {
+  const { data } = await api
+    .get(`customer/reservation/${reservationId}`)
+    .json<{ data: CustomerReservationResponse }>();
+  const options = objectToArray(data.photoOptions, (arr) =>
+    arr.map(([_, content]) => content),
+  ) as OptionDetails[];
+  return {
+    ...data,
+    options,
+    currentStatus: data.reservationStatus,
+    preferredDates: objectToArray(data.preferredDate, (arr) =>
+      arr.sort().map(([_, content]) => content),
+    ),
+    productInfo: objectToArray(data.photoInfo, (arr) =>
+      arr.map(([title, content]) => ({
+        title,
+        content,
+      })),
+    ),
+    requestMemo: data.customerMemo,
+    totalPrice: options
+      .map((option) => option.price)
+      .reduce((sum: number, price: number) => sum + price, 0),
+  };
 }
