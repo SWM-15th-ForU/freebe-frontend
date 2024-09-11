@@ -2,6 +2,31 @@ import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const profileStyles = styleVariants({
+  container: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    gap: 16,
+  },
+  imageWrapper: [
+    sprinkles({ backgroundColor: "bg-lightblue" }),
+    {
+      position: "relative",
+      height: 48,
+      width: 48,
+      borderRadius: 100,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  ],
+  id: [texts["headline-03"], sprinkles({ color: "text-point" })],
+  image: {
+    borderRadius: 100,
+  },
+});
+
 const baseDropdown = style([
   sprinkles({
     borderColor: "stroke-grey",

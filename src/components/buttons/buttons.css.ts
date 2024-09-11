@@ -23,6 +23,7 @@ const baseButton = style([
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
+    flex: "0 0",
   },
 ]);
 

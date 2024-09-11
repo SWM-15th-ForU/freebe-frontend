@@ -65,4 +65,10 @@ export const texts = styleVariants({
       fontWeight: "medium",
     }),
   ],
+  "caption-02": [
+    sprinkles({
+      fontSize: "sm",
+      fontWeight: "medium",
+    }),
+  ],
 });

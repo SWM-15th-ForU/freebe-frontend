@@ -9,7 +9,7 @@ interface StatusListData {
 // TODO: url의 상수화 리팩토링
 export async function getReservationList() {
   const { data } = await apiClient
-    .get("photographer/reservation")
+    .get("photographer/reservation/list")
     .json<{ data: StatusListData[] }>();
   const reservationData: { [key in ActiveStatus]: Infos[] } = {
     NEW: [],
