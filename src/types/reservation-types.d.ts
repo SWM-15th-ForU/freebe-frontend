@@ -66,6 +66,13 @@ declare module "reservation-types" {
     price: number;
   }
 
+  type StatusHistory = {
+    [key in ActiveStatus]: {
+      updatedDate?: string | null;
+      current: "DONE" | "NOW" | "NOT_STARTED";
+    };
+  };
+
   interface CustomerReservationResponse extends BaseReservationResponse {
     preferredDate: { [key: string]: ReservationDate };
     reservationStatus: Status;
@@ -75,7 +82,7 @@ declare module "reservation-types" {
     reservationNumber: number;
     currentReservationStatus: Status;
     statusHistory: {
-      reservationStatus: Status;
+      reservationStatus: ActiveStatus;
       statusUpdateDate: string;
     }[];
     customerDetails: {
@@ -91,7 +98,7 @@ declare module "reservation-types" {
   }
   interface Details extends BaseDetails {
     reservationNumber: number;
-    statusHistory: { [key in Status]: { updatedDate: string | null } };
+    statusHistory: StatusHistory;
     customer: Customer;
     productInfo: { title: string; content: string }[];
     originalImage: string[];

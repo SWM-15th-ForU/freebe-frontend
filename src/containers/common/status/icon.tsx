@@ -7,7 +7,7 @@ import { bannerStyles, iconStyles } from "./status.css";
 const Banner = ({
   status,
   current,
-}: Omit<Parameters<typeof StatusIcon>[0], "date">) => {
+}: Omit<Parameters<typeof StatusIcon>[0], "date" | "hasInformation">) => {
   const statusIndex: Record<Status, string> = {
     NEW: "1",
     IN_PROGRESS: "2",
@@ -40,8 +40,10 @@ const StatusIcon = ({
   status,
   current,
   date,
+  hasInformation,
 }: {
   status: Status;
+  hasInformation: boolean;
   current: "DONE" | "NOW" | "NOT_STARTED";
   date?: string;
 }) => {
@@ -59,7 +61,9 @@ const StatusIcon = ({
         >
           {statusTitles[status]}
         </span>
-        <AdditionInfo content={statusInfos[status]} size={14} />
+        {hasInformation && (
+          <AdditionInfo content={statusInfos[status]} size={14} />
+        )}
       </div>
     </div>
   );

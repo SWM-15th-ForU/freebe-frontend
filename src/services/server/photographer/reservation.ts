@@ -12,17 +12,19 @@ export async function getReservationDetail(
 
   const { statusHistory }: Pick<Details, "statusHistory"> = {
     statusHistory: {
-      NEW: { updatedDate: null },
-      IN_PROGRESS: { updatedDate: null },
-      WAITING_FOR_DEPOSIT: { updatedDate: null },
-      WAITING_FOR_PHOTO: { updatedDate: null },
-      CANCELLED: { updatedDate: null },
-      PHOTO_COMPLETED: { updatedDate: null },
+      NEW: { updatedDate: null, current: "NOT_STARTED" },
+      IN_PROGRESS: { updatedDate: null, current: "NOT_STARTED" },
+      WAITING_FOR_DEPOSIT: { updatedDate: null, current: "NOT_STARTED" },
+      WAITING_FOR_PHOTO: { updatedDate: null, current: "NOT_STARTED" },
     },
   };
   data.statusHistory.forEach((history) => {
     statusHistory[history.reservationStatus].updatedDate =
       history.statusUpdateDate;
+    statusHistory[history.reservationStatus].current =
+      data.currentReservationStatus === history.reservationStatus
+        ? "NOW"
+        : "DONE";
   });
   return {
     ...data,
