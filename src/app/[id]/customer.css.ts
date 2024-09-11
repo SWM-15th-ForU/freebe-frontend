@@ -16,5 +16,8 @@ export const mainStyle = style({
   display: "flex",
   flexDirection: "column",
   height: "100%",
+  width: "100%",
   overflowY: "hidden",
+  overflowX: "hidden",
+  position: "relative",
 });

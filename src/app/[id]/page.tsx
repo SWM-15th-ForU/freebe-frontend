@@ -5,7 +5,6 @@ import { LinkType } from "profile-types";
 import { mainStyle } from "./customer.css";
 
 const CustomerMainPage = async ({ params }: { params: { id: number } }) => {
-  // TODO: 사진작가 프로필 조회 api 연결
   const defaultLinks: LinkType[] = [
     { name: "상품 선택하기", src: "/products" },
     { name: "일정 확인하기 ", src: "/schedules" },

@@ -2,6 +2,44 @@ import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const bottomSheetStyles = styleVariants({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    position: "relative",
+    transition: "all 0.3s ease",
+    width: "100%",
+    maxHeight: "90vh",
+    backgroundColor: "white",
+    overflowY: "visible",
+    bottom: 0,
+  },
+  header: {
+    position: "absolute",
+    width: "100%",
+    top: -40,
+    height: 40,
+    paddingTop: 10,
+    backgroundColor: "white",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    boxShadow: "0px -9px 8px 0px rgba(42, 126, 226, 0.1)",
+  },
+  handle: {
+    width: "20%",
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: "#d0d0d0",
+    margin: "auto",
+  },
+  body: {
+    overflowY: "scroll",
+    overflowX: "hidden",
+    position: "relative",
+    height: "100%",
+  },
+});
+
 export const profileStyles = styleVariants({
   container: {
     display: "flex",

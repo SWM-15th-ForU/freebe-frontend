@@ -14,6 +14,7 @@ export async function getPhotographerProfile(
 ): Promise<Photographer> {
   const response = await api.get(`customer/profile/${photographerId}`);
   const { data } = await response.json<{ data: ProfileResponse }>();
+
   return {
     ...data,
     banner: data.bannerImageUrl,
