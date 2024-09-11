@@ -12,6 +12,14 @@ export const api = ky
       beforeRequest: [beforeRequest],
       beforeRetry: [beforeRetry],
       // TODO: 공통 에러 핸들러 추가
-      afterResponse: [],
+      afterResponse: [
+        async (request, options, response) => {
+          if (!response.ok) {
+            const body = await response.json<{ message: string }>();
+            console.log(body.message);
+            console.log(response);
+          }
+        },
+      ],
     },
   });

@@ -3,16 +3,16 @@
 import Profile from "@/components/common/profile";
 import ServiceFooter from "@/components/customer/service-footer";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import { LinkType } from "profile-types";
+import { LinkType, Photographer } from "profile-types";
 import { sheetStyles } from "./main.css";
 
-interface InfoSheetProps {
-  id: string;
-  message: string;
-  links: LinkType[];
-}
-
-const InfoSheet = ({ id, links, message }: InfoSheetProps) => {
+const InfoSheet = ({
+  defaultLinks,
+  linkInfos,
+  message,
+}: Pick<Photographer, "linkInfos" | "message"> & {
+  defaultLinks: LinkType[];
+}) => {
   return (
     <div className={sheetStyles.container}>
       <div className={sheetStyles.header} />
@@ -25,23 +25,25 @@ const InfoSheet = ({ id, links, message }: InfoSheetProps) => {
         </div>
         <div className={sheetStyles.buttonWrapper}>
           <div className={sheetStyles.scrollArea}>
-            {links.map((link) => {
+            {defaultLinks.map((link) => {
               return (
                 <CustomButton
                   key={link.name}
                   title={link.name}
                   size="sm"
                   styleType="primary"
+                  link={link.src}
                 />
               );
             })}
-            {links.map((link) => {
+            {linkInfos.map((link) => {
               return (
                 <CustomButton
                   key={link.name}
                   title={link.name}
                   size="md"
                   styleType="secondary"
+                  link={link.src}
                 />
               );
             })}
