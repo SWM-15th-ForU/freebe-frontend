@@ -8,11 +8,6 @@ const baseProgress = style({
   borderRadius: 100,
   flex: 1,
   position: "relative",
-  "@media": {
-    [breakpoints.mobile]: {
-      backgroundColor: "#E7F2FB",
-    },
-  },
 });
 
 const baseName = style([
@@ -49,7 +44,17 @@ export const statusStyles = styleVariants({
     sprinkles({ backgroundColor: "blue" }),
     { height: "100%", transition: "width 0.3s ease" },
   ],
-  progress: [sprinkles({ backgroundColor: "white" }), baseProgress],
+  progress: [
+    sprinkles({ backgroundColor: "white" }),
+    baseProgress,
+    {
+      "@media": {
+        [breakpoints.mobile]: {
+          backgroundColor: "#E7F2FB",
+        },
+      },
+    },
+  ],
 });
 
 export const iconStyles = styleVariants({
