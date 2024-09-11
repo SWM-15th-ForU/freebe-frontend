@@ -1,28 +1,6 @@
-import { Details, Option, ReservationDate, Status } from "reservation-types";
+import { Details, ReservationDetailResponse } from "reservation-types";
 import { objectToArray } from "@/utils/parse";
 import { api } from "../core";
-
-interface ReservationDetailResponse {
-  reservationNumber: number;
-  currentReservationStatus: Status;
-  statusHistory: {
-    reservationStatus: Status;
-    statusUpdateDate: string;
-  }[];
-  productTitle: string;
-  customerDetails: {
-    name: string;
-    phoneNumber: string;
-    instagramId: string;
-  };
-  photoInfo: { [key: string]: string };
-  preferredDates: { [key: string]: ReservationDate };
-  originalImage: string[];
-  thumbnailImage: string[];
-  requestMemo: string;
-  photoOptions: { [key: string]: Option };
-  photographerMemo: string | null;
-}
 
 export async function getReservationDetail(
   reservationId: number,
