@@ -73,6 +73,9 @@ export const logout = async () => {
         },
       },
     );
+    if (response.status === 401) {
+      await reissueTokens();
+    }
     deleteTokens();
     return response;
   }

@@ -27,11 +27,15 @@ export async function PUT() {
 export async function DELETE() {
   try {
     const response = await logout();
-    // TODO: need api test
     if (response.redirected) {
       const redirectUrl = response.url;
       if (redirectUrl) {
         return NextResponse.redirect(redirectUrl);
+      }
+      if (response.status === 403) {
+        return NextResponse.redirect(
+          new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
+        );
       }
     }
     return response;
