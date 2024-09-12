@@ -7,7 +7,7 @@ declare module "profile-types" {
   interface ProfileResponse {
     bannerImageUrl: string;
     profileImageUrl: string;
-    instagramId: string;
+    instagramId: string | null;
     introductionContent: string;
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }

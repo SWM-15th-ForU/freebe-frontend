@@ -1,3 +1,5 @@
+import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const ModalStyle = style({
@@ -26,4 +28,16 @@ export const ModalStyles = styleVariants({
     backgroundColor: "white",
     boxShadow: "0px 5px 15px 0px #00000025",
   },
+});
+
+export const mypageStyles = styleVariants({
+  container: {
+    padding: 40,
+  },
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
 });
