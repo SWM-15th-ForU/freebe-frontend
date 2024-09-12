@@ -17,3 +17,10 @@ export const objectToArray = <T extends object>(
   const parsedArray = Object.entries(object);
   return callback ? callback(parsedArray) : parsedArray;
 };
+
+export const formatPrice = (price: number, isFree?: boolean): string => {
+  if (isFree || price === 0) {
+    return "무료";
+  }
+  return `${price.toLocaleString()}원`;
+};

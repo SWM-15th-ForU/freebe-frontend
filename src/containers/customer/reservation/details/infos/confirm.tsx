@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CustomerDetails } from "reservation-types";
+import { formatPrice } from "@/utils/parse";
 import { infoStyles } from "./infos.css";
 
 const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
@@ -8,7 +9,7 @@ const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
 
   return (
     <div className={infoStyles.container}>
-      <span className={infoStyles.price}>총 {totalPrice}원</span>
+      <span className={infoStyles.price}>총 {formatPrice(totalPrice)}</span>
       <div className={infoStyles.wrapper}>
         <Link href="/id/agreement">
           <div className={infoStyles.item}>

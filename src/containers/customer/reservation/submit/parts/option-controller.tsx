@@ -1,6 +1,7 @@
 import { reservation } from "product-types";
 import CountInput from "@/components/inputs/count-input";
 import CloseButton from "@/components/buttons/close-button";
+import { formatPrice } from "@/utils/parse";
 import { optionControllerStyles } from "./parts.css";
 
 interface OptionControllerProps {
@@ -31,7 +32,7 @@ const OptionController = ({
           setValue={(newValue) => onChangeQuantity(newValue)}
         />
         <span className={optionControllerStyles.price}>
-          {option.price ? `${option.price}원` : "무료"}
+          {formatPrice(option.price)}
         </span>
         <CloseButton onClick={onClickDelete} size={18} />
       </div>

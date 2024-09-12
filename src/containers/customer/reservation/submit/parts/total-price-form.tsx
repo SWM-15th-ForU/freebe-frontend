@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
 import CheckAgreement from "@/components/agreement/check-agreement";
+import { formatPrice } from "@/utils/parse";
 import submitStyles from "../submit.css";
 import { priceFormStyles } from "./parts.css";
 
@@ -34,7 +35,7 @@ const TotalPriceForm = () => {
     <div className={submitStyles.container}>
       <div className={priceFormStyles.wrapper}>
         <span className={submitStyles.title}>총 가격</span>
-        <span className={priceFormStyles.price}>{totalPrice}원</span>
+        <span className={priceFormStyles.price}>{formatPrice(totalPrice)}</span>
       </div>
       <CheckAgreement
         checked={photographerAgreement}

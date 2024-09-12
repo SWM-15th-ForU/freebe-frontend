@@ -1,4 +1,5 @@
 import { CustomerDetails, Option } from "reservation-types";
+import { formatPrice } from "@/utils/parse";
 import { infoStyles } from "./infos.css";
 
 const OptionItem = ({ price, quantity, title }: Option) => {
@@ -6,7 +7,7 @@ const OptionItem = ({ price, quantity, title }: Option) => {
     <div className={infoStyles.item}>
       <span className={infoStyles.name}>{title}</span>
       <span className={infoStyles.content}>{quantity}</span>
-      <span className={infoStyles.content}>{price}원</span>
+      <span className={infoStyles.content}>{formatPrice(price)}</span>
     </div>
   );
 };
