@@ -1,9 +1,25 @@
-import { mypageTabs } from "@/constants/photographer/mypage";
-import { Menu, MenuDivider } from "@mantine/core";
+"use client";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Menu, MenuDivider } from "@mantine/core";
+import { mypageTabs } from "@/constants/photographer/mypage";
+import { logout } from "@/services/client/core/auth";
 import { menuStyles } from "./header.css";
 
 const ProfileMenu = () => {
+  const router = useRouter();
+
+  async function handleLogout() {
+    const response = await logout();
+    if (response.redirected) {
+      const location = response.url;
+      if (location) {
+        router.push(location);
+      }
+    }
+  }
+
   return (
     <Menu.Dropdown>
       {mypageTabs.map((tab) => {
@@ -20,7 +36,7 @@ const ProfileMenu = () => {
         );
       })}
       <MenuDivider />
-      <Menu.Item>
+      <Menu.Item onClick={handleLogout}>
         <span className={menuStyles.logout}>로그아웃</span>
       </Menu.Item>
     </Menu.Dropdown>

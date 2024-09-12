@@ -7,6 +7,13 @@ export const getAccessToken = () => {
   return cookieStore.get(tokenKeys.access)?.value;
 };
 
+export const deleteTokens = () => {
+  const cookieStore = cookies();
+  cookieStore.delete(tokenKeys.access);
+  cookieStore.delete(tokenKeys.refresh);
+  console.log("delete");
+};
+
 const getRefreshToken = () => {
   const cookieStore = cookies();
   return cookieStore.get(tokenKeys.refresh)?.value;
@@ -48,5 +55,25 @@ export const reissueTokens = async () => {
     } else {
       redirect("/login");
     }
+  }
+};
+
+export const logout = async () => {
+  const accessToken = getAccessToken();
+  const refreshToken = getRefreshToken();
+  if (!refreshToken || !accessToken) {
+    redirect("/login");
+  } else {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_DOMAIN}logout`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          refreshToken,
+        },
+      },
+    );
+    deleteTokens();
+    return response;
   }
 };
