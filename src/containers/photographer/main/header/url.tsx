@@ -9,11 +9,11 @@ const Url = ({ myUrl }: { myUrl: string }) => {
     try {
       await navigator.clipboard.writeText(myUrl);
       popToast(
-        "클립보드에 복사되었습니다.",
         "링크를 공유해 고객에게 전달해 보세요!",
+        "클립보드에 복사되었습니다.",
       );
     } catch (error) {
-      popToast("오류가 발생했습니다.", "다시 시도해 주세요.");
+      popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
     }
   }
 

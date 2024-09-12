@@ -33,11 +33,11 @@ const Status = ({
     try {
       await navigator.clipboard.writeText(`https://www.freebe.co.kr${url}`);
       popToast(
-        "클립보드에 복사되었습니다.",
         "링크를 통해 예약 현황을 확인할 수 있어요!",
+        "클립보드에 복사되었습니다.",
       );
     } catch (error) {
-      popToast("오류가 발생했습니다.", "다시 시도해 주세요.");
+      popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
     }
   }
 
