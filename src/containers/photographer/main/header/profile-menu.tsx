@@ -8,14 +8,15 @@ const ProfileMenu = () => {
     <Menu.Dropdown>
       {mypageTabs.map((tab) => {
         return (
-          <Menu.Item key={tab.name}>
-            <Link
-              href={`photographer/mypage/${tab.src}`}
-              className={menuStyles.item}
-            >
+          <Link
+            key={tab.name}
+            href={`/photographer/mypage/${tab.src}`}
+            className={menuStyles.item}
+          >
+            <Menu.Item>
               <span>{tab.name}</span>
-            </Link>
-          </Menu.Item>
+            </Menu.Item>
+          </Link>
         );
       })}
       <MenuDivider />
