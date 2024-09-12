@@ -55,7 +55,7 @@ const Filter = ({
           className={
             selectedItems.length > 0
               ? chipStyles.selectedContainer
-              : chipStyles.container
+              : chipStyles.normal
           }
         >
           <Image
