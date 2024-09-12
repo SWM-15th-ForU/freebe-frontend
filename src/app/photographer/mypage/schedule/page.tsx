@@ -1,11 +1,7 @@
 import Preparing from "@/containers/photographer/mypage/preparing";
 
 const MySchedulePage = () => {
-  return (
-    <div>
-      <Preparing />
-    </div>
-  );
+  return <Preparing />;
 };
 
 export default MySchedulePage;

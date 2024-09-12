@@ -1,11 +1,7 @@
 import Preparing from "@/containers/photographer/mypage/preparing";
 
 const MyPreviousPage = () => {
-  return (
-    <div>
-      <Preparing />
-    </div>
-  );
+  return <Preparing />;
 };
 
 export default MyPreviousPage;
