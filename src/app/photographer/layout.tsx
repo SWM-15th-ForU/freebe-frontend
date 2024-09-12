@@ -9,7 +9,8 @@ const PhotographerLayout = ({
     <div
       style={{
         width: "100vw",
-        overflowX: "scroll",
+        height: "100vh",
+        display: "flex",
         paddingTop: 51,
       }}
     >

@@ -31,13 +31,28 @@ export const ModalStyles = styleVariants({
 });
 
 export const mypageStyles = styleVariants({
-  container: {
-    padding: 40,
-  },
+  container: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    {
+      padding: 40,
+      position: "relative",
+      height: "auto",
+      overflowY: "scroll",
+      flexGrow: 1,
+    },
+  ],
   title: [
     texts["headline-02"],
     sprinkles({
       color: "text-02",
     }),
+  ],
+  content: [
+    {
+      width: "100%",
+
+      paddingTop: 20,
+      position: "relative",
+    },
   ],
 });

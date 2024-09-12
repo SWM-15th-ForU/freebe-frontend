@@ -11,7 +11,7 @@ const MypageLayout = ({
   return (
     <div className={mypageStyles.container}>
       <span className={mypageStyles.title}>{title}</span>
-      {children}
+      <div className={mypageStyles.content}>{children}</div>
     </div>
   );
 };

@@ -9,8 +9,10 @@ const MypageLayout = ({
 }>) => {
   return (
     <div className={mypageStyles.container}>
-      <Navbar />
-      <div className={mypageStyles.body}>{children}</div>
+      <div className={mypageStyles.body}>
+        <Navbar />
+        {children}
+      </div>
     </div>
   );
 };

@@ -5,8 +5,10 @@ import { styleVariants } from "@vanilla-extract/css";
 export const navbarStyle = styleVariants({
   container: {
     alignSelf: "flex-start",
-    margin: 40,
-    width: 240,
+    padding: 30,
+    width: 300,
+    height: "100%",
+    backgroundColor: "white",
   },
   title: [
     texts["headline-02"],
