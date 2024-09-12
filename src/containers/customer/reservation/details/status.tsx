@@ -6,7 +6,7 @@ import ReservationStatus from "@/containers/common/status";
 import { compareStatus } from "@/utils/reservation";
 import Chip from "@/components/common/chip";
 import popToast from "@/components/common/toast";
-import { statusStyles } from "./detail.css";
+import { detailStyles } from "./detail.css";
 
 const Status = ({
   productTitle,
@@ -42,15 +42,15 @@ const Status = ({
   }
 
   return (
-    <div className={statusStyles.container}>
-      <span className={statusStyles.title}>{productTitle}</span>
-      <span className={statusStyles.message}>
+    <div className={detailStyles.container}>
+      <span className={detailStyles.title}>{productTitle}</span>
+      <span className={detailStyles.message}>
         신청서 제출이 완료되었습니다.
       </span>
       <ReservationStatus statusHistory={statusHistory} noInformation />
       <Chip
         name="공유하기"
-        container={{ marginTop: 24 }}
+        container={{ marginTop: 24, height: 30 }}
         styleType="highlight"
         onClick={handleExport}
       />
