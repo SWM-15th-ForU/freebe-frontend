@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -8,18 +9,23 @@ export const headerContainer = style([
     boxSizing: "border-box",
     top: 0,
     left: 0,
+    right: 0,
     position: "fixed",
 
     zIndex: 15,
     padding: "10px 40px",
-    width: "100%",
-    minWidth: 400,
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        padding: "10px 20px",
+      },
+    },
   },
 ]);
 
@@ -29,6 +35,12 @@ export const profileContainer = style({
   alignItems: "center",
   marginLeft: 30,
   gap: 20,
+
+  "@media": {
+    [breakpoints.mobile]: {
+      marginLeft: 20,
+    },
+  },
 });
 
 export const urlStyles = styleVariants({
@@ -38,6 +50,7 @@ export const urlStyles = styleVariants({
       backgroundColor: "bg-lightgrey",
     }),
     {
+      position: "relative",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
@@ -45,6 +58,15 @@ export const urlStyles = styleVariants({
       minWidth: 400,
       padding: "7px 6px 7px 12px",
       gap: 15,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          marginLeft: "auto",
+          minWidth: 0,
+          padding: 0,
+          backgroundColor: "white",
+        },
+      },
     },
   ],
   content: [
@@ -54,8 +76,18 @@ export const urlStyles = styleVariants({
     }),
     {
       flex: 1,
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "none",
+        },
+      },
     },
   ],
+  icon: {
+    position: "relative",
+    width: 30,
+    height: 22,
+  },
 });
 
 export const menuStyles = styleVariants({
