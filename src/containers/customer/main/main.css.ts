@@ -53,6 +53,11 @@ export const imageStyles = styleVariants({
       height: "fit-content",
     },
   ],
+  logo: {
+    position: "absolute",
+    top: 24,
+    left: 24,
+  },
   image: {
     width: "100%",
     height: "auto",

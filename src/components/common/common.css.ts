@@ -18,7 +18,7 @@ export const bottomSheetStyles = styleVariants({
     position: "absolute",
     width: "100%",
     top: -40,
-    height: 40,
+    height: 42,
     paddingTop: 10,
     backgroundColor: "white",
     borderTopLeftRadius: 30,
