@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import Link from "next/link";
 import { LinkType } from "profile-types";
-import { texts } from "@/styles/text.css";
 import buttonStyles from "./buttons.css";
 
 interface ButtonProps
@@ -14,7 +13,7 @@ interface ButtonProps
 }
 
 interface ButtonOptions {
-  size: "sm" | "md";
+  size: "xs" | "sm" | "md" | "lg";
   styleType: "primary" | "secondary" | "line";
 }
 
@@ -24,17 +23,18 @@ export const CustomButton = ({
   size,
   styleType,
   disabled,
+  children,
   ...props
 }: ButtonProps & ButtonOptions) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={disabled ? buttonStyles.disabled : buttonStyles[styleType]}
-      style={{ height: size === "sm" ? 48 : 56 }}
+      className={`${disabled ? buttonStyles.disabled : buttonStyles[styleType]} ${buttonStyles[size]}`}
       disabled={disabled}
       {...props}
     >
+      {children}
       {title}
     </button>
   );

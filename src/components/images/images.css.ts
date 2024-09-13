@@ -1,5 +1,6 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import { BLUE01 } from "@/styles/colors";
+import sprinkles from "@/styles/sprinkles.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseButton = style({
@@ -9,6 +10,34 @@ const baseButton = style({
     [breakpoints.mobile]: {
       display: "none",
     },
+  },
+});
+
+export const profileStyles = styleVariants({
+  container: [
+    sprinkles({ backgroundColor: "bg-lightblue", borderColor: "stroke-grey" }),
+    {
+      borderRadius: "100%",
+      borderWidth: 1,
+      borderStyle: "solid",
+      width: "100%",
+      aspectRatio: "1",
+      position: "relative",
+    },
+  ],
+  imageWrapper: {
+    width: "100%",
+    height: "100%",
+    position: "relative",
+  },
+  iconWrapper: {
+    width: "80%",
+    height: "100%",
+    margin: "auto",
+    position: "relative",
+  },
+  image: {
+    borderRadius: "100%",
   },
 });
 

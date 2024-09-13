@@ -14,9 +14,10 @@ const baseTab = style([
 ]);
 
 const baseButton = style([
-  texts["button-01"],
   {
+    position: "relative",
     width: "100%",
+    minWidth: 60,
     borderRadius: 8,
     padding: 10,
     display: "flex",
@@ -135,6 +136,7 @@ const buttonStyles = styleVariants({
     },
   ],
   line: [
+    baseButton,
     sprinkles({
       borderColor: "blue",
       color: "blue",
@@ -156,6 +158,10 @@ const buttonStyles = styleVariants({
       border: "none",
     },
   ],
+  xs: [texts["button-02"], { borderRadius: 4, padding: 5 }],
+  sm: [texts["button-02"], { padding: 10 }],
+  md: [texts["button-01"], { height: 48 }],
+  lg: [texts["button-01"], { height: 56 }],
   disabled: [
     baseButton,
     sprinkles({
