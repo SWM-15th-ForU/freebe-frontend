@@ -1,25 +1,42 @@
-import { mypageTabs } from "@/constants/photographer/mypage";
-import { Menu, MenuDivider } from "@mantine/core";
+"use client";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Menu, MenuDivider } from "@mantine/core";
+import { mypageTabs } from "@/constants/photographer/mypage";
+import { logout } from "@/services/client/core/auth";
 import { menuStyles } from "./header.css";
 
 const ProfileMenu = () => {
+  const router = useRouter();
+
+  async function handleLogout() {
+    const response = await logout();
+    if (response.redirected) {
+      const location = response.url;
+      if (location) {
+        router.push(location);
+      }
+    }
+  }
+
   return (
     <Menu.Dropdown>
       {mypageTabs.map((tab) => {
         return (
-          <Menu.Item key={tab.name}>
-            <Link
-              href={`photographer/mypage/${tab.src}`}
-              className={menuStyles.item}
-            >
+          <Link
+            key={tab.name}
+            href={`/photographer/mypage/${tab.src}`}
+            className={menuStyles.item}
+          >
+            <Menu.Item>
               <span>{tab.name}</span>
-            </Link>
-          </Menu.Item>
+            </Menu.Item>
+          </Link>
         );
       })}
       <MenuDivider />
-      <Menu.Item>
+      <Menu.Item onClick={handleLogout}>
         <span className={menuStyles.logout}>로그아웃</span>
       </Menu.Item>
     </Menu.Dropdown>

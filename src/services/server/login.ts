@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { AfterResponseHook } from "ky";
+import { AfterResponseHook, BeforeErrorHook } from "ky";
 import { User } from "user-types";
 import { cookieKeys, cookieValues } from "@/constants/cookies";
 import { api } from "./core";
@@ -42,13 +42,14 @@ export async function login(
   roleType: User,
   code: string,
 ): Promise<LoginResponse> {
-  const handleLoginError: AfterResponseHook = () => {
+  const handleLoginError: BeforeErrorHook = (error) => {
+    console.log(error);
     redirect("error");
   };
 
   const response = await api.post("login", {
     json: { roleType: roleType.toUpperCase(), code },
-    hooks: { afterResponse: [handleLoginError] },
+    hooks: { beforeError: [handleLoginError] },
   });
 
   const accessToken = response.headers.get("accessToken");
@@ -57,6 +58,8 @@ export async function login(
     data?: string;
     message: string;
   };
+
+  console.log(data, message);
 
   if (!accessToken || !refreshToken) {
     throw new Error("failed login");
