@@ -1,10 +1,17 @@
 import Image from "next/image";
-import { imageContainer } from "./main.css";
+import { imageStyles } from "./main.css";
 
 const BackgroundImage = ({ mainImage }: { mainImage: string }) => {
   return (
-    <div className={imageContainer}>
-      <Image src={mainImage} alt="대표 이미지" fill />
+    <div className={imageStyles.container}>
+      <Image
+        src="/icons/freebe-logo.svg"
+        height={20}
+        width={90}
+        alt="freebe"
+        className={imageStyles.logo}
+      />
+      <img src={mainImage} alt="대표 이미지" className={imageStyles.image} />
     </div>
   );
 };

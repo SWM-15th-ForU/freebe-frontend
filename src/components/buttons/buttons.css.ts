@@ -17,12 +17,14 @@ const baseButton = style([
   texts["button-01"],
   {
     width: "100%",
+    position: "relative",
     borderRadius: 8,
     padding: 10,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
+    flex: "0 0",
   },
 ]);
 
@@ -167,6 +169,13 @@ const buttonStyles = styleVariants({
       cursor: "initial",
     },
   ],
+  linkArea: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 });
 
 export const closeStyles = styleVariants({
