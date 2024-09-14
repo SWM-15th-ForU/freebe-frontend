@@ -1,6 +1,7 @@
 import Banner from "./banner";
 import BasicInfo from "./basic-info";
 import { editStyles } from "./edit.css";
+import Links from "./links";
 
 const ProfileEdit = () => {
   return (
@@ -9,6 +10,7 @@ const ProfileEdit = () => {
         <BasicInfo />
         <Banner />
       </div>
+      <Links />
     </div>
   );
 };

@@ -140,9 +140,9 @@ const buttonStyles = styleVariants({
     sprinkles({
       borderColor: "blue",
       color: "blue",
-      backgroundColor: "white",
     }),
     {
+      background: "none",
       borderStyle: "solid",
       borderRadius: 8,
       borderWidth: 1,
