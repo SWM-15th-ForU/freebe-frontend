@@ -1,26 +1,56 @@
+"use client";
+
+import Profile from "@/components/common/profile";
+import BottomSheet from "@/components/common/bottom-sheet";
 import ServiceFooter from "@/components/customer/service-footer";
-import { LinkButton } from "@/components/buttons/common-buttons";
-import { LinkType } from "profile-types";
-import { buttonsWrapper, sheetContainer } from "./main.css";
+import { CustomButton } from "@/components/buttons/common-buttons";
+import { LinkType, Photographer } from "profile-types";
+import { sheetStyles } from "./main.css";
 
-interface InfoSheetProps {
-  id: string;
-  // TODO: 소개글 최대 길이 제한
-  message: string;
-  links: LinkType[];
-}
-
-const InfoSheet = ({ id, links, message }: InfoSheetProps) => {
+const InfoSheet = ({
+  defaultLinks,
+  linkInfos,
+  profileImg,
+  message,
+}: Pick<Photographer, "linkInfos" | "message" | "profileImg"> & {
+  defaultLinks: LinkType[];
+}) => {
   return (
-    <div className={sheetContainer}>
-      <p>{message}</p>
-      <div className={buttonsWrapper}>
-        {links.map((link) => {
-          return <LinkButton key={link.name} {...link} />;
-        })}
+    <BottomSheet>
+      <div className={sheetStyles.content}>
+        <div className={sheetStyles.divider} style={{ paddingTop: 0 }}>
+          <Profile id="instagram" img={profileImg} />
+        </div>
+        <div className={sheetStyles.divider}>
+          <span className={sheetStyles.message}>{message}</span>
+        </div>
+        <div className={sheetStyles.buttonWrapper}>
+          {defaultLinks.map((link) => {
+            return (
+              <CustomButton
+                key={link.name}
+                title={link.name}
+                size="md"
+                styleType="primary"
+                link={link.src}
+              />
+            );
+          })}
+          {linkInfos.map((link) => {
+            return (
+              <CustomButton
+                key={link.name}
+                title={link.name}
+                size="md"
+                styleType="secondary"
+                link={link.src}
+              />
+            );
+          })}
+        </div>
+        <ServiceFooter />
       </div>
-      <ServiceFooter />
-    </div>
+    </BottomSheet>
   );
 };
 

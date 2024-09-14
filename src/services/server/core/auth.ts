@@ -7,6 +7,13 @@ export const getAccessToken = () => {
   return cookieStore.get(tokenKeys.access)?.value;
 };
 
+export const deleteTokens = () => {
+  const cookieStore = cookies();
+  cookieStore.delete(tokenKeys.access);
+  cookieStore.delete(tokenKeys.refresh);
+  console.log("delete access token and refresh token from cookies");
+};
+
 const getRefreshToken = () => {
   const cookieStore = cookies();
   return cookieStore.get(tokenKeys.refresh)?.value;
@@ -49,4 +56,22 @@ export const reissueTokens = async () => {
       redirect("/login");
     }
   }
+};
+
+export const logout = async () => {
+  const accessToken = getAccessToken();
+  const refreshToken = getRefreshToken();
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}logout`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      refreshToken: refreshToken || "",
+    },
+  });
+  if (response.status === 401) {
+    await reissueTokens();
+  }
+  if (response.ok || response.redirected) {
+    deleteTokens();
+  }
+  return response;
 };

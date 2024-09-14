@@ -9,7 +9,7 @@ export async function getCurrentProfile(): Promise<Photographer> {
     banner: data.bannerImageUrl,
     message: data.introductionContent,
     profileImg: data.profileImageUrl,
-    instagramId: data.instagramId,
+    instagramId: data.instagramId || "",
     linkInfos: data.linkInfos.map((link) => {
       return { name: link.linkTitle, src: link.linkUrl };
     }),

@@ -1,4 +1,8 @@
-import { getAccessToken, reissueTokens } from "@/services/server/core/auth";
+import {
+  getAccessToken,
+  logout,
+  reissueTokens,
+} from "@/services/server/core/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -18,4 +22,24 @@ export async function GET(request: NextRequest) {
 export async function PUT() {
   await reissueTokens();
   return new NextResponse();
+}
+
+export async function DELETE() {
+  try {
+    const response = await logout();
+    if (response.redirected) {
+      const redirectUrl = response.url;
+      if (redirectUrl) {
+        return NextResponse.redirect(redirectUrl);
+      }
+      if (response.status === 403) {
+        return NextResponse.redirect(
+          new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
+        );
+      }
+    }
+    return response;
+  } catch (error) {
+    return new NextResponse(null, { status: 500 });
+  }
 }

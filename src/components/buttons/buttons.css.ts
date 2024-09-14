@@ -24,6 +24,7 @@ const baseButton = style([
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
+    flex: "0 0",
   },
 ]);
 
@@ -160,8 +161,8 @@ const buttonStyles = styleVariants({
   ],
   xs: [texts["button-02"], { borderRadius: 4, padding: 5 }],
   sm: [texts["button-02"], { padding: 10 }],
-  md: [texts["button-01"], { height: 48 }],
-  lg: [texts["button-01"], { height: 56 }],
+  md: [texts["button-01"], { height: 48, minHeight: 48 }],
+  lg: [texts["button-01"], { height: 56, minHeight: 56 }],
   disabled: [
     baseButton,
     sprinkles({
@@ -173,6 +174,13 @@ const buttonStyles = styleVariants({
       cursor: "initial",
     },
   ],
+  linkArea: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 });
 
 export const closeStyles = styleVariants({

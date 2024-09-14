@@ -20,13 +20,9 @@ const Url = ({ myUrl }: { myUrl: string }) => {
   return (
     <div className={urlStyles.container}>
       <span className={urlStyles.content}>{myUrl}</span>
-      <Image
-        src="/icons/copy.svg"
-        alt="복사하기"
-        height={16}
-        width={16}
-        onClick={handleCopy}
-      />
+      <div className={urlStyles.icon}>
+        <Image src="/icons/copy.svg" alt="복사하기" fill onClick={handleCopy} />
+      </div>
     </div>
   );
 };

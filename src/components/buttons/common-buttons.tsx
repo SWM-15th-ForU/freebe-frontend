@@ -15,6 +15,7 @@ interface ButtonProps
 interface ButtonOptions {
   size: "xs" | "sm" | "md" | "lg";
   styleType: "primary" | "secondary" | "line";
+  link?: string;
 }
 
 export const CustomButton = ({
@@ -24,8 +25,14 @@ export const CustomButton = ({
   styleType,
   disabled,
   children,
+  link,
   ...props
 }: ButtonProps & ButtonOptions) => {
+  const height = {
+    sm: 48,
+    md: 56,
+  };
+
   return (
     <button
       type="button"
@@ -36,6 +43,7 @@ export const CustomButton = ({
     >
       {children}
       {title}
+      {link && <Link href={link} className={buttonStyles.linkArea} />}
     </button>
   );
 };
