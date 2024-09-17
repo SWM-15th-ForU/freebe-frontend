@@ -16,7 +16,7 @@ const BottomSheet = ({ children }: { children: React.ReactNode }) => {
           ? {
               flex: "0 0 100%",
               position: "absolute",
-              height: "90vh",
+              height: "90%",
             }
           : {
               flex: "1",

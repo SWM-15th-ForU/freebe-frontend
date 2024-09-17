@@ -39,6 +39,8 @@ export const linkStyles = styleVariants({
 export const editStyles = styleVariants({
   container: {
     flex: 1,
+    height: "100%",
+    overflowY: "scroll",
     display: "flex",
     flexDirection: "column",
     minWidth: 380,

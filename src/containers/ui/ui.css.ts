@@ -46,6 +46,10 @@ export const mypageStyles = styleVariants({
     sprinkles({
       color: "text-02",
     }),
+    {
+      display: "block",
+      height: 21.5,
+    },
   ],
   content: [
     {
