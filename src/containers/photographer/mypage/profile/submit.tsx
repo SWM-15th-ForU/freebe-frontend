@@ -9,7 +9,7 @@ const SubmitProfile = () => {
         styleType="primary"
         size="sm"
         title="프로필 저장"
-        style={{ marginLeft: "auto", marginRight: 32, width: 96 }}
+        style={{ marginLeft: "auto", width: 96 }}
       />
     </div>
   );

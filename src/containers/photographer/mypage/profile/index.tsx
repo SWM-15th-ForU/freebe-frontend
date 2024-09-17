@@ -31,6 +31,7 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
         </div>
         <SubmitProfile />
       </form>
+      {/* <BottomButton title="프로필 저장" /> */}
     </FormProvider>
   );
 };

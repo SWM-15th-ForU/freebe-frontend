@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
@@ -45,6 +46,12 @@ export const editStyles = styleVariants({
     flexDirection: "column",
     minWidth: 380,
     paddingBottom: 60,
+
+    "@media": {
+      [breakpoints.mobile]: {
+        height: "auto",
+      },
+    },
   },
   wrapper: [
     sprinkles({ borderColor: "stroke-grey" }),

@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { styleVariants } from "@vanilla-extract/css";
 
@@ -5,6 +6,12 @@ export const profileStyles = styleVariants({
   form: {
     position: "relative",
     height: "100%",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        height: "auto",
+      },
+    },
   },
   container: {
     display: "flex",
@@ -35,6 +42,12 @@ export const profileStyles = styleVariants({
       borderTopRightRadius: 20,
       overflowY: "hidden",
       overflowX: "hidden",
+
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "none",
+        },
+      },
     },
   ],
   submit: [
@@ -49,8 +62,19 @@ export const profileStyles = styleVariants({
       left: -40,
       right: -40,
       padding: 8,
+      paddingRight: 40,
       borderTopStyle: "solid",
       borderTopWidth: 1,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          paddingRight: 8,
+        },
+      },
     },
   ],
 });

@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -39,6 +40,12 @@ export const mypageStyles = styleVariants({
       height: "auto",
       overflowY: "scroll",
       flexGrow: 1,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: "24px 20px",
+        },
+      },
     },
   ],
   title: [
@@ -57,6 +64,12 @@ export const mypageStyles = styleVariants({
       height: "calc(100% - 21.5px)",
       paddingTop: 20,
       position: "relative",
+
+      "@media": {
+        [breakpoints.mobile]: {
+          height: "100%",
+        },
+      },
     },
   ],
 });

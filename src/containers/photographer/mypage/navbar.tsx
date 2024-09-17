@@ -17,15 +17,17 @@ const Navbar = () => {
           <LinkTab key={index} selected={currentTab === tab.src} {...tab} />
         ))}
       </div>
-      <Dropdown
-        placeholder="마이페이지"
-        datas={mypageTabs}
-        container={{ margin: 0, height: 40 }}
-        onClickItem={() => {}}
-        renderItem={(tab) => {
-          return <LinkTab selected={currentTab === tab.src} {...tab} />;
-        }}
-      />
+      <div className={navbarStyle.tabDropdown}>
+        <Dropdown
+          placeholder="마이페이지"
+          datas={mypageTabs}
+          container={{ margin: 0, height: 40 }}
+          onClickItem={() => {}}
+          renderItem={(tab) => {
+            return <LinkTab selected={currentTab === tab.src} {...tab} />;
+          }}
+        />
+      </div>
     </div>
   );
 };

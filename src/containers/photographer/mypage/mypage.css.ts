@@ -54,4 +54,12 @@ export const navbarStyle = styleVariants({
       },
     },
   ],
+  tabDropdown: {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
 });
