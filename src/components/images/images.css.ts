@@ -31,7 +31,7 @@ export const profileStyles = styleVariants({
     position: "relative",
   },
   iconWrapper: {
-    width: "80%",
+    width: "60%",
     height: "100%",
     margin: "auto",
     position: "relative",

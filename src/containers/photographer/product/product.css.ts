@@ -8,6 +8,7 @@ export const formStyles = styleVariants({
     maxWidth: 750,
     margin: "auto",
     paddingTop: 50,
+    paddingBottom: 80,
     alignSelf: "flex-start",
   },
   title: [

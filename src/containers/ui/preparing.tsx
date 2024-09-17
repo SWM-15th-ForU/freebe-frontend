@@ -1,4 +1,4 @@
-import { preparingStyle } from "./mypage.css";
+import { preparingStyle } from "./ui.css";
 
 const Preparing = () => {
   return (

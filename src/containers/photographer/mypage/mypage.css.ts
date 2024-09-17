@@ -8,7 +8,8 @@ export const navbarStyle = styleVariants({
     {
       alignSelf: "flex-start",
       padding: 30,
-      width: 300,
+      width: 250,
+      flexShrink: 0,
       height: "100%",
       borderRightWidth: 1,
       borderRightStyle: "solid",
@@ -23,26 +24,12 @@ export const navbarStyle = styleVariants({
   tabWrapper: [
     texts["body-02"],
     sprinkles({
-      borderColor: "stroke-grey",
+      borderColor: "text-03",
     }),
     {
       borderTopWidth: 1,
       borderTopStyle: "solid",
       marginTop: 10,
-    },
-  ],
-});
-
-export const preparingStyle = styleVariants({
-  container: [
-    sprinkles({ color: "text-point" }),
-    texts["headline-02"],
-    {
-      width: "100%",
-      height: "100%",
-      display: "flex",
-      padding: 100,
-      justifyContent: "center",
     },
   ],
 });

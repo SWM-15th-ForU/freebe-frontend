@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Menu } from "@mantine/core";
+import ProfileImage from "@/components/images/profile-image";
 import ProfileMenu from "./profile-menu";
 import { menuStyles, profileContainer } from "./header.css";
 
@@ -15,13 +16,10 @@ const Profile = () => {
         }}
       >
         <Menu.Target>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Image
-              src="/icons/profile.svg"
-              alt="내 프로필"
-              width={30}
-              height={30}
-            />
+          <div
+            style={{ display: "flex", alignItems: "center", gap: 8, width: 50 }}
+          >
+            <ProfileImage />
             <Image
               src="/icons/down-skyblue.svg"
               alt="내 프로필"

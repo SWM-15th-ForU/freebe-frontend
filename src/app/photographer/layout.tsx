@@ -11,6 +11,7 @@ const PhotographerLayout = ({
         width: "100vw",
         height: "100vh",
         display: "flex",
+        overflowY: "scroll",
         paddingTop: 51,
       }}
     >

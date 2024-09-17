@@ -1,6 +1,6 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { ProductFormdata } from "product-types";
-import { AddButton } from "@/components/buttons/common-buttons";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import ItemInput from "./item-input";
 import { formStyles } from "../product.css";
 
@@ -30,7 +30,10 @@ const ItemFieldArray = () => {
           />
         );
       })}
-      <AddButton
+      <CustomButton
+        styleType="line"
+        size="md"
+        style={{ marginTop: 20 }}
         onClick={() =>
           append({
             title: "",

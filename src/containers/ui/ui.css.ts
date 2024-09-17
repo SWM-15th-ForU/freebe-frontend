@@ -60,3 +60,18 @@ export const mypageStyles = styleVariants({
     },
   ],
 });
+
+export const preparingStyle = styleVariants({
+  container: [
+    sprinkles({ color: "text-point" }),
+    texts["headline-02"],
+    {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      padding: 100,
+      justifyContent: "center",
+      textAlign: "center",
+    },
+  ],
+});
