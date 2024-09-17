@@ -35,6 +35,13 @@ export const linkStyles = styleVariants({
       },
     },
   ],
+  error: [
+    texts["caption-01"],
+    sprinkles({
+      color: "pink",
+    }),
+    { margin: 3, display: "block" },
+  ],
 });
 
 export const editStyles = styleVariants({

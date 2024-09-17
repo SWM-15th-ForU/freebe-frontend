@@ -1,4 +1,5 @@
 import {
+  FieldErrors,
   useFieldArray,
   UseFieldArrayRemove,
   useFormContext,
@@ -13,10 +14,12 @@ const LinkItem = ({
   register,
   remove,
   index,
+  errors,
 }: {
   register: UseFormRegister<Photographer>;
   remove: UseFieldArrayRemove;
   index: number;
+  errors: FieldErrors<Photographer>;
 }) => {
   function handleRemoveLink() {
     remove(index);
@@ -39,11 +42,21 @@ const LinkItem = ({
           />
         </div>
       </div>
+      {errors.linkInfos?.[index]?.name && (
+        <span className={linkStyles.error}>
+          {errors.linkInfos?.[index]?.name?.message}
+        </span>
+      )}
       <TextInput<Photographer>
         placeholder="https://"
         formField={`linkInfos.${index}.src`}
         container={{ margin: 0 }}
       />
+      {errors.linkInfos?.[index]?.src && (
+        <span className={linkStyles.error}>
+          {errors.linkInfos?.[index]?.src?.message}
+        </span>
+      )}
     </div>
   );
 };
@@ -51,7 +64,12 @@ const LinkItem = ({
 const Links = () => {
   const MAX_LINK_COUNT = 5;
 
-  const { watch, control, register } = useFormContext<Photographer>();
+  const {
+    watch,
+    control,
+    register,
+    formState: { errors },
+  } = useFormContext<Photographer>();
   const { append, remove } = useFieldArray({ control, name: "linkInfos" });
   const linkInfos = watch("linkInfos");
 
@@ -65,12 +83,13 @@ const Links = () => {
         외부 링크 관리 ({linkInfos.length}/5)
       </span>
       <div className={editStyles.linksWrapper}>
-        {linkInfos.map((link, index) => (
+        {linkInfos.map((_, index) => (
           <LinkItem
-            key={link.name}
+            key={index}
             index={index}
             register={register}
             remove={remove}
+            errors={errors}
           />
         ))}
       </div>

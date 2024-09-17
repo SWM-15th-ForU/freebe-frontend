@@ -2,6 +2,8 @@
 
 import { Photographer } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
 import popToast from "@/components/common/toast";
 import ProfileEdit from "./edit";
@@ -10,7 +12,18 @@ import Preview from "./preview";
 import SubmitProfile from "./submit";
 
 const MyProfile = ({ profile }: { profile: Photographer }) => {
-  const method = useForm<Photographer>({ defaultValues: profile });
+  const profileSchema = z.object({
+    linkInfos: z.array(
+      z.object({
+        name: z.string().min(1, { message: "표시될 이름을 입력해 주세요." }),
+        src: z.string().min(1, { message: "링크를 입력해 주세요." }),
+      }),
+    ),
+  });
+  const method = useForm<Photographer>({
+    defaultValues: profile,
+    resolver: zodResolver(profileSchema),
+  });
   const { handleSubmit } = method;
 
   const onSubmit: SubmitHandler<Photographer> = async (data) => {
