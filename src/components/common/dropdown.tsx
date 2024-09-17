@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import { DropdownStyles } from "./common.css";
 
@@ -6,12 +6,16 @@ interface DropdownProps<T> {
   datas: T[];
   renderItem: (item: T) => JSX.Element;
   onClickItem: (index: number) => void;
+  placeholder: string;
+  container?: CSSProperties;
 }
 
 const Dropdown = <T extends object>({
   datas,
   renderItem,
   onClickItem,
+  placeholder,
+  container,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,6 +40,7 @@ const Dropdown = <T extends object>({
         }
         role="presentation"
         onClick={handleClickContainer}
+        style={{ ...container }}
       >
         <span
           className={
@@ -44,7 +49,7 @@ const Dropdown = <T extends object>({
               : DropdownStyles.placeholder
           }
         >
-          추가 옵션
+          {placeholder}
         </span>
         <Image src="/icons/down-skyblue.svg" width={16} height={8} alt="열기" />
       </div>
@@ -53,7 +58,6 @@ const Dropdown = <T extends object>({
           {datas.map((data, index) => {
             return (
               <div
-                className={DropdownStyles.listItems}
                 key={index}
                 onClick={() => handleClickItem(index)}
                 role="presentation"

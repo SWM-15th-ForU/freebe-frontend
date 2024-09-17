@@ -47,6 +47,8 @@ export const optionFormsStyles = styleVariants({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    padding: "16px 20px",
+    height: 56,
   },
   title: [
     sprinkles({

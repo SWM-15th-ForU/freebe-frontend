@@ -118,12 +118,6 @@ export const DropdownStyles = styleVariants({
       boxShadow: "0px 10px 25px 0px #00000026",
     },
   ],
-  listItems: [
-    {
-      padding: "16px 20px",
-      height: 56,
-    },
-  ],
 });
 
 export const searchStyles = styleVariants({
