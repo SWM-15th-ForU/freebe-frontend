@@ -1,24 +1,24 @@
-import { CustomButton } from "@/components/buttons/common-buttons";
-import { Photographer } from "profile-types";
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
+import { Photographer } from "profile-types";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
 const Banner = () => {
-  const { watch, setValue } = useFormContext<Photographer>();
-  const bannerFile = watch("bannerFile");
-
-  useEffect(() => {
-    if (bannerFile) {
-      const blob = URL.createObjectURL(bannerFile);
-      setValue("banner", blob);
-    } else {
-      setValue("banner", undefined);
-    }
-  }, [bannerFile]);
+  const { setValue } = useFormContext<Photographer>();
 
   function handleDeleteBanner() {
     setValue("bannerFile", undefined);
+    setValue("banner", undefined);
+  }
+
+  function handleChangeBanner(e: ChangeEvent<HTMLInputElement>) {
+    if (e.currentTarget.files) {
+      const newFile = e.currentTarget.files[0];
+      setValue("bannerFile", newFile);
+      const blob = URL.createObjectURL(newFile);
+      setValue("banner", blob);
+    }
   }
 
   return (
@@ -44,7 +44,7 @@ const Banner = () => {
               right: 0,
               cursor: "pointer",
             }}
-            onChange={(e) => setValue("bannerFile", e.currentTarget.files?.[0])}
+            onChange={handleChangeBanner}
           />
         </CustomButton>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import { Photographer } from "profile-types";
 import TextInput from "@/components/inputs/text-input";
@@ -8,14 +8,16 @@ import { editStyles } from "./edit.css";
 
 const BasicInfo = () => {
   const { watch, setValue } = useFormContext<Photographer>();
-  const [profileImage, imgFile] = watch(["profileImg", "imgFile"]);
+  const [profileImage] = watch(["profileImg", "imgFile"]);
 
-  useEffect(() => {
-    if (imgFile) {
-      const blob = URL.createObjectURL(imgFile);
+  function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
+    if (e.currentTarget.files) {
+      const newFile = e.currentTarget.files[0];
+      setValue("imgFile", newFile);
+      const blob = URL.createObjectURL(newFile);
       setValue("profileImg", blob);
     }
-  }, [imgFile]);
+  }
 
   return (
     <div className={editStyles.box}>
@@ -34,7 +36,7 @@ const BasicInfo = () => {
               right: 0,
               cursor: "pointer",
             }}
-            onChange={(e) => setValue("imgFile", e.currentTarget.files?.[0])}
+            onChange={handleChangeProfileImg}
           />
         </CustomButton>
       </div>
