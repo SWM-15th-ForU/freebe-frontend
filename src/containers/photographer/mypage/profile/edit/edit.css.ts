@@ -44,6 +44,7 @@ export const editStyles = styleVariants({
     display: "flex",
     flexDirection: "column",
     minWidth: 380,
+    paddingBottom: 60,
   },
   wrapper: [
     sprinkles({ borderColor: "stroke-grey" }),

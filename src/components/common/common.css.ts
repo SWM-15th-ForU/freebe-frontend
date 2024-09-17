@@ -9,7 +9,7 @@ export const bottomSheetStyles = styleVariants({
     position: "relative",
     transition: "all 0.3s ease",
     width: "100%",
-    maxHeight: "90vh",
+    maxHeight: "calc(100% - 50px)",
     backgroundColor: "white",
     overflowY: "visible",
     bottom: 0,

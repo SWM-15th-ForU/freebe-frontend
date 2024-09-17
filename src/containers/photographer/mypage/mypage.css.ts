@@ -3,13 +3,17 @@ import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const navbarStyle = styleVariants({
-  container: {
-    alignSelf: "flex-start",
-    padding: 30,
-    width: 300,
-    height: "100%",
-    backgroundColor: "white",
-  },
+  container: [
+    sprinkles({ backgroundColor: "white", borderColor: "stroke-grey" }),
+    {
+      alignSelf: "flex-start",
+      padding: 30,
+      width: 300,
+      height: "100%",
+      borderRightWidth: 1,
+      borderRightStyle: "solid",
+    },
+  ],
   title: [
     texts["headline-02"],
     sprinkles({
