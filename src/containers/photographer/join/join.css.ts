@@ -1,7 +1,7 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { styleVariants } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 export const joinStyles = styleVariants({
   container: {
@@ -45,5 +45,49 @@ export const profileStyles = styleVariants({
       color: "pink",
     }),
     { margin: 3, display: "block", position: "static" },
+  ],
+});
+
+const baseWrapper = style([
+  sprinkles({ color: "text-02" }),
+  {
+    display: "flex",
+    gap: 8,
+    alignItems: "center",
+    paddingBottom: 20,
+  },
+]);
+
+export const agreementStyles = styleVariants({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 24,
+  },
+  total: [
+    baseWrapper,
+    texts["headline-02"],
+    sprinkles({
+      borderColor: "stroke-grey",
+    }),
+    {
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+    },
+  ],
+  wrapper: [baseWrapper, texts["headline-03"]],
+
+  box: [
+    texts["body-02"],
+    sprinkles({ borderColor: "stroke-grey", color: "text-03" }),
+    {
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: 8,
+      padding: 16,
+      maxHeight: 150,
+      overflowY: "scroll",
+      textAlign: "justify",
+    },
   ],
 });
