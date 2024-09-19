@@ -114,4 +114,33 @@ declare module "reservation-types" {
     Details,
     "productInfo" | "preferredDates" | "options" | "photographerMemo"
   >;
+
+  interface ReservationListResponse {
+    reservationStatus:
+      | "CANCELLED_BY_PHOTOGRAPHER"
+      | "CANCELLED_BY_CUSTOMER"
+      | "COMPLETED";
+    reservationId: number;
+    reservationSubmissionDate: string;
+    shootingDate: {
+      date: string;
+      startTime: string;
+      endTime: string;
+    };
+    customerName: string;
+    productTitle: string;
+    price: string;
+    image: string;
+  }
+
+  interface ReservationList {
+    reservationStatus: InactiveStatus;
+    reservationId: number;
+    reservationSubmissionDate: string;
+    shootingDate: string;
+    customerName: string;
+    productTitle: string;
+    price: string;
+    image: string;
+  }
 }
