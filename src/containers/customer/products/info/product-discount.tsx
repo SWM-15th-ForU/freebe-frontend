@@ -12,7 +12,7 @@ const ProductDiscount = ({
       <span>{title}</span>
       {description && <AdditionInfo content={description} size={16} />}
       {discountType === "AMOUNT" ? (
-        <span>{discountValue}원 할인</span>
+        <span>{discountValue?.toLocaleString()}원 할인</span>
       ) : (
         <span>{discountValue}% 할인</span>
       )}

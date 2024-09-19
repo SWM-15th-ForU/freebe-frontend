@@ -7,9 +7,13 @@ const baseProgress = style({
   height: 4,
   borderRadius: 100,
   flex: 1,
+  position: "relative",
 });
 
-const baseName = style([texts["headline-03"], { flexShrink: 0 }]);
+const baseName = style([
+  texts["headline-03"],
+  { flexShrink: 0, height: "100%" },
+]);
 
 export const statusStyles = styleVariants({
   container: {
@@ -29,13 +33,28 @@ export const statusStyles = styleVariants({
         width: "100%",
         height: 120,
         maxWidth: "100%",
-        padding: "20px 30px",
+        padding: "20px 20px",
         gap: 10,
+        background: "none",
       },
     },
   },
   doneProgress: [sprinkles({ backgroundColor: "blue" }), baseProgress],
-  progress: [sprinkles({ backgroundColor: "white" }), baseProgress],
+  nowProgress: [
+    sprinkles({ backgroundColor: "blue" }),
+    { height: "100%", transition: "width 0.3s ease" },
+  ],
+  progress: [
+    sprinkles({ backgroundColor: "white" }),
+    baseProgress,
+    {
+      "@media": {
+        [breakpoints.mobile]: {
+          backgroundColor: "#E7F2FB",
+        },
+      },
+    },
+  ],
 });
 
 export const iconStyles = styleVariants({
@@ -61,16 +80,8 @@ export const iconStyles = styleVariants({
     justifyContent: "center",
     gap: 3,
   },
-  name: [
-    baseName,
-    sprinkles({ color: "text-01" }),
-    { height: "100%", "@media": { [breakpoints.mobile]: { fontSize: 13 } } },
-  ],
-  caption: [
-    baseName,
-    sprinkles({ color: "text-03" }),
-    { "@media": { [breakpoints.mobile]: { fontSize: 13 } } },
-  ],
+  name: [baseName, sprinkles({ color: "text-01" })],
+  caption: [baseName, sprinkles({ color: "text-03" })],
 });
 
 const baseBanner = style([
@@ -97,9 +108,24 @@ export const bannerStyles = styleVariants({
     {
       outline: "1px solid #007AFF",
       outlineOffset: 3,
+      "@media": {
+        [breakpoints.mobile]: {
+          outline: "none",
+        },
+      },
     },
   ],
-  NOT_STARTED: [sprinkles({ backgroundColor: "white" }), baseBanner],
+  NOT_STARTED: [
+    sprinkles({ backgroundColor: "white" }),
+    baseBanner,
+    {
+      "@media": {
+        [breakpoints.mobile]: {
+          backgroundColor: "#E7F2FB",
+        },
+      },
+    },
+  ],
   wrapper: [
     texts["headline-03"],
     sprinkles({

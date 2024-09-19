@@ -1,28 +1,6 @@
-import { Details, Option, ReservationDate, Status } from "reservation-types";
+import { Details, ReservationDetailResponse } from "reservation-types";
 import { objectToArray } from "@/utils/parse";
 import { api } from "../core";
-
-interface ReservationDetailResponse {
-  reservationNumber: number;
-  currentReservationStatus: Status;
-  statusHistory: {
-    reservationStatus: Status;
-    statusUpdateDate: string;
-  }[];
-  productTitle: string;
-  customerDetails: {
-    name: string;
-    phoneNumber: string;
-    instagramId: string;
-  };
-  photoInfo: { [key: string]: string };
-  preferredDates: { [key: string]: ReservationDate };
-  originalImage: string[];
-  thumbnailImage: string[];
-  requestMemo: string;
-  photoOptions: { [key: string]: Option };
-  photographerMemo: string | null;
-}
 
 export async function getReservationDetail(
   reservationId: number,
@@ -34,17 +12,19 @@ export async function getReservationDetail(
 
   const { statusHistory }: Pick<Details, "statusHistory"> = {
     statusHistory: {
-      NEW: { updatedDate: null },
-      IN_PROGRESS: { updatedDate: null },
-      WAITING_FOR_DEPOSIT: { updatedDate: null },
-      WAITING_FOR_PHOTO: { updatedDate: null },
-      CANCELLED: { updatedDate: null },
-      PHOTO_COMPLETED: { updatedDate: null },
+      NEW: { updatedDate: null, current: "NOT_STARTED" },
+      IN_PROGRESS: { updatedDate: null, current: "NOT_STARTED" },
+      WAITING_FOR_DEPOSIT: { updatedDate: null, current: "NOT_STARTED" },
+      WAITING_FOR_PHOTO: { updatedDate: null, current: "NOT_STARTED" },
     },
   };
   data.statusHistory.forEach((history) => {
     statusHistory[history.reservationStatus].updatedDate =
       history.statusUpdateDate;
+    statusHistory[history.reservationStatus].current =
+      data.currentReservationStatus === history.reservationStatus
+        ? "NOW"
+        : "DONE";
   });
   return {
     ...data,

@@ -44,7 +44,7 @@ const SubmitForm = ({
       photographerId,
       productTitle: "title",
     });
-    router.push(`/${reservationId}`);
+    router.push(`/customer/reservation/${reservationId}`);
   }
 
   useEffect(() => {

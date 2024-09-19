@@ -15,6 +15,27 @@ interface DateNotFixed extends BaseInfos {
   shootingDate: null;
 }
 declare module "reservation-types" {
+  interface Option {
+    title: string;
+    quantity: number;
+    price: number;
+  }
+
+  interface BaseDetails {
+    currentStatus: Status;
+    productTitle: string;
+    productInfo: { title: string; content: string }[];
+    preferredDates: ReservationDate[];
+    options: Option[];
+    requestMemo: string;
+  }
+
+  interface BaseReservationResponse {
+    productTitle: string;
+    photoInfo: { [key: string]: string };
+    photoOptions: { [key: string]: Option };
+  }
+
   type ActiveStatus =
     | "NEW"
     | "IN_PROGRESS"
@@ -45,19 +66,48 @@ declare module "reservation-types" {
     price: number;
   }
 
-  interface Details {
+  type StatusHistory = {
+    [key in ActiveStatus]: {
+      updatedDate?: string | null;
+      current: "DONE" | "NOW" | "NOT_STARTED";
+    };
+  };
+
+  interface CustomerReservationResponse extends BaseReservationResponse {
+    preferredDate: { [key: string]: ReservationDate };
+    reservationStatus: Status;
+    customerMemo: string;
+  }
+  interface ReservationDetailResponse extends BaseReservationResponse {
     reservationNumber: number;
-    currentStatus: Status;
-    statusHistory: { [key in Status]: { updatedDate: string | null } };
-    productTitle: string;
-    customer: Customer;
-    productInfo: { title: string; content: string }[];
-    preferredDates: ReservationDate[];
+    currentReservationStatus: Status;
+    statusHistory: {
+      reservationStatus: ActiveStatus;
+      statusUpdateDate: string;
+    }[];
+    customerDetails: {
+      name: string;
+      phoneNumber: string;
+      instagramId: string;
+    };
+    preferredDates: { [key: string]: ReservationDate };
     originalImage: string[];
     thumbnailImage: string[];
     requestMemo: string;
-    options: Option[];
+    photographerMemo: string | null;
+  }
+  interface Details extends BaseDetails {
+    reservationNumber: number;
+    statusHistory: StatusHistory;
+    customer: Customer;
+    productInfo: { title: string; content: string }[];
+    originalImage: string[];
+    thumbnailImage: string[];
     photographerMemo: string;
+  }
+
+  interface CustomerDetails extends BaseDetails {
+    totalPrice: number;
   }
 
   type DetailsField = Pick<

@@ -5,6 +5,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import { isActiveStatus } from "@/utils/type-guards";
 import { useDisclosure } from "@mantine/hooks";
 import { getTargetStatus } from "@/utils/reservation";
+import { formatPrice } from "@/utils/parse";
 import OptionField from "../fields/option-field";
 import { sectionStyles } from "../section.css";
 import StatusModal from "./status-modal";
@@ -42,7 +43,7 @@ const Confirm = () => {
         </div>
         <div className={sectionStyles.priceWrapper}>
           <span className={sectionStyles.title}>총 가격</span>
-          <span className={sectionStyles.price}>{totalPrice}원</span>
+          <span className={sectionStyles.price}>{formatPrice(totalPrice)}</span>
         </div>
         {isActiveStatus(currentStatus) && (
           <div className={sectionStyles.buttonWrapper}>

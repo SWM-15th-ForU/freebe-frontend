@@ -13,3 +13,13 @@ export const reservationStyles = styleVariants({
     },
   },
 });
+
+export const detailStyles = styleVariants({
+  container: {
+    overflowY: "scroll",
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+});

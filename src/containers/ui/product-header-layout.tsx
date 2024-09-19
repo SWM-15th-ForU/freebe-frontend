@@ -17,6 +17,7 @@ const ProductHeaderLayout = ({ header, children }: HeaderLayoutProps) => {
       <div
         style={{
           paddingTop: HEADER_HEIGHT[header.progress ? "progress" : "default"],
+          height: "100vh",
         }}
       >
         {children}

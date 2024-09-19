@@ -1,5 +1,7 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import Dropdown from "@/components/common/dropdown";
+import popToast from "@/components/common/toast";
+import { formatPrice } from "@/utils/parse";
 import { Option, reservation } from "product-types";
 import PartLayout from "../part-layout";
 import { optionFormsStyles } from "./parts.css";
@@ -9,9 +11,7 @@ const OptionItem = ({ title, price }: Option) => {
   return (
     <div className={optionFormsStyles.wrapper}>
       <span className={optionFormsStyles.title}>{title}</span>
-      <span className={optionFormsStyles.price}>
-        {price ? `${price}원` : "무료 옵션"}
-      </span>
+      <span className={optionFormsStyles.price}>{formatPrice(price)}</span>
     </div>
   );
 };
@@ -27,7 +27,7 @@ const SelectOptionForm = ({ options }: { options: Option[] }) => {
   function handleAddOption(index: number) {
     const selectedIndexList = selectedOptionList.map((option) => option.index);
     if (selectedIndexList.includes(index)) {
-      alert("이미 선택된 옵션입니다.");
+      popToast("이미 선택된 옵션입니다.");
     } else {
       const basePrice = options[index].price || 0;
       append({

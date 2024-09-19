@@ -15,3 +15,23 @@ export function getTargetStatus(
   };
   return nextStatus[currentStatus];
 }
+
+export function compareStatus(currentStatus: Status, targetStatus: Status) {
+  const statusOrder: Status[] = [
+    "NEW",
+    "IN_PROGRESS",
+    "WAITING_FOR_DEPOSIT",
+    "WAITING_FOR_PHOTO",
+    "PHOTO_COMPLETED",
+    "CANCELLED",
+  ];
+  const current = statusOrder.indexOf(currentStatus);
+  const target = statusOrder.indexOf(targetStatus);
+  if (target < current) {
+    return "DONE";
+  }
+  if (target > current) {
+    return "NOT_STARTED";
+  }
+  return "NOW";
+}

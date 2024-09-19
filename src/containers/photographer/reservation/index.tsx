@@ -3,7 +3,7 @@
 import { Details } from "reservation-types";
 import { FormProvider, useForm } from "react-hook-form";
 import ReservationDetails from "./section/details";
-import ReservationStatus from "./status";
+import ReservationStatus from "../../common/status";
 import { containerStyle, detailStyle } from "./reservation.css";
 import Control from "./section/control";
 import ReservationTitle from "./title";
@@ -15,19 +15,7 @@ const ReservationDetailsPage = ({ detailsData }: { detailsData: Details }) => {
     <FormProvider {...method}>
       <div className={containerStyle}>
         <div className={detailStyle}>
-          <ReservationStatus
-            statusHistory={{
-              NEW: {
-                updatedDate: "2024-09-02",
-              },
-              IN_PROGRESS: { updatedDate: null },
-              WAITING_FOR_DEPOSIT: { updatedDate: null },
-              WAITING_FOR_PHOTO: { updatedDate: null },
-              PHOTO_COMPLETED: { updatedDate: null },
-              CANCELLED: { updatedDate: null },
-            }}
-            currentStatus="IN_PROGRESS"
-          />
+          <ReservationStatus {...detailsData} />
           <ReservationTitle {...detailsData} />
           <ReservationDetails />
         </div>

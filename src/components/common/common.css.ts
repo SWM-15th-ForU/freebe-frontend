@@ -227,9 +227,6 @@ export const switchStyles = styleVariants({
 });
 
 const commonChipStyle = style([
-  sprinkles({
-    borderColor: "stroke-grey",
-  }),
   {
     borderWidth: 1,
     borderStyle: "solid",
@@ -246,17 +243,30 @@ const commonChipStyle = style([
 ]);
 
 export const chipStyles = styleVariants({
-  container: [
+  normal: [
     sprinkles({
       backgroundColor: "white",
       color: "text-02",
+      borderColor: "stroke-grey",
     }),
     commonChipStyle,
+  ],
+  highlight: [
+    commonChipStyle,
+    sprinkles({
+      color: "blue",
+      borderColor: "blue",
+    }),
+    {
+      background: "none",
+    },
   ],
   selectedContainer: [
     sprinkles({
       backgroundColor: "blue",
       color: "white",
+
+      borderColor: "stroke-grey",
     }),
     commonChipStyle,
   ],

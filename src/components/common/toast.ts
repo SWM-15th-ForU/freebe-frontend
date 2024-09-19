@@ -1,7 +1,7 @@
 import { notifications } from "@mantine/notifications";
 import { toastStyles } from "./common.css";
 
-export default function popToast(title: string, message: string) {
+export default function popToast(message: string, title?: string) {
   notifications.show({
     title,
     message,
