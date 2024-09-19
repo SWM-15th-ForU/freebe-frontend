@@ -44,12 +44,12 @@ const BasicInfo = () => {
         <TextInput<Photographer>
           title="인스타그램"
           formField="instagramId"
-          placeholder="아이디를 입력해주세요."
+          placeholder="인스타그램 아이디를 입력해주세요."
           container={{ marginTop: 0 }}
         />
         <TextInput<Photographer>
           title="소개 문구"
-          placeholder="작가 소개글을 입력해 주세요."
+          placeholder="소개글을 입력해 주세요."
           formField="message"
           inputSize="md"
           multiline
