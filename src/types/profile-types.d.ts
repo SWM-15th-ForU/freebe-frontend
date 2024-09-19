@@ -20,4 +20,12 @@ declare module "profile-types" {
     message: string;
     linkInfos: LinkType[];
   }
+
+  interface Join {
+    profileImg?: File;
+    instagramId: string;
+    serviceAgreement: boolean;
+    privacyAgreement: boolean;
+    marketingAgreement: boolean;
+  }
 }

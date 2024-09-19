@@ -20,8 +20,12 @@ const Header = () => {
           alt="free:be"
         />
       </Link>
-      <Url myUrl={userRole === "photographer" ? userData.profileUrl : ""} />
-      <Profile />
+      {userRole === "photographer" && (
+        <div>
+          <Url myUrl={userRole === "photographer" ? userData.profileUrl : ""} />
+          <Profile />
+        </div>
+      )}
     </header>
   );
 };
