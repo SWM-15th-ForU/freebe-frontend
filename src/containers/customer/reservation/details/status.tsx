@@ -2,10 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import { CustomerDetails, StatusHistory } from "reservation-types";
+import { useDisclosure } from "@mantine/hooks";
 import ReservationStatus from "@/containers/common/status";
-import { compareStatus } from "@/utils/reservation";
+import { compareStatus, isCustomerAbleToCancel } from "@/utils/reservation";
 import Chip from "@/components/common/chip";
 import popToast from "@/components/common/toast";
+import CancelModal from "./cancel-modal";
 import { detailStyles } from "./detail.css";
 
 const Status = ({
@@ -13,6 +15,7 @@ const Status = ({
   currentStatus,
 }: Pick<CustomerDetails, "productTitle" | "currentStatus">) => {
   const url = usePathname();
+  const [opened, { close, open }] = useDisclosure(false);
 
   const statusHistory: StatusHistory = {
     NEW: {
@@ -48,12 +51,13 @@ const Status = ({
         신청서 제출이 완료되었습니다.
       </span>
       <ReservationStatus statusHistory={statusHistory} noInformation />
-      <Chip
-        name="공유하기"
-        container={{ marginTop: 24, height: 30 }}
-        styleType="highlight"
-        onClick={handleExport}
-      />
+      <div className={detailStyles.chips}>
+        <Chip name="공유하기" styleType="highlight" onClick={handleExport} />
+        {isCustomerAbleToCancel(currentStatus) && (
+          <Chip name="취소하기" styleType="highlight" onClick={open} />
+        )}
+      </div>
+      <CancelModal close={close} opened={opened} />
     </div>
   );
 };
