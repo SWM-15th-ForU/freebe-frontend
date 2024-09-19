@@ -13,6 +13,7 @@ export const headerContainer = style([
     position: "fixed",
 
     zIndex: 15,
+    height: 51,
     padding: "10px 40px",
     borderBottomWidth: 1,
     borderBottomStyle: "solid",
