@@ -9,9 +9,11 @@ import { profileStyles } from "./join.css";
 const Profile = () => {
   const {
     setValue,
+    watch,
     formState: { errors },
   } = useFormContext<Join>();
   const [preview, setPreview] = useState<undefined | string>();
+  const profileImg = watch("profileImg");
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
@@ -19,6 +21,7 @@ const Profile = () => {
       setValue("profileImg", newFile);
       const blob = URL.createObjectURL(newFile);
       setPreview(blob);
+      e.currentTarget.value = "";
     }
   }
 
