@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   FieldErrors,
   useFieldArray,
@@ -8,6 +9,7 @@ import {
 import { Photographer } from "profile-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
+import popToast from "@/components/common/toast";
 import { editStyles, linkStyles } from "./edit.css";
 
 const LinkItem = ({
@@ -77,10 +79,16 @@ const Links = () => {
     append({ name: "", src: "" });
   }
 
+  useEffect(() => {
+    if (linkInfos.length === MAX_LINK_COUNT) {
+      popToast("외부 링크는 5개까지 등록 가능합니다.", "");
+    }
+  }, [linkInfos]);
+
   return (
     <div className={editStyles.link}>
       <span className={editStyles.title}>
-        외부 링크 관리 ({linkInfos.length}/5)
+        외부 링크 관리 ({linkInfos.length}/{MAX_LINK_COUNT})
       </span>
       <div className={editStyles.linksWrapper}>
         {linkInfos.map((_, index) => (
