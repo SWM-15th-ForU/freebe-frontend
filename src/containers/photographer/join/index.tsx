@@ -37,9 +37,13 @@ const PhotographerJoin = () => {
   ]);
 
   async function onSubmit(data: Join) {
-    const url = await postProfile(data);
-    popToast("가입이 완료되었습니다!", "");
-    router.push(`/photographer?url=${url}`);
+    try {
+      const url = await postProfile(data);
+      popToast("가입이 완료되었습니다!", "");
+      router.push(`/photographer?url=${url}`);
+    } catch (error) {
+      popToast("가입에 실패했습니다.", "다시 시도해주세요.");
+    }
   }
 
   return (
