@@ -7,7 +7,7 @@ import { z } from "zod";
 import { Image, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
-import { SubmitButton } from "@/components/buttons/common-buttons";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
@@ -197,7 +197,13 @@ const ProductForm = () => {
 
           <DiscountFieldArray />
         </div>
-        <SubmitButton title="다음" />
+        <CustomButton
+          type="submit"
+          styleType="primary"
+          size="md"
+          title="다음"
+          style={{ marginTop: 40 }}
+        />
       </form>
     </FormProvider>
   );

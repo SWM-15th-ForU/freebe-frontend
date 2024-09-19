@@ -96,6 +96,12 @@ const baseInput = style([
     margin: 0,
     verticalAlign: "middle",
     backgroundColor: "transparent",
+    ":focus": {
+      outline: "none",
+    },
+    "::placeholder": {
+      color: "#849CAA",
+    },
   },
 ]);
 
@@ -131,7 +137,15 @@ const InputStyles = styleVariants({
       color: "text-02",
     }),
   ],
-  inputWrapper: [sprinkles({ backgroundColor: "white" }), baseWrapper],
+  inputWrapper: [
+    sprinkles({ backgroundColor: "white" }),
+    baseWrapper,
+    {
+      ":focus-within": {
+        outline: "#007AFF 1px solid",
+      },
+    },
+  ],
   disabledInputWrapper: [
     sprinkles({ backgroundColor: "lightgrey" }),
     baseWrapper,

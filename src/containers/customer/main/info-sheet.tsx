@@ -12,19 +12,28 @@ const InfoSheet = ({
   linkInfos,
   profileImg,
   message,
-}: Pick<Photographer, "linkInfos" | "message" | "profileImg"> & {
+  instagramId,
+  preview,
+}: Pick<
+  Photographer,
+  "linkInfos" | "message" | "profileImg" | "instagramId"
+> & {
   defaultLinks: LinkType[];
+  preview?: boolean;
 }) => {
   return (
     <BottomSheet>
       <div className={sheetStyles.content}>
         <div className={sheetStyles.divider} style={{ paddingTop: 0 }}>
-          <Profile id="instagram" img={profileImg} />
+          <Profile id={instagramId} img={profileImg} />
         </div>
         <div className={sheetStyles.divider}>
           <span className={sheetStyles.message}>{message}</span>
         </div>
-        <div className={sheetStyles.buttonWrapper}>
+        <div
+          className={sheetStyles.buttonWrapper}
+          style={{ pointerEvents: preview ? "none" : "auto" }}
+        >
           {defaultLinks.map((link) => {
             return (
               <CustomButton

@@ -1,5 +1,6 @@
 import Navbar from "@/containers/photographer/mypage/navbar";
 import styles from "@/styles/page.module.css";
+import { mypageStyles } from "./mypage.css";
 
 const MypageLayout = ({
   children,
@@ -7,9 +8,11 @@ const MypageLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div style={{ display: "flex", flexDirection: "row", width: "100vw" }}>
-      <Navbar />
-      <div style={{ flex: 1, backgroundColor: "#F4F8FD" }}>{children}</div>
+    <div className={mypageStyles.container}>
+      <div className={mypageStyles.body}>
+        <Navbar />
+        {children}
+      </div>
     </div>
   );
 };

@@ -1,11 +1,7 @@
-import Preparing from "@/containers/photographer/mypage/preparing";
+import Preparing from "@/containers/ui/preparing";
 
 const MyFaqsPage = () => {
-  return (
-    <div>
-      <Preparing />
-    </div>
-  );
+  return <Preparing />;
 };
 
 export default MyFaqsPage;

@@ -9,7 +9,7 @@ export const bottomSheetStyles = styleVariants({
     position: "relative",
     transition: "all 0.3s ease",
     width: "100%",
-    maxHeight: "90vh",
+    maxHeight: "calc(100% - 50px)",
     backgroundColor: "white",
     overflowY: "visible",
     bottom: 0,
@@ -116,12 +116,6 @@ export const DropdownStyles = styleVariants({
       borderRadius: 8,
       borderStyle: "solid",
       boxShadow: "0px 10px 25px 0px #00000026",
-    },
-  ],
-  listItems: [
-    {
-      padding: "16px 20px",
-      height: 56,
     },
   ],
 });
