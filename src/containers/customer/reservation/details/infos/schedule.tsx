@@ -8,11 +8,15 @@ const ScheduleItem = ({
   startTime,
   index,
 }: ReservationDate & { index: number }) => {
+  const dateValue = new Date(date);
   return (
     <div className={infoStyles.item}>
       <span className={infoStyles.name}>{index + 1}차 희망</span>
       <div className={infoStyles.schedule}>
-        <span className={infoStyles.content}>{formatDate(date)}</span>
+        <span className={infoStyles.content}>
+          {formatDate(date)} (
+          {dateValue.toLocaleString("KR", { weekday: "short" })})
+        </span>
         <span className={infoStyles.content}>
           {formatTimeString(startTime)} ~
         </span>
