@@ -16,6 +16,7 @@ export const joinStyles = styleVariants({
     "@media": {
       [breakpoints.mobile]: {
         width: "100%",
+        padding: "30px 20px 60px 20px",
       },
     },
   },
@@ -24,12 +25,31 @@ export const joinStyles = styleVariants({
 export const profileStyles = styleVariants({
   container: [
     sprinkles({ backgroundColor: "bg-lightgrey" }),
-    { width: "100%", borderRadius: 16, display: "flex", padding: 32, gap: 24 },
+    {
+      width: "100%",
+      borderRadius: 16,
+      display: "flex",
+      padding: 32,
+      gap: 24,
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: 20,
+          flexDirection: "column",
+        },
+      },
+    },
   ],
   image: {
     width: 108,
     height: 108,
     position: "relative",
+    "@media": {
+      [breakpoints.mobile]: {
+        width: 90,
+        height: 90,
+        alignSelf: "center",
+      },
+    },
   },
   edit: {
     display: "flex",
@@ -37,8 +57,23 @@ export const profileStyles = styleVariants({
     flex: 1,
     gap: 28,
     position: "relative",
+    "@media": {
+      [breakpoints.mobile]: {
+        flexDirection: "column-reverse",
+      },
+    },
   },
-  button: { gap: 10, width: "100%", display: "flex" },
+  button: {
+    gap: 10,
+    width: "100%",
+    display: "flex",
+    justifyContent: "flex-end",
+    "@media": {
+      [breakpoints.mobile]: {
+        justifyContent: "center",
+      },
+    },
+  },
   error: [
     texts["caption-01"],
     sprinkles({

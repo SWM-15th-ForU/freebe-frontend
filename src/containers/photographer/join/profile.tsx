@@ -54,7 +54,6 @@ const Profile = () => {
             style={{
               minWidth: "fit-content",
               padding: "10px 30px",
-              marginLeft: "auto",
             }}
           >
             <input
