@@ -32,10 +32,27 @@ const PreviousReservations = () => {
     setReservationList(newList);
   }
 
+  async function handleSearch() {
+    await getList();
+  }
+
   return (
     <div className={layoutStyles.container}>
       <div className={layoutStyles.header}>
         <span className={layoutStyles.title}>이전 예약</span>
+        <div className={layoutStyles.search}>
+          <Search
+            value={search}
+            setValue={setSearch}
+            container={{ height: "100%", flex: 1 }}
+          />
+          <CustomButton
+            size="sm"
+            styleType="primary"
+            title="검색하기"
+            onClick={handleSearch}
+          />
+        </div>
       </div>
     </div>
   );

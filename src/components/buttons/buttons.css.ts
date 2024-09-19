@@ -17,7 +17,7 @@ const baseButton = style([
   {
     position: "relative",
     width: "100%",
-    minWidth: 60,
+    minWidth: "fit-content",
     borderRadius: 8,
     padding: 10,
     display: "flex",
