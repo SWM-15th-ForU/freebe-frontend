@@ -41,7 +41,7 @@ const CancelModal = ({
         onClick={() =>
           putReservationStatus(
             parseInt(reservationId, 10),
-            "CANCELLED",
+            "CANCELLED_BY_PHOTOGRAPHER",
             cancellationReason,
           )
         }

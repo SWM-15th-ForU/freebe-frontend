@@ -5,6 +5,7 @@ import { CustomerDetails, StatusHistory } from "reservation-types";
 import { useDisclosure } from "@mantine/hooks";
 import ReservationStatus from "@/containers/common/status";
 import { compareStatus, isCustomerAbleToCancel } from "@/utils/reservation";
+import { customerStatusInfos } from "@/constants/common/reservation";
 import Chip from "@/components/common/chip";
 import popToast from "@/components/common/toast";
 import CancelModal from "./cancel-modal";
@@ -30,6 +31,12 @@ const Status = ({
     WAITING_FOR_PHOTO: {
       current: compareStatus(currentStatus, "WAITING_FOR_PHOTO"),
     },
+    PHOTO_COMPLETED: {
+      current: compareStatus(currentStatus, "PHOTO_COMPLETED"),
+    },
+    CANCELLED: {
+      current: compareStatus(currentStatus, "CANCELLED"),
+    },
   };
 
   async function handleExport() {
@@ -48,9 +55,11 @@ const Status = ({
     <div className={detailStyles.container}>
       <span className={detailStyles.title}>{productTitle}</span>
       <span className={detailStyles.message}>
-        신청서 제출이 완료되었습니다.
+        {customerStatusInfos[currentStatus]}
       </span>
-      <ReservationStatus statusHistory={statusHistory} noInformation />
+      {currentStatus !== "CANCELLED" && (
+        <ReservationStatus statusHistory={statusHistory} noInformation />
+      )}
       <div className={detailStyles.chips}>
         <Chip name="공유하기" styleType="highlight" onClick={handleExport} />
         {isCustomerAbleToCancel(currentStatus) && (
