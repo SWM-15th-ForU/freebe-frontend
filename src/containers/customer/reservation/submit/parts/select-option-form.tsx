@@ -54,6 +54,7 @@ const SelectOptionForm = ({ options }: { options: Option[] }) => {
   return (
     <PartLayout title="추가 옵션">
       <Dropdown
+        placeholder="추가 옵션"
         datas={options}
         renderItem={OptionItem}
         onClickItem={(index) => {

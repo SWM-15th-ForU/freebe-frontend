@@ -13,7 +13,7 @@ interface ButtonProps
 }
 
 interface ButtonOptions {
-  size: "sm" | "md";
+  size: "xs" | "sm" | "md" | "lg";
   styleType: "primary" | "secondary" | "line";
   link?: string;
 }
@@ -24,6 +24,7 @@ export const CustomButton = ({
   size,
   styleType,
   disabled,
+  children,
   link,
   ...props
 }: ButtonProps & ButtonOptions) => {
@@ -36,11 +37,11 @@ export const CustomButton = ({
     <button
       type="button"
       onClick={onClick}
-      className={disabled ? buttonStyles.disabled : buttonStyles[styleType]}
-      style={{ minHeight: height[size], height: height[size] }}
+      className={`${disabled ? buttonStyles.disabled : buttonStyles[styleType]} ${buttonStyles[size]}`}
       disabled={disabled}
       {...props}
     >
+      {children}
       {title}
       {link && <Link href={link} className={buttonStyles.linkArea} />}
     </button>

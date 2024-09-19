@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { imageStyles } from "./main.css";
 
-const BackgroundImage = ({ mainImage }: { mainImage: string }) => {
+const BackgroundImage = ({ mainImage }: { mainImage?: string }) => {
   return (
     <div className={imageStyles.container}>
       <Image
@@ -11,7 +11,9 @@ const BackgroundImage = ({ mainImage }: { mainImage: string }) => {
         alt="freebe"
         className={imageStyles.logo}
       />
-      <img src={mainImage} alt="대표 이미지" className={imageStyles.image} />
+      {mainImage && (
+        <img src={mainImage} alt="대표 이미지" className={imageStyles.image} />
+      )}
     </div>
   );
 };

@@ -1,3 +1,6 @@
+import { breakpoints } from "@/styles/breakpoints.css";
+import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
 export const ModalStyle = style({
@@ -26,4 +29,62 @@ export const ModalStyles = styleVariants({
     backgroundColor: "white",
     boxShadow: "0px 5px 15px 0px #00000025",
   },
+});
+
+export const mypageStyles = styleVariants({
+  container: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    {
+      padding: 40,
+      position: "relative",
+      height: "auto",
+      overflowY: "scroll",
+      flexGrow: 1,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: "24px 20px",
+        },
+      },
+    },
+  ],
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+    {
+      display: "block",
+      height: 21.5,
+    },
+  ],
+  content: [
+    {
+      width: "100%",
+      height: "calc(100% - 21.5px)",
+      paddingTop: 20,
+      position: "relative",
+
+      "@media": {
+        [breakpoints.mobile]: {
+          height: "100%",
+        },
+      },
+    },
+  ],
+});
+
+export const preparingStyle = styleVariants({
+  container: [
+    sprinkles({ color: "text-point" }),
+    texts["headline-02"],
+    {
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      padding: 100,
+      justifyContent: "center",
+      textAlign: "center",
+    },
+  ],
 });

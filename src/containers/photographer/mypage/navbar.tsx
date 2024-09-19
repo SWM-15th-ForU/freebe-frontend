@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { LinkTab } from "@/components/buttons/common-buttons";
+import Dropdown from "@/components/common/dropdown";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { navbarStyle } from "./mypage.css";
 
@@ -15,6 +16,17 @@ const Navbar = () => {
         {mypageTabs.map((tab, index) => (
           <LinkTab key={index} selected={currentTab === tab.src} {...tab} />
         ))}
+      </div>
+      <div className={navbarStyle.tabDropdown}>
+        <Dropdown
+          placeholder="마이페이지"
+          datas={mypageTabs}
+          container={{ margin: 0, height: 40 }}
+          onClickItem={() => {}}
+          renderItem={(tab) => {
+            return <LinkTab selected={currentTab === tab.src} {...tab} />;
+          }}
+        />
       </div>
     </div>
   );

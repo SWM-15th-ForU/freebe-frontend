@@ -46,10 +46,11 @@ export const sheetStyles = styleVariants({
 
 export const imageStyles = styleVariants({
   container: [
-    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    sprinkles({ backgroundColor: "bg-lightblue" }),
     {
       position: "relative",
       width: "100%",
+      minHeight: "20vh",
       height: "fit-content",
     },
   ],
