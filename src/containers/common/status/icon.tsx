@@ -7,6 +7,7 @@ import { bannerStyles, iconStyles } from "./status.css";
 const Banner = ({
   status,
   current,
+  canceled,
 }: Omit<Parameters<typeof StatusIcon>[0], "date" | "hasInformation">) => {
   const statusIndex: Record<Status, string> = {
     NEW: "1",
@@ -22,7 +23,11 @@ const Banner = ({
       <div className={bannerStyles.wrapper}>
         {current === "DONE" && (
           <div className={bannerStyles.image}>
-            <Image src="/icons/components/check.svg" alt="check" fill />
+            {canceled ? (
+              <Image src="/icons/close-shadow.svg" alt="canceled" fill />
+            ) : (
+              <Image src="/icons/components/check.svg" alt="check" fill />
+            )}
           </div>
         )}
         {current === "NOW" && (
@@ -40,19 +45,21 @@ const StatusIcon = ({
   status,
   current,
   date,
+  canceled,
   hasInformation,
 }: {
   status: Status;
   hasInformation: boolean;
   current: "DONE" | "NOW" | "NOT_STARTED";
   date?: string;
+  canceled?: boolean;
 }) => {
   return (
     <div className={iconStyles.container}>
       <div className={iconStyles.wrapper}>
-        <span className={iconStyles.caption}>{date}</span>
+        <span className={iconStyles.caption}>{canceled ? "취소" : date}</span>
       </div>
-      <Banner status={status} current={current} />
+      <Banner status={status} current={current} canceled={canceled} />
       <div className={iconStyles.wrapper}>
         <span
           className={

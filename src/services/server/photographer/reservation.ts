@@ -16,20 +16,40 @@ export async function getReservationDetail(
       IN_PROGRESS: { updatedDate: null, current: "NOT_STARTED" },
       WAITING_FOR_DEPOSIT: { updatedDate: null, current: "NOT_STARTED" },
       WAITING_FOR_PHOTO: { updatedDate: null, current: "NOT_STARTED" },
+      PHOTO_COMPLETED: { updatedDate: null, current: "NOT_STARTED" },
+      CANCELLED: { updatedDate: null, current: "NOT_STARTED" },
     },
   };
+
   data.statusHistory.forEach((history) => {
-    statusHistory[history.reservationStatus].updatedDate =
-      history.statusUpdateDate;
-    statusHistory[history.reservationStatus].current =
-      data.currentReservationStatus === history.reservationStatus
-        ? "NOW"
-        : "DONE";
+    if (
+      history.reservationStatus === "CANCELLED_BY_CUSTOMER" ||
+      history.reservationStatus === "CANCELLED_BY_PHOTOGRAPHER"
+    ) {
+      statusHistory.CANCELLED.updatedDate = history.statusUpdateDate;
+      statusHistory.CANCELLED.current = "NOW";
+    } else {
+      statusHistory[history.reservationStatus].updatedDate =
+        history.statusUpdateDate;
+      statusHistory[history.reservationStatus].current =
+        data.currentReservationStatus !== "PHOTO_COMPLETED" &&
+        data.currentReservationStatus === history.reservationStatus
+          ? "NOW"
+          : "DONE";
+    }
   });
+
+  const currentStatus =
+    data.currentReservationStatus === "CANCELLED_BY_CUSTOMER" ||
+    data.currentReservationStatus === "CANCELLED_BY_PHOTOGRAPHER"
+      ? "CANCELLED"
+      : data.currentReservationStatus;
+
   return {
     ...data,
     statusHistory,
-    currentStatus: data.currentReservationStatus,
+    currentStatus,
+    cancelStatus: data.statusBeforeCancellation,
     customer: data.customerDetails,
     photographerMemo: data.photographerMemo || "",
     productInfo: objectToArray(data.photoInfo, (arr) =>

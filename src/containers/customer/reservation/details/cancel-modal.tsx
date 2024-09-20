@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import { Modal } from "@mantine/core";
-import { putReservationStatus } from "@/services/client/photographer/reservations";
-import { modalStyles } from "@/containers/customer/products/products.css";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import TextInput from "@/components/inputs/text-input";
-import { sectionStyles } from "../section.css";
+import CommonInput from "@/components/inputs/common-input";
+import popToast from "@/components/common/toast";
+import { modalStyles } from "@/containers/customer/products/products.css";
+import { cancelReservation } from "@/services/client/customer/reservation";
+import { cancelStyles } from "./detail.css";
 
 const CancelModal = ({
   close,
@@ -17,6 +18,15 @@ const CancelModal = ({
   const { reservationId } = useParams<{ reservationId: string }>();
   const [cancellationReason, setCancellationReason] = useState("");
 
+  async function handleCancel() {
+    try {
+      await cancelReservation(parseInt(reservationId, 10), cancellationReason);
+      popToast("취소가 완료되었습니다.");
+    } catch (error) {
+      popToast("다시 시도해주세요.", "취소가 실패했습니다.");
+    }
+  }
+
   return (
     <Modal
       centered
@@ -24,11 +34,11 @@ const CancelModal = ({
       onClose={close}
       classNames={{ ...modalStyles }}
     >
-      <div className={sectionStyles.title}>신청서를 정말 취소하시겠어요?</div>
-      <div className={sectionStyles.message}>
-        신청하신 분과 꼭 협의를 마친 뒤, 신중하게 취소해 주세요.
+      <div className={cancelStyles.title}>신청서를 정말 취소하시겠어요?</div>
+      <div className={cancelStyles.message}>
+        취소하실 경우 사유를 꼭 작성해 주세요.
       </div>
-      <TextInput
+      <CommonInput
         placeholder="취소 사유를 입력해 주세요."
         value={cancellationReason}
         onChange={(e) => setCancellationReason(e.currentTarget.value)}
@@ -38,13 +48,7 @@ const CancelModal = ({
         styleType="primary"
         title="취소하기"
         disabled={cancellationReason === ""}
-        onClick={() =>
-          putReservationStatus(
-            parseInt(reservationId, 10),
-            "CANCELLED_BY_PHOTOGRAPHER",
-            cancellationReason,
-          )
-        }
+        onClick={handleCancel}
       />
     </Modal>
   );

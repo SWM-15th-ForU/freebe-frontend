@@ -51,3 +51,18 @@ export async function postReservation(
   const { data } = response;
   return data;
 }
+
+export async function cancelReservation(
+  id: number,
+  cancellationReason: string,
+) {
+  const body = {
+    cancellationReason,
+  };
+  const response = await apiClient.put(`customer/reservation/${id}`, {
+    body: JSON.stringify(body),
+  });
+  if (!response.ok) {
+    throw new Error();
+  }
+}
