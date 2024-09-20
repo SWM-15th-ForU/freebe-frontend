@@ -7,3 +7,9 @@ export const datePickerInputStyles = styleVariants({
     width: 10,
   },
 });
+
+export const paginationStyles = styleVariants({
+  control: {
+    border: "none",
+  },
+});

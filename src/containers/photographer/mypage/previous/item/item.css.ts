@@ -93,7 +93,8 @@ export const galleryItemStyles = styleVariants({
     }),
     {
       position: "relative",
-      width: "40%",
+      flex: 1,
+      minWidth: 250,
       borderRadius: 8,
       borderWidth: 1,
       borderStyle: "solid",

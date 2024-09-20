@@ -196,6 +196,7 @@ export const switchStyles = styleVariants({
       backgroundColor: "white",
     }),
     {
+      width: "fit-content",
       display: "flex",
       flexDirection: "row",
       borderRadius: 100,
@@ -207,6 +208,7 @@ export const switchStyles = styleVariants({
       borderColor: "stroke-grey",
     }),
     {
+      width: "fit-content",
       display: "flex",
       flexDirection: "row",
       borderRadius: 100,
