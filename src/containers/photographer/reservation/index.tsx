@@ -15,10 +15,7 @@ const ReservationDetailsPage = ({ detailsData }: { detailsData: Details }) => {
     <FormProvider {...method}>
       <div className={containerStyle}>
         <div className={detailStyle}>
-          <ReservationStatus
-            {...detailsData}
-            // cancelStatus="WAITING_FOR_PHOTO"
-          />
+          <ReservationStatus {...detailsData} />
           <ReservationTitle {...detailsData} />
           <ReservationDetails />
         </div>
