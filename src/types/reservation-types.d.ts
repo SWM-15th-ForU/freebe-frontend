@@ -115,6 +115,18 @@ declare module "reservation-types" {
     "productInfo" | "preferredDates" | "options" | "photographerMemo"
   >;
 
+  interface UserPeriod {
+    from?: Date;
+    to?: Date;
+  }
+
+  type Period = undefined | "THREE_MONTHS" | "SIX_MONTHS" | UserPeriod;
+
+  interface ReservationSearchParams {
+    status?: InactiveStatus;
+    period: Period;
+  }
+
   interface ReservationListResponse {
     reservationStatus:
       | "CANCELLED_BY_PHOTOGRAPHER"
