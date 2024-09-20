@@ -14,6 +14,12 @@ export const detailStyles = styleVariants({
   ],
   title: [texts["headline-02"], sprinkles({ color: "text-point" })],
   message: [texts["body-02"], sprinkles({ color: "text-03" })],
+  chips: {
+    display: "flex",
+    gap: 10,
+    marginTop: 24,
+    height: 30,
+  },
   body: [
     sprinkles({
       backgroundColor: "bg-lightgrey",
@@ -26,4 +32,9 @@ export const detailStyles = styleVariants({
       gap: 8,
     },
   ],
+});
+
+export const cancelStyles = styleVariants({
+  title: [texts["headline-02"], sprinkles({ color: "text-02" })],
+  message: [texts["headline-03"], sprinkles({ color: "text-point" })],
 });

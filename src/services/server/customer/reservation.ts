@@ -71,13 +71,20 @@ export async function getReservationDetails(
   const { data } = await api
     .get(`customer/reservation/${reservationId}`)
     .json<{ data: CustomerReservationResponse }>();
+
   const options = objectToArray(data.photoOptions, (arr) =>
     arr.map(([_, content]) => content),
   ) as OptionDetails[];
+  const currentStatus =
+    data.reservationStatus === "CANCELLED_BY_CUSTOMER" ||
+    data.reservationStatus === "CANCELLED_BY_PHOTOGRAPHER"
+      ? "CANCELLED"
+      : data.reservationStatus;
+
   return {
     ...data,
     options,
-    currentStatus: data.reservationStatus,
+    currentStatus,
     preferredDates: objectToArray(data.preferredDate, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),

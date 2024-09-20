@@ -33,7 +33,7 @@ export const statusStyles = styleVariants({
         width: "100%",
         height: 120,
         maxWidth: "100%",
-        padding: "20px 20px",
+        padding: "20px 0px",
         gap: 10,
         background: "none",
       },

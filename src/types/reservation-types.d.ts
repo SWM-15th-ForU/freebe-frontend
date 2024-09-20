@@ -23,6 +23,7 @@ declare module "reservation-types" {
 
   interface BaseDetails {
     currentStatus: Status;
+    cancelStatus?: Status;
     productTitle: string;
     productInfo: { title: string; content: string }[];
     preferredDates: ReservationDate[];
@@ -32,6 +33,7 @@ declare module "reservation-types" {
 
   interface BaseReservationResponse {
     productTitle: string;
+    statusBeforeCancellation?: Status;
     photoInfo: { [key: string]: string };
     photoOptions: { [key: string]: Option };
   }
@@ -67,7 +69,7 @@ declare module "reservation-types" {
   }
 
   type StatusHistory = {
-    [key in ActiveStatus]: {
+    [key in Status]: {
       updatedDate?: string | null;
       current: "DONE" | "NOW" | "NOT_STARTED";
     };
@@ -75,14 +77,23 @@ declare module "reservation-types" {
 
   interface CustomerReservationResponse extends BaseReservationResponse {
     preferredDate: { [key: string]: ReservationDate };
-    reservationStatus: Status;
+    reservationStatus:
+      | Status
+      | "CANCELLED_BY_PHOTOGRAPHER"
+      | "CANCELLED_BY_CUSTOMER";
     customerMemo: string;
   }
   interface ReservationDetailResponse extends BaseReservationResponse {
     reservationNumber: number;
-    currentReservationStatus: Status;
+    currentReservationStatus:
+      | Status
+      | "CANCELLED_BY_PHOTOGRAPHER"
+      | "CANCELLED_BY_CUSTOMER";
     statusHistory: {
-      reservationStatus: ActiveStatus;
+      reservationStatus:
+        | Status
+        | "CANCELLED_BY_PHOTOGRAPHER"
+        | "CANCELLED_BY_CUSTOMER";
       statusUpdateDate: string;
     }[];
     customerDetails: {

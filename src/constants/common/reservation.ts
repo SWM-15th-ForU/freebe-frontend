@@ -20,3 +20,12 @@ export const statusInfos: Record<Status, string> = {
   PHOTO_COMPLETED: "이미 완료된 촬영이에요.",
   CANCELLED: "취소된 촬영이에요.",
 };
+
+export const customerStatusInfos: Record<Status, string> = {
+  NEW: "신청서 제출이 완료되었습니다.",
+  IN_PROGRESS: "촬영 상담이 진행 중입니다.",
+  WAITING_FOR_DEPOSIT: "입금을 기다리는 중입니다.",
+  WAITING_FOR_PHOTO: "촬영 대기 중입니다. 즐거운 촬영 되세요!",
+  PHOTO_COMPLETED: "완료된 촬영입니다.",
+  CANCELLED: "취소된 촬영입니다.",
+};

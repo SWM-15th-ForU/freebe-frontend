@@ -35,3 +35,7 @@ export function compareStatus(currentStatus: Status, targetStatus: Status) {
   }
   return "NOW";
 }
+
+export function isCustomerAbleToCancel(currentStatus: Status) {
+  return currentStatus === "NEW";
+}

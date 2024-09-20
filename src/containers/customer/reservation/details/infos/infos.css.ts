@@ -26,7 +26,9 @@ export const infoStyles = styleVariants({
   },
   schedule: {
     display: "flex",
-    gap: "1ch",
+    flexWrap: "wrap",
+    justifyContent: "flex-end",
+    columnGap: "1ch",
   },
   title: [texts["headline-02"], sprinkles({ color: "text-02" })],
   name: [

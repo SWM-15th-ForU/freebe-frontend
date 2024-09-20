@@ -65,7 +65,7 @@ export async function getPreviousReservationList(params: {
 
 export async function putReservationStatus(
   id: number,
-  targetStatus: Status,
+  targetStatus: Status | "CANCELLED_BY_PHOTOGRAPHER",
   cancel?: string,
 ) {
   const body = {
