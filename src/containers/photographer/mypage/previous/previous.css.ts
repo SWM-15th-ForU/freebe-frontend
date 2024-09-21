@@ -24,6 +24,14 @@ export const layoutStyles = styleVariants({
     height: 40,
     display: "flex",
     alignItems: "center",
+    "@media": {
+      [breakpoints.mobile]: {
+        height: "fit-content",
+        flexDirection: "column",
+        gap: 10,
+        alignItems: "flex-start",
+      },
+    },
   },
   search: {
     display: "flex",
@@ -31,6 +39,12 @@ export const layoutStyles = styleVariants({
     gap: 10,
     height: "100%",
     marginLeft: "auto",
+    "@media": {
+      [breakpoints.mobile]: {
+        margin: 0,
+        width: "100%",
+      },
+    },
   },
   title: [
     texts["headline-02"],
@@ -106,13 +120,21 @@ export const filterStyles = styleVariants({
   wrapper: {
     position: "relative",
     display: "flex",
+
     width: "fit-content",
+    gap: 10,
+    alignItems: "center",
+  },
+  chips: {
+    position: "relative",
+    display: "flex",
+    flexWrap: "wrap",
     gap: 8,
     alignItems: "center",
   },
   title: [
     sprinkles({ color: "text-02" }),
     texts["headline-03"],
-    { marginRight: 8 },
+    { marginRight: 8, minWidth: "fit-content" },
   ],
 });

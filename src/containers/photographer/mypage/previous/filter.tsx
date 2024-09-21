@@ -61,66 +61,69 @@ const Filter = ({
     <div className={filterStyles.container}>
       <div className={filterStyles.wrapper}>
         <span className={filterStyles.title}>기간</span>
-        <Chip
-          name="전체"
-          styleType="highlight"
-          onClick={() => handleChangePeriod(undefined)}
-          selected={period === undefined}
-        />
-        <Chip
-          name="이전 3개월"
-          styleType="highlight"
-          onClick={() => handleChangePeriod("THREE_MONTHS")}
-          selected={period === "THREE_MONTHS"}
-        />
-        <Chip
-          name="이전 6개월"
-          styleType="highlight"
-          onClick={() => handleChangePeriod("SIX_MONTHS")}
-          selected={period === "SIX_MONTHS"}
-        />
-        <Chip
-          name="기간 선택"
-          styleType="highlight"
-          onClick={() => {
-            periodPickerRef.current?.click();
-          }}
-          selected={
-            period !== undefined &&
-            period !== "THREE_MONTHS" &&
-            period !== "SIX_MONTHS"
-          }
-        />
-        <DatePickerInput
-          type="range"
-          locale="ko"
-          classNames={{ ...datePickerInputStyles }}
-          value={dateRange}
-          onChange={(v) => handleSetUserPeriod(v)}
-          style={{ position: "absolute", visibility: "hidden", right: 40 }}
-          ref={periodPickerRef}
-        />
+        <div className={filterStyles.chips}>
+          <Chip
+            name="전체"
+            styleType="highlight"
+            onClick={() => handleChangePeriod(undefined)}
+            selected={period === undefined}
+          />
+          <Chip
+            name="이전 3개월"
+            styleType="highlight"
+            onClick={() => handleChangePeriod("THREE_MONTHS")}
+            selected={period === "THREE_MONTHS"}
+          />
+          <Chip
+            name="이전 6개월"
+            styleType="highlight"
+            onClick={() => handleChangePeriod("SIX_MONTHS")}
+            selected={period === "SIX_MONTHS"}
+          />
+          <Chip
+            name="기간 선택"
+            styleType="highlight"
+            onClick={() => {
+              periodPickerRef.current?.click();
+            }}
+            selected={
+              period !== undefined &&
+              period !== "THREE_MONTHS" &&
+              period !== "SIX_MONTHS"
+            }
+          />
+          <DatePickerInput
+            type="range"
+            locale="ko"
+            classNames={{ ...datePickerInputStyles }}
+            value={dateRange}
+            onChange={(v) => handleSetUserPeriod(v)}
+            ref={periodPickerRef}
+          />
+        </div>
       </div>
       <div className={filterStyles.wrapper}>
         <span className={filterStyles.title}>상태</span>
-        <Chip
-          name="전체"
-          styleType="highlight"
-          selected={status === undefined}
-          onClick={() => handleChangeStatus(undefined)}
-        />
-        <Chip
-          name="취소 건"
-          styleType="highlight"
-          selected={status === "CANCELLED"}
-          onClick={() => handleChangeStatus("CANCELLED")}
-        />
-        <Chip
-          name="촬영 완료 건"
-          styleType="highlight"
-          selected={status === "PHOTO_COMPLETED"}
-          onClick={() => handleChangeStatus("PHOTO_COMPLETED")}
-        />
+        <div className={filterStyles.chips}>
+          <Chip
+            name="전체"
+            styleType="highlight"
+            selected={status === undefined}
+            onClick={() => handleChangeStatus(undefined)}
+          />
+          <Chip
+            name="취소 건"
+            styleType="highlight"
+            selected={status === "CANCELLED"}
+            onClick={() => handleChangeStatus("CANCELLED")}
+          />
+          <Chip
+            name="촬영 완료 건"
+            styleType="highlight"
+            selected={status === "PHOTO_COMPLETED"}
+            onClick={() => handleChangeStatus("PHOTO_COMPLETED")}
+          />
+        </div>
       </div>
     </div>
   );

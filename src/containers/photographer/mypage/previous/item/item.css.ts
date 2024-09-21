@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -25,6 +26,7 @@ const baseText = style([
     alignItems: "center",
     display: "flex",
     gap: 4,
+    marginRight: 8,
   },
 ]);
 
@@ -65,11 +67,33 @@ export const listItemStyles = styleVariants({
     }),
   ],
   cancel: [baseContainer, { backgroundColor: "#F7F7F7" }],
-  wrapper: {
-    display: "flex",
-    width: "100%",
-    alignItems: "center",
-  },
+  wrapper: [
+    {
+      display: "flex",
+      width: "100%",
+      alignItems: "center",
+      "@media": {
+        [breakpoints.mobile]: {
+          flexWrap: "wrap",
+          rowGap: 10,
+        },
+      },
+    },
+  ],
+  divider: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      width: "100%",
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+      display: "none",
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "block",
+        },
+      },
+    },
+  ],
   date: [baseText],
   borderedDate: [
     sprinkles({ borderColor: "stroke-grey" }),
@@ -78,11 +102,29 @@ export const listItemStyles = styleVariants({
       paddingRight: 8,
       borderRightWidth: 1,
       borderRightStyle: "solid",
-      marginRight: 8,
     },
   ],
-  thumbnail: { marginRight: 12, backgroundColor: "#D9D9D9" },
-  information: [baseText, { marginLeft: "auto" }],
+  thumbnail: {
+    marginRight: 12,
+    backgroundColor: "#D9D9D9",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "none",
+      },
+    },
+  },
+  information: [
+    baseText,
+    {
+      marginLeft: "auto",
+      "@media": {
+        [breakpoints.mobile]: {
+          marginLeft: 0,
+          width: "100%",
+        },
+      },
+    },
+  ],
 });
 
 export const galleryItemStyles = styleVariants({

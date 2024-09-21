@@ -49,6 +49,7 @@ const ListItem = ({
             <span className={commonItemStyles.content}>{customerName}</span>
           </div>
         </div>
+        <div className={listItemStyles.divider} />
         <div className={listItemStyles.wrapper}>
           <Image
             src={image}
