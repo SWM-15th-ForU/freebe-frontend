@@ -47,35 +47,25 @@ export const layoutStyles = styleVariants({
     position: "relative",
   },
   content: [
+    sprinkles({ backgroundColor: "white" }),
     {
+      marginTop: 20,
       width: "100%",
-      height: "calc(100% - 21.5px)",
-      paddingTop: 20,
-      position: "relative",
 
-      "@media": {
-        [breakpoints.mobile]: {
-          height: "100%",
-        },
-      },
+      borderRadius: 16,
     },
   ],
 });
 
 export const viewStyles = styleVariants({
-  container: [
-    sprinkles({ backgroundColor: "white" }),
-    {
-      marginTop: 20,
-      width: "100%",
-      padding: 24,
-      display: "flex",
-      alignItems: "center",
-      flexDirection: "column",
-      borderRadius: 16,
-      gap: 20,
-    },
-  ],
+  container: {
+    width: "100%",
+    padding: 24,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    gap: 20,
+  },
   title: [texts["headline-02"], sprinkles({ color: "text-02" })],
   header: {
     display: "flex",

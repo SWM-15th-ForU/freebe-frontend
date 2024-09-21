@@ -1,7 +1,7 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 export const ModalStyle = style({
   borderRadius: 16,
@@ -87,4 +87,37 @@ export const preparingStyle = styleVariants({
       textAlign: "center",
     },
   ],
+});
+
+const rotateAnimation = keyframes({
+  from: {
+    transform: "rotate(0deg)",
+  },
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
+
+const baseContainer = style({
+  width: "100%",
+  height: "100%",
+  padding: 40,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 30,
+});
+
+export const handlerStyles = styleVariants({
+  container: [baseContainer],
+  message: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-point",
+    }),
+  ],
+  loader: {
+    animation: `${rotateAnimation} 2s linear infinite`,
+  },
 });

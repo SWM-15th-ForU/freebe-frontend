@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ReservationList } from "reservation-types";
+import { ReservationSearchParams } from "reservation-types";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Pagination } from "@mantine/core";
 import Slider from "@/components/common/slider";
 import { getPreviousReservationList } from "@/services/client/photographer/reservations";
@@ -9,26 +10,25 @@ import ListItem from "./item/list-item";
 import GalleryItem from "./item/gallery-item";
 import { viewStyles } from "./previous.css";
 
-const View = () => {
+const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
+  const [viewType, setViewType] = useState<"gallery" | "list">("list");
+  const { data: reservationList } = useSuspenseQuery({
+    queryKey: ["reservation", { from, to, keyword, page, status }],
+    queryFn: () =>
+      getPreviousReservationList({ from, to, keyword, page, status }),
+  });
+
+  function handleSwitchViewType(id: string) {
+    if (id === "list" || id === "gallery") setViewType(id);
+  }
+
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [activePage, setActivePage] = useState(1);
-  const [viewType, setViewType] = useState<"gallery" | "list">("list");
-  const [reservationList, setReservationList] = useState<ReservationList[]>([]);
-
-  useEffect(() => {
-    const page = searchParams.get("page");
-    setActivePage(Number(page) || 1);
-  }, [searchParams]);
 
   function handlePageChange(newPage: number) {
     const params = new URLSearchParams(searchParams);
     params.set("page", newPage.toString());
     router.push(`?${params.toString()}`);
-  }
-
-  function handleSwitchViewType(id: string) {
-    if (id === "list" || id === "gallery") setViewType(id);
   }
 
   function renderItem() {
@@ -56,7 +56,7 @@ const View = () => {
       </div>
       <div className={viewStyles[viewType]}>{renderItem()}</div>
       <Pagination
-        value={activePage}
+        value={page}
         total={3}
         onChange={handlePageChange}
         classNames={paginationStyles}
