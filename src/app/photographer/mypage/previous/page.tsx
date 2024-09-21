@@ -1,7 +1,7 @@
-import Preparing from "@/containers/ui/preparing";
+import PreviousReservations from "@/containers/photographer/mypage/previous";
 
 const MyPreviousPage = () => {
-  return <Preparing />;
+  return <PreviousReservations />;
 };
 
 export default MyPreviousPage;

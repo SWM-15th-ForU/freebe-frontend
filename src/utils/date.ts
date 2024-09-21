@@ -1,3 +1,5 @@
+import { Period, ReservationSearchParams } from "reservation-types";
+
 export function parseDate(target: Date) {
   return `${target.getFullYear()}.${target.getMonth() + 1}.${target.getDate()}`;
 }
@@ -49,4 +51,21 @@ export function getDateDifference(dateString: string): number {
   const differenceInDays = Math.floor(differenceInMs / (1000 * 60 * 60 * 24));
 
   return differenceInDays;
+}
+
+export function parsePeriodToSearchParams(
+  period: Period,
+): Pick<ReservationSearchParams, "from" | "to"> {
+  if (period === undefined) {
+    return {};
+  }
+  if (period === "THREE_MONTHS" || period === "SIX_MONTHS") {
+    const today = new Date();
+    today.setMonth(today.getMonth() - (period === "SIX_MONTHS" ? 6 : 3));
+    return { from: formatDateString(today) };
+  }
+  return {
+    from: formatDateString(period.from),
+    to: formatDateString(period.to),
+  };
 }

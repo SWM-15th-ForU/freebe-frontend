@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import {
-  InactiveStatus,
-  Period,
-  ReservationSearchParams,
-} from "reservation-types";
+import { Period, ReservationSearchParams } from "reservation-types";
 import Search from "@/components/common/search";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import QueryProviders from "@/containers/common/query-providers";
@@ -18,9 +14,19 @@ const PreviousReservations = () => {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState("");
   const [period, setPeriod] = useState<Period>();
-  const [status, setStatus] = useState<undefined | InactiveStatus>();
-  const [activePage, setActivePage] = useState(1);
   const [params, setParams] = useState<ReservationSearchParams>({});
+
+  useEffect(() => {
+    const page = searchParams.get("page");
+    setParams((prev) => ({ ...prev, page: Number(page) || 1 }));
+  }, [searchParams]);
+
+  function handleSetKeyword() {
+    // TODO: 한글 검색어 테스트 필요
+    setParams((prev) => {
+      return { ...prev, keyword: search };
+    });
+  }
 
   return (
     <div className={layoutStyles.container}>
@@ -30,21 +36,27 @@ const PreviousReservations = () => {
           <Search
             value={search}
             setValue={setSearch}
+            onEnter={handleSetKeyword}
             container={{ height: "100%", flex: 1 }}
           />
-          <CustomButton size="sm" styleType="primary" title="검색하기" />
+          <CustomButton
+            size="sm"
+            styleType="primary"
+            title="검색하기"
+            onClick={handleSetKeyword}
+          />
         </div>
       </div>
       <div className={layoutStyles.body}>
         <Filter
+          setParams={setParams}
           setPeriod={setPeriod}
-          setStatus={setStatus}
-          status={status}
+          status={params.status}
           period={period}
         />
         <div className={layoutStyles.content}>
           <QueryProviders>
-            <View />
+            <View {...params} />
           </QueryProviders>
         </div>
       </div>

@@ -127,15 +127,23 @@ declare module "reservation-types" {
   >;
 
   interface UserPeriod {
-    from?: Date;
-    to?: Date;
+    from: Date;
+    to: Date;
   }
 
   type Period = undefined | "THREE_MONTHS" | "SIX_MONTHS" | UserPeriod;
 
-  interface ReservationSearchParams {
+  interface ReservationSearchOptions {
     status?: InactiveStatus;
     period: Period;
+  }
+
+  interface ReservationSearchParams {
+    from?: string;
+    to?: string;
+    status?: InactiveStatus;
+    keyword?: string;
+    page?: number;
   }
 
   interface ReservationListResponse {

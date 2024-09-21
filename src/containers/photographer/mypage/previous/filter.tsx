@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
   InactiveStatus,
   Period,
+  ReservationSearchOptions,
   ReservationSearchParams,
 } from "reservation-types";
 import "dayjs/locale/ko";
@@ -9,22 +10,25 @@ import { DatePickerInput, DatesRangeValue } from "@mantine/dates";
 import Chip from "@/components/common/chip";
 import { datePickerInputStyles } from "@/styles/mantine.css";
 import { isUserPeriod } from "@/utils/type-guards";
+import { parsePeriodToSearchParams } from "@/utils/date";
 import { filterStyles } from "./previous.css";
 
 const Filter = ({
   period,
   status,
+  setParams,
   setPeriod,
-  setStatus,
-}: ReservationSearchParams & {
+}: ReservationSearchOptions & {
+  setParams: Dispatch<SetStateAction<ReservationSearchParams>>;
   setPeriod: Dispatch<SetStateAction<Period>>;
-  setStatus: Dispatch<SetStateAction<InactiveStatus | undefined>>;
 }) => {
   const periodPickerRef = useRef<HTMLButtonElement>(null);
   const [dateRange, setDateRange] = useState<DatesRangeValue>([null, null]);
 
   function handleChangeStatus(newStatus: InactiveStatus | undefined) {
-    setStatus(newStatus);
+    setParams((prev) => {
+      return { ...prev, status: newStatus };
+    });
   }
 
   function handleChangePeriod(newPeriod: Period) {
@@ -32,6 +36,14 @@ const Filter = ({
     if (!isUserPeriod(newPeriod)) {
       setDateRange([null, null]);
     }
+    setParams((prev) => {
+      return {
+        keyword: prev.keyword,
+        page: prev.page,
+        status: prev.status,
+        ...parsePeriodToSearchParams(newPeriod),
+      };
+    });
   }
 
   function handleSetUserPeriod(value: DatesRangeValue) {
