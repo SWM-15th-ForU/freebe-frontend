@@ -149,7 +149,7 @@ const ProductForm = () => {
     register,
     formState: { errors },
   } = method;
-  const [images, setImages] = useState<Image[]>([]);
+  const [images, setImages] = useState<File[]>([]);
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
@@ -162,7 +162,11 @@ const ProductForm = () => {
 
   return (
     <FormProvider {...method}>
-      <form className={formStyles.container} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={formStyles.container}
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
         <span className={formStyles.title}>촬영 정보 등록하기</span>
         <div className={formStyles.wrapper}>
           <div className={formStyles.split}>

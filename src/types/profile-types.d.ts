@@ -14,15 +14,12 @@ declare module "profile-types" {
   interface Photographer {
     banner?: string;
     profileImg?: string;
-    imgFile?: File;
-    bannerFile?: File;
     instagramId: string;
     message: string;
     linkInfos: LinkType[];
   }
 
   interface Join {
-    profileImg?: File;
     instagramId: string;
     serviceAgreement: boolean;
     privacyAgreement: boolean;

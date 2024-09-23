@@ -1,5 +1,4 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { Image } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import ImageThumbnail from "@/components/images/image-thumbnail";
@@ -8,13 +7,12 @@ import {
   FinishButton,
 } from "@/components/buttons/common-buttons";
 import { modalStyles } from "@/containers/customer/products/products.css";
-import { getUrlFromFiles } from "@/utils/image";
 import { formStyles } from "../product.css";
 // TODO: modal style 공통으로 옮기기
 
 interface ImageInputProps {
-  images: Image[];
-  setImage: Dispatch<SetStateAction<Image[]>>;
+  images: File[];
+  setImage: Dispatch<SetStateAction<File[]>>;
 }
 
 const ARRAY_START_INDEX = 0;
@@ -31,9 +29,7 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
     e.preventDefault();
     if (e.type === "drop") {
       const event = e as React.DragEvent;
-      const droppedImages = getUrlFromFiles(
-        Array.from(event.dataTransfer.files),
-      );
+      const droppedImages = Array.from(event.dataTransfer.files);
       setImage((prev) => {
         const newImages = [...prev, ...droppedImages].slice(
           ARRAY_START_INDEX,
@@ -43,9 +39,9 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
       });
     } else if (e.type === "change") {
       const inputElement = e.target as HTMLInputElement;
-      const selectedImages = getUrlFromFiles(
-        inputElement.files ? Array.from(inputElement.files) : [],
-      );
+      const selectedImages = inputElement.files
+        ? Array.from(inputElement.files)
+        : [];
       setImage((prev) => {
         const newImages = [...prev, ...selectedImages].slice(
           ARRAY_START_INDEX,
@@ -99,7 +95,7 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
           return (
             <ImageThumbnail
               key={index}
-              image={image}
+              image={URL.createObjectURL(image)}
               onClickDelete={() => handleDeleteImage(index)}
               size="20%"
               isRepresentative={index === 0}
@@ -112,6 +108,7 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
       </div>
       <CustomButton
         styleType="line"
+        disabled={images.length >= MAX_IMAGE_COUNT}
         size="md"
         style={{ marginTop: 20 }}
         onClick={() => InputRef.current?.click()}
@@ -121,7 +118,6 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
         type="file"
         accept="image/*"
         style={{ display: "none" }}
-        disabled={images.length >= MAX_IMAGE_COUNT}
         ref={InputRef}
         onChange={handleAddImage}
       />
