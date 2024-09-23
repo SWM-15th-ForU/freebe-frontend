@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { useFormContext } from "react-hook-form";
 import { Photographer } from "profile-types";
 import TextInput from "@/components/inputs/text-input";
@@ -6,14 +6,18 @@ import ProfileImage from "@/components/images/profile-image";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
-const BasicInfo = () => {
-  const { watch, setValue, register } = useFormContext<Photographer>();
+const BasicInfo = ({
+  setProfileFile,
+}: {
+  setProfileFile: Dispatch<SetStateAction<File | undefined>>;
+}) => {
+  const { watch, setValue } = useFormContext<Photographer>();
   const [profileImage] = watch(["profileImg"]);
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
       const newFile = e.currentTarget.files[0];
-      setValue("imgFile", newFile);
+      setProfileFile(newFile);
       const blob = URL.createObjectURL(newFile);
       setValue("profileImg", blob);
     }
@@ -36,7 +40,6 @@ const BasicInfo = () => {
               right: 0,
               cursor: "pointer",
             }}
-            {...register("imgFile")}
             onChange={handleChangeProfileImg}
           />
         </CustomButton>

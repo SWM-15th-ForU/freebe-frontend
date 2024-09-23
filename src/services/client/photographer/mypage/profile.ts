@@ -1,7 +1,10 @@
 import { Photographer } from "profile-types";
 import apiClient from "../../core";
 
-export async function putProfile(form: Photographer) {
+export async function putProfile(
+  form: Photographer,
+  files: { bannerFile?: File; profileFile?: File },
+) {
   const formData = new FormData();
   const inputData = {
     instagramId: form.instagramId,
@@ -19,11 +22,11 @@ export async function putProfile(form: Photographer) {
   );
 
   // TODO: 업데이트된 request body 형식 확인 필요
-  if (form.bannerFile !== undefined) {
-    formData.append("bannerImage", form.bannerFile);
+  if (files.bannerFile !== undefined) {
+    formData.append("bannerImage", files.bannerFile);
   }
-  if (form.imgFile !== undefined) {
-    formData.append("profileImage", form.imgFile);
+  if (files.profileFile !== undefined) {
+    formData.append("profileImage", files.profileFile);
   }
 
   await apiClient.put("photographer/profile", {

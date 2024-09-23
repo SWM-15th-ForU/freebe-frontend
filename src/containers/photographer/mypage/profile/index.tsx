@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Photographer } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -21,14 +22,16 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
     ),
   });
   const method = useForm<Photographer>({
-    defaultValues: profile,
+    defaultValues: { ...profile },
     resolver: zodResolver(profileSchema),
   });
   const { handleSubmit } = method;
+  const [profileFile, setProfileFile] = useState<File>();
+  const [bannerFile, setBannerFile] = useState<File>();
 
   const onSubmit: SubmitHandler<Photographer> = async (data) => {
     try {
-      await putProfile(data);
+      await putProfile(data, { bannerFile, profileFile });
       popToast("저장이 완료되었습니다.", "");
     } catch {
       popToast("저장에 실패했습니다.", "다시 시도해 주세요.");
@@ -44,7 +47,10 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
       >
         <div className={profileStyles.container}>
           <Preview />
-          <ProfileEdit />
+          <ProfileEdit
+            setBannerFile={setBannerFile}
+            setProfileFile={setProfileFile}
+          />
         </div>
         <SubmitProfile />
       </form>

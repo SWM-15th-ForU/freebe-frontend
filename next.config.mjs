@@ -5,7 +5,12 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   images: {
     // TODO: 이미지 허용 도메인 정리하기
-    domains: ["picsum.photos", "example.com", "search.pstatic.net"],
+    domains: [
+      "picsum.photos",
+      "example.com",
+      "search.pstatic.net",
+      "cicd-backend-develop-bucket.s3.ap-northeast-2.amazonaws.com",
+    ],
   },
   reactStrictMode: false,
   webpack: (config) => {
