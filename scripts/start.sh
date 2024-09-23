@@ -8,5 +8,16 @@ set +o allexport
 # 경로 및 파일 설정
 ROOT_PATH="/home/ubuntu/freebe-frontend"
 
-# 애플리케이션 실행
-sudo pm2 start ecosystem.3000.config.js
+LOG_FILE="$ROOT_PATH/start.log"
+
+# 로그 기록 시작
+{
+    echo "Starting deployment..."
+    echo "Loading environment variables..."
+    
+    # 애플리케이션 실행
+    echo "Starting PM2 process..."
+    sudo pm2 start ecosystem.3000.config.js
+
+    echo "Deployment completed."
+} >> "$LOG_FILE" 2>&1
