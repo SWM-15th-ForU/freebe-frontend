@@ -1,21 +1,32 @@
 import { Photographer } from "profile-types";
 import apiClient from "../../core";
 
-export async function putProfile(newProfile: Photographer) {
-  // TODO: 인스타그램 아이디 수정 여부 + 이미지 파일 형식 체크
-  const body = {
-    bannerImageUrl: newProfile.banner,
-    profileImageUrl: newProfile.profileImg,
-    instagramId: newProfile.instagramId,
-    introductionContent: newProfile.message,
-    linkInfos: newProfile.linkInfos.map((link) => {
+export async function putProfile(form: Photographer) {
+  const formData = new FormData();
+  const inputData = {
+    instagramId: form.instagramId,
+    introductionContent: form.message,
+    linkInfos: form.linkInfos.map((link) => {
       return {
         linkTitle: link.name,
         linkUrl: link.src,
       };
     }),
   };
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(inputData)], { type: "application/json" }),
+  );
+
+  // TODO: 업데이트된 request body 형식 확인 필요
+  if (form.bannerFile !== undefined) {
+    formData.append("bannerImage", form.bannerFile);
+  }
+  if (form.imgFile !== undefined) {
+    formData.append("profileImage", form.imgFile);
+  }
+
   await apiClient.put("photographer/profile", {
-    body: JSON.stringify(body),
+    body: formData,
   });
 }

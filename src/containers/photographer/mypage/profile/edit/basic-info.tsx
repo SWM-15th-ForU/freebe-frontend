@@ -7,8 +7,8 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
 const BasicInfo = () => {
-  const { watch, setValue } = useFormContext<Photographer>();
-  const [profileImage] = watch(["profileImg", "imgFile"]);
+  const { watch, setValue, register } = useFormContext<Photographer>();
+  const [profileImage] = watch(["profileImg"]);
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
@@ -36,6 +36,7 @@ const BasicInfo = () => {
               right: 0,
               cursor: "pointer",
             }}
+            {...register("imgFile")}
             onChange={handleChangeProfileImg}
           />
         </CustomButton>

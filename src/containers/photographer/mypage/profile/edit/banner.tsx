@@ -5,7 +5,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
 const Banner = () => {
-  const { setValue } = useFormContext<Photographer>();
+  const { setValue, register } = useFormContext<Photographer>();
 
   function handleDeleteBanner() {
     setValue("bannerFile", undefined);
@@ -44,6 +44,7 @@ const Banner = () => {
               right: 0,
               cursor: "pointer",
             }}
+            {...register("bannerFile")}
             onChange={handleChangeBanner}
           />
         </CustomButton>

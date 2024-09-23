@@ -37,14 +37,17 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
 
   return (
     <FormProvider {...method}>
-      <form onSubmit={handleSubmit(onSubmit)} className={profileStyles.form}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={profileStyles.form}
+        encType="multipart/form-data"
+      >
         <div className={profileStyles.container}>
           <Preview />
           <ProfileEdit />
         </div>
         <SubmitProfile />
       </form>
-      {/* <BottomButton title="프로필 저장" /> */}
     </FormProvider>
   );
 };
