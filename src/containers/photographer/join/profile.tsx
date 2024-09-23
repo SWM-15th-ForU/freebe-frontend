@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Join } from "profile-types";
 import ProfileImage from "@/components/images/profile-image";
@@ -13,16 +7,11 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import { profileStyles } from "./join.css";
 
 const Profile = ({
-  profileImg,
   setProfileImg,
 }: {
-  profileImg: File | undefined;
   setProfileImg: Dispatch<SetStateAction<File | undefined>>;
 }) => {
   const {
-    setValue,
-    watch,
-    register,
     formState: { errors },
   } = useFormContext<Join>();
   const [preview, setPreview] = useState<undefined | string>();

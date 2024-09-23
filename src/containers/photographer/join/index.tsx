@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -55,7 +55,7 @@ const PhotographerJoin = () => {
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
-        <Profile profileImg={profileImg} setProfileImg={setProfileImg} />
+        <Profile setProfileImg={setProfileImg} />
         <Agreements />
         <CustomButton
           type="submit"
