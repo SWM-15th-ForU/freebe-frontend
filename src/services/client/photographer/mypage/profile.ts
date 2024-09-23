@@ -21,7 +21,6 @@ export async function putProfile(
     new Blob([JSON.stringify(inputData)], { type: "application/json" }),
   );
 
-  // TODO: 업데이트된 request body 형식 확인 필요
   if (files.bannerFile !== undefined) {
     formData.append("bannerImage", files.bannerFile);
   }
