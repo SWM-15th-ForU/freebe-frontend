@@ -22,7 +22,6 @@ declare module "profile-types" {
   }
 
   interface Join {
-    profileImg?: File;
     instagramId: string;
     serviceAgreement: boolean;
     privacyAgreement: boolean;

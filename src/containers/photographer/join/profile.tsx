@@ -1,4 +1,10 @@
-import { ChangeEvent, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { useFormContext } from "react-hook-form";
 import { Join } from "profile-types";
 import ProfileImage from "@/components/images/profile-image";
@@ -6,19 +12,25 @@ import TextInput from "@/components/inputs/text-input";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { profileStyles } from "./join.css";
 
-const Profile = () => {
+const Profile = ({
+  profileImg,
+  setProfileImg,
+}: {
+  profileImg: File | undefined;
+  setProfileImg: Dispatch<SetStateAction<File | undefined>>;
+}) => {
   const {
     setValue,
     watch,
+    register,
     formState: { errors },
   } = useFormContext<Join>();
   const [preview, setPreview] = useState<undefined | string>();
-  const profileImg = watch("profileImg");
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
       const newFile = e.currentTarget.files[0];
-      setValue("profileImg", newFile);
+      setProfileImg(newFile);
       const blob = URL.createObjectURL(newFile);
       setPreview(blob);
       e.currentTarget.value = "";
@@ -26,7 +38,7 @@ const Profile = () => {
   }
 
   function handleDeleteProfileImg() {
-    setValue("profileImg", undefined);
+    setProfileImg(undefined);
     setPreview(undefined);
   }
 

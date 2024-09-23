@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -31,6 +32,7 @@ const PhotographerJoin = () => {
     resolver: zodResolver(joinSchema),
   });
   const { handleSubmit, watch } = method;
+  const [profileImg, setProfileImg] = useState<File>();
   const [serviceAgreement, privacyAgreement] = watch([
     "serviceAgreement",
     "privacyAgreement",
@@ -38,7 +40,7 @@ const PhotographerJoin = () => {
 
   async function onSubmit(data: Join) {
     try {
-      const url = await postProfile(data);
+      const url = await postProfile(data, profileImg);
       popToast("가입이 완료되었습니다!", "");
       router.push(`/photographer?url=${url}`);
     } catch (error) {
@@ -48,8 +50,12 @@ const PhotographerJoin = () => {
 
   return (
     <FormProvider {...method}>
-      <form className={joinStyles.container} onSubmit={handleSubmit(onSubmit)}>
-        <Profile />
+      <form
+        className={joinStyles.container}
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
+        <Profile profileImg={profileImg} setProfileImg={setProfileImg} />
         <Agreements />
         <CustomButton
           type="submit"

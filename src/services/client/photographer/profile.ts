@@ -1,7 +1,7 @@
 import { Join } from "profile-types";
 import apiClient from "../core";
 
-export async function postProfile(form: Join) {
+export async function postProfile(form: Join, profileImg?: File) {
   const formData = new FormData();
   const inputData = {
     instagramId: form.instagramId,
@@ -13,14 +13,13 @@ export async function postProfile(form: Join) {
     "request",
     new Blob([JSON.stringify(inputData)], { type: "application/json" }),
   );
-  if (form.profileImg) {
-    formData.append("image", form.profileImg);
+  if (profileImg !== undefined) {
+    formData.append("image", profileImg);
   }
 
   const { data } = await apiClient
     .post("photographer/join", {
       body: formData,
-      headers: { "content-type": "multipart/form-data" },
     })
     .json<{ data: string }>();
   return data;
