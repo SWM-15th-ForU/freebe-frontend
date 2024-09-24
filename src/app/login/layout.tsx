@@ -1,5 +1,6 @@
 import ServiceFooter from "@/containers/common/footer";
 import Header from "@/containers/photographer/main/header";
+import { loginPageStyles } from "./page.css";
 
 const LoginLayout = ({
   children,
@@ -8,14 +9,7 @@ const LoginLayout = ({
 }>) => {
   return (
     <div>
-      <div
-        style={{
-          width: "100vw",
-          height: "100vh",
-          position: "relative",
-          paddingTop: 51,
-        }}
-      >
+      <div className={loginPageStyles.layout}>
         <Header />
         {children}
       </div>
