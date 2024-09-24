@@ -11,6 +11,7 @@ export const ModalStyle = style({
 
 export const ModalStyles = styleVariants({
   background: {
+    zIndex: 8,
     position: "absolute",
     display: "flex",
     alignItems: "center",
@@ -87,4 +88,20 @@ export const preparingStyle = styleVariants({
       textAlign: "center",
     },
   ],
+});
+
+export const headerLayoutStyles = styleVariants({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    position: "relative",
+    overflow: "visible",
+  },
+  content: {
+    flexGrow: 1,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+  },
 });

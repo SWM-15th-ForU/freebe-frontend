@@ -20,6 +20,8 @@ export const footerStyles = styleVariants({
   wrapper: {
     justifyContent: "space-between",
     display: "flex",
+    flexWrap: "wrap",
+    marginBottom: 40,
     "@media": {
       "screen and (max-width: 967px)": {
         flexDirection: "column",
@@ -41,7 +43,6 @@ export const footerStyles = styleVariants({
     flexDirection: "row",
     "@media": {
       "screen and (max-width: 967px)": {
-        marginBottom: 40,
         marginTop: 20,
       },
       [breakpoints.mobile]: {

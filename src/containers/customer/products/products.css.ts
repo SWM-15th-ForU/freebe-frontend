@@ -16,7 +16,8 @@ export const headerStyles = styleVariants({
     }),
     {
       zIndex: 5,
-      position: "fixed",
+      position: "sticky",
+      top: 0,
       width: "100%",
     },
   ],
@@ -67,7 +68,12 @@ export const headerStyles = styleVariants({
 export const infoStyles = styleVariants({
   container: [
     sprinkles({ backgroundColor: "bg-lightgrey" }),
-    { paddingBottom: 72 },
+    {
+      flex: 1,
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+    },
   ],
   wrapper: [
     sprinkles({ backgroundColor: "white" }),

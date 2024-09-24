@@ -11,6 +11,7 @@ import { Item, Option, reservation } from "product-types";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { postReservation } from "@/services/client/customer/reservation";
+import { reservationStyles } from "./reservation.css";
 
 const SubmitForm = ({
   name,
@@ -54,11 +55,9 @@ const SubmitForm = ({
 
   return (
     <div
+      className={reservationStyles.container}
       style={{
         backgroundColor: "#F4F8FD",
-        paddingBottom: 72,
-        height: "100vh",
-        overflowY: "scroll",
       }}
     >
       <CustomerInfoForm name={name} phoneNumber={phoneNumber} />

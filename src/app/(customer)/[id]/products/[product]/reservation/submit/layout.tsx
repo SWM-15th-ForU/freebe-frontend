@@ -8,7 +8,7 @@ const SubmitLayout = ({
   modal: React.ReactNode;
 }) => {
   return (
-    <div style={{ position: "relative", overflowY: "hidden" }}>
+    <div>
       {children}
       {modal}
     </div>
