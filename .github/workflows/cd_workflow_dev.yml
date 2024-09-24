@@ -18,6 +18,7 @@ jobs:
 
       - name: 배포 수행
         run: |
+          git branch ${{ github.head_ref }}
           git pull origin ${{ github.head_ref }}
           npm install
           npm run build
