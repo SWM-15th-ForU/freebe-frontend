@@ -7,7 +7,7 @@ export const loginPageStyles = styleVariants({
     {
       position: "relative",
       width: "100vw",
-      height: "100vh",
+      height: "100%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
