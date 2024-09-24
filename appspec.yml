@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 
 files:
-  - source: /frontend_freebe.zip
+  - source: /
     destination: /home/ubuntu/freebe-frontend
     overwrite: yes
 
