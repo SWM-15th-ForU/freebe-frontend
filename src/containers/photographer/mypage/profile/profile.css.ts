@@ -1,12 +1,42 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
+import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
+
+export const mypageStyles = styleVariants({
+  container: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    {
+      padding: 40,
+      position: "relative",
+      height: "auto",
+      overflowY: "scroll",
+      flexGrow: 1,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: "24px 20px",
+        },
+      },
+    },
+  ],
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+    {
+      display: "block",
+      height: 21.5,
+    },
+  ],
+});
 
 export const profileStyles = styleVariants({
   form: {
     position: "relative",
-    height: "100%",
-
+    height: "calc(100% - 21.5px)",
+    paddingTop: 20,
     "@media": {
       [breakpoints.mobile]: {
         height: "auto",

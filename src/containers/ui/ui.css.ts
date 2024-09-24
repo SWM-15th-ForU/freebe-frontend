@@ -61,8 +61,8 @@ export const mypageStyles = styleVariants({
   content: [
     {
       width: "100%",
-      height: "calc(100% - 21.5px)",
       paddingTop: 20,
+      paddingBottom: 60,
       position: "relative",
 
       "@media": {

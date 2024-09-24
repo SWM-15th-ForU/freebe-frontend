@@ -5,9 +5,9 @@ export const mypageStyles = styleVariants({
   container: [
     {
       width: "100vw",
-      height: "100vh",
+      height: "calc(100vh - 51px)",
       overflowY: "hidden",
-      position: "fixed",
+      position: "relative",
     },
   ],
   body: [
@@ -15,7 +15,7 @@ export const mypageStyles = styleVariants({
       flex: 1,
       overflowY: "scroll",
       position: "relative",
-      height: "calc(100% - 51px)",
+      height: "100%",
       display: "flex",
 
       "@media": {

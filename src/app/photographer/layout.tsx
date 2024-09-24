@@ -1,3 +1,4 @@
+import ServiceFooter from "@/containers/common/footer";
 import Header from "@/containers/photographer/main/header";
 
 const PhotographerLayout = ({
@@ -6,17 +7,18 @@ const PhotographerLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        overflowY: "scroll",
-        paddingTop: 51,
-      }}
-    >
-      <Header />
-      {children}
+    <div>
+      <div
+        style={{
+          width: "100vw",
+          minHeight: "100vh",
+          paddingTop: 51,
+        }}
+      >
+        <Header />
+        {children}
+      </div>
+      <ServiceFooter />
     </div>
   );
 };
