@@ -14,6 +14,7 @@ import SubmitProfile from "./submit";
 
 const MyProfile = ({ profile }: { profile: Photographer }) => {
   const profileSchema = z.object({
+    message: z.string(),
     linkInfos: z.array(
       z.object({
         name: z.string().min(1, { message: "표시될 이름을 입력해 주세요." }),

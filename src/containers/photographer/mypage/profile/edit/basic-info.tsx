@@ -46,9 +46,9 @@ const BasicInfo = ({
       </div>
       <div className={editStyles.fieldsWrapper}>
         <TextInput<Photographer>
-          title="인스타그램"
-          formField="instagramId"
-          placeholder="인스타그램 아이디를 입력해주세요."
+          title="아이디"
+          formField="profileName"
+          disabled
           container={{ marginTop: 0 }}
         />
         <TextInput<Photographer>
