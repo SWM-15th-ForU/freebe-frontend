@@ -7,23 +7,12 @@ files:
     overwrite: yes
 
 permissions:
-  - object: /home/ubuntu/freebe-frontend
+  - object: /
     pattern: "**"
     owner: ubuntu
     group: ubuntu
-    mode: 755
 
-hooks:
-  BeforeInstall:
-    - location: scripts/download_from_s3.sh
-      timeout: 60
-      runas: root
-
-  AfterInstall: 
-    - location: scripts/unzip.sh
-      timeout: 60
-      runas: root
-      
+hooks: 
   ApplicationStop:
     - location: scripts/stop.sh
       timeout: 60
