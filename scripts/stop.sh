@@ -6,7 +6,7 @@ APP_NAME="freebe3000"
 # 로그 파일 경로
 LOG_FILE="delete.log"
 
-cd /home/ubuntu/freebe-fronted
+cd /home/ubuntu/freebe-frontend
 
 # 현재 PM2 프로세스를 찾고 삭제
 if sudo pm2 pid "$APP_NAME"; then
