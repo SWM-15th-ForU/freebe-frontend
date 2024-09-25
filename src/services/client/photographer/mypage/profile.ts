@@ -7,7 +7,6 @@ export async function putProfile(
 ) {
   const formData = new FormData();
   const inputData = {
-    instagramId: form.instagramId,
     introductionContent: form.message,
     linkInfos: form.linkInfos.map((link) => {
       return {

@@ -10,8 +10,8 @@ const LoginButton = ({
   id,
 }: {
   roleType: User;
-  product?: number;
-  id?: number;
+  product?: string;
+  id?: string;
 }) => {
   const redirectUri = `${process.env.NEXT_PUBLIC_DOMAIN}login/redirect`;
   const stateValue =

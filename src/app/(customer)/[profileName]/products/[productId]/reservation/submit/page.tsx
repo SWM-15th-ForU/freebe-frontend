@@ -2,13 +2,14 @@ import { PRODUCT_PROGRESS } from "@/constants/customer/product";
 import SubmitForm from "@/containers/customer/reservation/submit-form";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
 import { getFormBase } from "@/services/server/customer/reservation";
+import { PageParams } from "route-parameters";
 
 const SubmitPage = async ({
   params,
 }: {
-  params: { product: string; id: number };
+  params: Pick<PageParams, "profileName" | "productId">;
 }) => {
-  const result = await getFormBase(params.product);
+  const result = await getFormBase(params.profileName);
   return (
     <ProductHeaderLayout
       header={{
@@ -19,7 +20,7 @@ const SubmitPage = async ({
         },
       }}
     >
-      <SubmitForm photographerId={params.id} {...result} />
+      <SubmitForm profileName={params.profileName} {...result} />
     </ProductHeaderLayout>
   );
 };

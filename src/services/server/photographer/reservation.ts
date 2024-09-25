@@ -2,12 +2,8 @@ import { Details, ReservationDetailResponse } from "reservation-types";
 import { objectToArray } from "@/utils/parse";
 import { api } from "../core";
 
-export async function getReservationDetail(
-  reservationId: number,
-): Promise<Details> {
-  const response = await api.get(
-    `photographer/reservation/details/${reservationId}`,
-  );
+export async function getReservationDetail(formId: string): Promise<Details> {
+  const response = await api.get(`photographer/reservation/details/${formId}`);
   const { data } = await response.json<{ data: ReservationDetailResponse }>();
 
   const { statusHistory }: Pick<Details, "statusHistory"> = {

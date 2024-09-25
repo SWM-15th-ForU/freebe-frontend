@@ -18,13 +18,15 @@ const SubmitForm = ({
   items,
   options,
   phoneNumber,
-  photographerId,
+  profileName,
+  instagramId,
 }: {
   name: string;
   options: Option[];
   phoneNumber: string;
   items: Item[];
-  photographerId: number;
+  profileName: string;
+  instagramId: string;
 }) => {
   const router = useRouter();
   const { getValues, setValue, watch } = useFormContext<reservation.FormType>();
@@ -40,12 +42,12 @@ const SubmitForm = ({
     });
 
     // TODO: 상품 조회 페이지에서 신청서 작성으로 넘어올 때 상품명 전달
-    const reservationId = await postReservation(value, {
+    const formId = await postReservation(value, {
       infos,
-      photographerId,
+      profileName,
       productTitle: "title",
     });
-    router.push(`/customer/reservation/${reservationId}`);
+    router.push(`/customer/reservation/${formId}`);
   }
 
   useEffect(() => {
@@ -60,7 +62,11 @@ const SubmitForm = ({
         backgroundColor: "#F4F8FD",
       }}
     >
-      <CustomerInfoForm name={name} phoneNumber={phoneNumber} />
+      <CustomerInfoForm
+        name={name}
+        phoneNumber={phoneNumber}
+        instagramId={instagramId}
+      />
       <ProductInfoForm items={items} />
       <SelectOptionForm options={options} />
       <RequestForm />

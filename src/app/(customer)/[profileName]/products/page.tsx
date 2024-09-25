@@ -1,9 +1,14 @@
 import ProductsList from "@/containers/customer/products/list";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
 import { getProductList } from "@/services/server/customer/product";
+import { PageParams } from "route-parameters";
 
-const ProductViewPage = async ({ params }: { params: { id: number } }) => {
-  const productList = await getProductList(params.id);
+const ProductViewPage = async ({
+  params,
+}: {
+  params: Pick<PageParams, "profileName">;
+}) => {
+  const productList = await getProductList(params.profileName);
 
   return (
     <ProductHeaderLayout

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { Product } from "product-types";
+import { PageParams } from "route-parameters";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
@@ -17,9 +18,9 @@ const ProductInfo = ({
   subtitle,
   title,
   images,
-  id,
-  product,
-}: Product & { product: number; id: number }) => {
+  profileName,
+  productId,
+}: Product & Pick<PageParams, "productId" | "profileName">) => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -38,7 +39,7 @@ const ProductInfo = ({
         <span className={modalStyles.info}>
           작가님께 신청자 정보를 간편하게 전달하기 위해 로그인을 해 주세요!
         </span>
-        <LoginButton roleType="customer" id={id} product={product} />
+        <LoginButton roleType="customer" id={profileName} product={productId} />
       </Modal>
       <Carousel
         withIndicators

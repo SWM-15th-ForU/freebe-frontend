@@ -9,6 +9,7 @@ import { api } from "../core";
 
 interface FormDataResponse {
   name: string;
+  instagramId: string | null;
   phoneNumber: string;
   productComponentDtoList: {
     title: string;
@@ -22,53 +23,18 @@ interface FormDataResponse {
   }[];
 }
 
-const dummyData = {
-  name: "이유리",
-  phoneNumber: "010-7554-3789",
-  productComponentDtoList: [
-    {
-      title: "기본 가격",
-      content: "100000",
-      description: null,
-    },
-    {
-      title: "촬영 시간",
-      content: "2시간",
-      description:
-        "촬영시간은 의상교체 및 메이크업을 진행하는 시간까지 포함된 시간입니다.",
-    },
-    {
-      title: "보정본 수",
-      content: "원본 5장 + 보정본 5장",
-      description:
-        "원본은 제가 직접 셀렉해서 제공해드립니다.(고객분들과 셀렉하고 싶은 방향성을 논의 후에 진행합니다.)",
-    },
-  ],
-  productOptionDtoList: [
-    {
-      title: "인원 추가 (1인)",
-      price: 30000,
-      description: null,
-    },
-    {
-      title: "의상 대여",
-      price: 15000,
-      description: "의상대여는 1개만 가능합니다.",
-    },
-  ],
-};
-
 export async function getFormBase(productId: string) {
-  // const response = await api
-  //   .get(`customer/reservation/form/${productId}`)
-  //   .json<{ data: FormDataResponse }>();
-  // const { data } = response;
-  const data = dummyData;
+  const response = await api
+    .get(`customer/reservation/form/${productId}`)
+    .json<{ data: FormDataResponse }>();
+  const { data } = response;
+
   const result: {
     name: string;
     options: Option[];
     phoneNumber: string;
     items: Item[];
+    instagramId: string;
   } = {
     name: data.name,
     phoneNumber: data.phoneNumber,
@@ -89,13 +55,14 @@ export async function getFormBase(productId: string) {
         description: item.description || "",
       };
     }),
+    instagramId: data.instagramId || "",
   };
   return result;
 }
 
-export async function getImageList(photographerId: string) {
+export async function getImageList(productId: string) {
   const response = await api
-    .get(`customer/product/images/${photographerId}`)
+    .get(`customer/product/images/${productId}`)
     .json<{ data: string[] }>();
   const { data } = response;
   console.log(data);
@@ -103,10 +70,10 @@ export async function getImageList(photographerId: string) {
 }
 
 export async function getReservationDetails(
-  reservationId: number,
+  formId: string,
 ): Promise<CustomerDetails> {
   const { data } = await api
-    .get(`customer/reservation/${reservationId}`)
+    .get(`customer/reservation/${formId}`)
     .json<{ data: CustomerReservationResponse }>();
 
   const options = objectToArray(data.photoOptions, (arr) =>

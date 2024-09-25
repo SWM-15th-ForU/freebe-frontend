@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
 import { putReservationStatus } from "@/services/client/photographer/reservations";
 import { modalStyles } from "@/containers/customer/products/products.css";
@@ -14,7 +15,7 @@ const CancelModal = ({
   opened: boolean;
   close: () => void;
 }) => {
-  const { reservationId } = useParams<{ reservationId: string }>();
+  const { formId } = useParams<Pick<PageParams, "formId">>();
   const [cancellationReason, setCancellationReason] = useState("");
 
   return (
@@ -40,7 +41,7 @@ const CancelModal = ({
         disabled={cancellationReason === ""}
         onClick={() =>
           putReservationStatus(
-            parseInt(reservationId, 10),
+            parseInt(formId, 10),
             "CANCELLED_BY_PHOTOGRAPHER",
             cancellationReason,
           )

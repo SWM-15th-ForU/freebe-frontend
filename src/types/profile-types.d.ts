@@ -5,22 +5,22 @@ declare module "profile-types" {
   }
 
   interface ProfileResponse {
-    bannerImageUrl: string;
-    profileImageUrl: string;
-    instagramId: string | null;
+    bannerImageUrl: string | null;
+    profileImageUrl: string | null;
+    profileName: string;
     introductionContent: string;
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }
   interface Photographer {
     banner?: string;
     profileImg?: string;
-    instagramId: string;
+    profileName: string;
     message: string;
     linkInfos: LinkType[];
   }
 
   interface Join {
-    instagramId: string;
+    profileName: string;
     serviceAgreement: boolean;
     privacyAgreement: boolean;
     marketingAgreement: boolean;
