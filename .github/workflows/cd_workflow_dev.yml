@@ -3,6 +3,8 @@ name: Frontend Dev Server CD
 on:
   push:
     branches: ["develop"]
+  pull_request:
+    branches: ["develop"]
 
 jobs:
   build:
