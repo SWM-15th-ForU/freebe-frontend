@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -15,14 +14,22 @@ import { joinStyles } from "./join.css";
 
 const PhotographerJoin = () => {
   const router = useRouter();
+  const PROFILE_NAME_REGEX = /^[a-zA-Z0-9._]{1,30}$/;
 
   const joinSchema = z.object({
-    instagramId: z
+    profileName: z
       .string()
-      .min(1, { message: "인스타그램 아이디를 입력해주세요." }),
+      .min(1, { message: "아이디를 입력해주세요." })
+      .max(30, { message: "아이디는 최대 30자까지 사용할 수 있습니다." })
+      .regex(PROFILE_NAME_REGEX, {
+        message: "아이디에는 특수문자를 포함할 수 없습니다.",
+      }),
+    marketingAgreement: z.boolean(),
+    privacyAgreement: z.boolean(),
+    serviceAgreement: z.boolean(),
   });
   const defaultValues: Join = {
-    instagramId: "",
+    profileName: "",
     marketingAgreement: false,
     privacyAgreement: false,
     serviceAgreement: false,
@@ -32,7 +39,6 @@ const PhotographerJoin = () => {
     resolver: zodResolver(joinSchema),
   });
   const { handleSubmit, watch } = method;
-  const [profileImg, setProfileImg] = useState<File>();
   const [serviceAgreement, privacyAgreement] = watch([
     "serviceAgreement",
     "privacyAgreement",
@@ -40,7 +46,7 @@ const PhotographerJoin = () => {
 
   async function onSubmit(data: Join) {
     try {
-      const url = await postProfile(data, profileImg);
+      const url = await postProfile(data);
       popToast("가입이 완료되었습니다!", "");
       router.push(`/photographer?url=${url}`);
     } catch (error) {
@@ -55,7 +61,7 @@ const PhotographerJoin = () => {
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
-        <Profile setProfileImg={setProfileImg} />
+        <Profile />
         <Agreements />
         <CustomButton
           type="submit"

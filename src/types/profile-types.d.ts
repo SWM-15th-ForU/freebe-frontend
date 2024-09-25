@@ -20,7 +20,7 @@ declare module "profile-types" {
   }
 
   interface Join {
-    instagramId: string;
+    profileName: string;
     serviceAgreement: boolean;
     privacyAgreement: boolean;
     marketingAgreement: boolean;
