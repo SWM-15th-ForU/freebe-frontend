@@ -22,7 +22,7 @@ npm run build
     
     # 애플리케이션 실행
     echo "Starting PM2 process..."
-    sudo pm2 start ecosystem_3000.config.js
+    pm2 start ecosystem_3000.config.js
 
     echo "Deployment completed."
 } >> "$LOG_FILE" 2>&1
