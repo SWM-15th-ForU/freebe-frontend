@@ -10,6 +10,8 @@ ROOT_PATH="/home/ubuntu/freebe-frontend"
 
 LOG_FILE="$ROOT_PATH/start.log"
 
+cd $ROOT_PATH
+
 # 로그 기록 시작
 {
     echo "Starting deployment..."
