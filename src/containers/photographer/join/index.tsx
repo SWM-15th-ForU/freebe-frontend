@@ -56,11 +56,7 @@ const PhotographerJoin = () => {
 
   return (
     <FormProvider {...method}>
-      <form
-        className={joinStyles.container}
-        onSubmit={handleSubmit(onSubmit)}
-        encType="multipart/form-data"
-      >
+      <form className={joinStyles.container} onSubmit={handleSubmit(onSubmit)}>
         <Profile />
         <Agreements />
         <CustomButton
