@@ -7,10 +7,11 @@ files:
     overwrite: yes
 
 permissions:
-  - object: /
+  - object: /home/ubuntu/freebe-frontend
     pattern: "**"
     owner: ubuntu
     group: ubuntu
+    mode: 755
 
 hooks:
   AfterInstall:
