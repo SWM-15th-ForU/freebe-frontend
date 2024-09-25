@@ -2,7 +2,7 @@ name: Frontend Dev Server CD
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: ["develop"]
 
 jobs:
   build:
@@ -28,8 +28,9 @@ jobs:
           echo "AWS_CODE_DEPLOY_GROUP=${{ secrets.AWS_CODE_DEPLOY_GROUP }}" >> .env
           echo "NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_KAKAO_DOMAIN=${{ secrets.NEXT_PUBLIC_KAKAO_DOMAIN }}" >> .env
+          echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY }}" >> .env
           echo "NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN }}" >> .env
-          
+
       - name: Build
         run: npm run build
 
