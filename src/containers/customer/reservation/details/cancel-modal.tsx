@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import CommonInput from "@/components/inputs/common-input";
@@ -15,12 +16,12 @@ const CancelModal = ({
   opened: boolean;
   close: () => void;
 }) => {
-  const { reservationId } = useParams<{ reservationId: string }>();
+  const { formId } = useParams<Pick<PageParams, "formId">>();
   const [cancellationReason, setCancellationReason] = useState("");
 
   async function handleCancel() {
     try {
-      await cancelReservation(parseInt(reservationId, 10), cancellationReason);
+      await cancelReservation(parseInt(formId, 10), cancellationReason);
       popToast("취소가 완료되었습니다.");
     } catch (error) {
       popToast("다시 시도해주세요.", "취소가 실패했습니다.");
