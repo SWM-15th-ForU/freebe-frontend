@@ -67,6 +67,7 @@ export const logout = async () => {
       refreshToken: refreshToken || "",
     },
   });
+  console.log(response);
   if (response.status === 401) {
     await reissueTokens();
   }

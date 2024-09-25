@@ -1,27 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import useUserInfo from "@/hooks/useUserInfo";
+import { useRouter, useSearchParams } from "next/navigation";
 import MainView from "@/containers/photographer/main";
 
-export default function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+export default function Home() {
   const router = useRouter();
-  const { setUserInfo } = useUserInfo();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof searchParams.url === "string") {
-      setUserInfo({
-        userRole: "photographer",
-        userData: { profileUrl: searchParams.url },
-      });
+    const urlParam = searchParams.get("url");
+    if (urlParam) {
+      const decodedUrl = decodeURIComponent(urlParam);
+      localStorage.setItem("url", decodedUrl);
       router.replace("/photographer");
+      router.refresh();
     }
-  }, [router, setUserInfo, searchParams]);
-
+  }, [router, searchParams]);
   return <MainView />;
 }
