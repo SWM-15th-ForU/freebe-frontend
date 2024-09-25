@@ -23,7 +23,7 @@ const LoginButton = ({
         };
 
   function loginToKakao() {
-    window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${JSON.stringify(stateValue)}&scope=account_email,name,birthday,birthyear,phone_number`;
+    window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${JSON.stringify(stateValue)}`;
   }
   return (
     <button type="button" onClick={loginToKakao} className={buttonStyles.kakao}>
