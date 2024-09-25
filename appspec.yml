@@ -14,10 +14,21 @@ permissions:
     mode: 755
 
 hooks:
-  AfterInstall:
+  BeforeInstall:
+    - location: scripts/download_from_s3.sh
+      timeout: 60
+      runas: root
+
+  AfterInstall: 
+    - location: scripts/unzip.sh
+      timeout: 60
+      runas: root
+      
+  ApplicationStop:
     - location: scripts/stop.sh
       timeout: 60
       runas : root
+      
   ApplicationStart:
     - location: scripts/start.sh
       timeout: 60
