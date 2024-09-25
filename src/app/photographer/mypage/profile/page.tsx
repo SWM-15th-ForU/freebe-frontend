@@ -5,11 +5,7 @@ import { getCurrentProfile } from "@/services/server/photographer/mypage/profile
 const MyProfilePage = async () => {
   const data = await getCurrentProfile();
 
-  return (
-    <MypageLayout title="내 프로필 관리">
-      <MyProfile profile={data} />
-    </MypageLayout>
-  );
+  return <MyProfile profile={data} />;
 };
 
 export default MyProfilePage;

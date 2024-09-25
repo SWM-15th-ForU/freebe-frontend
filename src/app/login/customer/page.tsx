@@ -1,5 +1,5 @@
-import Login from "@/containers/photographer/login";
-import { loginPageStyles } from "./page.css";
+import Login from "@/containers/customer/login";
+import { loginPageStyles } from "../page.css";
 
 const Page = () => {
   // TODO: 실제 사진 반환받아 데이터 연결

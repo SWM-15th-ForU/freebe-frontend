@@ -2,7 +2,7 @@ import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { getPhotographerProfile } from "@/services/server/customer/photographer";
 import { LinkType } from "profile-types";
-import { mainStyle } from "./customer.css";
+import { mainStyle } from "./main.css";
 
 const CustomerMainPage = async ({ params }: { params: { id: number } }) => {
   const defaultLinks: LinkType[] = [

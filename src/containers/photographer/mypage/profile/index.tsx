@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
 import popToast from "@/components/common/toast";
 import ProfileEdit from "./edit";
-import { profileStyles } from "./profile.css";
+import { mypageStyles, profileStyles } from "./profile.css";
 import Preview from "./preview";
 import SubmitProfile from "./submit";
 
@@ -39,22 +39,26 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
   };
 
   return (
-    <FormProvider {...method}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={profileStyles.form}
-        encType="multipart/form-data"
-      >
-        <div className={profileStyles.container}>
-          <Preview />
-          <ProfileEdit
-            setBannerFile={setBannerFile}
-            setProfileFile={setProfileFile}
-          />
-        </div>
-        <SubmitProfile />
-      </form>
-    </FormProvider>
+    <div className={mypageStyles.container}>
+      <span className={mypageStyles.title}>내 프로필 관리</span>
+
+      <FormProvider {...method}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={profileStyles.form}
+          encType="multipart/form-data"
+        >
+          <div className={profileStyles.container}>
+            <Preview />
+            <ProfileEdit
+              setBannerFile={setBannerFile}
+              setProfileFile={setProfileFile}
+            />
+          </div>
+          <SubmitProfile />
+        </form>
+      </FormProvider>
+    </div>
   );
 };
 

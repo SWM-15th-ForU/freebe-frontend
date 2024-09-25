@@ -41,7 +41,7 @@ export default function RootLayout({
       >
         <MantineProvider>
           <Notifications />
-          {children}
+          <div style={{ overflowY: "scroll", height: "100vh" }}>{children}</div>
         </MantineProvider>
       </body>
     </html>

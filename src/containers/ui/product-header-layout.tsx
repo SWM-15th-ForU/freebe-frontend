@@ -1,4 +1,6 @@
+import { BottomButton } from "@/components/buttons/common-buttons";
 import ProductsHeader from "../customer/products/header";
+import { headerLayoutStyles } from "./ui.css";
 
 const HEADER_HEIGHT = {
   progress: 64,
@@ -12,16 +14,9 @@ interface HeaderLayoutProps {
 
 const ProductHeaderLayout = ({ header, children }: HeaderLayoutProps) => {
   return (
-    <div>
+    <div className={headerLayoutStyles.container}>
       <ProductsHeader {...header} />
-      <div
-        style={{
-          paddingTop: HEADER_HEIGHT[header.progress ? "progress" : "default"],
-          height: "100vh",
-        }}
-      >
-        {children}
-      </div>
+      <div className={headerLayoutStyles.content}>{children}</div>
     </div>
   );
 };

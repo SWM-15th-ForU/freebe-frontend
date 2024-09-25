@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { imageStackStyles } from "./login.css";
+import { imageStackStyles } from "./image-stack.css";
 
 const ImageStack = ({ images }: { images: string[] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -24,7 +24,7 @@ const ImageStack = ({ images }: { images: string[] }) => {
       >
         <div className={imageStackStyles.prev}>
           <Image width={8} height={13} alt="prev" src="/icons/left-blue.svg" />
-          Prev
+          <span className={imageStackStyles.text}>Prev</span>
         </div>
       </button>
       <div className={imageStackStyles.stack}>
@@ -43,7 +43,7 @@ const ImageStack = ({ images }: { images: string[] }) => {
         type="button"
       >
         <div className={imageStackStyles.next}>
-          Next
+          <span className={imageStackStyles.text}>Next</span>
           <Image
             width={8}
             height={13}

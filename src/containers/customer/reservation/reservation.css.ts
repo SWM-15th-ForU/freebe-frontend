@@ -12,6 +12,14 @@ export const reservationStyles = styleVariants({
       marginRight: "auto",
     },
   },
+  container: [
+    {
+      flex: 1,
+      position: "relative",
+      display: "flex",
+      flexDirection: "column",
+    },
+  ],
 });
 
 export const detailStyles = styleVariants({
