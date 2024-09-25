@@ -9,6 +9,7 @@ import { api } from "../core";
 
 interface FormDataResponse {
   name: string;
+  instagramId: string | null;
   phoneNumber: string;
   productComponentDtoList: {
     title: string;
@@ -33,6 +34,7 @@ export async function getFormBase(productId: string) {
     options: Option[];
     phoneNumber: string;
     items: Item[];
+    instagramId: string;
   } = {
     name: data.name,
     phoneNumber: data.phoneNumber,
@@ -53,6 +55,7 @@ export async function getFormBase(productId: string) {
         description: item.description || "",
       };
     }),
+    instagramId: data.instagramId || "",
   };
   return result;
 }
