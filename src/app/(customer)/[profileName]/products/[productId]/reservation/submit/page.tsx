@@ -20,7 +20,7 @@ const SubmitPage = async ({
         },
       }}
     >
-      <SubmitForm photographerId={params.profileName} {...result} />
+      <SubmitForm profileName={params.profileName} {...result} />
     </ProductHeaderLayout>
   );
 };

@@ -10,9 +10,9 @@ interface ProfileResponse {
 }
 
 export async function getPhotographerProfile(
-  photographerId: number,
+  profileName: string,
 ): Promise<Photographer> {
-  const response = await api.get(`customer/profile/${photographerId}`);
+  const response = await api.get(`customer/profile/${profileName}`);
   const { data } = await response.json<{ data: ProfileResponse }>();
 
   return {

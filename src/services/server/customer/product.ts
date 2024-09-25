@@ -9,10 +9,10 @@ interface ProductResponseData {
 }
 
 export async function getProductList(
-  photographerId: number,
+  profileName: string,
 ): Promise<ProductListData[]> {
   const response = await api
-    .get(`customer/product/list/${photographerId}`)
+    .get(`customer/product/list/${profileName}`)
     .json<{ data: ProductResponseData[] }>();
   const { data } = response;
   return data.map((value) => {
@@ -46,7 +46,7 @@ interface ProductDetailResponseData {
   }[];
 }
 
-export async function getProductDetails(productId: number): Promise<Product> {
+export async function getProductDetails(productId: string): Promise<Product> {
   const response = await api
     .get(`customer/product/details/${productId}`)
     .json<{ data: ProductDetailResponseData }>();

@@ -18,13 +18,13 @@ const SubmitForm = ({
   items,
   options,
   phoneNumber,
-  photographerId,
+  profileName,
 }: {
   name: string;
   options: Option[];
   phoneNumber: string;
   items: Item[];
-  photographerId: number;
+  profileName: string;
 }) => {
   const router = useRouter();
   const { getValues, setValue, watch } = useFormContext<reservation.FormType>();
@@ -42,7 +42,7 @@ const SubmitForm = ({
     // TODO: 상품 조회 페이지에서 신청서 작성으로 넘어올 때 상품명 전달
     const reservationId = await postReservation(value, {
       infos,
-      photographerId,
+      profileName,
       productTitle: "title",
     });
     router.push(`/customer/reservation/${reservationId}`);
