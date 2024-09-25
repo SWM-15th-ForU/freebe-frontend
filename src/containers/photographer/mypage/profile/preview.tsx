@@ -7,12 +7,12 @@ import { profileStyles } from "./profile.css";
 
 const Preview = () => {
   const { watch } = useFormContext<Photographer>();
-  const [banner, message, linkInfos, profileImg, instagramId] = watch([
+  const [banner, message, linkInfos, profileImg, profileName] = watch([
     "banner",
     "message",
     "linkInfos",
     "profileImg",
-    "instagramId",
+    "profileName",
   ]);
 
   const defaultLinks: LinkType[] = [
@@ -26,7 +26,7 @@ const Preview = () => {
       <BackgroundImage mainImage={banner} />
       <InfoSheet
         preview
-        instagramId={instagramId}
+        profileName={profileName}
         defaultLinks={defaultLinks}
         linkInfos={linkInfos}
         message={message}

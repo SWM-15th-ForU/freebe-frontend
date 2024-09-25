@@ -12,11 +12,11 @@ const InfoSheet = ({
   linkInfos,
   profileImg,
   message,
-  instagramId,
+  profileName,
   preview,
 }: Pick<
   Photographer,
-  "linkInfos" | "message" | "profileImg" | "instagramId"
+  "linkInfos" | "message" | "profileImg" | "profileName"
 > & {
   defaultLinks: LinkType[];
   preview?: boolean;
@@ -25,7 +25,7 @@ const InfoSheet = ({
     <BottomSheet>
       <div className={sheetStyles.content}>
         <div className={sheetStyles.divider} style={{ paddingTop: 0 }}>
-          <Profile id={instagramId} img={profileImg} />
+          <Profile id={profileName} img={profileImg} />
         </div>
         <div className={sheetStyles.divider}>
           <span className={sheetStyles.message}>{message}</span>
