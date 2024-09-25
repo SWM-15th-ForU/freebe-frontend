@@ -12,6 +12,8 @@ LOG_FILE="$ROOT_PATH/start.log"
 
 cd $ROOT_PATH
 
+npm install
+
 # 로그 기록 시작
 {
     echo "Starting deployment..."
