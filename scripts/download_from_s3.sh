@@ -7,4 +7,4 @@ if ! [ -x "$(command -v aws)" ]; then
 fi
 
 # S3에서 zip 파일 다운로드
-aws s3 cp s3://$AWS_S3_BUCKET/deploy.zip /home/ubuntu/myapp/deploy.zip
+aws s3 cp s3://$AWS_S3_BUCKET/cicd-dev/frontend_freebe.zip /home/ubuntu/freebe-frontend/frontend_freebe.zip
