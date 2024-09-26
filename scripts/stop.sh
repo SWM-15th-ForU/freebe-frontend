@@ -14,4 +14,6 @@ if pm2 describe "$APP_NAME" > /dev/null; then
     pm2 delete "$APP_NAME" >> $LOG_FILE 2>&1
 else
     echo "No existing PM2 process found for $APP_NAME." | tee -a $LOG_FILE
+    exit 0
 fi
+
