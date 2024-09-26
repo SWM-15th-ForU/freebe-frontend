@@ -60,7 +60,7 @@ export async function cancelReservation(
     cancellationReason,
   };
   const response = await apiClient.put(`customer/reservation/${id}`, {
-    body: JSON.stringify(body),
+    json: body,
   });
   if (!response.ok) {
     throw new Error();

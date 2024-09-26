@@ -15,7 +15,7 @@ export const layoutStyle = style({
 export const mainStyle = style({
   display: "flex",
   flexDirection: "column",
-  height: "100%",
+  height: "100vh",
   width: "100%",
   overflowY: "hidden",
   overflowX: "hidden",
