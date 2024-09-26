@@ -4,7 +4,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import ItemInput from "./item-input";
 import { formStyles } from "../form.css";
 
-const ItemFieldArray = () => {
+const ItemFieldArray = ({ disabled }: { disabled?: boolean }) => {
   const {
     control,
     register,
@@ -27,22 +27,25 @@ const ItemFieldArray = () => {
             index={index}
             onClickRemove={() => remove(index)}
             errors={errors}
+            disabled={disabled}
           />
         );
       })}
-      <CustomButton
-        styleType="line"
-        size="md"
-        style={{ marginTop: 20 }}
-        onClick={() =>
-          append({
-            title: "",
-            content: "",
-            description: "",
-          })
-        }
-        title="추가하기"
-      />
+      {!disabled && (
+        <CustomButton
+          styleType="line"
+          size="md"
+          style={{ marginTop: 20 }}
+          onClick={() =>
+            append({
+              title: "",
+              content: "",
+              description: "",
+            })
+          }
+          title="추가하기"
+        />
+      )}
     </div>
   );
 };

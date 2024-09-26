@@ -9,6 +9,7 @@ interface DiscountInputProps {
   errors: FieldErrors<ProductFormdata>;
   index: number;
   onClickRemove: () => void;
+  disabled?: boolean;
 }
 
 const DiscountInput = ({
@@ -16,6 +17,7 @@ const DiscountInput = ({
   index,
   formRegister,
   errors,
+  disabled,
 }: DiscountInputProps) => {
   const { setValue, watch } = useFormContext<Product>();
   const discounts = watch("discounts");
@@ -33,6 +35,7 @@ const DiscountInput = ({
       <div className={inputStyles.headWrapper}>
         <input
           className={inputStyles.title}
+          disabled={disabled}
           placeholder="할인 종류를 입력해 주세요."
           {...formRegister(`discounts.${index}.title`)}
           style={{ marginRight: "auto" }}
@@ -41,8 +44,11 @@ const DiscountInput = ({
           value={{ selected: "금액 할인", unselected: "비율 할인" }}
           onSwitch={handleSwitchType}
           selected={discounts[index].discountType === "AMOUNT"}
+          asChip={disabled}
         />
-        <CloseButton onClick={onClickRemove} size={18} color="grey" />
+        {!disabled && (
+          <CloseButton onClick={onClickRemove} size={18} color="grey" />
+        )}
       </div>
       {errors.discounts?.[index]?.title && (
         <span className={formStyles.error}>
@@ -51,6 +57,7 @@ const DiscountInput = ({
       )}
       <input
         className={inputStyles.description}
+        disabled={disabled}
         placeholder="(선택) 설명을 입력해 주세요."
         {...formRegister(`discounts.${index}.description`)}
       />
@@ -61,6 +68,7 @@ const DiscountInput = ({
       )}
       <input
         className={inputStyles.content}
+        disabled={disabled}
         type="number"
         placeholder={
           discounts[index]?.discountType === "AMOUNT"

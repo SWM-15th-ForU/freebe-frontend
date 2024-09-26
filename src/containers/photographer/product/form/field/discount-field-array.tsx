@@ -4,7 +4,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import DiscountInput from "./discount-input";
 import { formStyles } from "../form.css";
 
-const DiscountFieldArray = () => {
+const DiscountFieldArray = ({ disabled }: { disabled?: boolean }) => {
   const {
     control,
     register,
@@ -26,23 +26,26 @@ const DiscountFieldArray = () => {
             index={index}
             onClickRemove={() => remove(index)}
             errors={errors}
+            disabled={disabled}
           />
         );
       })}
-      <CustomButton
-        styleType="line"
-        size="md"
-        style={{ marginTop: 20 }}
-        onClick={() =>
-          append({
-            title: "",
-            description: "",
-            discountType: "AMOUNT",
-            discountValue: null,
-          })
-        }
-        title="추가하기"
-      />
+      {!disabled && (
+        <CustomButton
+          styleType="line"
+          size="md"
+          style={{ marginTop: 20 }}
+          onClick={() =>
+            append({
+              title: "",
+              description: "",
+              discountType: "AMOUNT",
+              discountValue: null,
+            })
+          }
+          title="추가하기"
+        />
+      )}
     </div>
   );
 };

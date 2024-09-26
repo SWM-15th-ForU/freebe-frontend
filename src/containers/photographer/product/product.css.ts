@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -145,3 +146,27 @@ export const iconStyle = {
     margin: 0,
   }),
 };
+
+export const formStyles = styleVariants({
+  container: {
+    width: "70%",
+    minWidth: "fit-content",
+    maxWidth: 750,
+    margin: "auto",
+    paddingTop: 50,
+    paddingBottom: 80,
+    alignSelf: "flex-start",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        padding: 20,
+      },
+    },
+  },
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
+});

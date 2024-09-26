@@ -4,7 +4,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import OptionInput from "./option-input";
 import { formStyles } from "../form.css";
 
-const OptionFieldArray = () => {
+const OptionFieldArray = ({ disabled }: { disabled?: boolean }) => {
   const {
     control,
     register,
@@ -27,18 +27,21 @@ const OptionFieldArray = () => {
             index={index}
             onClickRemove={() => remove(index)}
             errors={errors}
+            disabled={disabled}
           />
         );
       })}
-      <CustomButton
-        styleType="line"
-        size="md"
-        style={{ marginTop: 20 }}
-        onClick={() =>
-          append({ title: "", price: 0, isFree: false, description: "" })
-        }
-        title="추가하기"
-      />
+      {!disabled && (
+        <CustomButton
+          styleType="line"
+          size="md"
+          style={{ marginTop: 20 }}
+          onClick={() =>
+            append({ title: "", price: 0, isFree: false, description: "" })
+          }
+          title="추가하기"
+        />
+      )}
     </div>
   );
 };

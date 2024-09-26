@@ -8,6 +8,7 @@ interface ItemInputProps {
   errors: FieldErrors<ProductFormdata>;
   index: number;
   onClickRemove: () => void;
+  disabled?: boolean;
 }
 
 const ItemInput = ({
@@ -15,11 +16,13 @@ const ItemInput = ({
   index,
   formRegister,
   errors,
+  disabled,
 }: ItemInputProps) => {
   return (
     <div className={inputStyles.box}>
       <input
         className={inputStyles.title}
+        disabled={disabled}
         placeholder="이름을 입력해 주세요."
         {...formRegister(`items.${index}.title`)}
       />
@@ -28,15 +31,18 @@ const ItemInput = ({
           {errors.items[index]?.title?.message}
         </span>
       )}
-      <CloseButton
-        onClick={onClickRemove}
-        size={18}
-        color="grey"
-        container={{ position: "absolute", right: 20, top: 20 }}
-      />
+      {!disabled && (
+        <CloseButton
+          onClick={onClickRemove}
+          size={18}
+          color="grey"
+          container={{ position: "absolute", right: 20, top: 20 }}
+        />
+      )}
       <input
         className={inputStyles.description}
         placeholder="(선택) 설명을 입력해 주세요."
+        disabled={disabled}
         {...formRegister(`items.${index}.description`)}
       />
       {errors.items?.[index]?.description && (
@@ -46,6 +52,7 @@ const ItemInput = ({
       )}
       <input
         className={inputStyles.content}
+        disabled={disabled}
         placeholder="내용을 입력해 주세요."
         {...formRegister(`items.${index}.content`)}
       />

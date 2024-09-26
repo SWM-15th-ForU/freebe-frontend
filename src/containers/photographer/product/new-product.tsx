@@ -1,5 +1,9 @@
-import { ProductFormdata } from "product-types";
+"use client";
+
+import { FormImage, ProductFormdata } from "product-types";
+import { postNewProduct } from "@/services/client/photographer/products";
 import ProductForm from "./form";
+import { formStyles } from "./product.css";
 
 const NewProduct = () => {
   const defaultValues: ProductFormdata = {
@@ -40,7 +44,21 @@ const NewProduct = () => {
     ],
   };
 
-  return <ProductForm formBase={defaultValues} />;
+  async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
+    const response = await postNewProduct(data, images);
+  }
+
+  return (
+    <div className={formStyles.container}>
+      <span className={formStyles.title}>촬영 정보 등록하기</span>
+      <ProductForm
+        formBase={defaultValues}
+        handleSendForm={addNewProduct}
+        imageBase={[]}
+        isEditable
+      />
+    </div>
+  );
 };
 
 export default NewProduct;

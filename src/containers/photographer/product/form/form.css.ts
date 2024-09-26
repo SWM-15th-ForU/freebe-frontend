@@ -5,12 +5,9 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 export const formStyles = styleVariants({
   container: {
-    width: "70%",
     minWidth: "fit-content",
     maxWidth: 750,
     margin: "auto",
-    paddingTop: 50,
-    paddingBottom: 80,
     alignSelf: "flex-start",
 
     "@media": {
