@@ -9,7 +9,8 @@ const SubmitPage = async ({
 }: {
   params: Pick<PageParams, "profileName" | "productId">;
 }) => {
-  const result = await getFormBase(params.profileName);
+  const result = await getFormBase(params.productId);
+
   return (
     <ProductHeaderLayout
       header={{
