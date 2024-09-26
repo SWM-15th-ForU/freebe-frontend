@@ -16,7 +16,7 @@ const ItemFieldArray = () => {
   });
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ minWidth: "fit-content" }}>
       <span className={formStyles.subtitle}>상품 구성</span>
 
       {fields.map((item, index) => {

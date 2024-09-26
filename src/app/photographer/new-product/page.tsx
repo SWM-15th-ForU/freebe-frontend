@@ -1,7 +1,5 @@
-import ProductForm from "@/containers/photographer/product/product-form";
+import NewProduct from "@/containers/photographer/product/new-product";
 
-const NewProduct = () => {
-  return <ProductForm />;
-};
-
-export default NewProduct;
+export default function NewProductPage() {
+  return <NewProduct />;
+}

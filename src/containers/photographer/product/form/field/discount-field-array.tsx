@@ -16,7 +16,7 @@ const DiscountFieldArray = () => {
   });
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ minWidth: "fit-content", width: "100%" }}>
       <span className={formStyles.subtitle}>상품 할인</span>
       {fields.map((item, index) => {
         return (

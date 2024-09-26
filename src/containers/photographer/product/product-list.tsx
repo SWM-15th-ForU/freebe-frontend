@@ -33,26 +33,6 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
           .map((data) => (
             <ProductBanner key={data.productId} {...data} />
           ))}
-        {productDatas
-          .filter((data) => data.activeStatus === status)
-          .map((data) => (
-            <ProductBanner key={data.productId} {...data} />
-          ))}
-        {productDatas
-          .filter((data) => data.activeStatus === status)
-          .map((data) => (
-            <ProductBanner key={data.productId} {...data} />
-          ))}
-        {productDatas
-          .filter((data) => data.activeStatus === status)
-          .map((data) => (
-            <ProductBanner key={data.productId} {...data} />
-          ))}
-        {productDatas
-          .filter((data) => data.activeStatus === status)
-          .map((data) => (
-            <ProductBanner key={data.productId} {...data} />
-          ))}
       </div>
     </div>
   );

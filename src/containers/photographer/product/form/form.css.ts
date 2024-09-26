@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -5,11 +6,18 @@ import { style, styleVariants } from "@vanilla-extract/css";
 export const formStyles = styleVariants({
   container: {
     width: "70%",
+    minWidth: "fit-content",
     maxWidth: 750,
     margin: "auto",
     paddingTop: 50,
     paddingBottom: 80,
     alignSelf: "flex-start",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        padding: 20,
+      },
+    },
   },
   title: [
     texts["headline-02"],
@@ -31,6 +39,12 @@ export const formStyles = styleVariants({
       flexDirection: "column",
       alignItems: "flex-start",
       gap: 15,
+
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: 16,
+        },
+      },
     },
   ],
   split: [
@@ -40,6 +54,7 @@ export const formStyles = styleVariants({
       borderBottomStyle: "solid",
       paddingBottom: 40,
       width: "100%",
+      minWidth: "fit-content",
     },
   ],
   subtitle: [
@@ -114,6 +129,7 @@ export const inputStyles = styleVariants({
       backgroundColor: "bg-lightgrey",
     }),
     {
+      minWidth: "fit-content",
       position: "relative",
       borderRadius: 8,
       padding: 20,
