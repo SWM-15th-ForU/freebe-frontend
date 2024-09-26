@@ -1,3 +1,8 @@
+import {
+  FormImage,
+  ProductDetailResponseData,
+  ProductFormdata,
+} from "product-types";
 import { api } from "../../core";
 
 export interface ProductResponseData {
@@ -20,4 +25,51 @@ export async function getProductList(): Promise<ProductResponseData[]> {
     console.error("Failed to fetch product list", error);
     return [];
   }
+}
+
+export async function getCurrentProductDetails(
+  productId: string,
+): Promise<{ currentDetails: ProductFormdata; currentImage: FormImage[] }> {
+  const { data } = await api
+    .get(`photographer/product/${productId}`)
+    .json<{ data: ProductDetailResponseData }>();
+
+  const {
+    productTitle,
+    productDescription,
+    productOptions,
+    productComponents,
+    productDiscounts,
+    productImageUrls,
+  } = data;
+
+  const currentDetails: ProductFormdata = {
+    title: productTitle,
+    subtitle: productDescription || "",
+    items: productComponents.map((component) => {
+      return {
+        ...component,
+        description: component.description || "",
+      };
+    }),
+    options: productOptions.map((option) => {
+      return {
+        ...option,
+        isFree: option.price === 0,
+        description: option.description || "",
+      };
+    }),
+    discounts: productDiscounts.map((discount) => {
+      return {
+        ...discount,
+        description: discount.description || "",
+      };
+    }),
+  };
+  const currentImage: FormImage[] = productImageUrls as FormImage[];
+
+  return {
+    currentDetails,
+    currentImage,
+  };
 }

@@ -1,5 +1,5 @@
-import { ProductFormdata } from "product-types";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { Product, ProductFormdata } from "product-types";
+import { FieldErrors, useFormContext, UseFormRegister } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import { formStyles, inputStyles } from "../form.css";
 
@@ -18,6 +18,9 @@ const ItemInput = ({
   errors,
   disabled,
 }: ItemInputProps) => {
+  const { watch } = useFormContext<Product>();
+  const items = watch("items");
+
   return (
     <div className={inputStyles.box}>
       <input
@@ -39,12 +42,14 @@ const ItemInput = ({
           container={{ position: "absolute", right: 20, top: 20 }}
         />
       )}
-      <input
-        className={inputStyles.description}
-        placeholder="(선택) 설명을 입력해 주세요."
-        disabled={disabled}
-        {...formRegister(`items.${index}.description`)}
-      />
+      {(!disabled || items[index].description !== "") && (
+        <input
+          className={inputStyles.description}
+          placeholder="(선택) 설명을 입력해 주세요."
+          disabled={disabled}
+          {...formRegister(`items.${index}.description`)}
+        />
+      )}
       {errors.items?.[index]?.description && (
         <span className={formStyles.error}>
           {errors.items[index]?.description?.message}

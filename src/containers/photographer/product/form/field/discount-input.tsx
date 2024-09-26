@@ -55,12 +55,14 @@ const DiscountInput = ({
           {errors.discounts[index]?.title?.message}
         </span>
       )}
-      <input
-        className={inputStyles.description}
-        disabled={disabled}
-        placeholder="(선택) 설명을 입력해 주세요."
-        {...formRegister(`discounts.${index}.description`)}
-      />
+      {(!disabled || discounts[index].description !== "") && (
+        <input
+          className={inputStyles.description}
+          disabled={disabled}
+          placeholder="(선택) 설명을 입력해 주세요."
+          {...formRegister(`discounts.${index}.description`)}
+        />
+      )}
       {errors.discounts?.[index]?.description && (
         <span className={formStyles.error}>
           {errors.discounts[index]?.description?.message}

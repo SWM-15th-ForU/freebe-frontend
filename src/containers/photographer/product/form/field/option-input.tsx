@@ -51,12 +51,14 @@ const OptionInput = ({
           {errors.options[index]?.title?.message}
         </span>
       )}
-      <input
-        className={inputStyles.description}
-        disabled={disabled}
-        placeholder="(선택) 설명을 입력해 주세요."
-        {...formRegister(`options.${index}.description`)}
-      />
+      {(!disabled || options[index].description !== "") && (
+        <input
+          className={inputStyles.description}
+          disabled={disabled}
+          placeholder="(선택) 설명을 입력해 주세요."
+          {...formRegister(`options.${index}.description`)}
+        />
+      )}
       {errors.options?.[index]?.description && (
         <span className={formStyles.error}>
           {errors.options[index]?.description?.message}

@@ -1,32 +1,34 @@
+type Description = string | null;
+
 declare module "product-types" {
-  export type Status = "ACTIVE" | "INACTIVE";
-  export interface Item {
+  type Status = "ACTIVE" | "INACTIVE";
+  interface Item {
     title: string;
     content: string;
     description: string;
   }
 
-  export interface Option {
+  interface Option {
     title: string;
     isFree: boolean;
     price: number;
     description: string;
   }
 
-  export interface Discount {
+  interface Discount {
     title: string;
     description: string;
     discountType: "RATE" | "AMOUNT";
     discountValue: number | null;
   }
 
-  export interface FormImage {
+  interface FormImage {
     fileName: string;
     url: string;
     file?: File;
   }
 
-  export interface Product {
+  interface Product {
     title: string;
     subtitle: string;
     images: Image[];
@@ -35,55 +37,79 @@ declare module "product-types" {
     discounts: Discount[];
   }
 
-  export interface ProductFormdata extends Omit<Product, "images"> {}
+  interface ProductFormdata extends Omit<Product, "images"> {}
 
-  export interface ProductListData {
+  interface ProductListData {
     id: number;
     title: string;
     representImage: string;
   }
 
-  export interface Icon {
+  interface Icon {
     title: string;
     image: string;
     id: string;
   }
 
-  namespace reservation {
-    export interface ImageListType {
+  export interface ProductDetailResponseData {
+    productTitle: string;
+    productDescription: string | null;
+    productImageUrls: {
+      fileName: string;
       url: string;
-      selected: boolean;
-    }
-
-    export interface ScheduleListType {
-      date: Date | null;
-      startTime: Date | null;
-      endTime: Date | null;
-    }
-
-    export interface SelectedImageListType {
-      url: string;
-      index: number;
-    }
-
-    export interface SelectedOption {
-      index: number;
+    }[];
+    productComponents: {
       title: string;
-      quantity: number;
+      content: string;
+      description: Description;
+    }[];
+    productOptions: {
+      title: string;
       price: number;
-    }
+      description: Description;
+    }[];
+    productDiscounts: {
+      title: string;
+      discountType: "RATE" | "AMOUNT";
+      discountValue: number;
+      description: Description;
+    }[];
+  }
+}
+namespace reservation {
+  export interface ImageListType {
+    url: string;
+    selected: boolean;
+  }
 
-    export interface FormType {
-      referenceImages: string[];
-      name: string;
-      contact: string;
-      instagram: string;
-      schedules: ScheduleListType[];
-      options: SelectedOption[];
-      memo: string;
-      totalPrice: number;
-      serviceAgreement: boolean;
-      photographerAgreement: boolean;
-    }
+  export interface ScheduleListType {
+    date: Date | null;
+    startTime: Date | null;
+    endTime: Date | null;
+  }
+
+  export interface SelectedImageListType {
+    url: string;
+    index: number;
+  }
+
+  export interface SelectedOption {
+    index: number;
+    title: string;
+    quantity: number;
+    price: number;
+  }
+
+  export interface FormType {
+    referenceImages: string[];
+    name: string;
+    contact: string;
+    instagram: string;
+    schedules: ScheduleListType[];
+    options: SelectedOption[];
+    memo: string;
+    totalPrice: number;
+    serviceAgreement: boolean;
+    photographerAgreement: boolean;
   }
 }
