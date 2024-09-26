@@ -79,38 +79,45 @@ export const bannerStyles = styleVariants({
       borderStyle: "solid",
 
       display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      width: 270,
-      gap: 10,
+      flexDirection: "column",
     },
   ],
   infoWrapper: [
-    { padding: 16, display: "flex", flexDirection: "column", flex: 1 },
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      padding: 16,
+      display: "flex",
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
   ],
   title: [
     texts["headline-03"],
     sprinkles({
       color: "text-point",
     }),
+    { display: "block" },
   ],
   content: [
     texts["body-02"],
     sprinkles({
       color: "text-02",
     }),
+    { display: "block" },
   ],
   controlWrapper: [
-    texts["button-01"],
+    texts["button-02"],
     sprinkles({
       color: "text-03",
     }),
     {
+      padding: 16,
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
       gap: 8,
-      marginTop: 19,
     },
   ],
 });
@@ -123,6 +130,7 @@ export const listStyles = styleVariants({
     }),
   ],
   div: {
+    minWidth: 300,
     marginTop: 20,
     borderRadius: 16,
     backgroundColor: "white",
@@ -139,14 +147,14 @@ export const listStyles = styleVariants({
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      gap: 300,
-      marginBottom: 10,
+      marginBottom: 20,
     },
   ],
   body: {
-    display: "flex",
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
     gap: 10,
+    minWidth: "100%",
   },
   add: [
     texts["button-01"],
