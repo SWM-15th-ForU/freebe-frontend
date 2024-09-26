@@ -13,7 +13,7 @@ const Header = () => {
   useEffect(() => {
     const localData = localStorage.getItem("url");
     if (localData) {
-      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}/${localData}`);
+      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}${localData}`);
     }
   });
 
