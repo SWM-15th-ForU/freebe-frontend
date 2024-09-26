@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { FormImage } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import ImageThumbnail from "@/components/images/image-thumbnail";
+import { getFormImageFromFiles } from "@/utils/image";
 import {
   CustomButton,
   FinishButton,
@@ -11,14 +13,15 @@ import { formStyles } from "../form.css";
 // TODO: modal style 공통으로 옮기기
 
 interface ImageInputProps {
-  images: File[];
-  setImage: Dispatch<SetStateAction<File[]>>;
+  images: FormImage[];
+  setImage: Dispatch<SetStateAction<FormImage[]>>;
+  disabled?: boolean;
 }
 
 const ARRAY_START_INDEX = 0;
 const MAX_IMAGE_COUNT = 4;
 
-const ImagesInput = ({ images, setImage }: ImageInputProps) => {
+const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
   const InputRef = useRef<HTMLInputElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
@@ -29,7 +32,9 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
     e.preventDefault();
     if (e.type === "drop") {
       const event = e as React.DragEvent;
-      const droppedImages = Array.from(event.dataTransfer.files);
+      const droppedImages: FormImage[] = getFormImageFromFiles(
+        Array.from(event.dataTransfer.files),
+      );
       setImage((prev) => {
         const newImages = [...prev, ...droppedImages].slice(
           ARRAY_START_INDEX,
@@ -39,8 +44,8 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
       });
     } else if (e.type === "change") {
       const inputElement = e.target as HTMLInputElement;
-      const selectedImages = inputElement.files
-        ? Array.from(inputElement.files)
+      const selectedImages: FormImage[] = inputElement.files
+        ? getFormImageFromFiles(Array.from(inputElement.files))
         : [];
       setImage((prev) => {
         const newImages = [...prev, ...selectedImages].slice(
@@ -95,25 +100,29 @@ const ImagesInput = ({ images, setImage }: ImageInputProps) => {
           return (
             <ImageThumbnail
               key={index}
-              image={URL.createObjectURL(image)}
-              onClickDelete={() => handleDeleteImage(index)}
+              image={image.url}
+              onClickDelete={
+                !disabled ? () => handleDeleteImage(index) : undefined
+              }
               size="20%"
               isRepresentative={index === 0}
               onClick={() => {
-                if (index !== 0) handleClickImage(index);
+                if (index !== 0 && !disabled) handleClickImage(index);
               }}
             />
           );
         })}
       </div>
-      <CustomButton
-        styleType="line"
-        disabled={images.length >= MAX_IMAGE_COUNT}
-        size="md"
-        style={{ marginTop: 20 }}
-        onClick={() => InputRef.current?.click()}
-        title="업로드하기"
-      />
+      {!disabled && (
+        <CustomButton
+          styleType="line"
+          disabled={images.length >= MAX_IMAGE_COUNT}
+          size="md"
+          style={{ marginTop: 20 }}
+          onClick={() => InputRef.current?.click()}
+          title="업로드하기"
+        />
+      )}
       <input
         type="file"
         accept="image/*"

@@ -4,19 +4,29 @@ import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { Image, ProductFormdata } from "product-types";
+import { FormImage, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./field/item-field-array";
 import OptionFieldArray from "./field/option-field-array";
 import ImagesInput from "./field/image-input";
 import DiscountFieldArray from "./field/discount-field-array";
 import { formStyles } from "./form.css";
 
-const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
+const ProductForm = ({
+  formBase,
+  imageBase,
+  handleSendForm,
+  isEditable,
+}: {
+  formBase: ProductFormdata;
+  imageBase: FormImage[];
+  handleSendForm: (data: ProductFormdata, images: FormImage[]) => Promise<void>;
+  isEditable?: boolean;
+}) => {
   const router = useRouter();
+  const [isEditing, setIsEditing] = useState(false);
 
   const productFormSchema = z.object({
     title: z
@@ -113,13 +123,13 @@ const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
     register,
     formState: { errors },
   } = method;
-  const [images, setImages] = useState<File[]>([]);
+  const [images, setImages] = useState<FormImage[]>(imageBase);
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
       popToast("최소 한 장의 이미지가 필요합니다.", "이미지를 등록해 주세요.");
     } else {
-      await postNewProduct(data, images);
+      await handleSendForm(data, images);
       router.push("/photographer/mypage/products");
     }
   };
@@ -131,7 +141,6 @@ const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
-        <span className={formStyles.title}>촬영 정보 등록하기</span>
         <div className={formStyles.wrapper}>
           <div className={formStyles.split}>
             <span className={formStyles.subtitle}>상품 정보</span>
@@ -140,6 +149,7 @@ const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
               className={formStyles.input}
               style={{ fontSize: 20 }}
               {...register("title")}
+              disabled={isEditable && !isEditing}
             />
             <span className={formStyles.error}>
               {errors.title && errors.title.message}
@@ -147,6 +157,7 @@ const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
             <input
               placeholder="(선택) 상품 소개글을 입력해 주세요."
               className={formStyles.input}
+              disabled={isEditable && !isEditing}
               {...register("subtitle")}
             />
             <span className={formStyles.error}>
@@ -154,25 +165,40 @@ const ProductForm = ({ formBase }: { formBase: ProductFormdata }) => {
             </span>
           </div>
           <div className={formStyles.split}>
-            <ImagesInput images={images} setImage={setImages} />
+            <ImagesInput
+              images={images}
+              setImage={setImages}
+              disabled={isEditable && !isEditing}
+            />
           </div>
           <div className={formStyles.split}>
-            <ItemFieldArray />
+            <ItemFieldArray disabled={isEditable && !isEditing} />
           </div>
           <div className={formStyles.split}>
-            <OptionFieldArray />
+            <OptionFieldArray disabled={isEditable && !isEditing} />
           </div>
 
-          <DiscountFieldArray />
+          <DiscountFieldArray disabled={isEditable && !isEditing} />
         </div>
+        {(!isEditable || isEditing) && (
+          <CustomButton
+            type="submit"
+            styleType="primary"
+            size="md"
+            title="저장하기"
+            style={{ marginTop: 40 }}
+          />
+        )}
+      </form>
+      {isEditable && !isEditing && (
         <CustomButton
-          type="submit"
-          styleType="primary"
+          onClick={() => setIsEditing(true)}
+          styleType="line"
           size="md"
-          title="다음"
+          title="수정하기"
           style={{ marginTop: 40 }}
         />
-      </form>
+      )}
     </FormProvider>
   );
 };

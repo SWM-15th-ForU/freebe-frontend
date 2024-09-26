@@ -1,7 +1,10 @@
-import { ProductFormdata } from "product-types";
+import { FormImage, ProductFormdata } from "product-types";
 import apiClient from "../core";
 
-export async function postNewProduct(form: ProductFormdata, images: File[]) {
+export async function postNewProduct(
+  form: ProductFormdata,
+  images: FormImage[],
+) {
   const formData = new FormData();
   const inputData = {
     productTitle: form.title,
@@ -35,7 +38,9 @@ export async function postNewProduct(form: ProductFormdata, images: File[]) {
   );
 
   images.forEach((image) => {
-    formData.append("images", image);
+    if (image.file) {
+      formData.append("images", image.file);
+    }
   });
 
   const response = await apiClient
