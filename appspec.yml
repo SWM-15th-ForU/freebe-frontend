@@ -17,10 +17,10 @@ hooks:
   ApplicationStop:
     - location: scripts/stop.sh
       timeout: 60
-      runas : root
+      runas : ubuntu
       
   ApplicationStart:
     - location: scripts/start.sh
       timeout: 600
-      runas : root
+      runas : ubuntu
       
