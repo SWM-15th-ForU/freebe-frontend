@@ -10,7 +10,7 @@ export async function postProfile(form: Join) {
   };
   const { data } = await apiClient
     .post("photographer/join", {
-      body: JSON.stringify(body),
+      json: body,
     })
     .json<{ data: string }>();
   return data;

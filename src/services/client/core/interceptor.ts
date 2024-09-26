@@ -10,6 +10,9 @@ export const beforeRequest: BeforeRequestHook = async (request) => {
     const data = await response.json();
     setAuthorizationHeader(request, data.accessToken);
   }
+  if (!request.headers.has("Content-Type")) {
+    request.headers.set("Content-Type", "application/json");
+  }
 };
 
 export const beforeRetry: BeforeRetryHook = async ({ error }) => {

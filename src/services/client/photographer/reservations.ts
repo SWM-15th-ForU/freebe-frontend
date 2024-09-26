@@ -37,7 +37,7 @@ export async function putReservationStatus(
   const response = await apiClient.put(
     `photographer/reservation/details/${id}`,
     {
-      body: JSON.stringify(body),
+      json: body,
     },
   );
 }
