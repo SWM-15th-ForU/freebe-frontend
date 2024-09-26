@@ -15,3 +15,4 @@
 # else
 #     echo "No existing PM2 process found for $APP_NAME." | tee -a $LOG_FILE
 # fi
+exit 0
