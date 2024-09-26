@@ -7,7 +7,7 @@ import {
   FinishButton,
 } from "@/components/buttons/common-buttons";
 import { modalStyles } from "@/containers/customer/products/products.css";
-import { formStyles } from "../product.css";
+import { formStyles } from "../form.css";
 // TODO: modal style 공통으로 옮기기
 
 interface ImageInputProps {

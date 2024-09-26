@@ -1,10 +1,10 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { ProductFormdata } from "product-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import DiscountInput from "./discount-input";
-import { formStyles } from "../product.css";
+import ItemInput from "./item-input";
+import { formStyles } from "../form.css";
 
-const DiscountFieldArray = () => {
+const ItemFieldArray = () => {
   const {
     control,
     register,
@@ -12,15 +12,16 @@ const DiscountFieldArray = () => {
   } = useFormContext<ProductFormdata>();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "discounts",
+    name: "items",
   });
 
   return (
     <div style={{ width: "100%" }}>
-      <span className={formStyles.subtitle}>상품 할인</span>
+      <span className={formStyles.subtitle}>상품 구성</span>
+
       {fields.map((item, index) => {
         return (
-          <DiscountInput
+          <ItemInput
             key={item.id}
             formRegister={register}
             index={index}
@@ -36,9 +37,8 @@ const DiscountFieldArray = () => {
         onClick={() =>
           append({
             title: "",
+            content: "",
             description: "",
-            discountType: "AMOUNT",
-            discountValue: null,
           })
         }
         title="추가하기"
@@ -47,4 +47,4 @@ const DiscountFieldArray = () => {
   );
 };
 
-export default DiscountFieldArray;
+export default ItemFieldArray;

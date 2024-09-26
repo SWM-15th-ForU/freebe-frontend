@@ -2,7 +2,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { ProductFormdata } from "product-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import OptionInput from "./option-input";
-import { formStyles } from "../product.css";
+import { formStyles } from "../form.css";
 
 const OptionFieldArray = () => {
   const {

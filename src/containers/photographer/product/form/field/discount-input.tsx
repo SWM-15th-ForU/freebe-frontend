@@ -2,7 +2,7 @@ import { Product, ProductFormdata } from "product-types";
 import { FieldErrors, UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import SwitchItem from "@/components/common/switch-item";
-import { formStyles, inputStyles } from "../product.css";
+import { formStyles, inputStyles } from "../form.css";
 
 interface DiscountInputProps {
   formRegister: UseFormRegister<ProductFormdata>;
@@ -17,7 +17,7 @@ const DiscountInput = ({
   formRegister,
   errors,
 }: DiscountInputProps) => {
-  const { setValue, watch, trigger } = useFormContext<Product>();
+  const { setValue, watch } = useFormContext<Product>();
   const discounts = watch("discounts");
 
   function handleSwitchType() {

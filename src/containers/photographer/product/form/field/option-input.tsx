@@ -2,7 +2,7 @@ import { Product, ProductFormdata } from "product-types";
 import { FieldErrors, UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import SwitchItem from "@/components/common/switch-item";
-import { formStyles, inputStyles, textInput } from "../product.css";
+import { formStyles, inputStyles, textInput } from "../form.css";
 
 interface OptionInputProps {
   formRegister: UseFormRegister<ProductFormdata>;

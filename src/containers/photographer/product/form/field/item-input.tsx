@@ -1,7 +1,7 @@
 import { ProductFormdata } from "product-types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
-import { formStyles, inputStyles } from "../product.css";
+import { formStyles, inputStyles } from "../form.css";
 
 interface ItemInputProps {
   formRegister: UseFormRegister<ProductFormdata>;

@@ -9,11 +9,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { postNewProduct } from "@/services/client/photographer/products";
-import ItemFieldArray from "./form/item-field-array";
-import OptionFieldArray from "./form/option-field-array";
-import ImagesInput from "./form/image-input";
-import DiscountFieldArray from "./form/discount-field-array";
-import { formStyles } from "./product.css";
+import ItemFieldArray from "./field/item-field-array";
+import OptionFieldArray from "./field/option-field-array";
+import ImagesInput from "./field/image-input";
+import DiscountFieldArray from "./field/discount-field-array";
+import { formStyles } from "./form.css";
 
 const ProductForm = () => {
   const router = useRouter();
