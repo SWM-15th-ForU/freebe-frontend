@@ -95,12 +95,20 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
         />
       </Modal>
       <span className={formStyles.subtitle}>상품 사진</span>
-      <div style={{ display: "flex", flexDirection: "row", gap: 8 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 8,
+          flexWrap: "wrap",
+        }}
+      >
         {images.map((image, index) => {
           return (
             <ImageThumbnail
               key={index}
               image={image.url}
+              container={{ minWidth: 100 }}
               onClickDelete={
                 !disabled ? () => handleDeleteImage(index) : undefined
               }

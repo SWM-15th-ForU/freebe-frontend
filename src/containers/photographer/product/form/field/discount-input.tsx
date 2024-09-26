@@ -33,21 +33,28 @@ const DiscountInput = ({
   return (
     <div className={inputStyles.box}>
       <div className={inputStyles.headWrapper}>
-        <input
-          className={inputStyles.title}
-          disabled={disabled}
-          placeholder="할인 종류를 입력해 주세요."
-          {...formRegister(`discounts.${index}.title`)}
-          style={{ marginRight: "auto" }}
-        />
-        <SwitchItem
-          value={{ selected: "금액 할인", unselected: "비율 할인" }}
-          onSwitch={handleSwitchType}
-          selected={discounts[index].discountType === "AMOUNT"}
-          asChip={disabled}
-        />
+        <div className={inputStyles.head}>
+          <input
+            className={inputStyles.title}
+            disabled={disabled}
+            placeholder="할인 종류를 입력해 주세요."
+            {...formRegister(`discounts.${index}.title`)}
+            style={{ marginRight: "auto" }}
+          />
+          <SwitchItem
+            value={{ selected: "금액 할인", unselected: "비율 할인" }}
+            onSwitch={handleSwitchType}
+            selected={discounts[index].discountType === "AMOUNT"}
+            asChip={disabled}
+          />
+        </div>
         {!disabled && (
-          <CloseButton onClick={onClickRemove} size={18} color="grey" />
+          <CloseButton
+            onClick={onClickRemove}
+            size={18}
+            color="grey"
+            container={{ marginLeft: 20 }}
+          />
         )}
       </div>
       {errors.discounts?.[index]?.title && (
@@ -55,13 +62,17 @@ const DiscountInput = ({
           {errors.discounts[index]?.title?.message}
         </span>
       )}
-      {(!disabled || discounts[index].description !== "") && (
-        <input
+      {!disabled ? (
+        <textarea
           className={inputStyles.description}
           disabled={disabled}
           placeholder="(선택) 설명을 입력해 주세요."
           {...formRegister(`discounts.${index}.description`)}
         />
+      ) : (
+        <span className={inputStyles.description}>
+          {discounts[index].description}
+        </span>
       )}
       {errors.discounts?.[index]?.description && (
         <span className={formStyles.error}>

@@ -119,11 +119,13 @@ const ProductForm = ({
     defaultValues: formBase,
   });
   const {
+    watch,
     handleSubmit,
     register,
     formState: { errors },
   } = method;
   const [images, setImages] = useState<FormImage[]>(imageBase);
+  const subtitle = watch("subtitle");
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
@@ -154,12 +156,16 @@ const ProductForm = ({
             <span className={formStyles.error}>
               {errors.title && errors.title.message}
             </span>
-            <input
-              placeholder="(선택) 상품 소개글을 입력해 주세요."
-              className={formStyles.input}
-              disabled={isEditable && !isEditing}
-              {...register("subtitle")}
-            />
+            {!isEditable || isEditing ? (
+              <textarea
+                placeholder="(선택) 상품 소개글을 입력해 주세요."
+                className={formStyles.input}
+                disabled={isEditable && !isEditing}
+                {...register("subtitle")}
+              />
+            ) : (
+              <span className={formStyles.text}>{subtitle}</span>
+            )}
             <span className={formStyles.error}>
               {errors.subtitle && errors.subtitle.message}
             </span>

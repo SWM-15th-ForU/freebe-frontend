@@ -9,12 +9,6 @@ export const formStyles = styleVariants({
     maxWidth: 750,
     margin: "auto",
     alignSelf: "flex-start",
-
-    "@media": {
-      [breakpoints.mobile]: {
-        padding: 20,
-      },
-    },
   },
   title: [
     texts["headline-02"],
@@ -22,6 +16,7 @@ export const formStyles = styleVariants({
       color: "text-02",
     }),
   ],
+  text: [sprinkles({ color: "text-02" }), { fontSize: 15, fontWeight: 400 }],
   wrapper: [
     sprinkles({
       borderColor: "stroke-grey",
@@ -52,6 +47,11 @@ export const formStyles = styleVariants({
       paddingBottom: 40,
       width: "100%",
       minWidth: "fit-content",
+      "@media": {
+        [breakpoints.mobile]: {
+          paddingBottom: 20,
+        },
+      },
     },
   ],
   subtitle: [
@@ -68,6 +68,9 @@ export const formStyles = styleVariants({
       border: 0,
       width: "100%",
       marginTop: 10,
+      ":disabled": {
+        background: "none",
+      },
     },
   ],
   error: [
@@ -79,8 +82,17 @@ export const formStyles = styleVariants({
   ],
 });
 
+const baseInput = style({
+  resize: "none",
+  height: "fit-content",
+  ":disabled": {
+    background: "none",
+  },
+});
+
 export const textInput = style([
   texts["body-02"],
+  baseInput,
   sprinkles({
     color: "text-02",
   }),
@@ -97,25 +109,39 @@ export const inputStyles = styleVariants({
   headWrapper: {
     display: "flex",
     flexDirection: "row",
-    gap: 20,
-    marginBottom: 5,
+    marginBottom: 10,
+    alignItems: "flex-start",
+  },
+  head: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: 10,
   },
   title: [
+    baseInput,
     texts["headline-03"],
     sprinkles({
       color: "text-02",
     }),
     {
+      display: "block",
       background: "none",
       border: "none",
     },
   ],
   description: [
+    baseInput,
     texts["body-02"],
     sprinkles({
       color: "text-03",
     }),
     {
+      "::placeholder": {
+        color: "#849DAB",
+      },
       background: "none",
       border: "none",
       width: "100%",

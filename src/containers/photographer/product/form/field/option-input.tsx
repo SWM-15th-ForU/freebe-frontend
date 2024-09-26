@@ -29,21 +29,28 @@ const OptionInput = ({
   return (
     <div className={inputStyles.box}>
       <div className={inputStyles.headWrapper}>
-        <input
-          className={inputStyles.title}
-          disabled={disabled}
-          placeholder="이름을 입력해 주세요."
-          {...formRegister(`options.${index}.title`)}
-          style={{ marginRight: "auto" }}
-        />
-        <SwitchItem
-          value={{ selected: "무료", unselected: "유료" }}
-          onSwitch={handleSwitchIsFree}
-          selected={options[index]?.isFree}
-          asChip={disabled}
-        />
+        <div className={inputStyles.head}>
+          <input
+            className={inputStyles.title}
+            disabled={disabled}
+            placeholder="이름을 입력해 주세요."
+            {...formRegister(`options.${index}.title`)}
+            style={{ marginRight: "auto" }}
+          />
+          <SwitchItem
+            value={{ selected: "무료", unselected: "유료" }}
+            onSwitch={handleSwitchIsFree}
+            selected={options[index]?.isFree}
+            asChip={disabled}
+          />
+        </div>
         {!disabled && (
-          <CloseButton onClick={onClickRemove} size={18} color="grey" />
+          <CloseButton
+            onClick={onClickRemove}
+            size={18}
+            color="grey"
+            container={{ marginLeft: 20 }}
+          />
         )}
       </div>
       {errors.options?.[index]?.title && (
@@ -51,13 +58,17 @@ const OptionInput = ({
           {errors.options[index]?.title?.message}
         </span>
       )}
-      {(!disabled || options[index].description !== "") && (
-        <input
+      {!disabled ? (
+        <textarea
           className={inputStyles.description}
           disabled={disabled}
           placeholder="(선택) 설명을 입력해 주세요."
           {...formRegister(`options.${index}.description`)}
         />
+      ) : (
+        <span className={inputStyles.description}>
+          {options[index].description}
+        </span>
       )}
       {errors.options?.[index]?.description && (
         <span className={formStyles.error}>

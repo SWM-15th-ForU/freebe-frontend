@@ -55,7 +55,6 @@ const NewProduct = () => {
         formBase={defaultValues}
         handleSendForm={addNewProduct}
         imageBase={[]}
-        isEditable
       />
     </div>
   );

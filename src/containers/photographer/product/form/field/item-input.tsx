@@ -42,13 +42,17 @@ const ItemInput = ({
           container={{ position: "absolute", right: 20, top: 20 }}
         />
       )}
-      {(!disabled || items[index].description !== "") && (
-        <input
+      {!disabled ? (
+        <textarea
           className={inputStyles.description}
-          placeholder="(선택) 설명을 입력해 주세요."
           disabled={disabled}
+          placeholder="(선택) 설명을 입력해 주세요."
           {...formRegister(`items.${index}.description`)}
         />
+      ) : (
+        <span className={inputStyles.description}>
+          {items[index].description}
+        </span>
       )}
       {errors.items?.[index]?.description && (
         <span className={formStyles.error}>
