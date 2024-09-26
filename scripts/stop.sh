@@ -6,7 +6,7 @@ NOW=$(date "+%Y %b %d %a %H:%M:%S")
 # 로그 파일 경로
 LOG_FILE="delete.log"
 
-cd /home/ubuntu/freebe-fronted
+cd /home/ubuntu/freebe-frontend
 
 echo "--------------------------------------------------" >> $LOG_FILE
 
