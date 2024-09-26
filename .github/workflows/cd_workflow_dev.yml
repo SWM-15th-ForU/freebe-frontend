@@ -17,6 +17,9 @@ jobs:
       - name: Check Node v
         run: node -v
 
+      - name: npm 설치
+        run: npm install
+
       - name: env 설정
         run: |
           echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
@@ -29,6 +32,9 @@ jobs:
           echo "NEXT_PUBLIC_KAKAO_DOMAIN=${{ secrets.NEXT_PUBLIC_KAKAO_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY }}" >> .env
           echo "NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN }}" >> .env
+
+      - name: 프로젝트 빌드
+        run: npm run build
 
       - name: 압축
         run: zip -r ./frontend_freebe.zip .
