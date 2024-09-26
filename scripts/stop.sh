@@ -8,8 +8,11 @@ LOG_FILE="delete.log"
 
 cd /home/ubuntu/freebe-fronted
 
+echo "--------------------------------------------------" >> $LOG_FILE
+
+SERVICE_PID=$(pm2 pid $APP_NAME)
 # 현재 PM2 프로세스를 찾고 삭제
-if pm2 pid "$APP_NAME"; then
+if [-z "$SERVICE_PID" ]; then
     echo "[$NOW] Stopping existing PM2 process for $APP_NAME..." | tee -a $LOG_FILE
     pm2 delete "$APP_NAME" >> $LOG_FILE 2>&1
 else
