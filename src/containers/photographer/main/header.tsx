@@ -7,7 +7,7 @@ import * as styles from "./header/header.css";
 import Profile from "./header/profile";
 import Url from "./header/url";
 
-const Header = () => {
+const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
   const [url, setUrl] = useState<string | null>();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Header = () => {
           alt="free:be"
         />
       </Link>
-      {url && (
+      {url && !isOnboarding && (
         <>
           <Url myUrl={url} />
           <Profile />

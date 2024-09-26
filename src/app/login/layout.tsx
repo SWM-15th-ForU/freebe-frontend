@@ -10,7 +10,7 @@ const LoginLayout = ({
   return (
     <div>
       <div className={loginPageStyles.layout}>
-        <Header />
+        <Header isOnboarding />
         {children}
       </div>
       <ServiceFooter />
