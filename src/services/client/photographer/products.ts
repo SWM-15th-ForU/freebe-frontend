@@ -55,3 +55,10 @@ export async function putProductStatus(
     .json();
   return response;
 }
+
+export async function deleteProduct(productId: number) {
+  const response = await apiClient
+    .delete(`photographer/product/${productId}`)
+    .json();
+  return response;
+}

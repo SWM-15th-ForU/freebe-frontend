@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Switch } from "@mantine/core";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
-import { putProductStatus } from "@/services/client/photographer/products";
+import {
+  deleteProduct,
+  putProductStatus,
+} from "@/services/client/photographer/products";
 import { bannerStyles } from "../product.css";
 
 const ProductBanner = ({
@@ -30,12 +34,22 @@ const ProductBanner = ({
         <span className={bannerStyles.content}>
           누적 예약 건수 {reservationCount}건
         </span>
-        <div className={bannerStyles.statusWrapper}>
+
+        <div className={bannerStyles.controlWrapper}>
           <span>예약 활성화</span>
           <Switch
             checked={activeStatus === "ACTIVE"}
             onChange={handleSwitchOpen}
           />
+          {activeStatus === "INACTIVE" && (
+            <CustomButton
+              size="xs"
+              styleType="primary"
+              title="삭제"
+              onClick={() => deleteProduct(productId)}
+              style={{ marginLeft: "auto" }}
+            />
+          )}
         </div>
       </div>
     </div>

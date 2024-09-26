@@ -100,15 +100,15 @@ export const bannerStyles = styleVariants({
       color: "text-02",
     }),
   ],
-  statusWrapper: [
+  controlWrapper: [
     texts["button-01"],
     sprinkles({
       color: "text-03",
     }),
     {
-      alignSelf: "flex-end",
       display: "flex",
       flexDirection: "row",
+      alignItems: "center",
       gap: 8,
       marginTop: 19,
     },
