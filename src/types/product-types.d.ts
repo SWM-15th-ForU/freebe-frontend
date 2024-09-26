@@ -75,41 +75,42 @@ declare module "product-types" {
       description: Description;
     }[];
   }
-}
-namespace reservation {
-  export interface ImageListType {
-    url: string;
-    selected: boolean;
-  }
 
-  export interface ScheduleListType {
-    date: Date | null;
-    startTime: Date | null;
-    endTime: Date | null;
-  }
+  namespace reservation {
+    export interface ImageListType {
+      url: string;
+      selected: boolean;
+    }
 
-  export interface SelectedImageListType {
-    url: string;
-    index: number;
-  }
+    export interface ScheduleListType {
+      date: Date | null;
+      startTime: Date | null;
+      endTime: Date | null;
+    }
 
-  export interface SelectedOption {
-    index: number;
-    title: string;
-    quantity: number;
-    price: number;
-  }
+    export interface SelectedImageListType {
+      url: string;
+      index: number;
+    }
 
-  export interface FormType {
-    referenceImages: string[];
-    name: string;
-    contact: string;
-    instagram: string;
-    schedules: ScheduleListType[];
-    options: SelectedOption[];
-    memo: string;
-    totalPrice: number;
-    serviceAgreement: boolean;
-    photographerAgreement: boolean;
+    export interface SelectedOption {
+      index: number;
+      title: string;
+      quantity: number;
+      price: number;
+    }
+
+    export interface FormType {
+      referenceImages: string[];
+      name: string;
+      contact: string;
+      instagram: string;
+      schedules: ScheduleListType[];
+      options: SelectedOption[];
+      memo: string;
+      totalPrice: number;
+      serviceAgreement: boolean;
+      photographerAgreement: boolean;
+    }
   }
 }
