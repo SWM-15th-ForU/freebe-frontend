@@ -1,18 +1,21 @@
 "use client";
 
 import { FormImage, ProductFormdata } from "product-types";
+import { putProductDetails } from "@/services/client/photographer/products";
 import ProductForm from "./form";
 import { formStyles } from "./product.css";
 
 const ProductDetails = ({
   currentDetails,
   currentImage,
+  productId,
 }: {
   currentDetails: ProductFormdata;
   currentImage: FormImage[];
+  productId: string;
 }) => {
   async function saveNewDetails(data: ProductFormdata, images: FormImage[]) {
-    console.log(data, images);
+    await putProductDetails(data, images, productId);
   }
 
   return (

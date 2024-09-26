@@ -9,5 +9,5 @@ export default async function ProductDetailPage({
 }) {
   const productDetails = await getCurrentProductDetails(params.productId);
 
-  return <ProductDetails {...productDetails} />;
+  return <ProductDetails productId={params.productId} {...productDetails} />;
 }

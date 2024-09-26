@@ -67,3 +67,59 @@ export async function deleteProduct(productId: number) {
     .json();
   return response;
 }
+
+export async function putProductDetails(
+  newDetails: ProductFormdata,
+  newImages: FormImage[],
+  productId: string,
+) {
+  const formData = new FormData();
+  const { title, subtitle, items, options, discounts } = newDetails;
+  const inputData = {
+    productId: parseInt(productId, 10),
+    respresentImage: newImages[0].fileName,
+    imageUrls: newImages
+      .filter((image) => image.file === undefined)
+      .map((image) => image.url),
+    // TODO: image 전송 관련 request body 형식 확인 필요
+    productTitle: title,
+    productDescription: subtitle,
+    productComponents: items.map((item) => {
+      return {
+        title: item.title,
+        content: item.content,
+        description: item.description !== "" ? item.description : null,
+      };
+    }),
+    productOptions: options.map((option) => {
+      return {
+        title: option.title,
+        price: option.isFree ? 0 : option.price,
+        description: option.description !== "" ? option.description : null,
+      };
+    }),
+    productDiscounts: discounts.map((discount) => {
+      return {
+        title: discount.title,
+        discountType: discount.discountType,
+        discountValue: discount.discountValue,
+        description: discount.description !== "" ? discount.description : null,
+      };
+    }),
+  };
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(inputData)], { type: "application/json" }),
+  );
+
+  newImages.forEach((image) => {
+    if (image.file) {
+      formData.append("images", image.file);
+    }
+  });
+
+  const response = await apiClient.put("photographer/product", {
+    body: formData,
+  });
+  return response;
+}
