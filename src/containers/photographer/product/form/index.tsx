@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { FormImage, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,7 +24,6 @@ const ProductForm = ({
   handleSendForm: (data: ProductFormdata, images: FormImage[]) => Promise<void>;
   isEditable?: boolean;
 }) => {
-  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
 
   const productFormSchema = z.object({
@@ -132,7 +130,9 @@ const ProductForm = ({
       popToast("최소 한 장의 이미지가 필요합니다.", "이미지를 등록해 주세요.");
     } else {
       await handleSendForm(data, images);
-      router.push("/photographer/mypage/products");
+      if (isEditing) {
+        setIsEditing(false);
+      }
     }
   };
 

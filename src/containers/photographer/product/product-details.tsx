@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormImage, ProductFormdata } from "product-types";
 import { putProductDetails } from "@/services/client/photographer/products";
 import ProductForm from "./form";
@@ -14,8 +15,11 @@ const ProductDetails = ({
   currentImage: FormImage[];
   productId: string;
 }) => {
+  const router = useRouter();
+
   async function saveNewDetails(data: ProductFormdata, images: FormImage[]) {
     await putProductDetails(data, images, productId);
+    router.refresh();
   }
 
   return (

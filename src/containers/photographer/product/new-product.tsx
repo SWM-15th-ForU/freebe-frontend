@@ -1,11 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormImage, ProductFormdata } from "product-types";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ProductForm from "./form";
 import { formStyles } from "./product.css";
 
 const NewProduct = () => {
+  const router = useRouter();
   const defaultValues: ProductFormdata = {
     title: "",
     subtitle: "",
@@ -46,6 +48,7 @@ const NewProduct = () => {
 
   async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
     const response = await postNewProduct(data, images);
+    router.push("/photographer/mypage/products");
   }
 
   return (
