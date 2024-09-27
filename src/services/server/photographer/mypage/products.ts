@@ -66,7 +66,9 @@ export async function getCurrentProductDetails(
       };
     }),
   };
-  const currentImage: FormImage[] = productImageUrls as FormImage[];
+  const currentImage: FormImage[] = productImageUrls.map((url) => {
+    return { url, fileName: null };
+  });
 
   return {
     currentDetails,

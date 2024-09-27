@@ -76,12 +76,14 @@ export async function putProductDetails(
   const formData = new FormData();
   const { title, subtitle, items, options, discounts } = newDetails;
   const inputData = {
-    productId: parseInt(productId, 10),
-    respresentImage: newImages[0].fileName,
-    imageUrls: newImages
-      .filter((image) => image.file === undefined)
-      .map((image) => image.url),
     // TODO: image 전송 관련 request body 형식 확인 필요
+    productId: parseInt(productId, 10),
+    images: newImages.map((image) => {
+      return {
+        url: image.file !== undefined ? null : image.url,
+        fileName: image.fileName,
+      };
+    }),
     productTitle: title,
     productDescription: subtitle,
     productComponents: items.map((item) => {

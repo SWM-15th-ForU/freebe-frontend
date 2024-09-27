@@ -23,7 +23,7 @@ declare module "product-types" {
   }
 
   interface FormImage {
-    fileName: string;
+    fileName: string | null;
     url: string;
     file?: File;
   }
@@ -54,10 +54,7 @@ declare module "product-types" {
   export interface ProductDetailResponseData {
     productTitle: string;
     productDescription: string | null;
-    productImageUrls: {
-      fileName: string;
-      url: string;
-    }[];
+    productImageUrls: string[];
     productComponents: {
       title: string;
       content: string;
