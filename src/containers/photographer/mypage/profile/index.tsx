@@ -38,7 +38,11 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
         popToast("저장이 완료되었습니다.");
       },
       (message) =>
-        popToast("다시 시도해 주세요.", message || "저장에 실패했습니다."),
+        popToast(
+          "다시 시도해 주세요.",
+          message || "저장에 실패했습니다.",
+          true,
+        ),
     );
   };
 

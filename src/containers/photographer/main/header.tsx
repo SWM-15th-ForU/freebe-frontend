@@ -8,7 +8,7 @@ import Profile from "./header/profile";
 import Url from "./header/url";
 
 const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
-  const [url, setUrl] = useState<string | null>();
+  const [url, setUrl] = useState<string>("");
 
   useEffect(() => {
     const localData = localStorage.getItem("url");
@@ -27,7 +27,7 @@ const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
           alt="free:be"
         />
       </Link>
-      {url && !isOnboarding && (
+      {!isOnboarding && (
         <>
           <Url myUrl={url} />
           <Profile />
