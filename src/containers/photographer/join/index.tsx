@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { postProfile } from "@/services/client/photographer/profile";
+import { responseHandler } from "@/services/common/error";
 import Profile from "./profile";
 import Agreements from "./agreements";
 import { joinStyles } from "./join.css";
@@ -45,13 +46,15 @@ const PhotographerJoin = () => {
   ]);
 
   async function onSubmit(data: Join) {
-    try {
-      const url = await postProfile(data);
-      popToast("가입이 완료되었습니다!", "");
-      router.push(`/photographer?url=${url}`);
-    } catch (error) {
-      popToast("가입에 실패했습니다.", "다시 시도해주세요.");
-    }
+    await responseHandler(
+      postProfile(data),
+      (url) => {
+        popToast("가입이 완료되었습니다!");
+        router.push(`/photographer?url=${url}`);
+      },
+      (message) =>
+        popToast("다시 시도해 주세요.", message || "가입에 실패했습니다."),
+    );
   }
 
   return (

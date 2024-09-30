@@ -8,6 +8,7 @@ import { Image, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import { responseHandler } from "@/services/common/error";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
@@ -153,10 +154,26 @@ const ProductForm = () => {
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
-      popToast("최소 한 장의 이미지가 필요합니다.", "이미지를 등록해 주세요.");
+      popToast(
+        "최소 한 장의 이미지가 필요합니다.",
+        "이미지를 등록해 주세요.",
+        true,
+      );
     } else {
-      await postNewProduct(data, images);
-      router.push("/photographer/mypage/products");
+      await responseHandler(
+        postNewProduct(data, images),
+        () => {
+          popToast("새로운 상품이 등록되었습니다.");
+          router.push("/photographer/mypage/products");
+        },
+        (message) => {
+          popToast(
+            "다시 시도해 주세요.",
+            message || "등록에 실패했습니다.",
+            true,
+          );
+        },
+      );
     }
   };
 

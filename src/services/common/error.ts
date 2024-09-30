@@ -35,20 +35,23 @@ export function getCustomedErrorMessage(
 export async function responseHandler<T>(
   request: Promise<T>,
   successCallback: (response: T) => void,
-  failureCallback: (message?: string) => void,
+  failureCallback?: (message?: string) => void,
 ) {
   try {
     const response = await request;
     successCallback(response);
   } catch (error) {
+    console.error("request failed: ", error);
     if (
       typeof error === "object" &&
       error !== null &&
       "customedMessage" in error
     ) {
       const { customedMessage } = error as CustomedError;
-      failureCallback(customedMessage);
-    } else {
+      if (failureCallback !== undefined) {
+        failureCallback(customedMessage);
+      }
+    } else if (failureCallback !== undefined) {
       failureCallback();
     }
   }
