@@ -1,4 +1,4 @@
-import { BeforeRequestHook, BeforeRetryHook, HTTPError } from "ky";
+import { BeforeRequestHook, BeforeRetryHook } from "ky";
 import {
   reissueIfUnauthrized,
   setAuthorizationHeader,
@@ -14,7 +14,5 @@ export const beforeRequest: BeforeRequestHook = (request) => {
 };
 
 export const beforeRetry: BeforeRetryHook = async ({ error }) => {
-  if (error instanceof HTTPError && error.response.status === 401) {
-    reissueIfUnauthrized(error, reissueTokens);
-  }
+  await reissueIfUnauthrized(error, reissueTokens);
 };

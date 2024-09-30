@@ -1,4 +1,5 @@
 import ky from "ky";
+import { beforeError } from "@/services/common";
 import { beforeRequest, beforeRetry } from "./interceptor";
 
 const apiClient = ky
@@ -6,13 +7,13 @@ const apiClient = ky
     prefixUrl: process.env.NEXT_PUBLIC_API_DOMAIN,
     credentials: "include",
     mode: "cors",
+    cache: "no-store",
   })
   .extend({
     hooks: {
       beforeRequest: [beforeRequest],
       beforeRetry: [beforeRetry],
-      // TODO: 공통 에러 핸들러 추가
-      afterResponse: [],
+      beforeError: [beforeError],
     },
   });
 

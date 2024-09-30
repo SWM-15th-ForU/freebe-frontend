@@ -16,7 +16,7 @@ export const beforeRequest: BeforeRequestHook = async (request) => {
 };
 
 export const beforeRetry: BeforeRetryHook = async ({ error }) => {
-  reissueIfUnauthrized(error, async () => {
-    const response = await fetch("/auth", { method: "PUT" });
+  await reissueIfUnauthrized(error, async () => {
+    await fetch("/auth", { method: "PUT" });
   });
 };
