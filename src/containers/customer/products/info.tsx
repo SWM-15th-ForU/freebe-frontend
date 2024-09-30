@@ -58,7 +58,7 @@ const ProductInfo = ({
                 backgroundColor: "#d9d9d9",
               }}
             >
-              <Image src={image} alt="" fill />
+              <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
             </Carousel.Slide>
           );
         })}

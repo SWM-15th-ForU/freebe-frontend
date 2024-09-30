@@ -24,7 +24,3 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit;
   -webkit-text-size-adjust: none;
 }
-
-img {
-  object-fit: cover;
-}
