@@ -1,6 +1,6 @@
 import ky from "ky";
 import { beforeError } from "@/services/common";
-import { beforeRequest, beforeRetry } from "./interceptor";
+import { beforeRequest } from "./interceptor";
 
 export const api = ky
   .create({
@@ -12,7 +12,6 @@ export const api = ky
   .extend({
     hooks: {
       beforeRequest: [beforeRequest],
-      beforeRetry: [beforeRetry],
       beforeError: [beforeError],
     },
   });
