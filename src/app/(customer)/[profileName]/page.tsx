@@ -1,9 +1,20 @@
+import { Metadata, ResolvingMetadata } from "next";
 import { PageParams } from "route-parameters";
 import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { getPhotographerProfile } from "@/services/server/customer/photographer";
 import { LinkType } from "profile-types";
 import { mainStyle } from "./main.css";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Pick<PageParams, "profileName">;
+}): Promise<Metadata> {
+  return {
+    title: `@${params.profileName} | free:be`,
+  };
+}
 
 const CustomerMainPage = async ({
   params,
