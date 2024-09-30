@@ -38,7 +38,7 @@ export async function getPreviousReservationList(params: {
   status?: InactiveStatus;
   keyword?: string;
   page?: number;
-}): Promise<ReservationList[]> {
+}): Promise<{ reservationList: ReservationList[]; totalPages: number }> {
   const urlParams = new URLSearchParams();
   Object.keys(params).forEach((key) => {
     const value = params[key as keyof typeof params];
@@ -48,19 +48,27 @@ export async function getPreviousReservationList(params: {
   });
 
   const { data } = await apiClient
-    .get(`photographer/reservation/list/past${urlParams}`)
-    .json<{ data: ReservationListResponse[] }>();
+    .get(`photographer/reservation/list/past?${urlParams}`)
+    .json<{
+      data: {
+        pastReservationFormComponent: ReservationListResponse[];
+        totalPages: number;
+      };
+    }>();
 
-  return data.map((item) => {
-    return {
-      ...item,
-      reservationStatus:
-        item.reservationStatus === "COMPLETED"
-          ? "PHOTO_COMPLETED"
-          : "CANCELLED",
-      shootingDate: item.shootingDate.date,
-    };
-  });
+  return {
+    totalPages: data.totalPages,
+    reservationList: data.pastReservationFormComponent.map((item) => {
+      return {
+        ...item,
+        reservationStatus:
+          item.reservationStatus === "COMPLETED"
+            ? "PHOTO_COMPLETED"
+            : "CANCELLED",
+        shootingDate: item.shootingDate || undefined,
+      };
+    }),
+  };
 }
 
 export async function putReservationStatus(

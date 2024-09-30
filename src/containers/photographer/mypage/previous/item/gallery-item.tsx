@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReservationList } from "reservation-types";
-import { formatDate } from "@/utils/date";
+import { formatDate, formatDateString } from "@/utils/date";
 import { statusTitles } from "@/constants/common/reservation";
 import { commonItemStyles, galleryItemStyles } from "./item.css";
 
@@ -54,7 +54,7 @@ const GalleryItem = ({
           <span className={commonItemStyles.content}>{customerName}</span>
         </div>
         <div className={galleryItemStyles.wrapper}>
-          {reservationStatus === "PHOTO_COMPLETED" && (
+          {shootingDate && (
             <div className={galleryItemStyles.date}>
               <span className={commonItemStyles.name}>촬영 완료 일시</span>
               <span className={commonItemStyles.content}>

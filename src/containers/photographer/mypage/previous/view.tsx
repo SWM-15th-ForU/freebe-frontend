@@ -12,7 +12,9 @@ import { viewStyles } from "./previous.css";
 
 const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
   const [viewType, setViewType] = useState<"gallery" | "list">("list");
-  const { data: reservationList } = useSuspenseQuery({
+  const {
+    data: { reservationList, totalPages },
+  } = useSuspenseQuery({
     queryKey: ["reservation", { from, to, keyword, page, status }],
     queryFn: () =>
       getPreviousReservationList({ from, to, keyword, page, status }),
@@ -57,7 +59,7 @@ const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
       <div className={viewStyles[viewType]}>{renderItem()}</div>
       <Pagination
         value={page}
-        total={3}
+        total={totalPages}
         onChange={handlePageChange}
         classNames={paginationStyles}
       />

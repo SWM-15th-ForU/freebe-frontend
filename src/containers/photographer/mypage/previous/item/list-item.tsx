@@ -25,7 +25,7 @@ const ListItem = ({
         }
       >
         <div className={listItemStyles.wrapper}>
-          {reservationStatus === "PHOTO_COMPLETED" && (
+          {shootingDate && (
             <div className={listItemStyles.borderedDate}>
               <span className={commonItemStyles.name}>촬영 완료 일시</span>
               <span className={commonItemStyles.content}>

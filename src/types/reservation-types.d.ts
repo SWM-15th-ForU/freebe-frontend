@@ -153,14 +153,10 @@ declare module "reservation-types" {
       | "COMPLETED";
     reservationId: number;
     reservationSubmissionDate: string;
-    shootingDate: {
-      date: string;
-      startTime: string;
-      endTime: string;
-    };
+    shootingDate: string | null;
     customerName: string;
     productTitle: string;
-    price: string;
+    price: number;
     image: string;
   }
 
@@ -168,10 +164,10 @@ declare module "reservation-types" {
     reservationStatus: InactiveStatus;
     reservationId: number;
     reservationSubmissionDate: string;
-    shootingDate: string;
+    shootingDate?: string;
     customerName: string;
     productTitle: string;
-    price: string;
+    price: number;
     image: string;
   }
 }
