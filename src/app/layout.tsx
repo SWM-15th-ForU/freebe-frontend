@@ -7,6 +7,7 @@ import "@mantine/notifications/styles.css";
 import "./globals.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { METADATA } from "@/constants/metadata";
 
 const pretendard = localFont({
@@ -41,6 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <GoogleAnalytics gaId="G-HB94Q4DZRD" />
         <ColorSchemeScript />
       </head>
       <body
