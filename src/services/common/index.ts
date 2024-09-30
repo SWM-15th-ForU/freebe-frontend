@@ -25,7 +25,11 @@ export async function getCustomedError(error: HTTPError) {
     code?: string;
     message?: string;
   }>();
-  const customedMessage = getCustomedErrorMessage(code, message);
+  const customedMessage = getCustomedErrorMessage(
+    response.status,
+    code,
+    message,
+  );
   const customedError: CustomedError = {
     ...error,
     customedMessage,
