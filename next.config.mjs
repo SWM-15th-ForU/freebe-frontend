@@ -9,6 +9,7 @@ const nextConfig = {
       "picsum.photos",
       "example.com",
       "search.pstatic.net",
+      "freebe-data.s3.ap-northeast-2.amazonaws.com",
       "cicd-backend-develop-bucket.s3.ap-northeast-2.amazonaws.com",
     ],
   },

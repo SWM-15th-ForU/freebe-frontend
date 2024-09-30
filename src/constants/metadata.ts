@@ -12,6 +12,6 @@ export const METADATA = {
     "스냅촬영 예약",
     "스냅사진 예약",
   ],
-  favicon: "/favicon/favicon.ico",
+  favicon: "/favicon.ico",
   ogImage: "/images/opengraph.png",
 };

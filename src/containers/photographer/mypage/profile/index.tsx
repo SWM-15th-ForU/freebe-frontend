@@ -6,6 +6,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
+import { responseHandler } from "@/services/common/error";
 import popToast from "@/components/common/toast";
 import ProfileEdit from "./edit";
 import { mypageStyles, profileStyles } from "./profile.css";
@@ -31,12 +32,18 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
   const [bannerFile, setBannerFile] = useState<File>();
 
   const onSubmit: SubmitHandler<Photographer> = async (data) => {
-    try {
-      await putProfile(data, { bannerFile, profileFile });
-      popToast("저장이 완료되었습니다.", "");
-    } catch {
-      popToast("저장에 실패했습니다.", "다시 시도해 주세요.");
-    }
+    await responseHandler(
+      putProfile(data, { bannerFile, profileFile }),
+      () => {
+        popToast("저장이 완료되었습니다.");
+      },
+      (message) =>
+        popToast(
+          "다시 시도해 주세요.",
+          message || "저장에 실패했습니다.",
+          true,
+        ),
+    );
   };
 
   return (

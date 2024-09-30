@@ -14,7 +14,7 @@ export const deleteTokens = () => {
   console.log("delete access token and refresh token from cookies");
 };
 
-const getRefreshToken = () => {
+export const getRefreshToken = () => {
   const cookieStore = cookies();
   return cookieStore.get(tokenKeys.refresh)?.value;
 };
@@ -34,11 +34,12 @@ export const setTokens = (accessToken: string, refreshToken: string) => {
 export const reissueTokens = async () => {
   const refreshToken = getRefreshToken();
   if (!refreshToken) {
-    redirect("/login");
+    throw new Error();
   } else {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_DOMAIN}reissue`,
       {
+        method: "POST",
         headers: {
           refreshToken,
         },
@@ -48,12 +49,12 @@ export const reissueTokens = async () => {
       const newAccessToken = response.headers.get("accessToken");
       const newRefreshToken = response.headers.get("refreshToken");
       if (!newAccessToken || !newRefreshToken) {
-        redirect("/login");
+        throw new Error();
       } else {
         setTokens(newAccessToken, newRefreshToken);
       }
     } else {
-      redirect("/login");
+      throw new Error();
     }
   }
 };
@@ -67,9 +68,12 @@ export const logout = async () => {
       refreshToken: refreshToken || "",
     },
   });
-  console.log(response);
   if (response.status === 401) {
-    await reissueTokens();
+    try {
+      await reissueTokens();
+    } catch {
+      redirect("login");
+    }
   }
   if (response.ok || response.redirected) {
     deleteTokens();

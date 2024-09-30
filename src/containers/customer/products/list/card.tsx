@@ -13,7 +13,12 @@ const ProductCard = ({ id, representImage, title }: ProductListData) => {
     <div className={cardStyles.container}>
       <Link href={`${currentPath}/${id}`} style={{ textDecoration: "none" }}>
         <div className={cardStyles.image}>
-          <Image fill alt={`${id}`} src={representImage} />
+          <Image
+            fill
+            alt={`${id}`}
+            src={representImage}
+            style={{ objectFit: "cover" }}
+          />
         </div>
         <div className={cardStyles.wrapper}>
           <span className={cardStyles.title}>{title}</span>
