@@ -5,7 +5,7 @@ import CloseButton from "../buttons/close-button";
 import { thumbnailStyles } from "../common/common.css";
 
 interface ImageThumbnailProps {
-  image: ImageType;
+  image?: ImageType;
   onClickDelete?: () => void;
   onClickFullsize?: () => void;
   onClick?: () => void;
@@ -35,7 +35,15 @@ const ImageThumbnail = ({
       role="presentation"
       onClick={onClick}
     >
-      <Image src={image} fill sizes="80px" alt="등록 이미지" />
+      {image && (
+        <Image
+          src={image}
+          fill
+          sizes="80px"
+          alt="등록 이미지"
+          style={{ objectFit: "cover" }}
+        />
+      )}
 
       {onClickDelete && (
         <CloseButton

@@ -16,7 +16,7 @@ interface ImageInputProps {
 }
 
 const ARRAY_START_INDEX = 0;
-const MAX_IMAGE_COUNT = 4;
+const MAX_IMAGE_COUNT = 10;
 
 const ImagesInput = ({ images, setImage }: ImageInputProps) => {
   const InputRef = useRef<HTMLInputElement>(null);

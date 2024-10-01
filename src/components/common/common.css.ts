@@ -47,18 +47,16 @@ export const profileStyles = styleVariants({
     justifyContent: "flex-start",
     gap: 16,
   },
-  imageWrapper: [
-    sprinkles({ backgroundColor: "bg-lightblue" }),
-    {
-      position: "relative",
-      height: 48,
-      width: 48,
-      borderRadius: 100,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-  ],
+  imageWrapper: {
+    position: "relative",
+    height: 48,
+    width: 48,
+    borderRadius: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
   id: [texts["headline-03"], sprinkles({ color: "text-point" })],
   image: {
     borderRadius: 100,
@@ -367,11 +365,14 @@ export const toastStyles = styleVariants({
 });
 
 export const thumbnailStyles = styleVariants({
-  container: {
-    aspectRatio: "1",
-    position: "relative",
-    marginTop: 15,
-  },
+  container: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    {
+      aspectRatio: "1",
+      position: "relative",
+      marginTop: 15,
+    },
+  ],
   represent: [
     sprinkles({ borderColor: "blue" }),
     {
