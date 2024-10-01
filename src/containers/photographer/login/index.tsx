@@ -1,6 +1,6 @@
 "use client";
 
-import ImageStack from "./image-stack";
+import ImageStack from "@/containers/common/image-stack/image-stack";
 import LoginInfo from "./info";
 
 const Login = ({ images }: { images: string[] }) => {

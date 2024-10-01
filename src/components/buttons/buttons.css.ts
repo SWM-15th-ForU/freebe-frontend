@@ -115,11 +115,12 @@ const buttonStyles = styleVariants({
   bottom: [
     sprinkles({ backgroundColor: "blue" }),
     {
-      zIndex: 5,
+      marginTop: "auto",
+      zIndex: 3,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      position: "fixed",
+      position: "sticky",
       width: "100%",
       height: "72px",
       bottom: 0,

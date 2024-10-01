@@ -9,6 +9,7 @@ import { api } from "../core";
 
 interface FormDataResponse {
   name: string;
+  instagramId: string | null;
   phoneNumber: string;
   productComponentDtoList: {
     title: string;
@@ -27,11 +28,13 @@ export async function getFormBase(productId: string) {
     .get(`customer/reservation/form/${productId}`)
     .json<{ data: FormDataResponse }>();
   const { data } = response;
+
   const result: {
     name: string;
     options: Option[];
     phoneNumber: string;
     items: Item[];
+    instagramId: string;
   } = {
     name: data.name,
     phoneNumber: data.phoneNumber,
@@ -52,13 +55,14 @@ export async function getFormBase(productId: string) {
         description: item.description || "",
       };
     }),
+    instagramId: data.instagramId || "",
   };
   return result;
 }
 
-export async function getImageList(photographerId: string) {
+export async function getImageList(productId: string) {
   const response = await api
-    .get(`customer/product/images/${photographerId}`)
+    .get(`customer/product/images/${productId}`)
     .json<{ data: string[] }>();
   const { data } = response;
   console.log(data);
@@ -66,10 +70,10 @@ export async function getImageList(photographerId: string) {
 }
 
 export async function getReservationDetails(
-  reservationId: number,
+  formId: string,
 ): Promise<CustomerDetails> {
   const { data } = await api
-    .get(`customer/reservation/${reservationId}`)
+    .get(`customer/reservation/${formId}`)
     .json<{ data: CustomerReservationResponse }>();
 
   const options = objectToArray(data.photoOptions, (arr) =>

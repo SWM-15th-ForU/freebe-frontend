@@ -4,7 +4,7 @@ import { reservation } from "product-types";
 import apiClient from "../core";
 
 interface ProductDatas {
-  photographerId: number;
+  profileName: string;
   productTitle: string;
   infos: {
     [key: string]: string;
@@ -16,7 +16,7 @@ export async function postReservation(
   productData: ProductDatas,
 ) {
   const body = {
-    photographerId: productData.photographerId,
+    profileName: productData.profileName,
     instagramId: formData.instagram,
     productTitle: productData.productTitle,
     photoInfo: productData.infos,
@@ -60,7 +60,7 @@ export async function cancelReservation(
     cancellationReason,
   };
   const response = await apiClient.put(`customer/reservation/${id}`, {
-    body: JSON.stringify(body),
+    json: body,
   });
   if (!response.ok) {
     throw new Error();

@@ -6,6 +6,7 @@ import { reservation } from "product-types";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
 import ReferenceSelected from "@/containers/customer/reservation/reference/selected";
+import { reservationStyles } from "./reservation.css";
 
 const MAX_SELECT_COUNT = 3;
 
@@ -47,7 +48,7 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
   }
 
   return (
-    <div>
+    <div className={reservationStyles.container}>
       <ReferenceSelected
         images={selectedImageList}
         onClickDelete={removeSelected}

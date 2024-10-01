@@ -11,6 +11,7 @@ export const ModalStyle = style({
 
 export const ModalStyles = styleVariants({
   background: {
+    zIndex: 8,
     position: "absolute",
     display: "flex",
     alignItems: "center",
@@ -61,8 +62,8 @@ export const mypageStyles = styleVariants({
   content: [
     {
       width: "100%",
-      height: "calc(100% - 21.5px)",
       paddingTop: 20,
+      paddingBottom: 60,
       position: "relative",
 
       "@media": {
@@ -119,5 +120,21 @@ export const handlerStyles = styleVariants({
   ],
   loader: {
     animation: `${rotateAnimation} 2s linear infinite`,
+  },
+});
+
+export const headerLayoutStyles = styleVariants({
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    position: "relative",
+    overflow: "visible",
+  },
+  content: {
+    flexGrow: 1,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
   },
 });

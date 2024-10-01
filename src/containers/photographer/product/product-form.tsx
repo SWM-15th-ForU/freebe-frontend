@@ -8,6 +8,7 @@ import { Image, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import { responseHandler } from "@/services/common/error";
 import { postNewProduct } from "@/services/client/photographer/products";
 import ItemFieldArray from "./form/item-field-array";
 import OptionFieldArray from "./form/option-field-array";
@@ -149,20 +150,40 @@ const ProductForm = () => {
     register,
     formState: { errors },
   } = method;
-  const [images, setImages] = useState<Image[]>([]);
+  const [images, setImages] = useState<File[]>([]);
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
-      popToast("최소 한 장의 이미지가 필요합니다.", "이미지를 등록해 주세요.");
+      popToast(
+        "최소 한 장의 이미지가 필요합니다.",
+        "이미지를 등록해 주세요.",
+        true,
+      );
     } else {
-      await postNewProduct(data, images);
-      router.push("/photographer/mypage/products");
+      await responseHandler(
+        postNewProduct(data, images),
+        () => {
+          popToast("새로운 상품이 등록되었습니다.");
+          router.push("/photographer/mypage/products");
+        },
+        (message) => {
+          popToast(
+            "다시 시도해 주세요.",
+            message || "등록에 실패했습니다.",
+            true,
+          );
+        },
+      );
     }
   };
 
   return (
     <FormProvider {...method}>
-      <form className={formStyles.container} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={formStyles.container}
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
         <span className={formStyles.title}>촬영 정보 등록하기</span>
         <div className={formStyles.wrapper}>
           <div className={formStyles.split}>

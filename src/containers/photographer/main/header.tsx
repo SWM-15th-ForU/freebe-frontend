@@ -1,14 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import useUserInfo from "@/hooks/useUserInfo";
 import * as styles from "./header/header.css";
 import Profile from "./header/profile";
 import Url from "./header/url";
 
-const Header = () => {
-  const { userData, userRole } = useUserInfo();
+const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
+  const [url, setUrl] = useState<string>("");
+
+  useEffect(() => {
+    const localData = localStorage.getItem("url");
+    if (localData) {
+      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}${localData}`);
+    }
+  });
 
   return (
     <header className={styles.headerContainer}>
@@ -20,11 +27,11 @@ const Header = () => {
           alt="free:be"
         />
       </Link>
-      {userRole === "photographer" && (
-        <div>
-          <Url myUrl={userRole === "photographer" ? userData.profileUrl : ""} />
+      {!isOnboarding && (
+        <>
+          <Url myUrl={url} />
           <Profile />
-        </div>
+        </>
       )}
     </header>
   );

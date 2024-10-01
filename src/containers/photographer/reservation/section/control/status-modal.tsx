@@ -1,5 +1,6 @@
 import { Status } from "reservation-types";
 import { useParams } from "next/navigation";
+import { PageParams } from "route-parameters";
 import { statusTitles } from "@/constants/common/reservation";
 import { Modal } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
@@ -16,7 +17,7 @@ const StatusModal = ({
   close: () => void;
   targetStatus: Status;
 }) => {
-  const { reservationId } = useParams<{ reservationId: string }>();
+  const { formId } = useParams<Pick<PageParams, "formId">>();
 
   return (
     <Modal
@@ -32,9 +33,7 @@ const StatusModal = ({
         size="sm"
         styleType="primary"
         title="변경하기"
-        onClick={() =>
-          putReservationStatus(parseInt(reservationId, 10), targetStatus)
-        }
+        onClick={() => putReservationStatus(parseInt(formId, 10), targetStatus)}
       />
     </Modal>
   );

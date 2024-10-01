@@ -5,9 +5,11 @@ import PartLayout from "../part-layout";
 const CustomerInfoForm = ({
   name,
   phoneNumber,
+  instagramId,
 }: {
   name: string;
   phoneNumber: string;
+  instagramId: string;
 }) => {
   return (
     <PartLayout title="예약자 정보">
@@ -27,6 +29,7 @@ const CustomerInfoForm = ({
       <TextInput<reservation.FormType>
         title="인스타그램 아이디"
         formField="instagram"
+        value={instagramId}
       />
     </PartLayout>
   );

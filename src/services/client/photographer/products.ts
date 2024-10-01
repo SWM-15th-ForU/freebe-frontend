@@ -1,29 +1,26 @@
-import { Image, ProductFormdata } from "product-types";
+import { ProductFormdata } from "product-types";
 import apiClient from "../core";
 
-export async function postNewProduct(
-  formData: ProductFormdata,
-  images: Image[],
-) {
-  const body = {
-    productTitle: formData.title,
-    productDescription: formData.subtitle,
-    productImageUrls: images,
-    productComponents: formData.items.map((item) => {
+export async function postNewProduct(form: ProductFormdata, images: File[]) {
+  const formData = new FormData();
+  const inputData = {
+    productTitle: form.title,
+    productDescription: form.subtitle,
+    productComponents: form.items.map((item) => {
       return {
         title: item.title,
         content: item.content,
         description: item.description !== "" ? item.description : null,
       };
     }),
-    productOptions: formData.options.map((option) => {
+    productOptions: form.options.map((option) => {
       return {
         title: option.title,
         price: option.isFree ? 0 : option.price,
         description: option.description !== "" ? option.description : null,
       };
     }),
-    productDiscounts: formData.discounts.map((discount) => {
+    productDiscounts: form.discounts.map((discount) => {
       return {
         title: discount.title,
         discountType: discount.discountType,
@@ -32,12 +29,20 @@ export async function postNewProduct(
       };
     }),
   };
-  const response = await apiClient
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(inputData)], { type: "application/json" }),
+  );
+
+  images.forEach((image) => {
+    formData.append("images", image);
+  });
+
+  await apiClient
     .post("photographer/product", {
-      json: body,
+      body: formData,
     })
     .json();
-  return response;
 }
 
 export async function putProductStatus(

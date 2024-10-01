@@ -4,9 +4,9 @@ import { loginPageStyles } from "./page.css";
 const Page = () => {
   // TODO: 실제 사진 반환받아 데이터 연결
   const images = [
-    "https://picsum.photos/200/200",
-    "https://picsum.photos/200/300",
-    "https://picsum.photos/200/400",
+    "https://picsum.photos/800/800",
+    "https://picsum.photos/800/1000",
+    "https://picsum.photos/800/900",
   ];
 
   return (

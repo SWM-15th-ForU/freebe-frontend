@@ -237,7 +237,7 @@ export const inputStyles = styleVariants({
       borderRadius: 8,
       padding: "8px 12px",
       ":focus": {
-        outline: "none",
+        borderColor: "#007AFF",
       },
     },
   ],

@@ -6,10 +6,10 @@ export async function getCurrentProfile(): Promise<Photographer> {
     .get("photographer/profile")
     .json<{ data: ProfileResponse }>();
   return {
-    banner: data.bannerImageUrl,
+    banner: data.bannerImageUrl || undefined,
+    profileImg: data.profileImageUrl || undefined,
+    profileName: data.profileName,
     message: data.introductionContent,
-    profileImg: data.profileImageUrl,
-    instagramId: data.instagramId || "",
     linkInfos: data.linkInfos.map((link) => {
       return { name: link.linkTitle, src: link.linkUrl };
     }),

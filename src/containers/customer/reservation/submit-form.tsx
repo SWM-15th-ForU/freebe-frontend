@@ -11,19 +11,22 @@ import { Item, Option, reservation } from "product-types";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { postReservation } from "@/services/client/customer/reservation";
+import { reservationStyles } from "./reservation.css";
 
 const SubmitForm = ({
   name,
   items,
   options,
   phoneNumber,
-  photographerId,
+  profileName,
+  instagramId,
 }: {
   name: string;
   options: Option[];
   phoneNumber: string;
   items: Item[];
-  photographerId: number;
+  profileName: string;
+  instagramId: string;
 }) => {
   const router = useRouter();
   const { getValues, setValue, watch } = useFormContext<reservation.FormType>();
@@ -39,12 +42,12 @@ const SubmitForm = ({
     });
 
     // TODO: 상품 조회 페이지에서 신청서 작성으로 넘어올 때 상품명 전달
-    const reservationId = await postReservation(value, {
+    const formId = await postReservation(value, {
       infos,
-      photographerId,
+      profileName,
       productTitle: "title",
     });
-    router.push(`/customer/reservation/${reservationId}`);
+    router.push(`/customer/reservation/${formId}`);
   }
 
   useEffect(() => {
@@ -54,14 +57,16 @@ const SubmitForm = ({
 
   return (
     <div
+      className={reservationStyles.container}
       style={{
         backgroundColor: "#F4F8FD",
-        paddingBottom: 72,
-        height: "100vh",
-        overflowY: "scroll",
       }}
     >
-      <CustomerInfoForm name={name} phoneNumber={phoneNumber} />
+      <CustomerInfoForm
+        name={name}
+        phoneNumber={phoneNumber}
+        instagramId={instagramId}
+      />
       <ProductInfoForm items={items} />
       <SelectOptionForm options={options} />
       <RequestForm />
