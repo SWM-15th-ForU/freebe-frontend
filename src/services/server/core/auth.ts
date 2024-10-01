@@ -67,6 +67,7 @@ export const logout = async () => {
       Authorization: `Bearer ${accessToken}`,
       refreshToken: refreshToken || "",
     },
+    method: "POST",
   });
   if (response.status === 401) {
     try {
