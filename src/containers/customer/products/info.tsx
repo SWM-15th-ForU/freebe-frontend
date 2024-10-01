@@ -53,11 +53,12 @@ const ProductInfo = ({
               style={{
                 position: "relative",
                 width: "100%",
-                height: "100vw",
+                height: "auto",
+                minHeight: "40vh",
                 backgroundColor: "#d9d9d9",
               }}
             >
-              <Image src={image} alt="" fill />
+              <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
             </Carousel.Slide>
           );
         })}

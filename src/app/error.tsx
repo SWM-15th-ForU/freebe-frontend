@@ -2,7 +2,6 @@
 
 import { SubmitButton } from "@/components/buttons/common-buttons";
 import Image from "next/image";
-import { useEffect } from "react";
 import { handlerStyles } from "./root.css";
 
 export default function Error({
@@ -12,10 +11,16 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
+  function isCustomedError() {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "customedMessage" in error
+    ) {
+      return error.customedMessage as string;
+    }
+    return undefined;
+  }
   return (
     <div className={handlerStyles.container}>
       <Image src="/icons/error.svg" width={24} height={24} alt="error" />

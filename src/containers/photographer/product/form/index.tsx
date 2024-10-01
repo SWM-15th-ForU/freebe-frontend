@@ -127,7 +127,11 @@ const ProductForm = ({
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
-      popToast("최소 한 장의 이미지가 필요합니다.", "이미지를 등록해 주세요.");
+      popToast(
+        "최소 한 장의 이미지가 필요합니다.",
+        "이미지를 등록해 주세요.",
+        true,
+      );
     } else {
       await handleSendForm(data, images);
       if (isEditing) {

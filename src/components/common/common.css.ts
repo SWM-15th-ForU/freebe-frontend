@@ -318,17 +318,28 @@ export const filterStyles = styleVariants({
   ],
 });
 
-// TODO: 에러 스타일 추가
+const baseToast = style([
+  sprinkles({
+    color: "white",
+  }),
+  {
+    padding: 15,
+    borderRadius: 10,
+    "::before": { display: "none" },
+  },
+]);
+
 export const toastStyles = styleVariants({
   root: [
+    baseToast,
     sprinkles({
       backgroundColor: "blue",
-      color: "white",
     }),
+  ],
+  error: [
+    baseToast,
     {
-      padding: 15,
-      borderRadius: 10,
-      "::before": { display: "none" },
+      backgroundColor: "#E4473D",
     },
   ],
   title: [

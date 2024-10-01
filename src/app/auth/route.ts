@@ -14,14 +14,19 @@ export async function GET(request: NextRequest) {
       status: 403,
     });
   }
-
   const accessToken = getAccessToken();
   return NextResponse.json({ accessToken }, { status: 200 });
 }
 
 export async function PUT() {
-  await reissueTokens();
-  return new NextResponse();
+  try {
+    await reissueTokens();
+    return new NextResponse();
+  } catch (error) {
+    return NextResponse.redirect(
+      new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
+    );
+  }
 }
 
 export async function DELETE() {

@@ -2,12 +2,14 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Switch } from "@mantine/core";
+import { responseHandler } from "@/services/common/error";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
 import {
   deleteProduct,
   putProductStatus,
 } from "@/services/client/photographer/products";
+import popToast from "@/components/common/toast";
 import { bannerStyles } from "../product.css";
 
 const ProductBanner = ({
@@ -20,11 +22,23 @@ const ProductBanner = ({
   const router = useRouter();
 
   async function handleSwitchOpen() {
-    await putProductStatus(
-      productId,
-      activeStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE",
+    await responseHandler(
+      putProductStatus(
+        productId,
+        activeStatus === "ACTIVE" ? "INACTIVE" : "ACTIVE",
+      ),
+      () => {
+        popToast("활성화 상태가 변경되었습니다.");
+        router.refresh();
+      },
+      (message) => {
+        popToast(
+          "다시 시도해 주세요.",
+          message || "수정에 실패했습니다.",
+          true,
+        );
+      },
     );
-    router.refresh();
   }
 
   return (

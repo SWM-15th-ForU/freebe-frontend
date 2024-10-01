@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActiveStatus, Infos } from "reservation-types";
 import { getReservationList } from "@/services/client/photographer/reservations";
+import { responseHandler } from "@/services/common/error";
 import StatusList from "./status-list";
 import { viewContainer } from "./list.css";
 
@@ -11,14 +12,14 @@ const ReservationList = () => {
     WAITING_FOR_DEPOSIT: [],
     WAITING_FOR_PHOTO: [],
   });
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getReservationList();
-      setDatas(data);
+      await responseHandler(getReservationList(), (data) => setDatas(data));
     };
-
     fetchData();
   }, []);
+
   return (
     <div className={viewContainer}>
       <StatusList status="NEW" reservations={datas.NEW} />
