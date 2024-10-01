@@ -177,6 +177,7 @@ export const infoStyles = styleVariants({
 const baseSwitch = style([
   texts["headline-03"],
   {
+    minWidth: "fit-content",
     padding: "8px 16px",
     display: "flex",
     alignItems: "center",
@@ -193,6 +194,7 @@ export const switchStyles = styleVariants({
       backgroundColor: "white",
     }),
     {
+      minWidth: "fit-content",
       display: "flex",
       flexDirection: "row",
       borderRadius: 100,
