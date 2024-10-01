@@ -2,13 +2,14 @@ import { Product, ProductFormdata } from "product-types";
 import { FieldErrors, UseFormRegister, useFormContext } from "react-hook-form";
 import CloseButton from "@/components/buttons/close-button";
 import SwitchItem from "@/components/common/switch-item";
-import { formStyles, inputStyles, textInput } from "../product.css";
+import { formStyles, inputStyles, textInput } from "../form.css";
 
 interface OptionInputProps {
   formRegister: UseFormRegister<ProductFormdata>;
   errors: FieldErrors<ProductFormdata>;
   index: number;
   onClickRemove: () => void;
+  disabled?: boolean;
 }
 
 const OptionInput = ({
@@ -16,6 +17,7 @@ const OptionInput = ({
   index,
   formRegister,
   errors,
+  disabled,
 }: OptionInputProps) => {
   const { setValue, watch } = useFormContext<Product>();
   const options = watch("options");
@@ -27,29 +29,47 @@ const OptionInput = ({
   return (
     <div className={inputStyles.box}>
       <div className={inputStyles.headWrapper}>
-        <input
-          className={inputStyles.title}
-          placeholder="이름을 입력해 주세요."
-          {...formRegister(`options.${index}.title`)}
-          style={{ marginRight: "auto" }}
-        />
-        <SwitchItem
-          value={{ selected: "무료", unselected: "유료" }}
-          onSwitch={handleSwitchIsFree}
-          selected={options[index]?.isFree}
-        />
-        <CloseButton onClick={onClickRemove} size={18} color="grey" />
+        <div className={inputStyles.head}>
+          <input
+            className={inputStyles.title}
+            disabled={disabled}
+            placeholder="이름을 입력해 주세요."
+            {...formRegister(`options.${index}.title`)}
+            style={{ marginRight: "auto" }}
+          />
+          <SwitchItem
+            value={{ selected: "무료", unselected: "유료" }}
+            onSwitch={handleSwitchIsFree}
+            selected={options[index]?.isFree}
+            asChip={disabled}
+          />
+        </div>
+        {!disabled && (
+          <CloseButton
+            onClick={onClickRemove}
+            size={18}
+            color="grey"
+            container={{ marginLeft: 20 }}
+          />
+        )}
       </div>
       {errors.options?.[index]?.title && (
         <span className={formStyles.error}>
           {errors.options[index]?.title?.message}
         </span>
       )}
-      <input
-        className={inputStyles.description}
-        placeholder="(선택) 설명을 입력해 주세요."
-        {...formRegister(`options.${index}.description`)}
-      />
+      {!disabled ? (
+        <textarea
+          className={inputStyles.description}
+          disabled={disabled}
+          placeholder="(선택) 설명을 입력해 주세요."
+          {...formRegister(`options.${index}.description`)}
+        />
+      ) : (
+        <span className={inputStyles.description}>
+          {options[index].description}
+        </span>
+      )}
       {errors.options?.[index]?.description && (
         <span className={formStyles.error}>
           {errors.options[index]?.description?.message}
@@ -63,6 +83,7 @@ const OptionInput = ({
             <div className={inputStyles.content}>
               <input
                 className={textInput}
+                disabled={disabled}
                 placeholder="가격을 입력해 주세요."
                 type="number"
                 {...formRegister(`options.${index}.price`)}

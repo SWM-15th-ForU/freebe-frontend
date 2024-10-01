@@ -2,9 +2,9 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { ProductFormdata } from "product-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import OptionInput from "./option-input";
-import { formStyles } from "../product.css";
+import { formStyles } from "../form.css";
 
-const OptionFieldArray = () => {
+const OptionFieldArray = ({ disabled }: { disabled?: boolean }) => {
   const {
     control,
     register,
@@ -16,7 +16,7 @@ const OptionFieldArray = () => {
   });
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ minWidth: "fit-content" }}>
       <span className={formStyles.subtitle}>상품 옵션</span>
 
       {fields.map((item, index) => {
@@ -27,18 +27,21 @@ const OptionFieldArray = () => {
             index={index}
             onClickRemove={() => remove(index)}
             errors={errors}
+            disabled={disabled}
           />
         );
       })}
-      <CustomButton
-        styleType="line"
-        size="md"
-        style={{ marginTop: 20 }}
-        onClick={() =>
-          append({ title: "", price: 0, isFree: false, description: "" })
-        }
-        title="추가하기"
-      />
+      {!disabled && (
+        <CustomButton
+          styleType="line"
+          size="md"
+          style={{ marginTop: 20 }}
+          onClick={() =>
+            append({ title: "", price: 0, isFree: false, description: "" })
+          }
+          title="추가하기"
+        />
+      )}
     </div>
   );
 };
