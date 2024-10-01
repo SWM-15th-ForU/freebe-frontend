@@ -1,8 +1,9 @@
-import Image from "next/image";
 import { BLUE03, LIGHTGREY01 } from "@/styles/colors";
 import { texts } from "@/styles/text.css";
-import CloseButton from "@/components/buttons/close-button";
+import ImageThumbnail from "@/components/images/image-thumbnail";
 import { reservationStyles } from "../reservation.css";
+
+const REFERENCE_LENGTH = 3;
 
 // TODO: vanilla extract 디자인 시스템 통합
 const ReferenceSelected = ({
@@ -25,28 +26,18 @@ const ReferenceSelected = ({
         최대 3장 선택 가능하며, 고른 사진은 작가님께 촬영용 레퍼런스로 전달돼요.
       </span>
       <div className={reservationStyles.imageWrapper}>
-        {images.map((image, index) => {
-          // TODO: ImageThumbnail과 통합하여 분리
-          return (
-            <div
-              key={index}
-              style={{
-                width: "32%",
-                aspectRatio: 1,
-                position: "relative",
-                marginTop: 15,
-              }}
-            >
-              <Image src={image} alt={image} fill />
-              <CloseButton
-                onClick={() => onClickDelete(image)}
-                styleType="shadow"
-                container={{ padding: 4, justifyContent: "flex-end" }}
-                size={24}
+        {images
+          .concat(Array(REFERENCE_LENGTH - images.length).fill(undefined))
+          .map((image, index) => {
+            return (
+              <ImageThumbnail
+                key={index}
+                image={image}
+                container={{ width: "32%" }}
+                onClickDelete={image ? () => onClickDelete(image) : undefined}
               />
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
