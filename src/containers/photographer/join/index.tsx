@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Join } from "profile-types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ID_REGEX } from "@/constants/common/user";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { postProfile } from "@/services/client/photographer/profile";
@@ -15,14 +16,13 @@ import { joinStyles } from "./join.css";
 
 const PhotographerJoin = () => {
   const router = useRouter();
-  const PROFILE_NAME_REGEX = /^[a-zA-Z0-9._]{1,30}$/;
 
   const joinSchema = z.object({
     profileName: z
       .string()
-      .min(1, { message: "아이디를 입력해주세요." })
+      .min(3, { message: "아이디는 3자 이상이어야 합니다." })
       .max(30, { message: "아이디는 최대 30자까지 사용할 수 있습니다." })
-      .regex(PROFILE_NAME_REGEX, {
+      .regex(ID_REGEX, {
         message: "아이디에는 특수문자를 포함할 수 없습니다.",
       }),
     marketingAgreement: z.boolean(),
