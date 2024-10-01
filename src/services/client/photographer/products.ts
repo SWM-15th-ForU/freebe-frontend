@@ -76,13 +76,9 @@ export async function putProductDetails(
   const formData = new FormData();
   const { title, subtitle, items, options, discounts } = newDetails;
   const inputData = {
-    // TODO: image 전송 관련 request body 형식 확인 필요
     productId: parseInt(productId, 10),
-    images: newImages.map((image) => {
-      return {
-        url: image.file !== undefined ? null : image.url,
-        fileName: image.fileName,
-      };
+    existingUrls: newImages.map((image) => {
+      return image.file !== undefined ? null : image.url;
     }),
     productTitle: title,
     productDescription: subtitle,
