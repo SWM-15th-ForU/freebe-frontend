@@ -11,12 +11,9 @@ const ProfileMenu = () => {
   const router = useRouter();
 
   async function handleLogout() {
-    const response = await logout();
-    if (response.redirected) {
-      const location = response.url;
-      if (location) {
-        router.push(location);
-      }
+    const redirect = await logout();
+    if (redirect) {
+      router.push(redirect);
     }
   }
 
