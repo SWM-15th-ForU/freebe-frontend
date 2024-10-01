@@ -94,6 +94,7 @@ const Filter = ({
             }
           />
           <DatePickerInput
+            allowSingleDateInRange
             type="range"
             locale="ko"
             classNames={{ ...datePickerInputStyles }}
