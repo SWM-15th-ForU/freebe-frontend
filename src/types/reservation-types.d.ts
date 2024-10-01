@@ -125,4 +125,49 @@ declare module "reservation-types" {
     Details,
     "productInfo" | "preferredDates" | "options" | "photographerMemo"
   >;
+
+  interface UserPeriod {
+    from: Date;
+    to: Date;
+  }
+
+  type Period = undefined | "THREE_MONTHS" | "SIX_MONTHS" | UserPeriod;
+
+  interface ReservationSearchOptions {
+    status?: "cancelled" | "completed";
+    period: Period;
+  }
+
+  interface ReservationSearchParams {
+    from?: string;
+    to?: string;
+    status?: "cancelled" | "completed";
+    keyword?: string;
+    page?: number;
+  }
+
+  interface ReservationListResponse {
+    reservationStatus:
+      | "CANCELLED_BY_PHOTOGRAPHER"
+      | "CANCELLED_BY_CUSTOMER"
+      | "COMPLETED";
+    reservationId: number;
+    reservationSubmissionDate: string;
+    shootingDate: string | null;
+    customerName: string;
+    productTitle: string;
+    price: number;
+    image: string;
+  }
+
+  interface ReservationList {
+    reservationStatus: InactiveStatus;
+    reservationId: number;
+    reservationSubmissionDate: string;
+    shootingDate?: string;
+    customerName: string;
+    productTitle: string;
+    price: number;
+    image: string;
+  }
 }

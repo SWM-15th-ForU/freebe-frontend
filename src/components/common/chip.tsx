@@ -6,6 +6,7 @@ interface ChipProps {
   icon?: string;
   name: string;
   styleType?: "normal" | "highlight";
+  selected?: boolean;
   children?: React.ReactNode;
   onClick?: () => void;
   container?: CSSProperties;
@@ -15,6 +16,7 @@ const Chip = ({
   name,
   icon,
   children,
+  selected,
   onClick,
   container,
   styleType = "normal",
@@ -22,7 +24,9 @@ const Chip = ({
   return (
     <button
       type="button"
-      className={chipStyles[styleType]}
+      className={
+        selected ? chipStyles.selectedContainer : chipStyles[styleType]
+      }
       onClick={onClick}
       style={{ ...container }}
     >

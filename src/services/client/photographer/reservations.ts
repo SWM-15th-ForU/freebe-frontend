@@ -1,4 +1,12 @@
-import { ActiveStatus, Infos, Status } from "reservation-types";
+import {
+  ActiveStatus,
+  InactiveStatus,
+  Infos,
+  ReservationList,
+  ReservationListResponse,
+  ReservationSearchParams,
+  Status,
+} from "reservation-types";
 import apiClient from "../core";
 
 interface StatusListData {
@@ -23,6 +31,41 @@ export async function getReservationList() {
     );
   });
   return reservationData;
+}
+
+export async function getPreviousReservationList(
+  params: ReservationSearchParams,
+): Promise<{ reservationList: ReservationList[]; totalPages: number }> {
+  const urlParams = new URLSearchParams();
+  Object.keys(params).forEach((key) => {
+    const value = params[key as keyof typeof params];
+    if (value !== undefined) {
+      urlParams.append(key, value as string);
+    }
+  });
+
+  const { data } = await apiClient
+    .get(`photographer/reservation/list/past?${urlParams}`)
+    .json<{
+      data: {
+        pastReservationFormComponent: ReservationListResponse[];
+        totalPages: number;
+      };
+    }>();
+
+  return {
+    totalPages: data.totalPages,
+    reservationList: data.pastReservationFormComponent.map((item) => {
+      return {
+        ...item,
+        reservationStatus:
+          item.reservationStatus === "COMPLETED"
+            ? "PHOTO_COMPLETED"
+            : "CANCELLED",
+        shootingDate: item.shootingDate || undefined,
+      };
+    }),
+  };
 }
 
 export async function putReservationStatus(

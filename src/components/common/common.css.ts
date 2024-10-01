@@ -124,12 +124,14 @@ export const searchStyles = styleVariants({
   container: [
     sprinkles({
       borderColor: "stroke-grey",
+      backgroundColor: "white",
     }),
     {
+      position: "relative",
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
-      padding: "0px 8px",
+      padding: 8,
       display: "flex",
       alignItems: "center",
       gap: 4,
@@ -145,6 +147,7 @@ export const searchStyles = styleVariants({
     }),
     {
       border: "none",
+      flex: 1,
       ":focus": {
         outline: "none",
         border: "none",
@@ -206,6 +209,7 @@ export const switchStyles = styleVariants({
       borderColor: "stroke-grey",
     }),
     {
+      width: "fit-content",
       display: "flex",
       flexDirection: "row",
       borderRadius: 100,

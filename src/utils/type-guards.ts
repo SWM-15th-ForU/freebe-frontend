@@ -1,4 +1,4 @@
-import { ActiveStatus, Status } from "reservation-types";
+import { ActiveStatus, Period, Status, UserPeriod } from "reservation-types";
 import { User } from "user-types";
 
 export const isUser = (target: any): target is User => {
@@ -14,3 +14,11 @@ export const isActiveStatus = (status: Status): status is ActiveStatus => {
   ];
   return activeStatus.includes(status as ActiveStatus);
 };
+
+export function isUserPeriod(period: Period): period is UserPeriod {
+  return (
+    typeof period === "object" &&
+    period !== null &&
+    ("from" in period || "to" in period)
+  );
+}
