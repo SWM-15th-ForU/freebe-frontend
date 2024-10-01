@@ -29,7 +29,6 @@ const CustomerInfoForm = ({
       <TextInput<reservation.FormType>
         title="인스타그램 아이디"
         formField="instagram"
-        value={instagramId}
       />
     </PartLayout>
   );
