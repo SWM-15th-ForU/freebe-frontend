@@ -45,6 +45,7 @@ const ListItem = ({
               width={12}
               height={12}
               alt="고객명"
+              style={{ objectFit: "cover" }}
             />
             <span className={commonItemStyles.content}>{customerName}</span>
           </div>

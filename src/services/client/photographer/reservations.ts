@@ -4,6 +4,7 @@ import {
   Infos,
   ReservationList,
   ReservationListResponse,
+  ReservationSearchParams,
   Status,
 } from "reservation-types";
 import apiClient from "../core";
@@ -32,13 +33,9 @@ export async function getReservationList() {
   return reservationData;
 }
 
-export async function getPreviousReservationList(params: {
-  from?: string;
-  to?: string;
-  status?: InactiveStatus;
-  keyword?: string;
-  page?: number;
-}): Promise<{ reservationList: ReservationList[]; totalPages: number }> {
+export async function getPreviousReservationList(
+  params: ReservationSearchParams,
+): Promise<{ reservationList: ReservationList[]; totalPages: number }> {
   const urlParams = new URLSearchParams();
   Object.keys(params).forEach((key) => {
     const value = params[key as keyof typeof params];

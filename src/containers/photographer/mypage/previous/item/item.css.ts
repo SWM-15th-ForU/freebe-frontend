@@ -150,8 +150,8 @@ export const galleryItemStyles = styleVariants({
     height: 200,
     backgroundColor: "#D9D9D9",
     borderTopRightRadius: 8,
-
     borderTopLeftRadius: 8,
+    objectFit: "cover",
   },
   body: {
     padding: 16,

@@ -17,6 +17,7 @@ const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
   } = useSuspenseQuery({
     queryKey: ["reservation", { from, to, keyword, page, status }],
     initialData: { reservationList: [], totalPages: 1 },
+    staleTime: 0,
     queryFn: () =>
       getPreviousReservationList({ from, to, keyword, page, status }),
     retry: false,
