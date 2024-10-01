@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Profile from "@/components/common/profile";
 import BottomSheet from "@/components/common/bottom-sheet";
 import ServiceFooter from "@/components/customer/service-footer";
@@ -47,13 +48,13 @@ const InfoSheet = ({
           })}
           {linkInfos.map((link) => {
             return (
-              <CustomButton
-                key={link.name}
-                title={link.name}
-                size="md"
-                styleType="secondary"
-                link={link.src}
-              />
+              <Link href={link.src} key={link.name} target="_blank">
+                <CustomButton
+                  title={link.name}
+                  size="md"
+                  styleType="secondary"
+                />
+              </Link>
             );
           })}
         </div>
