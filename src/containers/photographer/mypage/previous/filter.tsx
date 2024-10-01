@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
-  InactiveStatus,
   Period,
   ReservationSearchOptions,
   ReservationSearchParams,
@@ -25,7 +24,9 @@ const Filter = ({
   const periodPickerRef = useRef<HTMLButtonElement>(null);
   const [dateRange, setDateRange] = useState<DatesRangeValue>([null, null]);
 
-  function handleChangeStatus(newStatus: InactiveStatus | undefined) {
+  function handleChangeStatus(
+    newStatus: "cancelled" | "completed" | undefined,
+  ) {
     setParams((prev) => {
       return { ...prev, status: newStatus };
     });
@@ -114,14 +115,14 @@ const Filter = ({
           <Chip
             name="취소 건"
             styleType="highlight"
-            selected={status === "CANCELLED"}
-            onClick={() => handleChangeStatus("CANCELLED")}
+            selected={status === "cancelled"}
+            onClick={() => handleChangeStatus("cancelled")}
           />
           <Chip
             name="촬영 완료 건"
             styleType="highlight"
-            selected={status === "PHOTO_COMPLETED"}
-            onClick={() => handleChangeStatus("PHOTO_COMPLETED")}
+            selected={status === "completed"}
+            onClick={() => handleChangeStatus("completed")}
           />
         </div>
       </div>

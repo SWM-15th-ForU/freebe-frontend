@@ -134,14 +134,14 @@ declare module "reservation-types" {
   type Period = undefined | "THREE_MONTHS" | "SIX_MONTHS" | UserPeriod;
 
   interface ReservationSearchOptions {
-    status?: InactiveStatus;
+    status?: "cancelled" | "completed";
     period: Period;
   }
 
   interface ReservationSearchParams {
     from?: string;
     to?: string;
-    status?: InactiveStatus;
+    status?: "cancelled" | "completed";
     keyword?: string;
     page?: number;
   }
