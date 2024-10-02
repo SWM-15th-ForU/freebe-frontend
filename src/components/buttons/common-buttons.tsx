@@ -124,7 +124,7 @@ export const BottomButton = ({ title, onClick, disabled }: ButtonProps) => {
   return (
     <button
       type="button"
-      className={`${disabled && buttonStyles.disabled} ${buttonStyles.bottom}`}
+      className={`${disabled ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
       onClick={disabled ? () => {} : onClick}
     >
       {title}

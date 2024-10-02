@@ -28,6 +28,22 @@ const baseButton = style([
   },
 ]);
 
+const baseBottomButton = style([
+  sprinkles({ backgroundColor: "blue" }),
+  {
+    marginTop: "auto",
+    zIndex: 3,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "sticky",
+    width: "100%",
+    height: "72px",
+    bottom: 0,
+    color: "white",
+  },
+]);
+
 const buttonStyles = styleVariants({
   kakao: {
     display: "flex",
@@ -112,19 +128,16 @@ const buttonStyles = styleVariants({
       border: "none",
     },
   ],
-  bottom: [
-    sprinkles({ backgroundColor: "blue" }),
+  bottom: [baseBottomButton],
+  bottomDisabled: [
+    baseBottomButton,
+    sprinkles({
+      backgroundColor: "bg-lightblue",
+      color: "text-04",
+    }),
     {
-      marginTop: "auto",
-      zIndex: 3,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      position: "sticky",
-      width: "100%",
-      height: "72px",
-      bottom: 0,
-      color: "white",
+      border: "none",
+      cursor: "initial",
     },
   ],
   primary: [

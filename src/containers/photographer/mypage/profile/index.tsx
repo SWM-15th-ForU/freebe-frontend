@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Photographer } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -14,6 +15,7 @@ import Preview from "./preview";
 import SubmitProfile from "./submit";
 
 const MyProfile = ({ profile }: { profile: Photographer }) => {
+  const router = useRouter();
   const profileSchema = z.object({
     message: z.string(),
     linkInfos: z.array(
@@ -35,6 +37,7 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
     await responseHandler(
       putProfile(data, { bannerFile, profileFile }),
       () => {
+        router.refresh();
         popToast("저장이 완료되었습니다.");
       },
       (message) =>

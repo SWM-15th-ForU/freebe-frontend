@@ -1,5 +1,6 @@
 "use client";
 
+import { ID_REGEX } from "@/constants/common/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { reservation } from "product-types";
 import { FormProvider, useForm } from "react-hook-form";
@@ -39,7 +40,11 @@ const ReservationFormProvider = ({
   const reservationFormSchema = z.object({
     instagram: z
       .string()
-      .min(1, { message: "인스타그램 아이디를 입력해 주세요." }),
+      .min(3, { message: "아이디는 3자 이상이어야 합니다." })
+      .max(30, { message: "아이디는 최대 30자까지 사용할 수 있습니다." })
+      .regex(ID_REGEX, {
+        message: "아이디에는 특수문자를 포함할 수 없습니다.",
+      }),
     memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
     referenceImages: z.array(z.string()).optional(),
     name: z.string(),

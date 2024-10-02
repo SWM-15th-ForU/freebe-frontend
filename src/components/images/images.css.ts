@@ -37,6 +37,7 @@ export const profileStyles = styleVariants({
     position: "relative",
   },
   image: {
+    objectFit: "cover",
     borderRadius: "100%",
   },
 });

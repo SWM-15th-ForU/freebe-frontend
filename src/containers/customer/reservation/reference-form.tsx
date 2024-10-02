@@ -8,6 +8,7 @@ import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
 import ReferenceSelected from "@/containers/customer/reservation/reference/selected";
 import { reservationStyles } from "./reservation.css";
 
+const MIN_SELECT_COUNT = 1;
 const MAX_SELECT_COUNT = 3;
 
 const ReferenceForm = ({ images }: { images: string[] }) => {
@@ -58,7 +59,11 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
         handleSelect={changeSelected}
         selectedImages={selectedImageList}
       />
-      <BottomButton title="다음" onClick={handleNext} />
+      <BottomButton
+        title="다음"
+        onClick={handleNext}
+        disabled={selectedImageList.length < MIN_SELECT_COUNT}
+      />
     </div>
   );
 };
