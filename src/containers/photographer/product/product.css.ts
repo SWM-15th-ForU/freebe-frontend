@@ -163,6 +163,11 @@ export const formStyles = styleVariants({
       },
     },
   },
+  head: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
   title: [
     texts["headline-02"],
     sprinkles({

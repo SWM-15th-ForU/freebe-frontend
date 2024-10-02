@@ -41,6 +41,23 @@ const ProductBanner = ({
     );
   }
 
+  async function handleClickDelete() {
+    await responseHandler(
+      deleteProduct(productId),
+      () => {
+        popToast("상품이 삭제되었습니다.");
+        router.refresh();
+      },
+      (message) => {
+        popToast(
+          "다시 시도해 주세요.",
+          message || "삭제에 실패했습니다.",
+          true,
+        );
+      },
+    );
+  }
+
   return (
     <div className={bannerStyles.container}>
       <Link href={`/photographer/product/${productId}`}>
@@ -65,9 +82,7 @@ const ProductBanner = ({
           size="xs"
           styleType="line"
           title="삭제"
-          onClick={() => {
-            deleteProduct(productId);
-          }}
+          onClick={handleClickDelete}
           style={{ marginLeft: "auto", paddingLeft: 15, paddingRight: 15 }}
         />
       </div>
