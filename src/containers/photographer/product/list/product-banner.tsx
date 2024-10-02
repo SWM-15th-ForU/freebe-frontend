@@ -61,17 +61,15 @@ const ProductBanner = ({
           checked={activeStatus === "ACTIVE"}
           onChange={handleSwitchOpen}
         />
-        {activeStatus === "INACTIVE" && (
-          <CustomButton
-            size="xs"
-            styleType="line"
-            title="삭제"
-            onClick={() => {
-              deleteProduct(productId);
-            }}
-            style={{ marginLeft: "auto" }}
-          />
-        )}
+        <CustomButton
+          size="xs"
+          styleType="line"
+          title="삭제"
+          onClick={() => {
+            deleteProduct(productId);
+          }}
+          style={{ marginLeft: "auto", paddingLeft: 15, paddingRight: 15 }}
+        />
       </div>
     </div>
   );
