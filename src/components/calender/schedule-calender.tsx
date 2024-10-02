@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DatePicker, DateValue } from "@mantine/dates";
 import { reservation } from "product-types";
 import { parseTime } from "@/utils/date";
@@ -12,6 +12,8 @@ const ScheduleCalender = ({
   value: reservation.ScheduleListType;
   setValue: Dispatch<SetStateAction<reservation.ScheduleListType>>;
 }) => {
+  const [date, setDate] = useState(new Date());
+
   function handleSelectNewDate(newDate: DateValue) {
     setValue((prev) => {
       return { ...prev, date: newDate };
@@ -40,8 +42,10 @@ const ScheduleCalender = ({
         <DatePicker
           locale="ko"
           size="lg"
+          highlightToday
           firstDayOfWeek={0}
-          date={value.date ? value.date : new Date()}
+          date={date}
+          onDateChange={setDate}
           value={value.date}
           onChange={handleSelectNewDate}
         />

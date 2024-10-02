@@ -41,6 +41,7 @@ const baseBottomButton = style([
     height: "72px",
     bottom: 0,
     color: "white",
+    border: "none",
   },
 ]);
 
