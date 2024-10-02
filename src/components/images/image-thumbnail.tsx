@@ -4,7 +4,7 @@ import CloseButton from "../buttons/close-button";
 import { thumbnailStyles } from "../common/common.css";
 
 interface ImageThumbnailProps {
-  image?: ImageType;
+  image?: string;
   onClickDelete?: () => void;
   onClickFullsize?: () => void;
   onClick?: () => void;
