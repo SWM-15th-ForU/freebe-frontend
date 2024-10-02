@@ -49,7 +49,26 @@ export default function RootLayout({
         className={pretendard.className}
         style={{ overflowX: "hidden", overflowY: "hidden" }}
       >
-        <MantineProvider>
+        <MantineProvider
+          theme={{
+            colors: {
+              customPrimary: [
+                "#FFFFF",
+                "#E4F2FF",
+                "#C8E4FF",
+                "#91C9FF",
+                "#49A2FF",
+                "#258EFF",
+                "#007AFF",
+                "#096FDD",
+                "#0E69CC",
+                "#1263BA",
+              ],
+            },
+
+            primaryColor: "customPrimary",
+          }}
+        >
           <Notifications />
           <div style={{ overflowY: "scroll", height: "100vh" }}>{children}</div>
         </MantineProvider>

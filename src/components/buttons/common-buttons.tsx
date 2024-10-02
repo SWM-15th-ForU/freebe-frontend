@@ -1,4 +1,8 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
+import {
+  DetailedHTMLProps,
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+} from "react";
 import Link from "next/link";
 import { LinkType } from "profile-types";
 import buttonStyles from "./buttons.css";
@@ -8,7 +12,7 @@ interface ButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   title: string;
 }
 
@@ -28,11 +32,6 @@ export const CustomButton = ({
   link,
   ...props
 }: ButtonProps & ButtonOptions) => {
-  const height = {
-    sm: 48,
-    md: 56,
-  };
-
   return (
     <button
       type="button"
@@ -123,12 +122,12 @@ export const LinkTab = ({
 
 export const BottomButton = ({ title, onClick, disabled }: ButtonProps) => {
   return (
-    <div
-      className={`${buttonStyles.bottom} ${disabled && buttonStyles.bottomDisabled}`}
+    <button
+      type="button"
+      className={`${disabled && buttonStyles.bottomDisabled} ${buttonStyles.bottom}`}
       onClick={disabled ? () => {} : onClick}
-      role="presentation"
     >
       {title}
-    </div>
+    </button>
   );
 };

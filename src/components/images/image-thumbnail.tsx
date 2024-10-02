@@ -1,6 +1,5 @@
 import { CSSProperties } from "react";
 import Image from "next/image";
-import { Image as ImageType } from "product-types";
 import CloseButton from "../buttons/close-button";
 import { thumbnailStyles } from "../common/common.css";
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { switchStyles } from "./common.css";
 
 interface SliderItemProps {
@@ -12,6 +12,7 @@ interface SliderProps {
   items: SliderItemProps[];
   defaultId: string;
   onChange: (id: string) => void;
+  container?: CSSProperties;
 }
 
 const SliderItem = ({
@@ -38,7 +39,7 @@ const SliderItem = ({
   );
 };
 
-const Slider = ({ defaultId, onChange, items }: SliderProps) => {
+const Slider = ({ defaultId, onChange, items, container }: SliderProps) => {
   const [selectedId, setSelectedId] = useState(defaultId);
 
   function handleClickItem(targetId: string) {
@@ -50,7 +51,7 @@ const Slider = ({ defaultId, onChange, items }: SliderProps) => {
   }, [selectedId, onChange]);
 
   return (
-    <div className={switchStyles.borderContainer}>
+    <div className={switchStyles.borderContainer} style={{ ...container }}>
       {items.map((item) => (
         <SliderItem
           key={item.id}

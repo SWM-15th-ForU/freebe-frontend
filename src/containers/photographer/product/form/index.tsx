@@ -2,59 +2,30 @@
 
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { Image, ProductFormdata } from "product-types";
+import { FormImage, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import { responseHandler } from "@/services/common/error";
-import { postNewProduct } from "@/services/client/photographer/products";
-import ItemFieldArray from "./form/item-field-array";
-import OptionFieldArray from "./form/option-field-array";
-import ImagesInput from "./form/image-input";
-import DiscountFieldArray from "./form/discount-field-array";
-import { formStyles } from "./product.css";
+import ItemFieldArray from "./field/item-field-array";
+import OptionFieldArray from "./field/option-field-array";
+import ImagesInput from "./field/image-input";
+import DiscountFieldArray from "./field/discount-field-array";
+import { formStyles } from "./form.css";
 
-const ProductForm = () => {
-  const router = useRouter();
-  const defaultValues: ProductFormdata = {
-    title: "",
-    subtitle: "",
-    items: [
-      {
-        title: "기본 가격",
-        content: "",
-        description: "",
-      },
-      {
-        title: "촬영 시간",
-        content: "1시간",
-        description: "",
-      },
-      {
-        title: "보정본 수",
-        content: "10장",
-        description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
-      },
-    ],
-    options: [
-      {
-        title: "보정본 추가",
-        isFree: false,
-        description: "",
-        price: 0,
-      },
-    ],
-    discounts: [
-      {
-        title: "첫 주문 할인",
-        discountType: "AMOUNT",
-        discountValue: null,
-        description: "",
-      },
-    ],
-  };
+const ProductForm = ({
+  formBase,
+  imageBase,
+  handleSendForm,
+  isEditable,
+}: {
+  formBase: ProductFormdata;
+  imageBase: FormImage[];
+  handleSendForm: (data: ProductFormdata, images: FormImage[]) => Promise<void>;
+  isEditable?: boolean;
+}) => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const productFormSchema = z.object({
     title: z
       .string()
@@ -143,14 +114,16 @@ const ProductForm = () => {
 
   const method = useForm<ProductFormdata>({
     resolver: zodResolver(productFormSchema),
-    defaultValues,
+    defaultValues: formBase,
   });
   const {
+    watch,
     handleSubmit,
     register,
     formState: { errors },
   } = method;
-  const [images, setImages] = useState<File[]>([]);
+  const [images, setImages] = useState<FormImage[]>(imageBase);
+  const subtitle = watch("subtitle");
 
   const onSubmit: SubmitHandler<ProductFormdata> = async (data) => {
     if (images.length === 0) {
@@ -160,20 +133,10 @@ const ProductForm = () => {
         true,
       );
     } else {
-      await responseHandler(
-        postNewProduct(data, images),
-        () => {
-          popToast("새로운 상품이 등록되었습니다.");
-          router.push("/photographer/mypage/products");
-        },
-        (message) => {
-          popToast(
-            "다시 시도해 주세요.",
-            message || "등록에 실패했습니다.",
-            true,
-          );
-        },
-      );
+      await handleSendForm(data, images);
+      if (isEditing) {
+        setIsEditing(false);
+      }
     }
   };
 
@@ -184,7 +147,6 @@ const ProductForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         encType="multipart/form-data"
       >
-        <span className={formStyles.title}>촬영 정보 등록하기</span>
         <div className={formStyles.wrapper}>
           <div className={formStyles.split}>
             <span className={formStyles.subtitle}>상품 정보</span>
@@ -193,39 +155,60 @@ const ProductForm = () => {
               className={formStyles.input}
               style={{ fontSize: 20 }}
               {...register("title")}
+              disabled={isEditable && !isEditing}
             />
             <span className={formStyles.error}>
               {errors.title && errors.title.message}
             </span>
-            <input
-              placeholder="(선택) 상품 소개글을 입력해 주세요."
-              className={formStyles.input}
-              {...register("subtitle")}
-            />
+            {!isEditable || isEditing ? (
+              <textarea
+                placeholder="(선택) 상품 소개글을 입력해 주세요."
+                className={formStyles.input}
+                disabled={isEditable && !isEditing}
+                {...register("subtitle")}
+              />
+            ) : (
+              <span className={formStyles.text}>{subtitle}</span>
+            )}
             <span className={formStyles.error}>
               {errors.subtitle && errors.subtitle.message}
             </span>
           </div>
           <div className={formStyles.split}>
-            <ImagesInput images={images} setImage={setImages} />
+            <ImagesInput
+              images={images}
+              setImage={setImages}
+              disabled={isEditable && !isEditing}
+            />
           </div>
           <div className={formStyles.split}>
-            <ItemFieldArray />
+            <ItemFieldArray disabled={isEditable && !isEditing} />
           </div>
           <div className={formStyles.split}>
-            <OptionFieldArray />
+            <OptionFieldArray disabled={isEditable && !isEditing} />
           </div>
 
-          <DiscountFieldArray />
+          <DiscountFieldArray disabled={isEditable && !isEditing} />
         </div>
+        {(!isEditable || isEditing) && (
+          <CustomButton
+            type="submit"
+            styleType="primary"
+            size="md"
+            title="저장하기"
+            style={{ marginTop: 40 }}
+          />
+        )}
+      </form>
+      {isEditable && !isEditing && (
         <CustomButton
-          type="submit"
-          styleType="primary"
+          onClick={() => setIsEditing(true)}
+          styleType="line"
           size="md"
-          title="다음"
+          title="수정하기"
           style={{ marginTop: 40 }}
         />
-      </form>
+      )}
     </FormProvider>
   );
 };
