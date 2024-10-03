@@ -27,6 +27,7 @@ declare module "reservation-types" {
     productTitle: string;
     productInfo: { title: string; content: string }[];
     preferredDates: ReservationDate[];
+    shootingDate?: ReservationDate;
     options: Option[];
     requestMemo: string;
   }
@@ -36,6 +37,8 @@ declare module "reservation-types" {
     statusBeforeCancellation?: Status;
     photoInfo: { [key: string]: string };
     photoOptions: { [key: string]: Option };
+    shootingDate: null | ReservationDate;
+    basicPrice: number;
   }
 
   type ActiveStatus =
@@ -107,6 +110,7 @@ declare module "reservation-types" {
     requestMemo: string;
     photographerMemo: string | null;
   }
+
   interface Details extends BaseDetails {
     reservationNumber: number;
     statusHistory: StatusHistory;
