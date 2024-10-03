@@ -3,6 +3,7 @@ import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
+import { progressStatus } from "@/constants/common/reservation";
 import { isActiveStatus } from "@/utils/type-guards";
 import { useDisclosure } from "@mantine/hooks";
 import { compareStatus, getTargetStatus } from "@/utils/reservation";
@@ -71,7 +72,7 @@ const Confirm = () => {
           <div className={sectionStyles.buttonWrapper}>
             <div className={sectionStyles.wrapper}>
               <CustomButton
-                title="수락하기"
+                title={progressStatus[currentStatus]}
                 onClick={open}
                 styleType="primary"
                 size="sm"
