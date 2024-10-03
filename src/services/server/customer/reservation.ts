@@ -66,7 +66,6 @@ export async function getImageList(productId: string) {
     .get(`customer/product/images/${productId}`)
     .json<{ data: string[] }>();
   const { data } = response;
-  console.log(data);
   return data;
 }
 
@@ -90,6 +89,7 @@ export async function getReservationDetails(
     ...data,
     options,
     currentStatus,
+    shootingDate: data.shootingDate || undefined,
     preferredDates: objectToArray(data.preferredDate, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),

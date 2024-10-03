@@ -12,11 +12,18 @@ const OptionItem = ({ price, quantity, title }: Option) => {
   );
 };
 
-const OptionInfos = ({ options }: Pick<CustomerDetails, "options">) => {
+const OptionInfos = ({
+  options,
+  basicPrice,
+}: Pick<CustomerDetails, "options" | "basicPrice">) => {
   return (
     <div className={infoStyles.container}>
-      <span className={infoStyles.title}>추가 옵션</span>
+      <span className={infoStyles.title}>예약 비용</span>
       <div className={infoStyles.wrapper}>
+        <div className={infoStyles.item}>
+          <span className={infoStyles.name}>기본 가격</span>
+          <span className={infoStyles.content}>{formatPrice(basicPrice)}</span>
+        </div>
         {options.map((info) => (
           <OptionItem key={info.title} {...info} />
         ))}
