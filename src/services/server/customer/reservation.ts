@@ -100,8 +100,10 @@ export async function getReservationDetails(
       })),
     ),
     requestMemo: data.customerMemo,
-    totalPrice: options
-      .map((option) => option.price)
-      .reduce((sum: number, price: number) => sum + price, 0),
+    totalPrice:
+      data.basicPrice +
+      options
+        .map((option) => option.price)
+        .reduce((sum: number, price: number) => sum + price, 0),
   };
 }
