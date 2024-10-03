@@ -72,7 +72,7 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
         );
       })}
       <CustomButton
-        size="md"
+        size="lg"
         styleType="line"
         title={
           schedules.length >= MAX_SCHEDULE_SELECT

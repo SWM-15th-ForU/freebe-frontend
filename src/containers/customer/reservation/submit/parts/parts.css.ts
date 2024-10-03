@@ -4,6 +4,14 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseText = style([texts["body-01"]]);
 
+export const errorStyle = style([
+  texts["caption-01"],
+  sprinkles({
+    color: "pink",
+  }),
+  { margin: 3, display: "block", position: "static" },
+]);
+
 export const optionControllerStyles = styleVariants({
   container: [
     sprinkles({

@@ -98,13 +98,15 @@ declare module "product-types" {
     }
 
     export interface FormType {
-      referenceImages: string[];
+      profileName: string;
+      productId: number;
       name: string;
       contact: string;
       instagram: string;
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
+      referenceImages: string[];
       totalPrice: number;
       serviceAgreement: boolean;
       photographerAgreement: boolean;

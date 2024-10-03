@@ -1,25 +1,12 @@
+import { reservation } from "product-types";
 import { parseTimeRequest } from "@/utils/date";
 import { arrayToObject } from "@/utils/parse";
-import { reservation } from "product-types";
 import apiClient from "../core";
 
-interface ProductDatas {
-  profileName: string;
-  productTitle: string;
-  infos: {
-    [key: string]: string;
-  }[];
-}
-
-export async function postReservation(
-  formData: reservation.FormType,
-  productData: ProductDatas,
-) {
+export async function postReservation(formData: reservation.FormType) {
   const body = {
-    profileName: productData.profileName,
+    profileName: formData.profileName,
     instagramId: formData.instagram,
-    productTitle: productData.productTitle,
-    photoInfo: productData.infos,
     preferredDates: arrayToObject(
       formData.schedules.map((schedule) => {
         return {

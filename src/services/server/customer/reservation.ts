@@ -1,4 +1,4 @@
-import { Item, Option } from "product-types";
+import { Item, Option, reservation } from "product-types";
 import {
   CustomerDetails,
   CustomerReservationResponse,
@@ -23,21 +23,20 @@ interface FormDataResponse {
   }[];
 }
 
-export async function getFormBase(productId: string) {
+export async function getFormBase(productId: string): Promise<
+  Pick<reservation.FormType, "name" | "contact" | "instagram"> & {
+    options: Option[];
+    items: Item[];
+  }
+> {
   const response = await api
     .get(`customer/reservation/form/${productId}`)
     .json<{ data: FormDataResponse }>();
   const { data } = response;
 
-  const result: {
-    name: string;
-    options: Option[];
-    phoneNumber: string;
-    items: Item[];
-    instagramId: string;
-  } = {
+  return {
     name: data.name,
-    phoneNumber: data.phoneNumber,
+    contact: data.phoneNumber,
     options: data.productOptionDtoList.map((option) => {
       return {
         title: option.title,
@@ -55,9 +54,8 @@ export async function getFormBase(productId: string) {
         description: item.description || "",
       };
     }),
-    instagramId: data.instagramId || "",
+    instagram: data.instagramId || "",
   };
-  return result;
 }
 
 export async function getImageList(productId: string) {
