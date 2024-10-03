@@ -28,6 +28,7 @@ declare module "reservation-types" {
     productInfo: { title: string; content: string }[];
     preferredDates: ReservationDate[];
     shootingDate?: ReservationDate;
+    basicPrice: number;
     options: Option[];
     requestMemo: string;
   }
