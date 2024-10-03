@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { DatePicker, DateValue } from "@mantine/dates";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { reservation } from "product-types";
+import { DatePicker, DateValue } from "@mantine/dates";
+import { MantineSize } from "@mantine/core";
 import { parseTime } from "@/utils/date";
 import CustomedTimeInput from "../inputs/time-input";
 import { ScheduleCalenderStyles } from "./schedule.css";
@@ -8,11 +9,19 @@ import { ScheduleCalenderStyles } from "./schedule.css";
 const ScheduleCalender = ({
   value,
   setValue,
+  size = "lg",
 }: {
   value: reservation.ScheduleListType;
   setValue: Dispatch<SetStateAction<reservation.ScheduleListType>>;
+  size?: MantineSize;
 }) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(value.date || new Date());
+
+  useEffect(() => {
+    if (value.date) {
+      setDate(value.date);
+    }
+  }, [value.date]);
 
   function handleSelectNewDate(newDate: DateValue) {
     setValue((prev) => {
@@ -41,7 +50,7 @@ const ScheduleCalender = ({
       <div>
         <DatePicker
           locale="ko"
-          size="lg"
+          size={size}
           highlightToday
           firstDayOfWeek={0}
           date={date}

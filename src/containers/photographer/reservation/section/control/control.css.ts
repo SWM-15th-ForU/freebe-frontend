@@ -43,4 +43,20 @@ export const customModalStyles = styleVariants({
     flexDirection: "column",
     gap: 20,
   },
+  dateContent: {
+    flexShrink: 0,
+    flexGrow: 1,
+    maxWidth: "fit-content",
+    borderRadius: 16,
+  },
+  dateSelect: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    gap: 20,
+  },
+  preferredDate: {
+    width: "100%",
+    padding: "20px 0px 20px 0px",
+  },
 });

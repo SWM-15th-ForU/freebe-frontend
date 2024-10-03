@@ -12,10 +12,13 @@ import { sectionStyles } from "../section.css";
 import StatusModal from "./status-modal";
 import CancelModal from "./cancel-modal";
 import ShootingDate from "./shooting-date";
+import DateModal from "./date-modal";
 
 const Confirm = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [cancelOpened, { open: openCancel, close: closeCancel }] =
+    useDisclosure(false);
+  const [dateOpened, { open: openDate, close: closeDate }] =
     useDisclosure(false);
   const { watch } = useFormContext<Details>();
   const [options, currentStatus, shootingDate] = watch([
@@ -58,7 +61,12 @@ const Confirm = () => {
           <span className={sectionStyles.title}>총 가격</span>
           <span className={sectionStyles.price}>{formatPrice(totalPrice)}</span>
         </div>
-        <ShootingDate />
+        <ShootingDate
+          needShootingDate={
+            compareStatus(currentStatus, "NEW") === "DONE" &&
+            shootingDate === undefined
+          }
+        />
         {isActiveStatus(currentStatus) && (
           <div className={sectionStyles.buttonWrapper}>
             <div className={sectionStyles.wrapper}>
@@ -76,6 +84,7 @@ const Confirm = () => {
               <CustomButton
                 size="sm"
                 styleType="line"
+                onClick={openDate}
                 title="일정 변경하기"
                 style={{ flex: 1 }}
               />
@@ -92,6 +101,7 @@ const Confirm = () => {
               targetStatus={getTargetStatus(currentStatus)}
             />
             <CancelModal close={closeCancel} opened={cancelOpened} />
+            <DateModal close={closeDate} opened={dateOpened} />
           </div>
         )}
       </div>
