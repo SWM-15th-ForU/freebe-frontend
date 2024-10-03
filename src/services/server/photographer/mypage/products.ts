@@ -8,6 +8,7 @@ import { api } from "../../core";
 export interface ProductResponseData {
   productId: number;
   productTitle: string;
+  representativeImage: string;
   reservationCount: number;
   activeStatus: "ACTIVE" | "INACTIVE";
 }

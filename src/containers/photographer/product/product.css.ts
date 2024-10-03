@@ -18,6 +18,27 @@ export const bannerStyles = styleVariants({
       flexDirection: "column",
     },
   ],
+  imageWrapper: [
+    sprinkles({
+      borderColor: "stroke-grey",
+      backgroundColor: "white",
+    }),
+    {
+      position: "relative",
+      width: "100%",
+      height: 200,
+      borderTopLeftRadius: 9,
+      borderTopRightRadius: 9,
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+    },
+  ],
+  image: {
+    objectFit: "cover",
+    borderTopLeftRadius: 9,
+
+    borderTopRightRadius: 9,
+  },
   infoWrapper: [
     sprinkles({ borderColor: "stroke-grey" }),
     {

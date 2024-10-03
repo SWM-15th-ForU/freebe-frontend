@@ -13,11 +13,11 @@ import popToast from "@/components/common/toast";
 import { bannerStyles } from "../product.css";
 
 const ProductBanner = ({
-  // TODO: getProductList response에서 추가되는 이미지 받아오기
   activeStatus,
   productId,
   productTitle,
   reservationCount,
+  representativeImage,
 }: ProductResponseData) => {
   const router = useRouter();
 
@@ -61,7 +61,14 @@ const ProductBanner = ({
   return (
     <div className={bannerStyles.container}>
       <Link href={`/photographer/product/${productId}`}>
-        {/* <Image src={image} alt="상품 메인 이미지" style={{ width: 70 }} /> */}
+        <div className={bannerStyles.imageWrapper}>
+          <Image
+            className={bannerStyles.image}
+            src={representativeImage}
+            fill
+            alt="상품 메인 이미지"
+          />
+        </div>
         <div className={bannerStyles.infoWrapper}>
           <div>
             <span className={bannerStyles.title}>{productTitle}</span>
