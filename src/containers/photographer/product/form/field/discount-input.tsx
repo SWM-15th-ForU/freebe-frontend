@@ -83,6 +83,9 @@ const DiscountInput = ({
         className={inputStyles.content}
         disabled={disabled}
         type="number"
+        onWheel={(e) => {
+          e.currentTarget.blur();
+        }}
         placeholder={
           discounts[index]?.discountType === "AMOUNT"
             ? "할인 금액을 입력해 주세요."
