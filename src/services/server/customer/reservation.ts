@@ -10,6 +10,7 @@ import { api } from "../core";
 interface FormDataResponse {
   name: string;
   instagramId: string | null;
+  basicPrice: number;
   phoneNumber: string;
   productComponentDtoList: {
     title: string;
@@ -27,6 +28,7 @@ export async function getFormBase(productId: string): Promise<
   Pick<reservation.FormType, "name" | "contact" | "instagram"> & {
     options: Option[];
     items: Item[];
+    basicPrice: number;
   }
 > {
   const response = await api
@@ -37,6 +39,7 @@ export async function getFormBase(productId: string): Promise<
   return {
     name: data.name,
     contact: data.phoneNumber,
+    basicPrice: data.basicPrice,
     options: data.productOptionDtoList.map((option) => {
       return {
         title: option.title,

@@ -82,9 +82,22 @@ export const priceFormStyles = styleVariants({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 10,
   },
+  subtitle: [
+    texts["headline-03"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
   price: [
-    texts["headline-01"],
+    texts["headline-03"],
+    sprinkles({
+      color: "blue",
+    }),
+  ],
+  total: [
+    texts["headline-02"],
     sprinkles({
       color: "blue",
     }),

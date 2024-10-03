@@ -42,6 +42,7 @@ declare module "product-types" {
   interface ProductListData {
     id: number;
     title: string;
+    basicPrice: number;
     representImage: string;
   }
 

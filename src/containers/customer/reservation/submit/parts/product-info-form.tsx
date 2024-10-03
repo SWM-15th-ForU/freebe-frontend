@@ -11,7 +11,13 @@ import ScheduleModal from "../schedule-modal";
 
 const MAX_SCHEDULE_SELECT = 3;
 
-const ProductInfoForm = ({ items }: { items: Item[] }) => {
+const ProductInfoForm = ({
+  items,
+  basicPrice,
+}: {
+  items: Item[];
+  basicPrice: number;
+}) => {
   const [editIndex, setEditIndex] = useState<number>();
 
   function handleFinishEditSchedule() {
@@ -50,6 +56,7 @@ const ProductInfoForm = ({ items }: { items: Item[] }) => {
   return (
     <PartLayout title="촬영 정보">
       <ScheduleModal close={close} opened={opened} targetIndex={editIndex} />
+      <TextInput title="기본 가격" disabled value={basicPrice} />
       {items.map((item, index) => {
         return (
           <TextInput

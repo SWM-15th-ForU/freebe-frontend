@@ -19,12 +19,14 @@ const SubmitForm = ({
   profileName,
   items,
   options,
+  basicPrice,
 }: Pick<
   reservation.FormType,
   "contact" | "instagram" | "name" | "productId" | "profileName"
 > & {
   options: Option[];
   items: Item[];
+  basicPrice: number;
 }) => {
   const { setValue, watch } = useFormContext<reservation.FormType>();
   const [serviceAgreement, photographerAgreement] = watch([
@@ -48,10 +50,10 @@ const SubmitForm = ({
       }}
     >
       <CustomerInfoForm />
-      <ProductInfoForm items={items} />
-      <SelectOptionForm options={options} />
+      <ProductInfoForm items={items} basicPrice={basicPrice} />
       <RequestForm />
-      <TotalPriceForm />
+      <SelectOptionForm options={options} />
+      <TotalPriceForm basicPrice={basicPrice} />
       <BottomButton
         title="신청하기"
         type="submit"

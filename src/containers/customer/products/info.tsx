@@ -8,6 +8,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
+import { formatPrice } from "@/utils/parse";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
@@ -17,6 +18,7 @@ const ProductInfo = ({
   options,
   subtitle,
   title,
+  basicPrice,
   images,
   profileName,
   productId,
@@ -64,7 +66,10 @@ const ProductInfo = ({
         })}
       </Carousel>
       <div className={infoStyles.wrapper}>
-        <span className={infoStyles.title}>{title}</span>
+        <div className={infoStyles.headWrapper}>
+          <span className={infoStyles.title}>{title}</span>
+          <span className={infoStyles.price}>{formatPrice(basicPrice)}~</span>
+        </div>
         <p className={infoStyles.content}>{subtitle}</p>
       </div>
       <div className={infoStyles.wrapper}>

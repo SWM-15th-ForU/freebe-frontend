@@ -7,6 +7,7 @@ export async function postReservation(form: reservation.FormType) {
   const formData = new FormData();
   const inputData = {
     profileName: form.profileName,
+    productId: form.productId,
     instagramId: form.instagram,
     preferredDates: arrayToObject(
       form.schedules.map((schedule) => {

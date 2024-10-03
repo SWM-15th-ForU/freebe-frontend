@@ -5,6 +5,7 @@ import { api } from "../core";
 interface ProductResponseData {
   productId: number;
   productTitle: string;
+  basicPrice: number;
   productRepresentativeImageUrl: string;
 }
 
@@ -19,6 +20,7 @@ export async function getProductList(
     return {
       id: value.productId,
       title: value.productTitle,
+      basicPrice: value.basicPrice,
       representImage: value.productRepresentativeImageUrl,
     };
   });

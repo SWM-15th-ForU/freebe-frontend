@@ -9,7 +9,7 @@ interface CustomedTimeInputProps extends TimeInputProps {
   onChangeTime: (time: Date) => void;
 }
 
-// FIX: 오전/오후까지 입력했을 때만 onChange 동작, 입력한 시간을 삭제할 수 없음
+// TODO: 오전/오후까지 입력했을 때만 onChange 동작, 입력한 시간을 삭제할 수 없음
 const CustomedTimeInput = ({
   title,
   value,
