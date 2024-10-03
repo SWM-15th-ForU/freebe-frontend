@@ -8,6 +8,7 @@ export async function postNewProduct(
   const formData = new FormData();
   const inputData = {
     productTitle: form.title,
+    basicPrice: form.basicPrice,
     productDescription: form.subtitle,
     productComponents: form.items.map((item) => {
       return {

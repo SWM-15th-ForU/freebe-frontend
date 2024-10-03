@@ -32,6 +32,9 @@ const ProductForm = ({
     subtitle: z
       .string()
       .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+    basicPrice: z.coerce
+      .number()
+      .nonnegative({ message: "기본 가격을 입력해 주세요." }),
     items: z.array(
       z.object({
         title: z

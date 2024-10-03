@@ -13,12 +13,8 @@ const NewProduct = () => {
   const defaultValues: ProductFormdata = {
     title: "",
     subtitle: "",
+    basicPrice: 0,
     items: [
-      {
-        title: "기본 가격",
-        content: "",
-        description: "",
-      },
       {
         title: "촬영 시간",
         content: "1시간",

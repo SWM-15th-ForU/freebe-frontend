@@ -31,6 +31,7 @@ declare module "product-types" {
     title: string;
     subtitle: string;
     images: Image[];
+    basicPrice: number;
     items: Item[];
     options: Option[];
     discounts: Discount[];
