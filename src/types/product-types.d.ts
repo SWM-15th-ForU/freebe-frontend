@@ -23,7 +23,6 @@ declare module "product-types" {
   }
 
   interface FormImage {
-    fileName: string | null;
     url: string;
     file?: File;
   }
@@ -106,7 +105,7 @@ declare module "product-types" {
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
-      referenceImages: string[];
+      referenceImages: FormImage[];
       totalPrice: number;
       serviceAgreement: boolean;
       photographerAgreement: boolean;

@@ -11,7 +11,6 @@ export function getUrlFromFiles(files: File[]) {
 export function getFormImageFromFiles(files: File[]): FormImage[] {
   return files.map((file) => {
     return {
-      fileName: file.name,
       url: URL.createObjectURL(file),
       file,
     };
