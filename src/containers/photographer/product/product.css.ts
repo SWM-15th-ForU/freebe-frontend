@@ -159,7 +159,7 @@ export const formStyles = styleVariants({
 
     "@media": {
       [breakpoints.mobile]: {
-        padding: 20,
+        padding: "20px 20px 50px 20px",
       },
     },
   },

@@ -71,8 +71,9 @@ export async function putProductDetails(
   productId: string,
 ) {
   const formData = new FormData();
-  const { title, subtitle, items, options, discounts } = newDetails;
+  const { title, subtitle, items, options, discounts, basicPrice } = newDetails;
   const inputData = {
+    basicPrice,
     productId: parseInt(productId, 10),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;

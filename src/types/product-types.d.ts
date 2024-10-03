@@ -55,6 +55,7 @@ declare module "product-types" {
     productTitle: string;
     productDescription: string | null;
     productImageUrls: string[];
+    basicPrice: number;
     productComponents: {
       title: string;
       content: string;
