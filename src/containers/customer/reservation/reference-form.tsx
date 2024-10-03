@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
 import { BottomButton } from "@/components/buttons/common-buttons";
+import popToast from "@/components/common/toast";
 import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
 import ReferenceSelected from "@/containers/customer/reservation/reference/selected";
 import { reservationStyles } from "./reservation.css";
@@ -18,22 +19,25 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
 
   const selectedImageList = watch("referenceImages");
 
-  function addSelected(target: string) {
-    setValue("referenceImages", [...selectedImageList, target]);
-  }
+  const addImage = (url: string, file?: File) => {
+    const currentImages = selectedImageList || [];
+    setValue("referenceImages", [...currentImages, { url, file }]);
+  };
 
-  function removeSelected(target: string) {
-    const newImages = selectedImageList.filter((value) => value !== target);
-    setValue("referenceImages", newImages);
+  function removeSelected(targetIndex: number) {
+    const updatedImages = [...selectedImageList];
+    updatedImages.splice(targetIndex, 1);
+    setValue("referenceImages", updatedImages);
   }
 
   function changeSelected(target: string) {
-    if (selectedImageList.includes(target)) {
-      removeSelected(target);
+    const index = selectedImageList.map((image) => image.url).indexOf(target);
+    if (index >= 0) {
+      removeSelected(index);
     } else if (selectedImageList.length >= MAX_SELECT_COUNT) {
-      alert("더 이상 선택할 수 없습니다.");
+      popToast("더 이상 선택할 수 없습니다.", "", true);
     } else {
-      addSelected(target);
+      addImage(target);
     }
   }
 
@@ -57,7 +61,8 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
       <ReferenceGrid
         images={images}
         handleSelect={changeSelected}
-        selectedImages={selectedImageList}
+        selectedImages={selectedImageList.map((image) => image.url)}
+        handleAdd={addImage}
       />
       <BottomButton
         title="다음"

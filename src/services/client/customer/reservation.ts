@@ -3,12 +3,13 @@ import { parseTimeRequest } from "@/utils/date";
 import { arrayToObject } from "@/utils/parse";
 import apiClient from "../core";
 
-export async function postReservation(formData: reservation.FormType) {
-  const body = {
-    profileName: formData.profileName,
-    instagramId: formData.instagram,
+export async function postReservation(form: reservation.FormType) {
+  const formData = new FormData();
+  const inputData = {
+    profileName: form.profileName,
+    instagramId: form.instagram,
     preferredDates: arrayToObject(
-      formData.schedules.map((schedule) => {
+      form.schedules.map((schedule) => {
         return {
           ...schedule,
           startTime: parseTimeRequest(schedule.startTime, "00:00"),
@@ -17,7 +18,7 @@ export async function postReservation(formData: reservation.FormType) {
       }),
     ),
     photoOptions: arrayToObject(
-      formData.options.map((option) => {
+      form.options.map((option) => {
         return {
           title: option.title,
           quantity: option.quantity,
@@ -25,15 +26,27 @@ export async function postReservation(formData: reservation.FormType) {
         };
       }),
     ),
-    customerMemo: formData.memo,
-    preferredImages: formData.referenceImages,
-    totalPrice: formData.totalPrice,
-    serviceTermAgreement: formData.serviceAgreement,
-    photographerTermAgreement: formData.photographerAgreement,
+    customerMemo: form.memo,
+    existingImages: form.referenceImages.map((image) =>
+      image.file !== undefined ? null : image.url,
+    ),
+    totalPrice: form.totalPrice,
+    serviceTermAgreement: form.serviceAgreement,
+    photographerTermAgreement: form.photographerAgreement,
   };
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(inputData)], { type: "application/json" }),
+  );
+
+  form.referenceImages.forEach((image) => {
+    if (image.file) {
+      formData.append("images", image.file);
+    }
+  });
 
   const response = await apiClient
-    .post("customer/reservation", { json: body })
+    .post("customer/reservation", { body: formData })
     .json<{ data: number }>();
   const { data } = response;
   return data;

@@ -60,7 +60,14 @@ const ReservationFormProvider = ({
     schedules: z.array(scheduleListSchema).optional(),
     options: z.array(selectedOptionSchema).optional(),
     memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
-    referenceImages: z.array(z.string()).optional(),
+    referenceImages: z
+      .array(
+        z.object({
+          url: z.string().url(),
+          file: z.instanceof(File).optional(),
+        }),
+      )
+      .optional(),
     totalPrice: z.number(),
     serviceAgreement: z.boolean(),
     photographerAgreement: z.boolean(),
@@ -91,7 +98,9 @@ const ReservationFormProvider = ({
 
   return (
     <FormProvider {...method}>
-      <form onSubmit={handleSubmit(onSubmit)}>{children}</form>
+      <form encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
+        {children}
+      </form>
     </FormProvider>
   );
 };
