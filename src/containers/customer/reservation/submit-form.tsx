@@ -29,7 +29,8 @@ const SubmitForm = ({
   basicPrice: number;
 }) => {
   const { setValue, watch } = useFormContext<reservation.FormType>();
-  const [serviceAgreement, photographerAgreement] = watch([
+  const [totalPrice, serviceAgreement, photographerAgreement] = watch([
+    "totalPrice",
     "serviceAgreement",
     "photographerAgreement",
   ]);
@@ -41,6 +42,15 @@ const SubmitForm = ({
     setValue("instagram", instagram);
     setValue("productId", productId);
   }, [name, contact, items, profileName, productId]);
+
+  const prices = watch("options").map((option) => option.price);
+
+  useEffect(() => {
+    const newPrice = prices.reduce((sum, price) => sum + price, 0) + basicPrice;
+    if (newPrice !== totalPrice) {
+      setValue("totalPrice", newPrice);
+    }
+  }, [prices, basicPrice]);
 
   return (
     <div

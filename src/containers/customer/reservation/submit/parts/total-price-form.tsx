@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
 import CheckAgreement from "@/components/agreement/check-agreement";
@@ -9,19 +9,10 @@ import { priceFormStyles } from "./parts.css";
 // TODO: 약관 페이지 구성 후 모달로 연결
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
   const { watch, setValue } = useFormContext<reservation.FormType>();
-  const prices = watch("options").map((option) => option.price);
-  const [totalPrice, serviceAgreement, photographerAgreement] = watch([
-    "totalPrice",
-    "serviceAgreement",
-    "photographerAgreement",
-  ]);
-
-  useEffect(() => {
-    const newPrice = prices.reduce((sum, price) => sum + price, 0) + basicPrice;
-    if (newPrice !== totalPrice) {
-      setValue("totalPrice", newPrice);
-    }
-  }, [prices]);
+  const [totalPrice, serviceAgreement, photographerAgreement] = watch(
+    ["totalPrice", "serviceAgreement", "photographerAgreement"],
+    { totalPrice: basicPrice },
+  );
 
   function changeAgreement(type: "service" | "photographer") {
     if (type === "service") {

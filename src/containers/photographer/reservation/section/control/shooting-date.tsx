@@ -17,7 +17,8 @@ const ShootingDate = ({ needShootingDate }: { needShootingDate: boolean }) => {
             {formatDate(shootingDate.date)}
           </span>
           <span className={dateStyles.schedule}>
-            {formatTimeString(shootingDate.startTime)} ~
+            {formatTimeString(shootingDate.startTime)}
+            {" ~ "}
             {formatTimeString(shootingDate.endTime)}
           </span>
         </div>
