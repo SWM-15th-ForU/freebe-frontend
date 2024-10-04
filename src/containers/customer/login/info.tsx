@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LoginButton from "@/components/buttons/login-button";
 import { loginStyles } from "./login.css";
 
@@ -11,6 +12,9 @@ const LoginInfo = () => {
         프리비와 함께 예약부터 촬영까지 시작해보세요
       </span>
       <LoginButton roleType="customer" />
+      <Link href="/login/photographer" className={loginStyles.caption}>
+        <span>작가로 로그인하기</span>
+      </Link>
     </div>
   );
 };

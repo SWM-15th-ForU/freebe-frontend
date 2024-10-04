@@ -42,8 +42,10 @@ export const imageStackStyles = styleVariants({
   container: [
     {
       alignSelf: "center",
-      margin: "80px 0",
-      width: "100%",
+      marginTop: 30,
+      marginBottom: 80,
+      minWidth: 600,
+      flex: "1 0 60%",
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
@@ -53,7 +55,12 @@ export const imageStackStyles = styleVariants({
       backgroundRepeat: "no-repeat",
       backgroundPosition: "center",
       "@media": {
+        "screen and (max-height: 900px)": {
+          minWidth: 300,
+        },
         [breakpoints.mobile]: {
+          minWidth: 300,
+          width: "100%",
           margin: "40px 0",
         },
       },
