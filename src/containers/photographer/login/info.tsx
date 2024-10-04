@@ -8,7 +8,7 @@ const LoginInfo = () => {
       <span className={loginStyles.subtitle}>
         프리비와 함께 더 자유롭게 촬영하세요
       </span>
-      <LoginButton roleType="photographer" />
+      <LoginButton type={{ roleType: "photographer" }} />
     </div>
   );
 };

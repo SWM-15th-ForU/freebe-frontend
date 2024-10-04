@@ -1,25 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import { User } from "user-types";
 import buttonStyles from "./buttons.css";
 
 const LoginButton = ({
-  roleType,
-  product,
-  id,
+  type,
 }: {
-  roleType: User;
-  product?: string;
-  id?: string;
+  type:
+    | {
+        roleType: "customer";
+        destination: string;
+      }
+    | {
+        roleType: "photographer";
+      };
 }) => {
+  const { roleType } = type;
   const redirectUri = `${process.env.NEXT_PUBLIC_DOMAIN}login/redirect`;
   const stateValue =
     roleType === "photographer"
       ? { roleType }
       : {
           roleType,
-          destination: `${process.env.NEXT_PUBLIC_DOMAIN}${id}/products/${product}/reservation/reference`,
+          destination: `${process.env.NEXT_PUBLIC_DOMAIN}${type.destination}`,
         };
 
   function loginToKakao() {
