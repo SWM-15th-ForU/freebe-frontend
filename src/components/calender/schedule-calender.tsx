@@ -16,6 +16,9 @@ const ScheduleCalender = ({
   size?: MantineSize;
 }) => {
   const [date, setDate] = useState(value.date || new Date());
+  const today = new Date();
+  const maxDate = new Date(today);
+  maxDate.setFullYear(today.getFullYear() + 2);
 
   useEffect(() => {
     if (value.date) {
@@ -57,6 +60,8 @@ const ScheduleCalender = ({
           onDateChange={setDate}
           value={value.date}
           onChange={handleSelectNewDate}
+          maxDate={maxDate}
+          minDate={today}
         />
       </div>
       <div>
