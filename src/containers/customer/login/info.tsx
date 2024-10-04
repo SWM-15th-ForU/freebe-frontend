@@ -31,7 +31,7 @@ const LoginInfo = () => {
         프리비와 함께 예약부터 촬영까지 시작해보세요
       </span>
       {!isLoading && (
-        <LoginButton type={{ roleType: "customer", destination }} />
+        <LoginButton roleType="customer" destination={destination} />
       )}
       <Link href="/login/photographer" className={loginStyles.caption}>
         <span>작가로 로그인하기</span>

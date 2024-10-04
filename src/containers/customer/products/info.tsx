@@ -40,10 +40,8 @@ const ProductInfo = ({
           작가님께 신청자 정보를 간편하게 전달하기 위해 로그인을 해 주세요!
         </span>
         <LoginButton
-          type={{
-            roleType: "customer",
-            destination: `${profileName}/products/${productId}/reservation/reference`,
-          }}
+          roleType="customer"
+          destination={`${profileName}/products/${productId}/reservation/reference`}
         />
       </Modal>
       <Carousel

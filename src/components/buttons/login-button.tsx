@@ -1,29 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import { User } from "user-types";
 import buttonStyles from "./buttons.css";
 
 const LoginButton = ({
-  type,
+  roleType,
+  destination,
 }: {
-  type:
-    | {
-        roleType: "customer";
-        destination: string;
-      }
-    | {
-        roleType: "photographer";
-      };
+  roleType: User;
+  destination: string;
 }) => {
-  const { roleType } = type;
   const redirectUri = `${process.env.NEXT_PUBLIC_DOMAIN}login/redirect`;
-  const stateValue =
-    roleType === "photographer"
-      ? { roleType }
-      : {
-          roleType,
-          destination: `${process.env.NEXT_PUBLIC_DOMAIN}${type.destination}`,
-        };
+  const stateValue = {
+    roleType,
+    destination: `${process.env.NEXT_PUBLIC_DOMAIN}${destination}`,
+  };
 
   function loginToKakao() {
     window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${JSON.stringify(stateValue)}`;
