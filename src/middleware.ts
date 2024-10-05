@@ -16,7 +16,10 @@ export async function middleware(request: NextRequest) {
   const isLoggedIn = accessToken !== undefined;
   const isPhotographer = roleType === "photographer";
 
-  if (pathname.startsWith("/login")) {
+  if (
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/photographer/join")
+  ) {
     if (isLoggedIn && isPhotographer) {
       return NextResponse.redirect(new URL("/photographer", request.url));
     }
