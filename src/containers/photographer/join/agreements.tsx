@@ -10,22 +10,32 @@ import { agreementStyles } from "./join.css";
 
 const Agreements = () => {
   const { setValue, getValues, watch } = useFormContext<Join>();
-  const [serviceAgreement, privacyAgreement, marketingAgreement] = watch([
-    "serviceAgreement",
-    "privacyAgreement",
-    "marketingAgreement",
-  ]);
+  const [serviceAgreement, privacyAgreement, marketingAgreement, ageAgreement] =
+    watch([
+      "serviceAgreement",
+      "privacyAgreement",
+      "marketingAgreement",
+      "ageAgreement",
+    ]);
 
   function handleTotalToggle() {
     const currentAgreement =
-      serviceAgreement && privacyAgreement && marketingAgreement;
+      serviceAgreement &&
+      privacyAgreement &&
+      marketingAgreement &&
+      ageAgreement;
+    setValue("ageAgreement", !currentAgreement);
     setValue("serviceAgreement", !currentAgreement);
     setValue("privacyAgreement", !currentAgreement);
     setValue("marketingAgreement", !currentAgreement);
   }
 
   function handleAgreementToggle(
-    agreement: "serviceAgreement" | "privacyAgreement" | "marketingAgreement",
+    agreement:
+      | "ageAgreement"
+      | "serviceAgreement"
+      | "privacyAgreement"
+      | "marketingAgreement",
   ) {
     const currentAgreement = getValues(agreement);
     setValue(agreement, !currentAgreement);
@@ -35,44 +45,38 @@ const Agreements = () => {
 
   return (
     <div className={agreementStyles.container}>
-      <div className={agreementStyles.total}>
+      <div className={agreementStyles.totalWrapper}>
         <Checkbox
-          value={serviceAgreement && privacyAgreement && marketingAgreement}
+          checked={serviceAgreement && privacyAgreement && marketingAgreement}
           onPress={handleTotalToggle}
+        >
+          <span className={agreementStyles.total}>모두 동의합니다.</span>
+        </Checkbox>
+      </div>
+      <Checkbox
+        checked={ageAgreement}
+        onPress={() => handleAgreementToggle("ageAgreement")}
+        title="만 14세 이상입니다. (필수)"
+      />
+      <Checkbox
+        checked={serviceAgreement}
+        onPress={() => handleAgreementToggle("serviceAgreement")}
+        title="서비스 이용약관에 동의합니다. (필수)"
+      />
+      {/* <div className={agreementStyles.box}>{SERVICE_AGREEMENT}</div> */}
+      <Checkbox
+        checked={privacyAgreement}
+        onPress={() => handleAgreementToggle("privacyAgreement")}
+        title="개인정보 수집/이용에 동의합니다. (필수)"
+      />
+      {/* <div className={agreementStyles.box}>{PRIVACY_AGREEMENT}</div> */}
+      <div>
+        <Checkbox
+          checked={marketingAgreement}
+          onPress={() => handleAgreementToggle("marketingAgreement")}
+          title="마케팅 수신/홍보 목적의 개인정보 수집 및 이용에 동의합니다. (선택)"
         />
-        <span>모두 동의합니다.</span>
-      </div>
-      <div>
-        <div className={agreementStyles.wrapper}>
-          <Checkbox
-            value={serviceAgreement}
-            onPress={() => handleAgreementToggle("serviceAgreement")}
-          />
-          <span>서비스 이용약관에 동의합니다. (필수)</span>
-        </div>
-        <div className={agreementStyles.box}>{SERVICE_AGREEMENT}</div>
-      </div>
-      <div>
-        <div className={agreementStyles.wrapper}>
-          <Checkbox
-            value={privacyAgreement}
-            onPress={() => handleAgreementToggle("privacyAgreement")}
-          />
-          <span>개인정보 수집/이용에 동의합니다. (필수)</span>
-        </div>
-        <div className={agreementStyles.box}>{PRIVACY_AGREEMENT}</div>
-      </div>
-      <div>
-        <div className={agreementStyles.wrapper}>
-          <Checkbox
-            value={marketingAgreement}
-            onPress={() => handleAgreementToggle("marketingAgreement")}
-          />
-          <span>
-            마케팅 수신/홍보 목적의 개인정보 수집 및 이용에 동의합니다. (선택)
-          </span>
-        </div>
-        <div className={agreementStyles.box}>{MARKETING_AGREEMENT}</div>
+        {/* <div className={agreementStyles.box}>{MARKETING_AGREEMENT}</div> */}
       </div>
     </div>
   );

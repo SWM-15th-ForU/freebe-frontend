@@ -10,14 +10,38 @@ const baseCheckbox = style({
   justifyContent: "center",
   alignItems: "center",
   position: "relative",
+  flexShrink: 0,
 });
 
 export const checkboxStyles = styleVariants({
+  container: {
+    display: "flex",
+    alignItems: "center",
+  },
   selected: [sprinkles({ backgroundColor: "blue" }), baseCheckbox],
   unSelected: [
     sprinkles({ borderColor: "stroke-grey" }),
     { borderWidth: 1, borderStyle: "solid" },
     baseCheckbox,
+  ],
+  wrapper: [
+    texts["headline-03"],
+    sprinkles({ color: "text-02" }),
+    {
+      background: "none",
+      border: "none",
+      display: "flex",
+      gap: 8,
+      alignItems: "flex-start",
+      textAlign: "left",
+    },
+  ],
+  link: [
+    texts["body-02"],
+    sprinkles({
+      color: "text-04",
+    }),
+    { marginLeft: 20, textDecoration: "none" },
   ],
 });
 

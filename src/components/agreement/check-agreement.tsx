@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Checkbox from "../inputs/checkbox";
+import Checkbox from "../inputs/check";
 import { checkAgreementStyles } from "./agreement.css";
 
 interface CheckAgreementProps {

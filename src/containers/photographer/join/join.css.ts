@@ -97,17 +97,17 @@ export const agreementStyles = styleVariants({
   container: {
     display: "flex",
     flexDirection: "column",
-    gap: 24,
+    gap: 16,
   },
-  total: [
-    baseWrapper,
-    texts["headline-02"],
+  total: [texts["headline-02"]],
+  totalWrapper: [
     sprinkles({
       borderColor: "stroke-grey",
     }),
     {
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
+      paddingBottom: 20,
     },
   ],
   wrapper: [baseWrapper, texts["headline-03"]],
