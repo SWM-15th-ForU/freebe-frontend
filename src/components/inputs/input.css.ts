@@ -16,7 +16,11 @@ const baseCheckbox = style({
 export const checkboxStyles = styleVariants({
   container: {
     display: "flex",
+    flexWrap: "wrap",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
+    paddingRight: 10,
   },
   selected: [sprinkles({ backgroundColor: "blue" }), baseCheckbox],
   unSelected: [
@@ -41,7 +45,7 @@ export const checkboxStyles = styleVariants({
     sprinkles({
       color: "text-04",
     }),
-    { marginLeft: 20, textDecoration: "none" },
+    { marginLeft: "auto", textDecoration: "none" },
   ],
 });
 
