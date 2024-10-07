@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CustomerDetails } from "reservation-types";
+import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import { formatPrice } from "@/utils/parse";
 import { infoStyles } from "./infos.css";
 
 const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
-  // TODO: 약관 페이지 링크 확인 필요
+  // TODO: 작가 약관 페이지 링크 검토 필요
 
   return (
     <div className={infoStyles.container}>
@@ -22,7 +23,7 @@ const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
             />
           </div>
         </Link>
-        <Link href="/article/agreement">
+        <Link href={AGREEMENT_LINKS.service}>
           <div className={infoStyles.item}>
             <span className={infoStyles.name}>서비스 약관 확인하기</span>
             <Image

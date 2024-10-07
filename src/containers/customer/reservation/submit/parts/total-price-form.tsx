@@ -6,7 +6,7 @@ import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import submitStyles from "../submit.css";
 import { priceFormStyles } from "./parts.css";
 
-// TODO: 약관 페이지 구성 후 모달로 연결
+// TODO: 작가 약관 페이지 연결 필요
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
   const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
   const [totalPrice, serviceAgreement, photographerAgreement, ageAgreement] =

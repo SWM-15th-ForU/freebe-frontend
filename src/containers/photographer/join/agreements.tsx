@@ -42,7 +42,7 @@ const Agreements = () => {
     setValue(agreement, !currentAgreement);
   }
 
-  // TODO: 실제 약관 데이터 연결
+  // TODO: 약관 조회 방식 결정 후 주석 제거
 
   return (
     <div className={agreementStyles.container}>
