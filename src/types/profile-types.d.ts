@@ -31,7 +31,6 @@ declare module "profile-types" {
 
   interface Join {
     profileName: string;
-    ageAgreement: boolean;
     serviceAgreement: boolean;
     privacyAgreement: boolean;
     marketingAgreement: boolean;

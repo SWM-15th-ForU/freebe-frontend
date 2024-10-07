@@ -28,22 +28,19 @@ const PhotographerJoin = () => {
     marketingAgreement: z.boolean(),
     privacyAgreement: z.boolean(),
     serviceAgreement: z.boolean(),
-    ageAgreement: z.boolean(),
   });
   const defaultValues: Join = {
     profileName: "",
     marketingAgreement: false,
     privacyAgreement: false,
     serviceAgreement: false,
-    ageAgreement: false,
   };
   const method = useForm<Join>({
     defaultValues,
     resolver: zodResolver(joinSchema),
   });
   const { handleSubmit, watch } = method;
-  const [ageAgreement, serviceAgreement, privacyAgreement] = watch([
-    "ageAgreement",
+  const [serviceAgreement, privacyAgreement] = watch([
     "serviceAgreement",
     "privacyAgreement",
   ]);
@@ -70,7 +67,7 @@ const PhotographerJoin = () => {
           size="md"
           styleType="primary"
           title="가입하기"
-          disabled={!serviceAgreement || !privacyAgreement || !ageAgreement}
+          disabled={!serviceAgreement || !privacyAgreement}
         />
       </form>
     </FormProvider>

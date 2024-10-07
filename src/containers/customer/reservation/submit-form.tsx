@@ -29,13 +29,11 @@ const SubmitForm = ({
   basicPrice: number;
 }) => {
   const { setValue, watch } = useFormContext<reservation.FormType>();
-  const [totalPrice, serviceAgreement, photographerAgreement, ageAgreement] =
-    watch([
-      "totalPrice",
-      "serviceAgreement",
-      "photographerAgreement",
-      "ageAgreement",
-    ]);
+  const [totalPrice, serviceAgreement, photographerAgreement] = watch([
+    "totalPrice",
+    "serviceAgreement",
+    "photographerAgreement",
+  ]);
 
   useEffect(() => {
     setValue("name", name);
@@ -69,7 +67,7 @@ const SubmitForm = ({
       <BottomButton
         title="신청하기"
         type="submit"
-        disabled={!serviceAgreement || !photographerAgreement || !ageAgreement}
+        disabled={!serviceAgreement || !photographerAgreement}
       />
     </div>
   );

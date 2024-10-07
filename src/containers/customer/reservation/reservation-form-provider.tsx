@@ -28,7 +28,6 @@ const ReservationFormProvider = ({
     memo: "",
     photographerAgreement: false,
     serviceAgreement: false,
-    ageAgreement: false,
     totalPrice: 0,
   };
 

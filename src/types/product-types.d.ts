@@ -110,7 +110,6 @@ declare module "product-types" {
       memo: string;
       referenceImages: FormImage[];
       totalPrice: number;
-      ageAgreement: boolean;
       serviceAgreement: boolean;
       photographerAgreement: boolean;
     }

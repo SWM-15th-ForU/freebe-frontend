@@ -11,32 +11,22 @@ import { agreementStyles } from "./join.css";
 
 const Agreements = () => {
   const { setValue, getValues, watch } = useFormContext<Join>();
-  const [serviceAgreement, privacyAgreement, marketingAgreement, ageAgreement] =
-    watch([
-      "serviceAgreement",
-      "privacyAgreement",
-      "marketingAgreement",
-      "ageAgreement",
-    ]);
+  const [serviceAgreement, privacyAgreement, marketingAgreement] = watch([
+    "serviceAgreement",
+    "privacyAgreement",
+    "marketingAgreement",
+  ]);
 
   function handleTotalToggle() {
     const currentAgreement =
-      serviceAgreement &&
-      privacyAgreement &&
-      marketingAgreement &&
-      ageAgreement;
-    setValue("ageAgreement", !currentAgreement);
+      serviceAgreement && privacyAgreement && marketingAgreement;
     setValue("serviceAgreement", !currentAgreement);
     setValue("privacyAgreement", !currentAgreement);
     setValue("marketingAgreement", !currentAgreement);
   }
 
   function handleAgreementToggle(
-    agreement:
-      | "ageAgreement"
-      | "serviceAgreement"
-      | "privacyAgreement"
-      | "marketingAgreement",
+    agreement: "serviceAgreement" | "privacyAgreement" | "marketingAgreement",
   ) {
     const currentAgreement = getValues(agreement);
     setValue(agreement, !currentAgreement);
@@ -54,11 +44,6 @@ const Agreements = () => {
           <span className={agreementStyles.total}>모두 동의합니다.</span>
         </Checkbox>
       </div>
-      <Checkbox
-        checked={ageAgreement}
-        onPress={() => handleAgreementToggle("ageAgreement")}
-        title="만 14세 이상입니다. (필수)"
-      />
       <Checkbox
         checked={serviceAgreement}
         onPress={() => handleAgreementToggle("serviceAgreement")}

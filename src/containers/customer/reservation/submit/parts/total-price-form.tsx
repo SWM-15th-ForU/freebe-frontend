@@ -9,19 +9,13 @@ import { priceFormStyles } from "./parts.css";
 // TODO: 작가 약관 페이지 연결 필요
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
   const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
-  const [totalPrice, serviceAgreement, photographerAgreement, ageAgreement] =
-    watch(
-      [
-        "totalPrice",
-        "serviceAgreement",
-        "photographerAgreement",
-        "ageAgreement",
-      ],
-      { totalPrice: basicPrice },
-    );
+  const [totalPrice, serviceAgreement, photographerAgreement] = watch(
+    ["totalPrice", "serviceAgreement", "photographerAgreement"],
+    { totalPrice: basicPrice },
+  );
 
   function changeAgreement(
-    target: "serviceAgreement" | "photographerAgreement" | "ageAgreement",
+    target: "serviceAgreement" | "photographerAgreement",
   ) {
     const currentValue = getValues(target);
     setValue(target, !currentValue);
@@ -44,13 +38,6 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
         </span>
       </div>
       <div className={priceFormStyles.agreementWrapper}>
-        <CheckBox
-          checked={ageAgreement}
-          onPress={() => {
-            changeAgreement("ageAgreement");
-          }}
-          title="만 14세 이상입니다."
-        />
         <CheckBox
           checked={photographerAgreement}
           onPress={() => changeAgreement("photographerAgreement")}
