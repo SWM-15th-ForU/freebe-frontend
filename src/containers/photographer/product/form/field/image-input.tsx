@@ -55,6 +55,7 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
         );
         return newImages;
       });
+      inputElement.value = "";
     }
   }
 
