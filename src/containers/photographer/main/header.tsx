@@ -19,14 +19,23 @@ const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
 
   return (
     <header className={styles.headerContainer}>
-      <Link href="/photographer" style={{ height: 20 }}>
+      {isOnboarding ? (
         <Image
           src="/icons/freebe-logo.svg"
           width={100}
           height={20}
           alt="free:be"
         />
-      </Link>
+      ) : (
+        <Link href="/photographer" style={{ height: 20 }}>
+          <Image
+            src="/icons/freebe-logo.svg"
+            width={100}
+            height={20}
+            alt="free:be"
+          />
+        </Link>
+      )}
       {!isOnboarding && (
         <>
           <Url myUrl={url} />

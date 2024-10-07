@@ -1,6 +1,12 @@
 import { cookies } from "next/headers";
 import { tokenKeys } from "@/constants/auth";
 import { redirect } from "next/navigation";
+import { User } from "user-types";
+
+export const setUserRole = (role: User) => {
+  const cookieStore = cookies();
+  cookieStore.set(tokenKeys.user, role);
+};
 
 export const getAccessToken = () => {
   const cookieStore = cookies();

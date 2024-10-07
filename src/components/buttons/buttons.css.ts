@@ -58,7 +58,7 @@ const buttonStyles = styleVariants({
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 20,
-    margin: 30,
+    marginTop: 30,
     gap: 42,
     border: 0,
     width: 280,
