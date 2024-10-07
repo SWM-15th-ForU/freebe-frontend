@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Checkbox from "../inputs/check";
+import Check from "../inputs/check";
 import { checkAgreementStyles } from "./agreement.css";
 
 interface CheckAgreementProps {
@@ -17,7 +17,7 @@ const CheckAgreement = ({
 }: CheckAgreementProps) => {
   return (
     <div className={checkAgreementStyles.wrapper}>
-      <Checkbox value={checked} onPress={onPressCheckbox} />
+      <Check value={checked} onPress={onPressCheckbox} />
       <span className={checkAgreementStyles.title}>{title}</span>
       {link && (
         <Link href={link.path} className={checkAgreementStyles.link}>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Checkbox from "./check";
+import Check from "./check";
 import { checkboxStyles } from "./input.css";
 
 interface CheckBoxProps {
@@ -24,7 +24,7 @@ const CheckBox = ({
         onClick={onPress}
         className={checkboxStyles.wrapper}
       >
-        <Checkbox value={checked} onPress={() => {}} />
+        <Check value={checked} onPress={() => {}} />
         {children}
         <span>{title}</span>
       </button>
