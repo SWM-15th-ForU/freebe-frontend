@@ -3,7 +3,7 @@ name: Frontend Dev Server CD
 on:
   push:
     branches: ["develop"]
-  
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -14,7 +14,7 @@ jobs:
 
       - name: Check Node v
         run: node -v
-        
+
       - name: env 설정
         run: |
           echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
