@@ -8,6 +8,7 @@ export async function postNewProduct(
   const formData = new FormData();
   const inputData = {
     productTitle: form.title,
+    basicPrice: form.basicPrice,
     productDescription: form.subtitle,
     productComponents: form.items.map((item) => {
       return {
@@ -61,10 +62,7 @@ export async function putProductStatus(
 }
 
 export async function deleteProduct(productId: number) {
-  const response = await apiClient
-    .delete(`photographer/product/${productId}`)
-    .json();
-  return response;
+  await apiClient.delete(`photographer/product/${productId}`).json();
 }
 
 export async function putProductDetails(
@@ -73,8 +71,9 @@ export async function putProductDetails(
   productId: string,
 ) {
   const formData = new FormData();
-  const { title, subtitle, items, options, discounts } = newDetails;
+  const { title, subtitle, items, options, discounts, basicPrice } = newDetails;
   const inputData = {
+    basicPrice,
     productId: parseInt(productId, 10),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;

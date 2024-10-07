@@ -2,6 +2,7 @@
 
 import GridImage from "@/components/images/grid-image";
 import { MasonryGrid } from "@egjs/react-grid";
+import FileSelect from "./file-select";
 
 const GRID_COLUMN_COUNT = 2;
 
@@ -9,13 +10,16 @@ const ReferenceGrid = ({
   images,
   selectedImages,
   handleSelect,
+  handleAdd,
 }: {
   images: string[];
   selectedImages: string[];
-  handleSelect: (value: string) => void;
+  handleSelect: (url: string) => void;
+  handleAdd: (url: string, file?: File) => void;
 }) => {
   return (
     <div style={{ margin: 20, paddingBottom: 70 }}>
+      {selectedImages.length < 3 && <FileSelect handleAdd={handleAdd} />}
       <MasonryGrid
         column={GRID_COLUMN_COUNT}
         gap={{ horizontal: 10 }}

@@ -17,15 +17,13 @@ const ProductForm = ({
   formBase,
   imageBase,
   handleSendForm,
-  isEditable,
+  isEditing = true,
 }: {
   formBase: ProductFormdata;
   imageBase: FormImage[];
   handleSendForm: (data: ProductFormdata, images: FormImage[]) => Promise<void>;
-  isEditable?: boolean;
+  isEditing?: boolean;
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-
   const productFormSchema = z.object({
     title: z
       .string()
@@ -34,6 +32,9 @@ const ProductForm = ({
     subtitle: z
       .string()
       .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+    basicPrice: z.coerce
+      .number()
+      .nonnegative({ message: "기본 가격을 입력해 주세요." }),
     items: z.array(
       z.object({
         title: z
@@ -134,9 +135,6 @@ const ProductForm = ({
       );
     } else {
       await handleSendForm(data, images);
-      if (isEditing) {
-        setIsEditing(false);
-      }
     }
   };
 
@@ -155,16 +153,16 @@ const ProductForm = ({
               className={formStyles.input}
               style={{ fontSize: 20 }}
               {...register("title")}
-              disabled={isEditable && !isEditing}
+              disabled={!isEditing}
             />
             <span className={formStyles.error}>
               {errors.title && errors.title.message}
             </span>
-            {!isEditable || isEditing ? (
+            {!isEditing ? (
               <textarea
                 placeholder="(선택) 상품 소개글을 입력해 주세요."
                 className={formStyles.input}
-                disabled={isEditable && !isEditing}
+                disabled={!isEditing}
                 {...register("subtitle")}
               />
             ) : (
@@ -178,19 +176,19 @@ const ProductForm = ({
             <ImagesInput
               images={images}
               setImage={setImages}
-              disabled={isEditable && !isEditing}
+              disabled={!isEditing}
             />
           </div>
           <div className={formStyles.split}>
-            <ItemFieldArray disabled={isEditable && !isEditing} />
+            <ItemFieldArray disabled={!isEditing} />
           </div>
           <div className={formStyles.split}>
-            <OptionFieldArray disabled={isEditable && !isEditing} />
+            <OptionFieldArray disabled={!isEditing} />
           </div>
 
-          <DiscountFieldArray disabled={isEditable && !isEditing} />
+          <DiscountFieldArray disabled={!isEditing} />
         </div>
-        {(!isEditable || isEditing) && (
+        {isEditing && (
           <CustomButton
             type="submit"
             styleType="primary"
@@ -200,15 +198,6 @@ const ProductForm = ({
           />
         )}
       </form>
-      {isEditable && !isEditing && (
-        <CustomButton
-          onClick={() => setIsEditing(true)}
-          styleType="line"
-          size="md"
-          title="수정하기"
-          style={{ marginTop: 40 }}
-        />
-      )}
     </FormProvider>
   );
 };

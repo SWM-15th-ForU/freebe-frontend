@@ -5,6 +5,7 @@ import { api } from "../core";
 interface ProductResponseData {
   productId: number;
   productTitle: string;
+  basicPrice: number;
   productRepresentativeImageUrl: string;
 }
 
@@ -19,6 +20,7 @@ export async function getProductList(
     return {
       id: value.productId,
       title: value.productTitle,
+      basicPrice: value.basicPrice,
       representImage: value.productRepresentativeImageUrl,
     };
   });
@@ -28,6 +30,7 @@ interface ProductDetailResponseData {
   productTitle: string;
   productDescription: string;
   productImageUrls: string[];
+  basicPrice: number;
   productComponents: {
     title: string;
     content: string;
@@ -54,6 +57,7 @@ export async function getProductDetails(productId: string): Promise<Product> {
   return {
     title: data.productTitle,
     subtitle: data.productDescription,
+    basicPrice: data.basicPrice,
     images: data.productImageUrls,
     items: normalizeDescription(data.productComponents),
     options: normalizeDescription(data.productOptions).map((option) => {

@@ -86,6 +86,9 @@ const OptionInput = ({
                 disabled={disabled}
                 placeholder="가격을 입력해 주세요."
                 type="number"
+                onWheel={(e) => {
+                  e.currentTarget.blur();
+                }}
                 {...formRegister(`options.${index}.price`)}
               />
               <span>원</span>

@@ -4,7 +4,6 @@ import { PageParams } from "route-parameters";
 
 const Page = async ({ params }: { params: Pick<PageParams, "formId"> }) => {
   const data = await getReservationDetail(params.formId);
-
   return <ReservationDetails detailsData={data} />;
 };
 

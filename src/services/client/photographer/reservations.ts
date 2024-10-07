@@ -1,7 +1,7 @@
 import {
   ActiveStatus,
-  InactiveStatus,
   Infos,
+  ReservationDate,
   ReservationList,
   ReservationListResponse,
   ReservationSearchParams,
@@ -77,10 +77,20 @@ export async function putReservationStatus(
     updateStatus: targetStatus,
     cancellationReason: cancel,
   };
-  const response = await apiClient.put(
-    `photographer/reservation/details/${id}`,
-    {
-      json: body,
-    },
-  );
+  await apiClient.put(`photographer/reservation/details/${id}`, {
+    json: body,
+  });
+}
+
+export async function putShootingDate(
+  id: number,
+  shootingDate: ReservationDate,
+) {
+  const body = {
+    reservationFormId: id,
+    newShootingDate: shootingDate,
+  };
+  await apiClient.put("photographer/reservation/shooting/date", {
+    json: body,
+  });
 }

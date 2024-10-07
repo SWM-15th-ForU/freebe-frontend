@@ -49,6 +49,7 @@ export const sectionStyles = styleVariants({
     }),
     {
       paddingBottom: 20,
+      marginBottom: 20,
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
     },
@@ -78,14 +79,19 @@ export const sectionStyles = styleVariants({
     baseWrapper,
     { gap: 10, flexDirection: "column", padding: "10px 0px" },
   ],
-  title: [texts["headline-02"], sprinkles({ color: "text-02" })],
+  title: [
+    texts["headline-02"],
+    sprinkles({ color: "text-02" }),
+    { minWidth: "fit-content" },
+  ],
   price: [texts["headline-02"], sprinkles({ color: "blue" })],
   message: [texts["headline-03"], sprinkles({ color: "text-point" })],
   priceWrapper: {
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     margin: "28px 0px",
+    gap: 20,
   },
   buttonWrapper: {
     position: "relative",

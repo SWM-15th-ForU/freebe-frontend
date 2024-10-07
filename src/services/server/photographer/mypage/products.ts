@@ -8,6 +8,7 @@ import { api } from "../../core";
 export interface ProductResponseData {
   productId: number;
   productTitle: string;
+  representativeImage: string;
   reservationCount: number;
   activeStatus: "ACTIVE" | "INACTIVE";
 }
@@ -37,6 +38,7 @@ export async function getCurrentProductDetails(
   const {
     productTitle,
     productDescription,
+    basicPrice,
     productOptions,
     productComponents,
     productDiscounts,
@@ -46,6 +48,7 @@ export async function getCurrentProductDetails(
   const currentDetails: ProductFormdata = {
     title: productTitle,
     subtitle: productDescription || "",
+    basicPrice,
     items: productComponents.map((component) => {
       return {
         ...component,

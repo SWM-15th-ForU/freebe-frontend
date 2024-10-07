@@ -69,3 +69,19 @@ export function parsePeriodToSearchParams(
     to: formatDateString(period.to),
   };
 }
+
+export function createDateObjects(
+  dateStr: string,
+  startTimeStr: string,
+  endTimeStr: string,
+) {
+  const date = new Date(dateStr);
+  const startTime = new Date(`${dateStr}T${startTimeStr}:00`);
+  const endTime = new Date(`${dateStr}T${endTimeStr}:00`);
+
+  return {
+    date,
+    startTime,
+    endTime,
+  };
+}

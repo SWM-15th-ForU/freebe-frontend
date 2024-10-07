@@ -1,4 +1,4 @@
-import { Status } from "reservation-types";
+import { ActiveStatus, Status } from "reservation-types";
 
 export const statusTitles: Record<Status, string> = {
   NEW: "새 신청",
@@ -28,4 +28,11 @@ export const customerStatusInfos: Record<Status, string> = {
   WAITING_FOR_PHOTO: "촬영 대기 중입니다. 즐거운 촬영 되세요!",
   PHOTO_COMPLETED: "완료된 촬영입니다.",
   CANCELLED: "취소된 촬영입니다.",
+};
+
+export const progressStatus: Record<ActiveStatus, string> = {
+  NEW: "수락하기",
+  IN_PROGRESS: "입금 시작",
+  WAITING_FOR_DEPOSIT: "입금 완료",
+  WAITING_FOR_PHOTO: "완료하기",
 };

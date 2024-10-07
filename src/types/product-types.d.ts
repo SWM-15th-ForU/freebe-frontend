@@ -23,7 +23,6 @@ declare module "product-types" {
   }
 
   interface FormImage {
-    fileName: string | null;
     url: string;
     file?: File;
   }
@@ -32,6 +31,7 @@ declare module "product-types" {
     title: string;
     subtitle: string;
     images: Image[];
+    basicPrice: number;
     items: Item[];
     options: Option[];
     discounts: Discount[];
@@ -42,6 +42,7 @@ declare module "product-types" {
   interface ProductListData {
     id: number;
     title: string;
+    basicPrice: number;
     representImage: string;
   }
 
@@ -55,6 +56,7 @@ declare module "product-types" {
     productTitle: string;
     productDescription: string | null;
     productImageUrls: string[];
+    basicPrice: number;
     productComponents: {
       title: string;
       content: string;
@@ -98,13 +100,15 @@ declare module "product-types" {
     }
 
     export interface FormType {
-      referenceImages: string[];
+      profileName: string;
+      productId: number;
       name: string;
       contact: string;
       instagram: string;
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
+      referenceImages: FormImage[];
       totalPrice: number;
       serviceAgreement: boolean;
       photographerAgreement: boolean;

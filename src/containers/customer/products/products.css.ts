@@ -82,6 +82,12 @@ export const infoStyles = styleVariants({
       marginBottom: 8,
     },
   ],
+  headWrapper: {
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   itemsWrapper: {
     display: "flex",
     flexDirection: "column",
@@ -92,6 +98,13 @@ export const infoStyles = styleVariants({
     sprinkles({
       color: "text-point",
     }),
+  ],
+  price: [
+    texts["headline-02"],
+    sprinkles({
+      color: "blue",
+    }),
+    { marginLeft: "auto" },
   ],
   subtitle: [
     texts["headline-02"],

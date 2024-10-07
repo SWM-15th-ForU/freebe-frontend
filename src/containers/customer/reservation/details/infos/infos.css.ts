@@ -12,6 +12,15 @@ export const infoStyles = styleVariants({
       borderRadius: 16,
     },
   ],
+  divider: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      borderTopWidth: 1,
+      borderTopStyle: "solid",
+      paddingTop: 10,
+      marginTop: 10,
+    },
+  ],
   wrapper: {
     marginTop: 15,
     display: "flex",

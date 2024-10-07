@@ -7,6 +7,8 @@ import RequestInfos from "./infos/request";
 import Confirm from "./infos/confirm";
 
 const Info = ({
+  basicPrice,
+  shootingDate,
   options,
   preferredDates,
   productInfo,
@@ -16,9 +18,12 @@ const Info = ({
   return (
     <div className={detailStyles.body}>
       <ProductInfos productInfo={productInfo} />
-      <ScheduleInfos preferredDates={preferredDates} />
-      <OptionInfos options={options} />
+      <ScheduleInfos
+        preferredDates={preferredDates}
+        shootingDate={shootingDate}
+      />
       <RequestInfos requestMemo={requestMemo} />
+      <OptionInfos options={options} basicPrice={basicPrice} />
       <Confirm totalPrice={totalPrice} />
     </div>
   );
