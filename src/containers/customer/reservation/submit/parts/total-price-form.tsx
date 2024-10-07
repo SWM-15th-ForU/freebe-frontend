@@ -1,25 +1,30 @@
-import { use, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
-import CheckAgreement from "@/components/agreement/check-agreement";
 import { formatPrice } from "@/utils/parse";
+import CheckBox from "@/components/inputs/checkbox";
+import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import submitStyles from "../submit.css";
 import { priceFormStyles } from "./parts.css";
 
 // TODO: 약관 페이지 구성 후 모달로 연결
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
-  const { watch, setValue } = useFormContext<reservation.FormType>();
-  const [totalPrice, serviceAgreement, photographerAgreement] = watch(
-    ["totalPrice", "serviceAgreement", "photographerAgreement"],
-    { totalPrice: basicPrice },
-  );
+  const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
+  const [totalPrice, serviceAgreement, photographerAgreement, ageAgreement] =
+    watch(
+      [
+        "totalPrice",
+        "serviceAgreement",
+        "photographerAgreement",
+        "ageAgreement",
+      ],
+      { totalPrice: basicPrice },
+    );
 
-  function changeAgreement(type: "service" | "photographer") {
-    if (type === "service") {
-      setValue("serviceAgreement", !serviceAgreement);
-    } else {
-      setValue("photographerAgreement", !photographerAgreement);
-    }
+  function changeAgreement(
+    target: "serviceAgreement" | "photographerAgreement" | "ageAgreement",
+  ) {
+    const currentValue = getValues(target);
+    setValue(target, !currentValue);
   }
 
   return (
@@ -39,17 +44,24 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
         </span>
       </div>
       <div className={priceFormStyles.agreementWrapper}>
-        <CheckAgreement
+        <CheckBox
+          checked={ageAgreement}
+          onPress={() => {
+            changeAgreement("ageAgreement");
+          }}
+          title="만 14세 이상입니다."
+        />
+        <CheckBox
           checked={photographerAgreement}
-          onPressCheckbox={() => changeAgreement("photographer")}
+          onPress={() => changeAgreement("photographerAgreement")}
           title="작가 약관 동의"
           link={{ name: "작가 약관 확인하기", path: "/" }}
         />
-        <CheckAgreement
+        <CheckBox
           checked={serviceAgreement}
-          onPressCheckbox={() => changeAgreement("service")}
+          onPress={() => changeAgreement("serviceAgreement")}
           title="서비스 약관 동의"
-          link={{ name: "서비스 약관 확인하기", path: "/" }}
+          link={{ name: "서비스 약관 확인하기", path: AGREEMENT_LINKS.service }}
         />
       </div>
     </div>
