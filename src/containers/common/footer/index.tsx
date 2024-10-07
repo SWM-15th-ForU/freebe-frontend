@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import { footerStyles } from "./footer.css";
 
 const ServiceFooter = () => {
@@ -44,10 +45,10 @@ const ServiceFooter = () => {
           </div>
           <div className={footerStyles.menu}>
             <span className={footerStyles.title}>서비스 약관</span>
-            <Link href="https://yul-lee.notion.site/10e9dfb7cdac80238163e5255ed16b9d">
+            <Link href={AGREEMENT_LINKS.service} target="_blank">
               <span className={footerStyles.content}>서비스 이용약관</span>
             </Link>
-            <Link href="https://freebe-official.notion.site/10e9dfb7cdac8099be8bc6b72c60483d">
+            <Link href={AGREEMENT_LINKS.privacy} target="_blank">
               <span className={footerStyles.content}>개인정보처리방침</span>
             </Link>
           </div>
