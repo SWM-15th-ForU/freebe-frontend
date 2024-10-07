@@ -80,6 +80,18 @@ export const formStyles = styleVariants({
     }),
     { margin: 3, display: "block" },
   ],
+  caption: [
+    texts["caption-01"],
+    sprinkles({
+      color: "text-03",
+    }),
+    {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: 8,
+      lineHeight: "20px",
+    },
+  ],
 });
 
 const baseInput = style({

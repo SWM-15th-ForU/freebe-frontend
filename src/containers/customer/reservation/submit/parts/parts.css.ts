@@ -102,4 +102,8 @@ export const priceFormStyles = styleVariants({
       color: "blue",
     }),
   ],
+  agreementWrapper: {
+    marginTop: 20,
+    paddingTop: 15,
+  },
 });

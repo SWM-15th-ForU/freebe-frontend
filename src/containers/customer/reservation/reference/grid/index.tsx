@@ -19,6 +19,7 @@ const ReferenceGrid = ({
 }) => {
   return (
     <div style={{ margin: 20, paddingBottom: 70 }}>
+      {selectedImages.length < 3 && <FileSelect handleAdd={handleAdd} />}
       <MasonryGrid
         column={GRID_COLUMN_COUNT}
         gap={{ horizontal: 10 }}
@@ -35,7 +36,6 @@ const ReferenceGrid = ({
             selected={selectedImages.includes(image)}
           />
         ))}
-        {selectedImages.length < 3 && <FileSelect handleAdd={handleAdd} />}
       </MasonryGrid>
     </div>
   );

@@ -4,23 +4,24 @@ import { styleVariants } from "@vanilla-extract/css";
 
 export const fileSelectStyles = styleVariants({
   container: [
-    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    sprinkles({ borderColor: "blue" }),
     {
-      width: "calc(calc(100% - 10px) / 2)",
+      width: "100%",
       position: "relative",
       borderRadius: 8,
-      display: "flex",
-      gap: 10,
-      alignItems: "center",
-      justifyContent: "center",
       cursor: "pointer",
-      flex: "0 0",
-      height: 100,
-      objectFit: "contain",
-      boxSizing: "content-box",
+      borderStyle: "dashed",
+      borderWidth: 2,
+      paddingTop: 8,
+      paddingBottom: 8,
+      marginBottom: 20,
     },
   ],
-  info: [texts["body-01"], sprinkles({ color: "text-02" })],
+  info: [
+    texts["headline-02"],
+    sprinkles({ color: "blue" }),
+    { width: "100%", textAlign: "center", display: "block" },
+  ],
   input: {
     opacity: 0,
     position: "absolute",

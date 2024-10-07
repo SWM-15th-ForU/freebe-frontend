@@ -86,7 +86,7 @@ const DateModal = ({
     >
       <div className={sectionStyles.title}>촬영 일정을 변경해주세요.</div>
       <div className={customModalStyles.dateSelect}>
-        <ScheduleCalender value={dateValue} setValue={setDateValue} size="sm" />
+        <ScheduleCalender value={dateValue} setValue={setDateValue} size="md" />
         <div className={customModalStyles.preferredDate}>
           <div className={sectionStyles.message}>후보 일정에서 선택하기</div>
 
@@ -110,7 +110,7 @@ const DateModal = ({
         </div>
       </div>
       <CustomButton
-        size="sm"
+        size="md"
         styleType="primary"
         title="변경하기"
         disabled={

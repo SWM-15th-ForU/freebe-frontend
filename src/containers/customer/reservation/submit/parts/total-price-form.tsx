@@ -25,6 +25,10 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
   return (
     <div className={submitStyles.container}>
       <div className={priceFormStyles.wrapper}>
+        <span className={submitStyles.title}>총 가격</span>
+        <span className={priceFormStyles.total}>{formatPrice(totalPrice)}</span>
+      </div>
+      <div className={priceFormStyles.wrapper}>
         <span className={priceFormStyles.subtitle}>기본 가격</span>
         <span className={priceFormStyles.price}>{formatPrice(basicPrice)}</span>
       </div>
@@ -34,22 +38,20 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
           {formatPrice(totalPrice - basicPrice)}
         </span>
       </div>
-      <div className={priceFormStyles.wrapper}>
-        <span className={submitStyles.title}>총 가격</span>
-        <span className={priceFormStyles.total}>{formatPrice(totalPrice)}</span>
+      <div className={priceFormStyles.agreementWrapper}>
+        <CheckAgreement
+          checked={photographerAgreement}
+          onPressCheckbox={() => changeAgreement("photographer")}
+          title="작가 약관 동의"
+          link={{ name: "작가 약관 확인하기", path: "/" }}
+        />
+        <CheckAgreement
+          checked={serviceAgreement}
+          onPressCheckbox={() => changeAgreement("service")}
+          title="서비스 약관 동의"
+          link={{ name: "서비스 약관 확인하기", path: "/" }}
+        />
       </div>
-      <CheckAgreement
-        checked={photographerAgreement}
-        onPressCheckbox={() => changeAgreement("photographer")}
-        title="작가 약관 동의"
-        link={{ name: "작가 약관 확인하기", path: "/" }}
-      />
-      <CheckAgreement
-        checked={serviceAgreement}
-        onPressCheckbox={() => changeAgreement("service")}
-        title="서비스 약관 동의"
-        link={{ name: "서비스 약관 확인하기", path: "/" }}
-      />
     </div>
   );
 };

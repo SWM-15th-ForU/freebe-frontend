@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -37,11 +38,16 @@ const baseBottomButton = style([
     alignItems: "center",
     justifyContent: "center",
     position: "sticky",
-    width: "100%",
+    width: 450,
     height: "72px",
     bottom: 0,
     color: "white",
     border: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        width: "100%",
+      },
+    },
   },
 ]);
 

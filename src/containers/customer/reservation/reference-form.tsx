@@ -68,6 +68,7 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
         title="다음"
         onClick={handleNext}
         disabled={selectedImageList.length < MIN_SELECT_COUNT}
+        style={{ position: "fixed" }}
       />
     </div>
   );

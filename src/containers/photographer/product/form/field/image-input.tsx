@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useRef, useState } from "react";
+import Image from "next/image";
 import { FormImage } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -95,11 +96,15 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
         />
       </Modal>
       <span className={formStyles.subtitle}>상품 사진</span>
+
       {!disabled && (
-        <span className={formStyles.error} style={{ margin: 0 }}>
-          업로드하기 전, 포트폴리오로 사용할 수 있는 사진인지 확인해주세요. 도용
-          및 무단 사용된 이미지는 삭제될 수 있습니다.
-        </span>
+        <div className={formStyles.caption}>
+          <Image src="/icons/error.svg" alt="확인" height={20} width={12} />
+          <span>
+            업로드하기 전, 포트폴리오로 사용할 수 있는 사진인지 확인해주세요.
+            도용 및 무단 사용된 이미지는 삭제될 수 있습니다.
+          </span>
+        </div>
       )}
       <div
         style={{
