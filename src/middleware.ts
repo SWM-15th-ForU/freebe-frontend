@@ -2,47 +2,34 @@ import { NextRequest, NextResponse } from "next/server";
 import { tokenKeys } from "./constants/auth";
 
 export async function middleware(request: NextRequest) {
-  console.log("middleware run");
   const url = request.nextUrl;
   const { pathname } = url;
-
-  if (pathname.startsWith("/login/customer")) {
-    return NextResponse.next();
-  }
 
   const accessToken = request.cookies.get(tokenKeys.access);
   const roleType = request.cookies.get(tokenKeys.user)?.value;
 
   const isLoggedIn = accessToken !== undefined;
-  const isPhotographer = roleType === "photographer";
+  const isPhotographer = roleType === "photographer" && isLoggedIn;
 
-  if (
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/photographer/join")
-  ) {
-    if (isLoggedIn && isPhotographer) {
-      return NextResponse.redirect(new URL("/photographer", request.url));
-    }
-    return NextResponse.next();
+  const shouldNotPhotographer =
+    pathname.startsWith("/login") || pathname.startsWith("/photographer/join");
+  const shouldPhotographer =
+    pathname.startsWith("/photographer") && pathname !== "/photographer/join";
+  const shouldCustomer = pathname.startsWith("/customer");
+
+  if (shouldNotPhotographer && isPhotographer) {
+    return NextResponse.redirect(new URL("/photographer", request.url));
   }
-
-  if (pathname.startsWith("/photographer")) {
-    if (!isLoggedIn || !isPhotographer) {
-      return NextResponse.redirect(new URL("/login/photographer", request.url));
-    }
-    return NextResponse.next();
+  if (shouldPhotographer && !isPhotographer) {
+    return NextResponse.redirect(new URL("/login/photographer", request.url));
   }
-
-  if (pathname.startsWith("/customer")) {
-    if (!isLoggedIn) {
-      return NextResponse.redirect(
-        new URL(
-          `/login/customer?redirect=${encodeURIComponent(pathname)}`,
-          request.url,
-        ),
-      );
-    }
-    return NextResponse.next();
+  if (shouldCustomer && !isLoggedIn) {
+    return NextResponse.redirect(
+      new URL(
+        `/login/customer?redirect=${encodeURIComponent(pathname)}`,
+        request.url,
+      ),
+    );
   }
 
   return NextResponse.next();
@@ -51,7 +38,6 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/login",
-    "/login/customer",
     "/login/photographer",
     "/photographer/:path*",
     "/customer/:path*",
