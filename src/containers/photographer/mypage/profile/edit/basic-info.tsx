@@ -1,32 +1,32 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
-import { Photographer } from "profile-types";
+import { PhotographerForm } from "profile-types";
 import TextInput from "@/components/inputs/text-input";
 import ProfileImage from "@/components/images/profile-image";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
-const BasicInfo = ({
-  setProfileFile,
-}: {
-  setProfileFile: Dispatch<SetStateAction<File | undefined>>;
-}) => {
-  const { watch, setValue } = useFormContext<Photographer>();
-  const [profileImage] = watch(["profileImg"]);
+const BasicInfo = () => {
+  const { watch, setValue } = useFormContext<PhotographerForm>();
+  const profileImg = watch("profileImg");
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
       const newFile = e.currentTarget.files[0];
-      setProfileFile(newFile);
       const blob = URL.createObjectURL(newFile);
-      setValue("profileImg", blob);
+      setValue("profileImg", { url: blob, file: newFile });
     }
+    e.currentTarget.value = "";
+  }
+
+  function handleDeleteProfileImg() {
+    setValue("profileImg", undefined);
   }
 
   return (
     <div className={editStyles.box}>
       <div className={editStyles.image}>
-        <ProfileImage src={profileImage} />
+        <ProfileImage src={profileImg?.url} />
         <CustomButton size="sm" title="프로필 사진 등록" styleType="primary">
           <input
             type="file"
@@ -43,15 +43,22 @@ const BasicInfo = ({
             onChange={handleChangeProfileImg}
           />
         </CustomButton>
+        <CustomButton
+          size="sm"
+          title="삭제"
+          styleType="line"
+          disabled={profileImg === undefined}
+          onClick={handleDeleteProfileImg}
+        />
       </div>
       <div className={editStyles.fieldsWrapper}>
-        <TextInput<Photographer>
+        <TextInput<PhotographerForm>
           title="아이디"
           formField="profileName"
           disabled
           container={{ marginTop: 0 }}
         />
-        <TextInput<Photographer>
+        <TextInput<PhotographerForm>
           title="소개 문구"
           placeholder="소개글을 입력해 주세요."
           formField="message"

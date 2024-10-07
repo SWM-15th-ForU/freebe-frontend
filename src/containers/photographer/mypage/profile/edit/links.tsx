@@ -6,7 +6,7 @@ import {
   useFormContext,
   UseFormRegister,
 } from "react-hook-form";
-import { Photographer } from "profile-types";
+import { PhotographerForm } from "profile-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
 import popToast from "@/components/common/toast";
@@ -18,10 +18,10 @@ const LinkItem = ({
   index,
   errors,
 }: {
-  register: UseFormRegister<Photographer>;
+  register: UseFormRegister<PhotographerForm>;
   remove: UseFieldArrayRemove;
   index: number;
-  errors: FieldErrors<Photographer>;
+  errors: FieldErrors<PhotographerForm>;
 }) => {
   function handleRemoveLink() {
     remove(index);
@@ -41,6 +41,7 @@ const LinkItem = ({
             styleType="line"
             title="삭제"
             onClick={handleRemoveLink}
+            style={{ paddingLeft: 15, paddingRight: 15 }}
           />
         </div>
       </div>
@@ -49,7 +50,7 @@ const LinkItem = ({
           {errors.linkInfos?.[index]?.name?.message}
         </span>
       )}
-      <TextInput<Photographer>
+      <TextInput<PhotographerForm>
         placeholder="https://"
         formField={`linkInfos.${index}.src`}
         container={{ margin: 0 }}
@@ -71,7 +72,7 @@ const Links = () => {
     control,
     register,
     formState: { errors },
-  } = useFormContext<Photographer>();
+  } = useFormContext<PhotographerForm>();
   const { append, remove } = useFieldArray({ control, name: "linkInfos" });
   const linkInfos = watch("linkInfos");
 

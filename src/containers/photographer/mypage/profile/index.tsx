@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Photographer } from "profile-types";
+import { Photographer, PhotographerForm } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,7 +14,7 @@ import { mypageStyles, profileStyles } from "./profile.css";
 import Preview from "./preview";
 import SubmitProfile from "./submit";
 
-const MyProfile = ({ profile }: { profile: Photographer }) => {
+const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
   const router = useRouter();
   const profileSchema = z.object({
     message: z.string(),
@@ -24,18 +24,28 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
         src: z.string().min(1, { message: "링크를 입력해 주세요." }),
       }),
     ),
+    bannerImg: z
+      .object({
+        url: z.string().url(),
+        file: z.instanceof(File).optional(),
+      })
+      .optional(),
+    profileImg: z
+      .object({
+        url: z.string().url(),
+        file: z.instanceof(File).optional(),
+      })
+      .optional(),
   });
-  const method = useForm<Photographer>({
+  const method = useForm<PhotographerForm>({
     defaultValues: { ...profile },
     resolver: zodResolver(profileSchema),
   });
   const { handleSubmit } = method;
-  const [profileFile, setProfileFile] = useState<File>();
-  const [bannerFile, setBannerFile] = useState<File>();
 
-  const onSubmit: SubmitHandler<Photographer> = async (data) => {
+  const onSubmit: SubmitHandler<PhotographerForm> = async (data) => {
     await responseHandler(
-      putProfile(data, { bannerFile, profileFile }),
+      putProfile(data),
       () => {
         router.refresh();
         popToast("저장이 완료되었습니다.");
@@ -61,10 +71,7 @@ const MyProfile = ({ profile }: { profile: Photographer }) => {
         >
           <div className={profileStyles.container}>
             <Preview />
-            <ProfileEdit
-              setBannerFile={setBannerFile}
-              setProfileFile={setProfileFile}
-            />
+            <ProfileEdit />
           </div>
           <SubmitProfile />
         </form>

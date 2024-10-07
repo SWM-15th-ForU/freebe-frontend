@@ -31,7 +31,7 @@ const CustomerMainPage = async ({
 
   return (
     <div className={mainStyle}>
-      <BackgroundImage mainImage={photographerProfile.banner} />
+      <BackgroundImage mainImage={photographerProfile.bannerImg} />
       <InfoSheet
         defaultLinks={defaultLinks.map((link) => {
           return { ...link, src: params.profileName + link.src };

@@ -4,18 +4,12 @@ import BasicInfo from "./basic-info";
 import { editStyles } from "./edit.css";
 import Links from "./links";
 
-const ProfileEdit = ({
-  setBannerFile,
-  setProfileFile,
-}: {
-  setBannerFile: Dispatch<SetStateAction<File | undefined>>;
-  setProfileFile: Dispatch<SetStateAction<File | undefined>>;
-}) => {
+const ProfileEdit = () => {
   return (
     <div className={editStyles.container}>
       <div className={editStyles.wrapper}>
-        <BasicInfo setProfileFile={setProfileFile} />
-        <Banner setBannerFile={setBannerFile} />
+        <BasicInfo />
+        <Banner />
       </div>
       <Links />
     </div>
