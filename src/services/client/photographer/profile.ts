@@ -13,5 +13,11 @@ export async function postProfile(form: Join) {
       json: body,
     })
     .json<{ data: string }>();
+  await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}auth/role`, {
+    method: "POST",
+    body: JSON.stringify({
+      role: "photographer",
+    }),
+  });
   return data;
 }

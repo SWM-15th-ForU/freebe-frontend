@@ -21,7 +21,7 @@ const RequestForm = () => {
             return (
               <ImageThumbnail
                 key={index}
-                image={image}
+                image={image.url}
                 container={{ width: "32%" }}
               />
             );

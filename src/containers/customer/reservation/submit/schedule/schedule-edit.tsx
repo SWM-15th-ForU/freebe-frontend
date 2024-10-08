@@ -3,7 +3,6 @@ import { useFormContext } from "react-hook-form";
 import "dayjs/locale/ko";
 import { reservation } from "product-types";
 import ScheduleCalender from "@/components/calender/schedule-calender";
-import ScheduleLayout from "../schedule-layout";
 import submitStyles from "../submit.css";
 
 const ScheduleEdit = ({ index }: { index: number }) => {
@@ -24,12 +23,12 @@ const ScheduleEdit = ({ index }: { index: number }) => {
   }, [valueOnModal]);
 
   return (
-    <ScheduleLayout>
+    <>
       <span className={submitStyles.title}>일정 수정하기</span>
       <div>
         <ScheduleCalender value={valueOnModal} setValue={setValueOnModal} />
       </div>
-    </ScheduleLayout>
+    </>
   );
 };
 

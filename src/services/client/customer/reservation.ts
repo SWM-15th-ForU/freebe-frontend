@@ -1,27 +1,16 @@
+import { reservation } from "product-types";
 import { parseTimeRequest } from "@/utils/date";
 import { arrayToObject } from "@/utils/parse";
-import { reservation } from "product-types";
 import apiClient from "../core";
 
-interface ProductDatas {
-  profileName: string;
-  productTitle: string;
-  infos: {
-    [key: string]: string;
-  }[];
-}
-
-export async function postReservation(
-  formData: reservation.FormType,
-  productData: ProductDatas,
-) {
-  const body = {
-    profileName: productData.profileName,
-    instagramId: formData.instagram,
-    productTitle: productData.productTitle,
-    photoInfo: productData.infos,
+export async function postReservation(form: reservation.FormType) {
+  const formData = new FormData();
+  const inputData = {
+    profileName: form.profileName,
+    productId: form.productId,
+    instagramId: form.instagram,
     preferredDates: arrayToObject(
-      formData.schedules.map((schedule) => {
+      form.schedules.map((schedule) => {
         return {
           ...schedule,
           startTime: parseTimeRequest(schedule.startTime, "00:00"),
@@ -30,7 +19,7 @@ export async function postReservation(
       }),
     ),
     photoOptions: arrayToObject(
-      formData.options.map((option) => {
+      form.options.map((option) => {
         return {
           title: option.title,
           quantity: option.quantity,
@@ -38,15 +27,27 @@ export async function postReservation(
         };
       }),
     ),
-    customerMemo: formData.memo,
-    preferredImages: formData.referenceImages,
-    totalPrice: formData.totalPrice,
-    serviceTermAgreement: formData.serviceAgreement,
-    photographerTermAgreement: formData.photographerAgreement,
+    customerMemo: form.memo,
+    existingImages: form.referenceImages.map((image) =>
+      image.file !== undefined ? null : image.url,
+    ),
+    totalPrice: form.totalPrice,
+    serviceTermAgreement: form.serviceAgreement,
+    photographerTermAgreement: form.photographerAgreement,
   };
+  formData.append(
+    "request",
+    new Blob([JSON.stringify(inputData)], { type: "application/json" }),
+  );
+
+  form.referenceImages.forEach((image) => {
+    if (image.file) {
+      formData.append("images", image.file);
+    }
+  });
 
   const response = await apiClient
-    .post("customer/reservation", { json: body })
+    .post("customer/reservation", { body: formData })
     .json<{ data: number }>();
   const { data } = response;
   return data;

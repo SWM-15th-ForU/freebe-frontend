@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { Status } from "product-types";
+import { ProductResponseData } from "@/services/server/photographer/mypage/products";
 import ProductBanner from "./list/product-banner";
 import { listStyles } from "./product.css";
 
 interface ProductListProps {
-  productDatas: Parameters<typeof ProductBanner>[0][];
+  productDatas: ProductResponseData[];
   status: Status;
   height?: number;
 }

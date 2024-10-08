@@ -1,18 +1,7 @@
 "use client";
 
-const SubmitLayout = ({
-  children,
-  modal,
-}: {
-  children: React.ReactNode;
-  modal: React.ReactNode;
-}) => {
-  return (
-    <div>
-      {children}
-      {modal}
-    </div>
-  );
+const SubmitLayout = ({ children }: { children: React.ReactNode }) => {
+  return <div>{children}</div>;
 };
 
 export default SubmitLayout;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Menu } from "@mantine/core";
-import Checkbox from "../inputs/checkbox";
+import Check from "../inputs/check";
 import Search from "./search";
 import { chipStyles, filterStyles } from "./common.css";
 
@@ -24,7 +24,7 @@ const FilterItem = ({
 }) => {
   return (
     <button className={filterStyles.item} onClick={onClickItem} type="button">
-      <Checkbox onPress={() => {}} value={item.selected} />
+      <Check onPress={() => {}} value={item.selected} />
       {item.name}
     </button>
   );

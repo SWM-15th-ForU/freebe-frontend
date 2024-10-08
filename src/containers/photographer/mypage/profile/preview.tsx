@@ -1,14 +1,13 @@
-import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { LinkType, Photographer } from "profile-types";
+import { LinkType, PhotographerForm } from "profile-types";
 import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { profileStyles } from "./profile.css";
 
 const Preview = () => {
-  const { watch } = useFormContext<Photographer>();
+  const { watch } = useFormContext<PhotographerForm>();
   const [banner, message, linkInfos, profileImg, profileName] = watch([
-    "banner",
+    "bannerImg",
     "message",
     "linkInfos",
     "profileImg",
@@ -23,14 +22,14 @@ const Preview = () => {
 
   return (
     <div className={profileStyles.preview}>
-      <BackgroundImage mainImage={banner} />
+      <BackgroundImage mainImage={banner?.url} />
       <InfoSheet
         preview
         profileName={profileName}
         defaultLinks={defaultLinks}
         linkInfos={linkInfos}
         message={message}
-        profileImg={profileImg}
+        profileImg={profileImg?.url}
       />
     </div>
   );

@@ -21,7 +21,11 @@ const SubmitPage = async ({
         },
       }}
     >
-      <SubmitForm profileName={params.profileName} {...result} />
+      <SubmitForm
+        profileName={params.profileName}
+        productId={parseInt(params.productId, 10)}
+        {...result}
+      />
     </ProductHeaderLayout>
   );
 };

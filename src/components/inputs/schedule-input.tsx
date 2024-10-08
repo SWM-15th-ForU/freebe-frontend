@@ -4,8 +4,6 @@ import CloseButton from "../buttons/close-button";
 import InputStyles from "./input.css";
 
 interface ScheduleInputProps {
-  title?: string;
-  placeholder?: string;
   disabled?: boolean;
   value: reservation.ScheduleListType;
   onClickValue: () => void;
@@ -13,8 +11,6 @@ interface ScheduleInputProps {
 }
 
 const ScheduleInput = ({
-  title,
-  placeholder = "날짜를 선택해주세요.",
   disabled,
   value,
   onClickValue,
@@ -25,6 +21,7 @@ const ScheduleInput = ({
       className={
         disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper
       }
+      style={{ padding: 10 }}
     >
       <div
         className={InputStyles.contentWrapper}

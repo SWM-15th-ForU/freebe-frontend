@@ -1,3 +1,8 @@
+interface FormImage {
+  url: string;
+  file?: File;
+}
+
 declare module "profile-types" {
   interface LinkType {
     src: string;
@@ -12,11 +17,16 @@ declare module "profile-types" {
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }
   interface Photographer {
-    banner?: string;
+    bannerImg?: string;
     profileImg?: string;
     profileName: string;
     message: string;
     linkInfos: LinkType[];
+  }
+
+  interface PhotographerForm extends Photographer {
+    bannerImg?: FormImage;
+    profileImg?: FormImage;
   }
 
   interface Join {

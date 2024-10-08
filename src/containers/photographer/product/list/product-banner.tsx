@@ -13,11 +13,11 @@ import popToast from "@/components/common/toast";
 import { bannerStyles } from "../product.css";
 
 const ProductBanner = ({
-  // TODO: getProductList response에서 추가되는 이미지 받아오기
   activeStatus,
   productId,
   productTitle,
   reservationCount,
+  representativeImage,
 }: ProductResponseData) => {
   const router = useRouter();
 
@@ -41,10 +41,34 @@ const ProductBanner = ({
     );
   }
 
+  async function handleClickDelete() {
+    await responseHandler(
+      deleteProduct(productId),
+      () => {
+        popToast("상품이 삭제되었습니다.");
+        router.refresh();
+      },
+      (message) => {
+        popToast(
+          "다시 시도해 주세요.",
+          message || "삭제에 실패했습니다.",
+          true,
+        );
+      },
+    );
+  }
+
   return (
     <div className={bannerStyles.container}>
       <Link href={`/photographer/product/${productId}`}>
-        {/* <Image src={image} alt="상품 메인 이미지" style={{ width: 70 }} /> */}
+        <div className={bannerStyles.imageWrapper}>
+          <Image
+            className={bannerStyles.image}
+            src={representativeImage}
+            fill
+            alt="상품 메인 이미지"
+          />
+        </div>
         <div className={bannerStyles.infoWrapper}>
           <div>
             <span className={bannerStyles.title}>{productTitle}</span>
@@ -61,17 +85,13 @@ const ProductBanner = ({
           checked={activeStatus === "ACTIVE"}
           onChange={handleSwitchOpen}
         />
-        {activeStatus === "INACTIVE" && (
-          <CustomButton
-            size="xs"
-            styleType="line"
-            title="삭제"
-            onClick={() => {
-              deleteProduct(productId);
-            }}
-            style={{ marginLeft: "auto" }}
-          />
-        )}
+        <CustomButton
+          size="xs"
+          styleType="line"
+          title="삭제"
+          onClick={handleClickDelete}
+          style={{ marginLeft: "auto", paddingLeft: 15, paddingRight: 15 }}
+        />
       </div>
     </div>
   );

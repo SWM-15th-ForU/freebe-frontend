@@ -1,4 +1,5 @@
 import {
+  deleteTokens,
   getAccessToken,
   logout,
   reissueTokens,
@@ -23,6 +24,7 @@ export async function PUT() {
     await reissueTokens();
     return new NextResponse();
   } catch (error) {
+    deleteTokens();
     return NextResponse.redirect(
       new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
     );
@@ -38,6 +40,7 @@ export async function DELETE() {
         return NextResponse.redirect(redirectUrl);
       }
       if (response.status === 403) {
+        deleteTokens();
         return NextResponse.redirect(
           new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
         );

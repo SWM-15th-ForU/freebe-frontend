@@ -6,21 +6,16 @@ import buttonStyles from "./buttons.css";
 
 const LoginButton = ({
   roleType,
-  product,
-  id,
+  destination,
 }: {
   roleType: User;
-  product?: string;
-  id?: string;
+  destination: string;
 }) => {
   const redirectUri = `${process.env.NEXT_PUBLIC_DOMAIN}login/redirect`;
-  const stateValue =
-    roleType === "photographer"
-      ? { roleType }
-      : {
-          roleType,
-          destination: `${process.env.NEXT_PUBLIC_DOMAIN}${id}/products/${product}/reservation/reference`,
-        };
+  const stateValue = {
+    roleType,
+    destination: `${process.env.NEXT_PUBLIC_DOMAIN}${destination}`,
+  };
 
   function loginToKakao() {
     window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${JSON.stringify(stateValue)}`;

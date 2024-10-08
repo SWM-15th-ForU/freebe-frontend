@@ -5,7 +5,7 @@ import { styleVariants } from "@vanilla-extract/css";
 export const cardStyles = styleVariants({
   container: {
     width: "calc(calc(100% - 4px) / 2)",
-    marginBottom: 20,
+    marginBottom: 10,
   },
   image: {
     position: "relative",
@@ -15,12 +15,19 @@ export const cardStyles = styleVariants({
   wrapper: {
     padding: 12,
     display: "flex",
+    flexDirection: "column",
     justifyContent: "space-between",
   },
   title: [
     texts["headline-02"],
     sprinkles({
       color: "text-01",
+    }),
+  ],
+  price: [
+    texts["headline-03"],
+    sprinkles({
+      color: "text-point",
     }),
   ],
 });

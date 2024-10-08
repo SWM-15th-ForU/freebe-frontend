@@ -2,7 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { FormImage, ProductFormdata } from "product-types";
+import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
+import { responseHandler } from "@/services/common/error";
 import ProductForm from "./form";
 import { formStyles } from "./product.css";
 
@@ -11,12 +13,8 @@ const NewProduct = () => {
   const defaultValues: ProductFormdata = {
     title: "",
     subtitle: "",
+    basicPrice: 0,
     items: [
-      {
-        title: "기본 가격",
-        content: "",
-        description: "",
-      },
       {
         title: "촬영 시간",
         content: "1시간",
@@ -47,8 +45,21 @@ const NewProduct = () => {
   };
 
   async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
-    const response = await postNewProduct(data, images);
-    router.push("/photographer/mypage/products");
+    await responseHandler(
+      postNewProduct(data, images),
+      () => {
+        popToast("등록이 완료되었습니다.");
+        router.push("/photographer/mypage/products");
+        router.refresh();
+      },
+      (message) => {
+        popToast(
+          "다시 시도해 주세요.",
+          message || "등록에 실패했습니다.",
+          true,
+        );
+      },
+    );
   }
 
   return (

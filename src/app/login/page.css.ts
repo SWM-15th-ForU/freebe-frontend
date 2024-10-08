@@ -3,10 +3,10 @@ import { styleVariants } from "@vanilla-extract/css";
 
 export const loginPageStyles = styleVariants({
   background: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
     {
       padding: "101px 0px 50px 0px",
       position: "relative",
-      width: "100vw",
       minWidth: 350,
 
       display: "flex",
@@ -17,7 +17,6 @@ export const loginPageStyles = styleVariants({
     },
   ],
   layout: [
-    sprinkles({ backgroundColor: "bg-lightgrey" }),
     {
       width: "100vw",
       minHeight: "100vh",

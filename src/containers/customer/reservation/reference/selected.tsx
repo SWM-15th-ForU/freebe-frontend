@@ -1,3 +1,4 @@
+import { FormImage } from "product-types";
 import { BLUE03, LIGHTGREY01 } from "@/styles/colors";
 import { texts } from "@/styles/text.css";
 import ImageThumbnail from "@/components/images/image-thumbnail";
@@ -10,8 +11,8 @@ const ReferenceSelected = ({
   images,
   onClickDelete,
 }: {
-  images: string[];
-  onClickDelete: (value: string) => void;
+  images: FormImage[];
+  onClickDelete: (index: number) => void;
 }) => {
   return (
     <div
@@ -29,13 +30,13 @@ const ReferenceSelected = ({
       <div className={reservationStyles.imageWrapper}>
         {images
           .concat(Array(REFERENCE_LENGTH - images.length).fill(undefined))
-          .map((image, index) => {
+          .map((item, index) => {
             return (
               <ImageThumbnail
                 key={index}
-                image={image}
+                image={item && item.url}
                 container={{ width: "32%" }}
-                onClickDelete={image ? () => onClickDelete(image) : undefined}
+                onClickDelete={item ? () => onClickDelete(index) : undefined}
               />
             );
           })}

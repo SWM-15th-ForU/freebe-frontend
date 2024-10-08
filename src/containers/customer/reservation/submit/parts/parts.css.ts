@@ -4,6 +4,14 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseText = style([texts["body-01"]]);
 
+export const errorStyle = style([
+  texts["caption-01"],
+  sprinkles({
+    color: "pink",
+  }),
+  { margin: 3, display: "block", position: "static" },
+]);
+
 export const optionControllerStyles = styleVariants({
   container: [
     sprinkles({
@@ -74,11 +82,31 @@ export const priceFormStyles = styleVariants({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginBottom: 10,
   },
+  subtitle: [
+    texts["headline-03"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
   price: [
-    texts["headline-01"],
+    texts["headline-03"],
     sprinkles({
       color: "blue",
     }),
   ],
+  total: [
+    texts["headline-02"],
+    sprinkles({
+      color: "blue",
+    }),
+  ],
+  agreementWrapper: {
+    marginTop: 20,
+    paddingTop: 15,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+  },
 });

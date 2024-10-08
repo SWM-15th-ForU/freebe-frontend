@@ -1,4 +1,4 @@
-import { Item, Option } from "product-types";
+import { Item, Option, reservation } from "product-types";
 import {
   CustomerDetails,
   CustomerReservationResponse,
@@ -10,6 +10,7 @@ import { api } from "../core";
 interface FormDataResponse {
   name: string;
   instagramId: string | null;
+  basicPrice: number;
   phoneNumber: string;
   productComponentDtoList: {
     title: string;
@@ -23,21 +24,22 @@ interface FormDataResponse {
   }[];
 }
 
-export async function getFormBase(productId: string) {
+export async function getFormBase(productId: string): Promise<
+  Pick<reservation.FormType, "name" | "contact" | "instagram"> & {
+    options: Option[];
+    items: Item[];
+    basicPrice: number;
+  }
+> {
   const response = await api
     .get(`customer/reservation/form/${productId}`)
     .json<{ data: FormDataResponse }>();
   const { data } = response;
 
-  const result: {
-    name: string;
-    options: Option[];
-    phoneNumber: string;
-    items: Item[];
-    instagramId: string;
-  } = {
+  return {
     name: data.name,
-    phoneNumber: data.phoneNumber,
+    contact: data.phoneNumber,
+    basicPrice: data.basicPrice,
     options: data.productOptionDtoList.map((option) => {
       return {
         title: option.title,
@@ -55,9 +57,8 @@ export async function getFormBase(productId: string) {
         description: item.description || "",
       };
     }),
-    instagramId: data.instagramId || "",
+    instagram: data.instagramId || "",
   };
-  return result;
 }
 
 export async function getImageList(productId: string) {
@@ -65,7 +66,6 @@ export async function getImageList(productId: string) {
     .get(`customer/product/images/${productId}`)
     .json<{ data: string[] }>();
   const { data } = response;
-  console.log(data);
   return data;
 }
 
@@ -89,6 +89,7 @@ export async function getReservationDetails(
     ...data,
     options,
     currentStatus,
+    shootingDate: data.shootingDate || undefined,
     preferredDates: objectToArray(data.preferredDate, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
@@ -99,8 +100,10 @@ export async function getReservationDetails(
       })),
     ),
     requestMemo: data.customerMemo,
-    totalPrice: options
-      .map((option) => option.price)
-      .reduce((sum: number, price: number) => sum + price, 0),
+    totalPrice:
+      data.basicPrice +
+      options
+        .map((option) => option.price)
+        .reduce((sum: number, price: number) => sum + price, 0),
   };
 }

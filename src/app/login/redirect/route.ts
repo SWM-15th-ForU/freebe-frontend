@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isUser } from "@/utils/type-guards";
 import { login } from "@/services/server/login";
-import { setTokens } from "@/services/server/core/auth";
+import { setTokens, setUserRole } from "@/services/server/core/auth";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
@@ -31,12 +31,14 @@ export async function GET(request: NextRequest) {
       return "photographer/join";
     }
     if (responseMessage === "photographer login") {
+      setUserRole("photographer");
       return `photographer?url=${data}`;
     }
     if (
       responseMessage === "customer login" ||
       responseMessage === "customer join"
     ) {
+      setUserRole("customer");
       return destination as string;
     }
     return "login/error";

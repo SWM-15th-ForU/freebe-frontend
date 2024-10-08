@@ -8,6 +8,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
+import { formatPrice } from "@/utils/parse";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
@@ -17,6 +18,7 @@ const ProductInfo = ({
   options,
   subtitle,
   title,
+  basicPrice,
   images,
   profileName,
   productId,
@@ -39,7 +41,10 @@ const ProductInfo = ({
         <span className={modalStyles.info}>
           작가님께 신청자 정보를 간편하게 전달하기 위해 로그인을 해 주세요!
         </span>
-        <LoginButton roleType="customer" id={profileName} product={productId} />
+        <LoginButton
+          roleType="customer"
+          destination={`${profileName}/products/${productId}/reservation/reference`}
+        />
       </Modal>
       <Carousel
         withIndicators
@@ -53,8 +58,7 @@ const ProductInfo = ({
               style={{
                 position: "relative",
                 width: "100%",
-                height: "auto",
-                minHeight: "40vh",
+                height: "100vw",
                 backgroundColor: "#d9d9d9",
               }}
             >
@@ -64,7 +68,13 @@ const ProductInfo = ({
         })}
       </Carousel>
       <div className={infoStyles.wrapper}>
-        <span className={infoStyles.title}>{title}</span>
+        <div className={infoStyles.headWrapper}>
+          <span className={infoStyles.title}>{title}</span>
+          <span className={infoStyles.price}>
+            {formatPrice(basicPrice)}
+            {basicPrice !== 0 && "~"}
+          </span>
+        </div>
         <p className={infoStyles.content}>{subtitle}</p>
       </div>
       <div className={infoStyles.wrapper}>
@@ -82,7 +92,11 @@ const ProductInfo = ({
           })}
         </div>
       </div>
-      <BottomButton title="예약 시작하기" onClick={open} />
+      <BottomButton
+        title="예약 시작하기"
+        onClick={open}
+        style={{ position: "fixed" }}
+      />
     </div>
   );
 };

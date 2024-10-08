@@ -54,6 +54,7 @@ export async function getReservationDetail(formId: string): Promise<Details> {
         content,
       })),
     ),
+    shootingDate: data.shootingDate || undefined,
     preferredDates: objectToArray(data.preferredDates, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
