@@ -17,7 +17,8 @@ export const deleteTokens = () => {
   const cookieStore = cookies();
   cookieStore.delete(tokenKeys.access);
   cookieStore.delete(tokenKeys.refresh);
-  console.log("delete access token and refresh token from cookies");
+  cookieStore.delete(tokenKeys.user);
+  console.log("delete tokens and user role from cookies");
 };
 
 export const getRefreshToken = () => {
@@ -79,6 +80,7 @@ export const logout = async () => {
     try {
       await reissueTokens();
     } catch {
+      deleteTokens();
       redirect("login");
     }
   }
