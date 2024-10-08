@@ -1,28 +1,23 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
-import { Photographer } from "profile-types";
+import { PhotographerForm } from "profile-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
-const Banner = ({
-  setBannerFile,
-}: {
-  setBannerFile: Dispatch<SetStateAction<File | undefined>>;
-}) => {
-  const { setValue } = useFormContext<Photographer>();
+const Banner = () => {
+  const { setValue } = useFormContext<PhotographerForm>();
 
   function handleDeleteBanner() {
-    setBannerFile(undefined);
-    setValue("banner", undefined);
+    setValue("bannerImg", undefined);
   }
 
   function handleChangeBanner(e: ChangeEvent<HTMLInputElement>) {
     if (e.currentTarget.files) {
       const newFile = e.currentTarget.files[0];
-      setBannerFile(newFile);
       const blob = URL.createObjectURL(newFile);
-      setValue("banner", blob);
+      setValue("bannerImg", { url: blob, file: newFile });
     }
+    e.currentTarget.value = "";
   }
 
   return (
@@ -34,8 +29,14 @@ const Banner = ({
           styleType="line"
           size="xs"
           onClick={handleDeleteBanner}
+          style={{ paddingLeft: 15, paddingRight: 15 }}
         />
-        <CustomButton title="등록" styleType="primary" size="xs">
+        <CustomButton
+          title="등록"
+          styleType="primary"
+          size="xs"
+          style={{ paddingLeft: 15, paddingRight: 15 }}
+        >
           <input
             type="file"
             accept="image/*"

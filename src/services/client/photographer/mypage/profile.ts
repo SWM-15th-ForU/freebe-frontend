@@ -1,10 +1,7 @@
-import { Photographer } from "profile-types";
+import { PhotographerForm } from "profile-types";
 import apiClient from "../../core";
 
-export async function putProfile(
-  form: Photographer,
-  files: { bannerFile?: File; profileFile?: File },
-) {
+export async function putProfile(form: PhotographerForm) {
   const formData = new FormData();
   const inputData = {
     introductionContent: form.message,
@@ -14,17 +11,25 @@ export async function putProfile(
         linkUrl: link.src,
       };
     }),
+    existingBannerImageUrl:
+      form.bannerImg === undefined || form.bannerImg.file !== undefined
+        ? null
+        : form.bannerImg.url,
+    existingProfileImageUrl:
+      form.profileImg === undefined || form.profileImg.file !== undefined
+        ? null
+        : form.profileImg.url,
   };
   formData.append(
     "request",
     new Blob([JSON.stringify(inputData)], { type: "application/json" }),
   );
 
-  if (files.bannerFile !== undefined) {
-    formData.append("bannerImage", files.bannerFile);
+  if (form.bannerImg?.file !== undefined) {
+    formData.append("bannerImage", form.bannerImg.file);
   }
-  if (files.profileFile !== undefined) {
-    formData.append("profileImage", files.profileFile);
+  if (form.profileImg?.file !== undefined) {
+    formData.append("profileImage", form.profileImg.file);
   }
 
   await apiClient.put("photographer/profile", {

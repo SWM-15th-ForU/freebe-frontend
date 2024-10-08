@@ -1,25 +1,40 @@
-import Image from "next/image";
+import Link from "next/link";
+import Check from "./check";
 import { checkboxStyles } from "./input.css";
 
-interface CheckboxProps {
-  value: boolean;
+interface CheckBoxProps {
+  checked: boolean;
+  title?: string;
+  link?: { name: string; path: string };
   onPress: () => void;
+  children?: React.ReactNode;
 }
 
-const Checkbox = ({ onPress, value }: CheckboxProps) => {
+const CheckBox = ({
+  checked,
+  onPress,
+  title,
+  link,
+  children,
+}: CheckBoxProps) => {
   return (
-    <div
-      role="presentation"
-      onClick={onPress}
-      className={value ? checkboxStyles.selected : checkboxStyles.unSelected}
-    >
-      {value && (
-        <div style={{ width: "70%", height: "70%", position: "relative" }}>
-          <Image src="/icons/components/check.svg" alt="check" fill />
-        </div>
+    <div className={checkboxStyles.container}>
+      <button
+        type="button"
+        onClick={onPress}
+        className={checkboxStyles.wrapper}
+      >
+        <Check value={checked} onPress={() => {}} />
+        {children}
+        <span>{title}</span>
+      </button>
+      {link && (
+        <Link href={link.path} className={checkboxStyles.link} target="_blank">
+          {link.name}
+        </Link>
       )}
     </div>
   );
 };
 
-export default Checkbox;
+export default CheckBox;

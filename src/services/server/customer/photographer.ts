@@ -9,7 +9,7 @@ export async function getPhotographerProfile(
 
   return {
     profileName: data.profileName,
-    banner: data.bannerImageUrl || undefined,
+    bannerImg: data.bannerImageUrl || undefined,
     profileImg: data.profileImageUrl || undefined,
     message: data.introductionContent,
     linkInfos: data.linkInfos.map((link) => {

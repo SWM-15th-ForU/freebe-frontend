@@ -81,6 +81,18 @@ export const profileStyles = styleVariants({
     }),
     { margin: 3, display: "block", position: "static" },
   ],
+  caption: [
+    texts["caption-01"],
+    sprinkles({
+      color: "text-03",
+    }),
+    {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: 8,
+      lineHeight: "20px",
+    },
+  ],
 });
 
 const baseWrapper = style([
@@ -97,17 +109,17 @@ export const agreementStyles = styleVariants({
   container: {
     display: "flex",
     flexDirection: "column",
-    gap: 24,
+    gap: 16,
   },
-  total: [
-    baseWrapper,
-    texts["headline-02"],
+  total: [texts["headline-02"]],
+  totalWrapper: [
     sprinkles({
       borderColor: "stroke-grey",
     }),
     {
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
+      paddingBottom: 20,
     },
   ],
   wrapper: [baseWrapper, texts["headline-03"]],

@@ -105,5 +105,8 @@ export const priceFormStyles = styleVariants({
   agreementWrapper: {
     marginTop: 20,
     paddingTop: 15,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
   },
 });
