@@ -28,7 +28,6 @@ export async function GET(request: NextRequest) {
 
   function getRedirectDestination(responseMessage: string): string {
     if (responseMessage === "photographer join") {
-      setUserRole("photographer");
       return "photographer/join";
     }
     if (responseMessage === "photographer login") {
