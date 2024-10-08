@@ -58,8 +58,7 @@ const ProductInfo = ({
               style={{
                 position: "relative",
                 width: "100%",
-                height: "auto",
-                minHeight: "40vh",
+                height: "100vw",
                 backgroundColor: "#d9d9d9",
               }}
             >
@@ -71,7 +70,10 @@ const ProductInfo = ({
       <div className={infoStyles.wrapper}>
         <div className={infoStyles.headWrapper}>
           <span className={infoStyles.title}>{title}</span>
-          <span className={infoStyles.price}>{formatPrice(basicPrice)}~</span>
+          <span className={infoStyles.price}>
+            {formatPrice(basicPrice)}
+            {basicPrice !== 0 && "~"}
+          </span>
         </div>
         <p className={infoStyles.content}>{subtitle}</p>
       </div>
@@ -90,7 +92,11 @@ const ProductInfo = ({
           })}
         </div>
       </div>
-      <BottomButton title="예약 시작하기" onClick={open} />
+      <BottomButton
+        title="예약 시작하기"
+        onClick={open}
+        style={{ position: "fixed" }}
+      />
     </div>
   );
 };
