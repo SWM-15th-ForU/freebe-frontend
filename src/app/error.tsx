@@ -2,6 +2,7 @@
 
 import { CustomButton } from "@/components/buttons/common-buttons";
 import Image from "next/image";
+import * as Sentry from "@sentry/nextjs";
 import { handlerStyles } from "./root.css";
 
 export default function GlobalError({
@@ -11,6 +12,8 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  Sentry.captureException(error);
+
   return (
     <div className={handlerStyles.container}>
       <Image src="/icons/error.svg" width={24} height={24} alt="error" />
