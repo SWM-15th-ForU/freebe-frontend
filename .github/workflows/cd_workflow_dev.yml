@@ -3,6 +3,9 @@ name: Frontend Dev Server CD
 on:
   push:
     branches: ["develop"]
+  # TODO: 테스트 후 제거
+  pull_request:
+    branches: ["develop"]
 
 jobs:
   build:
