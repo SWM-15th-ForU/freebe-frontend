@@ -14,6 +14,7 @@ const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
   const [viewType, setViewType] = useState<"gallery" | "list">("list");
   const {
     data: { reservationList, totalPages },
+    error,
   } = useSuspenseQuery({
     queryKey: ["reservation", { from, to, keyword, page, status }],
     initialData: { reservationList: [], totalPages: 1 },
@@ -22,6 +23,10 @@ const View = ({ from, keyword, page, status, to }: ReservationSearchParams) => {
       getPreviousReservationList({ from, to, keyword, page, status }),
     retry: false,
   });
+
+  if (error) {
+    throw error;
+  }
 
   function handleSwitchViewType(id: string) {
     if (id === "list" || id === "gallery") setViewType(id);

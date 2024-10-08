@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { BeforeErrorHook, HTTPError, KyRequest } from "ky";
+import * as Sentry from "@sentry/nextjs";
 import { CustomedError, getCustomedErrorMessage } from "./error";
 
 export function setAuthorizationHeader(
@@ -42,6 +43,8 @@ export const beforeError: BeforeErrorHook = async (error) => {
     if (response.redirected) {
       redirect(response.url);
     }
+  } else {
+    Sentry.captureException(error);
   }
   const customedError = await getCustomedError(error);
   return customedError;

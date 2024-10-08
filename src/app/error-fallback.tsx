@@ -4,7 +4,7 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import Image from "next/image";
 import { handlerStyles } from "./root.css";
 
-export default function GlobalError({
+export default function ErrorFallback({
   error,
   reset,
 }: {
@@ -12,9 +12,11 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <div className={handlerStyles.container}>
-      <Image src="/icons/error.svg" width={24} height={24} alt="error" />
-      <span className={handlerStyles.message}>오류가 발생했습니다.</span>
+    <div className={handlerStyles.sectionContainer}>
+      <div className={handlerStyles.header}>
+        <Image src="/icons/error.svg" width={24} height={24} alt="error" />
+        <span className={handlerStyles.message}>오류가 발생했습니다.</span>
+      </div>
       <CustomButton
         styleType="primary"
         size="md"
