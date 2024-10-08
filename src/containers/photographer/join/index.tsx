@@ -9,7 +9,7 @@ import { ID_REGEX } from "@/constants/common/user";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { postProfile } from "@/services/client/photographer/profile";
-import { responseHandler } from "@/services/common/error";
+import { CUSTOMED_CODE, responseHandler } from "@/services/common/error";
 import Profile from "./profile";
 import Agreements from "./agreements";
 import { joinStyles } from "./join.css";
@@ -39,11 +39,22 @@ const PhotographerJoin = () => {
     defaultValues,
     resolver: zodResolver(joinSchema),
   });
-  const { handleSubmit, watch } = method;
+  const { handleSubmit, watch, setError } = method;
   const [serviceAgreement, privacyAgreement] = watch([
     "serviceAgreement",
     "privacyAgreement",
   ]);
+
+  function handleSubmitFail(message?: string) {
+    if (message === CUSTOMED_CODE.PROFILE_NAME_ALREADY_EXISTS) {
+      setError(
+        "profileName",
+        { message: "아이디를 다시 설정해주세요." },
+        { shouldFocus: true },
+      );
+    }
+    popToast("다시 시도해 주세요.", message || "가입에 실패했습니다.", true);
+  }
 
   async function onSubmit(data: Join) {
     await responseHandler(
@@ -52,8 +63,7 @@ const PhotographerJoin = () => {
         popToast("가입이 완료되었습니다!");
         router.push(`/photographer?url=${url}`);
       },
-      (message) =>
-        popToast("다시 시도해 주세요.", message || "가입에 실패했습니다."),
+      handleSubmitFail,
     );
   }
 
