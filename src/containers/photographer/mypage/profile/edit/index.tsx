@@ -3,6 +3,7 @@ import Banner from "./banner";
 import BasicInfo from "./basic-info";
 import { editStyles } from "./edit.css";
 import Links from "./links";
+import Leave from "./leave";
 
 const ProfileEdit = () => {
   return (
@@ -12,6 +13,7 @@ const ProfileEdit = () => {
         <Banner />
       </div>
       <Links />
+      <Leave />
     </div>
   );
 };

@@ -52,7 +52,7 @@ export const editStyles = styleVariants({
     display: "flex",
     flexDirection: "column",
     minWidth: 380,
-    paddingBottom: 60,
+    paddingBottom: 10,
 
     "@media": {
       [breakpoints.mobile]: {
@@ -108,4 +108,20 @@ export const editStyles = styleVariants({
     marginLeft: "auto",
     gap: 8,
   },
+});
+
+export const leaveStyles = styleVariants({
+  container: {
+    marginTop: 60,
+    marginLeft: "auto",
+  },
+  button: [
+    texts["headline-03"],
+    sprinkles({ color: "pink" }),
+    {
+      background: "none",
+      border: "none",
+      textDecoration: "underline",
+    },
+  ],
 });
