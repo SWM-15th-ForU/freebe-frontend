@@ -1,5 +1,18 @@
 import { FormImage, ProductFormdata } from "product-types";
+import { FilterItemType } from "common-types";
 import apiClient from "../core";
+
+export async function getProductTitles(): Promise<FilterItemType[]> {
+  const { data } = await apiClient.get("photographer/product/title").json<{
+    data: {
+      title: string;
+    }[];
+  }>();
+
+  return data.map(({ title }, index) => {
+    return { name: title, id: index };
+  });
+}
 
 export async function postNewProduct(
   form: ProductFormdata,
