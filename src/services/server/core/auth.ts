@@ -15,9 +15,11 @@ export const getAccessToken = () => {
 
 export const deleteTokens = () => {
   const cookieStore = cookies();
-  cookieStore.delete(tokenKeys.access);
-  cookieStore.delete(tokenKeys.refresh);
-  cookieStore.delete(tokenKeys.user);
+  Object.values(tokenKeys).forEach((key) => {
+    if (cookieStore.has(key)) {
+      cookieStore.delete(key);
+    }
+  });
   console.log("delete tokens and user role from cookies");
 };
 

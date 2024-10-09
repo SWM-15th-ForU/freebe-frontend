@@ -27,8 +27,21 @@ const baseContainer = style({
 });
 
 export const handlerStyles = styleVariants({
+  sectionContainer: {
+    width: "100%",
+    padding: 30,
+    display: "flex",
+    flexDirection: "column",
+    gap: 30,
+    alignItems: "center",
+  },
   container: [baseContainer],
   fullContainer: [baseContainer, { height: "100vh" }],
+  header: {
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+  },
   message: [
     texts["headline-02"],
     sprinkles({
