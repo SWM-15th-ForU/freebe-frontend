@@ -134,7 +134,7 @@ export const searchStyles = styleVariants({
       alignItems: "center",
       gap: 4,
       ":focus-within": {
-        outline: "1px solid #007AFF",
+        border: "1px solid #007AFF",
       },
     },
   ],
@@ -297,7 +297,7 @@ export const filterStyles = styleVariants({
     display: "flex",
     flexDirection: "column",
     gap: 16,
-    margin: "16px 0px",
+    marginBottom: 16,
     height: "auto",
     maxHeight: 216,
     overflowY: "scroll",
