@@ -44,23 +44,20 @@ const Controller = ({
         defaultId={view}
         onChange={handleChangeView}
       />
-      <QueryProviders>
-        <FilterProduct
-          onSelect={handleFilterChange}
-          selectedItems={selectedProducts}
-          hasSearch
-        >
-          <MenuItem style={{ marginTop: 16 }}>
-            <Link
-              href="/photographer/new-product"
-              className={mainviewStyles.link}
-            >
-              <Image src="/icons/plus.svg" width={12} height={12} alt="추가" />
-              상품 추가하기
-            </Link>
-          </MenuItem>
-        </FilterProduct>
-      </QueryProviders>
+      <FilterProduct
+        onSelect={handleFilterChange}
+        selectedItems={selectedProducts}
+      >
+        <MenuItem style={{ marginTop: 16 }}>
+          <Link
+            href="/photographer/new-product"
+            className={mainviewStyles.link}
+          >
+            <Image src="/icons/plus.svg" width={12} height={12} alt="추가" />
+            상품 추가하기
+          </Link>
+        </MenuItem>
+      </FilterProduct>
     </div>
   );
 };

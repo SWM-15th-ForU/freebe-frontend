@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FilterItemType } from "common-types";
 import { Menu } from "@mantine/core";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import QueryProviders from "@/containers/common/query-providers";
 import { getProductTitles } from "@/services/client/photographer/products";
 import Check from "../inputs/check";
 import Search from "./search";
@@ -13,7 +14,6 @@ import { chipStyles, filterStyles } from "./common.css";
 interface FilterProductProps {
   selectedItems: string[];
   onSelect: (title: string) => void;
-  hasSearch?: boolean;
   children?: React.ReactNode;
 }
 
@@ -34,12 +34,10 @@ const FilterItem = ({
   );
 };
 
-const FilterProduct = ({
-  onSelect,
+const FilterList = ({
   selectedItems,
-  hasSearch,
-  children,
-}: FilterProductProps) => {
+  onSelect,
+}: Omit<FilterProductProps, "children">) => {
   const [search, setSearch] = useState("");
   const { data, error } = useSuspenseQuery({
     queryKey: ["productTitle"],
@@ -61,6 +59,28 @@ const FilterProduct = ({
       : data;
   }
 
+  return (
+    <div className={filterStyles.list}>
+      <Search value={search} setValue={setSearch} />
+      {getSearchList().map((item) => {
+        return (
+          <FilterItem
+            key={item.id}
+            item={item}
+            selected={selectedItems.includes(item.name)}
+            onClickItem={() => onSelect(item.name)}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+const FilterProduct = ({
+  onSelect,
+  selectedItems,
+  children,
+}: FilterProductProps) => {
   return (
     <Menu position="top-start">
       <Menu.Target>
@@ -89,19 +109,9 @@ const FilterProduct = ({
         </button>
       </Menu.Target>
       <Menu.Dropdown classNames={{ dropdown: filterStyles.dropdown }}>
-        {hasSearch && <Search value={search} setValue={setSearch} />}
-        <div className={filterStyles.list}>
-          {(hasSearch ? getSearchList() : data).map((item) => {
-            return (
-              <FilterItem
-                key={item.id}
-                item={item}
-                selected={selectedItems.includes(item.name)}
-                onClickItem={() => onSelect(item.name)}
-              />
-            );
-          })}
-        </div>
+        <QueryProviders>
+          <FilterList selectedItems={selectedItems} onSelect={onSelect} />
+        </QueryProviders>
         {children && <Menu.Divider />}
         {children}
       </Menu.Dropdown>
