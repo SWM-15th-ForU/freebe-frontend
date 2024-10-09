@@ -3,4 +3,9 @@ declare module "common-types" {
     total: number;
     current: number;
   }
+
+  interface FilterItemType {
+    id: number;
+    name: string;
+  }
 }

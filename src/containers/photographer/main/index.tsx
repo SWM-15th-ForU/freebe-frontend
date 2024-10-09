@@ -9,11 +9,19 @@ import { mainviewStyles } from "./main.css";
 
 const MainView = () => {
   const [view, setView] = useState<MainViewType>("list");
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
 
   return (
     <div className={mainviewStyles.container}>
-      <Controller view={view} setView={setView} />
-      {view === "list" && <ReservationList />}
+      <Controller
+        view={view}
+        setView={setView}
+        selectedProducts={selectedProducts}
+        setSelectedProducts={setSelectedProducts}
+      />
+      {view === "list" && (
+        <ReservationList selectedProducts={selectedProducts} />
+      )}
       {view === "calender" && <Preparing />}
     </div>
   );
