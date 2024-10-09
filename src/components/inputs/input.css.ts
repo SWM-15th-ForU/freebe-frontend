@@ -211,7 +211,7 @@ const InputStyles = styleVariants({
       marginRight: "auto",
     },
   ],
-  multilineInput: [baseInput],
+  multilineInput: [baseInput, { maxWidth: "100%", minHeight: "35px" }],
 });
 
 export default InputStyles;
