@@ -1,11 +1,12 @@
-import { PhotographerForm, ProfileResponse } from "profile-types";
+import { PhotographerForm, PhotographerProfileResponse } from "profile-types";
 import { api } from "../../core";
 
 export async function getCurrentProfile(): Promise<PhotographerForm> {
   const { data } = await api
     .get("photographer/profile")
-    .json<{ data: ProfileResponse }>();
+    .json<{ data: PhotographerProfileResponse }>();
   return {
+    contact: data.contact,
     bannerImg:
       data.bannerImageUrl !== null ? { url: data.bannerImageUrl } : undefined,
     profileImg:

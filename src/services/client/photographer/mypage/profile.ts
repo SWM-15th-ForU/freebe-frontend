@@ -4,6 +4,8 @@ import apiClient from "../../core";
 export async function putProfile(form: PhotographerForm) {
   const formData = new FormData();
   const inputData = {
+    // TODO: 백엔드 프로필 수정 api 명세 확인
+    contact: form.contact,
     introductionContent: form.message,
     linkInfos: form.linkInfos.map((link) => {
       return {
