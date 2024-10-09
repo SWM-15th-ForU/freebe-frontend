@@ -16,6 +16,12 @@ declare module "profile-types" {
     introductionContent: string;
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }
+
+  // TODO: 백엔드 api 명세 확인 필요
+  interface PhotographerProfileResponse extends ProfileResponse {
+    contact: string;
+  }
+
   interface Photographer {
     bannerImg?: string;
     profileImg?: string;
@@ -27,9 +33,11 @@ declare module "profile-types" {
   interface PhotographerForm extends Photographer {
     bannerImg?: FormImage;
     profileImg?: FormImage;
+    contact: string;
   }
 
   interface Join {
+    contact: string;
     profileName: string;
     serviceAgreement: boolean;
     privacyAgreement: boolean;
