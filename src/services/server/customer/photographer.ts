@@ -1,4 +1,4 @@
-import { Photographer, ProfileResponse } from "profile-types";
+import { Notice, Photographer, ProfileResponse } from "profile-types";
 import { api } from "../core";
 
 export async function getPhotographerProfile(
@@ -16,4 +16,12 @@ export async function getPhotographerProfile(
       return { name: link.linkTitle, src: link.linkUrl };
     }),
   };
+}
+
+export async function getPhotographerNotices(
+  profileName: string,
+): Promise<Notice[]> {
+  // TODO: api 명세 확인 후 구현
+
+  return [];
 }
