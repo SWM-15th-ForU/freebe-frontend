@@ -36,3 +36,7 @@ export async function putProfile(form: PhotographerForm) {
     body: formData,
   });
 }
+
+export async function leaveService(reason: string) {
+  await apiClient.post("unlink", { json: { reason } });
+}
