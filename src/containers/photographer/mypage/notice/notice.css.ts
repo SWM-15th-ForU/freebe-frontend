@@ -62,6 +62,13 @@ export const editStyles = styleVariants({
     gap: 12,
     alignItems: "center",
   },
+  error: [
+    texts["caption-01"],
+    sprinkles({
+      color: "pink",
+    }),
+    { margin: 3, display: "block", position: "static" },
+  ],
 });
 
 export const accordionStyles = styleVariants({
@@ -73,4 +80,11 @@ export const accordionStyles = styleVariants({
       flex: 1,
     },
   ],
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 20,
+    paddingTop: 0,
+    paddingBottom: 30,
+  },
 });

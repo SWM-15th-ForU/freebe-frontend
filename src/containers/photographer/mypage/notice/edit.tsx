@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { NoticeForm } from "profile-types";
@@ -10,12 +11,28 @@ import { accordionStyles, editStyles } from "./notice.css";
 const SAMPLE_NOTICE = ["환불 규정", "취소 안내"];
 
 const NoticeEdit = () => {
-  const { watch, control } = useFormContext<NoticeForm>();
+  const {
+    watch,
+    control,
+    formState: { errors },
+  } = useFormContext<NoticeForm>();
   const { remove, append } = useFieldArray<NoticeForm>({
     control,
     name: "notices",
   });
   const notices = watch("notices");
+  const [openedAccordion, setOpenedAccordion] = useState<null | string>(null);
+
+  useEffect(() => {
+    if (errors.notices && Array.isArray(errors.notices)) {
+      const firstErrorIndex = errors.notices.findLastIndex((error) => error);
+      if (firstErrorIndex !== -1) {
+        setOpenedAccordion(`${firstErrorIndex}`);
+      } else {
+        setOpenedAccordion(null);
+      }
+    }
+  }, [errors]);
 
   function handleRemoveNotice(removeIndex: number) {
     remove(removeIndex);
@@ -35,12 +52,11 @@ const NoticeEdit = () => {
     <div className={editStyles.container}>
       <div className={editStyles.header}>
         <span className={editStyles.title}>내 공지사항</span>
-
         <CustomButton
           styleType="primary"
           title="저장"
           size="xs"
-          onClick={() => {}}
+          type="submit"
           style={{
             marginRight: 10,
             padding: "5px 10px",
@@ -64,6 +80,8 @@ const NoticeEdit = () => {
       )}
       {notices.length > 0 ? (
         <Accordion
+          value={openedAccordion}
+          onChange={setOpenedAccordion}
           classNames={{
             ...accordionStyles,
           }}
@@ -74,6 +92,7 @@ const NoticeEdit = () => {
               notice={notice}
               index={index}
               onClickRemove={handleRemoveNotice}
+              errors={errors}
             />
           ))}
         </Accordion>
