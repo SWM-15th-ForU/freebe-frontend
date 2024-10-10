@@ -65,7 +65,7 @@ const BasicInfo = () => {
         />
         <TextInput<PhotographerForm>
           title="연락처"
-          placeholder="연락처를 입력해주세요."
+          placeholder="고객이 연락할 수 있는 수단을 입력해주세요."
           formField="contact"
           multiline
           container={{ marginBottom: 10 }}
@@ -73,9 +73,8 @@ const BasicInfo = () => {
         <div className={editStyles.caption}>
           <Image src="/icons/error.svg" alt="확인" height={20} width={12} />
           <span>
-            설정한 연락처는 작가님과 예약을 확정한 고객에게만 전달됩니다. 고객이
-            연락할 수 있는 수단을 등록해주세요. (전화번호, 오픈채팅방 링크,
-            인스타그램 DM 등)
+            설정한 연락처는(전화번호, 카카오톡 채팅방 링크, 인스타그램 아이디
+            등) 작가님께서 예약을 수락하신 고객에게만 전달됩니다.
           </span>
         </div>
         {errors.contact && (
