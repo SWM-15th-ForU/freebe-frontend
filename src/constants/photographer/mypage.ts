@@ -14,6 +14,10 @@ export const mypageTabs: LinkType[] = [
     src: "profile",
   },
   {
+    name: "공지사항 관리",
+    src: "notice",
+  },
+  {
     name: "자주 묻는 질문 관리",
     src: "faqs",
   },
