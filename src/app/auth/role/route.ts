@@ -1,4 +1,4 @@
-import { setUserRole } from "@/services/server/core/auth";
+import { deleteTokens, setUserRole } from "@/services/server/core/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -19,5 +19,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json({}, { status: 400 });
   }
+  return NextResponse.json({}, { status: 200 });
+}
+
+export async function DELETE() {
+  deleteTokens();
   return NextResponse.json({}, { status: 200 });
 }

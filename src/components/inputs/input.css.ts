@@ -211,7 +211,7 @@ const InputStyles = styleVariants({
       marginRight: "auto",
     },
   ],
-  multilineInput: [baseInput],
+  multilineInput: [baseInput, { resize: "vertical" }],
 });
 
 export default InputStyles;

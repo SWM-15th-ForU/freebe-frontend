@@ -42,6 +42,7 @@ const CancelModal = ({
       <CommonInput
         placeholder="취소 사유를 입력해 주세요."
         value={cancellationReason}
+        multiline={false}
         onChange={(e) => setCancellationReason(e.currentTarget.value)}
       />
       <CustomButton
