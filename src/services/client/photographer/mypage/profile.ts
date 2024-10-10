@@ -37,6 +37,18 @@ export async function putProfile(form: PhotographerForm) {
   });
 }
 
+async function deleteCookiesAfterLeave(retryCount: number) {
+  const MAX_RETRY_COUNT = 5;
+  try {
+    await fetch("/auth/role", { method: "DELETE" });
+  } catch {
+    if (MAX_RETRY_COUNT > retryCount) {
+      deleteCookiesAfterLeave(retryCount + 1);
+    }
+  }
+}
+
 export async function leaveService(reason: string) {
   await apiClient.post("unlink", { json: { reason } });
+  await deleteCookiesAfterLeave(0);
 }
