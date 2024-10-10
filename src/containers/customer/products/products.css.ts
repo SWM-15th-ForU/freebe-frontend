@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
@@ -75,6 +76,15 @@ export const infoStyles = styleVariants({
       flexDirection: "column",
     },
   ],
+  slide: {
+    position: "relative",
+    width: "100%",
+    height: 450,
+    backgroundColor: "#d9d9d9",
+    "@media": {
+      [breakpoints.mobile]: { width: "100vw" },
+    },
+  },
   wrapper: [
     sprinkles({ backgroundColor: "white" }),
     {

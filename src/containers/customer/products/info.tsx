@@ -53,15 +53,7 @@ const ProductInfo = ({
       >
         {images.map((image, index) => {
           return (
-            <Carousel.Slide
-              key={index}
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "100vw",
-                backgroundColor: "#d9d9d9",
-              }}
-            >
+            <Carousel.Slide key={index} className={infoStyles.slide}>
               <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
             </Carousel.Slide>
           );
