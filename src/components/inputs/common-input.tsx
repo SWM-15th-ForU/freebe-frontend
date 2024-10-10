@@ -1,4 +1,9 @@
-import { CSSProperties, DetailedHTMLProps, InputHTMLAttributes } from "react";
+import {
+  CSSProperties,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  TextareaHTMLAttributes,
+} from "react";
 import InputStyles from "./input.css";
 
 interface CommonInputProps
@@ -10,7 +15,20 @@ interface CommonInputProps
   inputSize?: "sm" | "md";
   placeholder?: string;
   disabled?: boolean;
-  multiline?: boolean;
+  multiline: false;
+  container?: CSSProperties;
+}
+
+interface CommonTextAreaProps
+  extends DetailedHTMLProps<
+    TextareaHTMLAttributes<HTMLTextAreaElement>,
+    HTMLTextAreaElement
+  > {
+  title?: string;
+  inputSize?: "sm" | "md";
+  placeholder?: string;
+  disabled?: boolean;
+  multiline: true;
   container?: CSSProperties;
 }
 
@@ -22,7 +40,7 @@ const CommonInput = ({
   container,
   inputSize = "sm",
   ...props
-}: CommonInputProps) => {
+}: CommonInputProps | CommonTextAreaProps) => {
   return (
     <div className={InputStyles.container} style={container}>
       {title && <span className={InputStyles.title}>{title}</span>}
@@ -37,13 +55,14 @@ const CommonInput = ({
               disabled ? InputStyles.disabledInput : InputStyles.multilineInput
             }
             placeholder={placeholder}
+            {...(props as CommonTextAreaProps)}
           />
         ) : (
           <input
             className={disabled ? InputStyles.disabledInput : InputStyles.input}
             placeholder={placeholder}
             disabled={disabled}
-            {...props}
+            {...(props as CommonInputProps)}
           />
         )}
       </div>

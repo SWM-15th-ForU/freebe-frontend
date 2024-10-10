@@ -117,11 +117,17 @@ export const leaveStyles = styleVariants({
   },
   button: [
     texts["headline-03"],
-    sprinkles({ color: "pink" }),
+    sprinkles({ color: "text-02" }),
     {
       background: "none",
       border: "none",
       textDecoration: "underline",
     },
   ],
+  title: [
+    texts["headline-02"],
+    sprinkles({ color: "text-02" }),
+    { minWidth: "fit-content" },
+  ],
+  message: [texts["headline-03"], sprinkles({ color: "text-point" })],
 });
