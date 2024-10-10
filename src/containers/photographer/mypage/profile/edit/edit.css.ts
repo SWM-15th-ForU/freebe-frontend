@@ -115,6 +115,9 @@ export const leaveStyles = styleVariants({
     marginTop: 60,
     marginLeft: "auto",
   },
+  wrapper: {
+    width: "100%",
+  },
   button: [
     texts["headline-03"],
     sprinkles({ color: "text-02" }),
@@ -130,4 +133,15 @@ export const leaveStyles = styleVariants({
     { minWidth: "fit-content" },
   ],
   message: [texts["headline-03"], sprinkles({ color: "text-point" })],
+  list: [
+    texts["body-01"],
+    sprinkles({ backgroundColor: "bg-lightgrey", color: "text-02" }),
+    { borderRadius: 16, padding: 10, paddingInlineStart: 30 },
+  ],
+  reasonWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "10px 0px",
+    gap: 8,
+  },
 });
