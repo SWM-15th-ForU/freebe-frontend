@@ -51,12 +51,22 @@ const PhotographerMemo = () => {
         disabled={!isEditing}
       />
       {isEditing && (
-        <CustomButton
-          size="sm"
-          styleType="primary"
-          title="작성 완료"
-          onClick={handleSubmitMemo}
-        />
+        <div className={sectionStyles.wrapper}>
+          <CustomButton
+            size="sm"
+            styleType="primary"
+            title="작성 완료"
+            onClick={handleSubmitMemo}
+            style={{ flex: 1 }}
+          />
+          <CustomButton
+            size="sm"
+            styleType="line"
+            title="취소"
+            onClick={() => setIsEditing(false)}
+            style={{ flex: 1 }}
+          />
+        </div>
       )}
     </div>
   );
