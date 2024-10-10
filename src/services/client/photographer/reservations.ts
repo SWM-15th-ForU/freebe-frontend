@@ -96,10 +96,9 @@ export async function putShootingDate(
 }
 
 export async function putMemo(id: number, memo: string) {
-  // TODO: 신청서 메모 수정 api 명세(url) 확인
   const body = {
     reservationFormId: id,
-    newMemo: memo,
+    photographerMemo: memo,
   };
   await apiClient.put("photographer/reservation/memo", { json: body });
 }
