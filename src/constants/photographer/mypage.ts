@@ -26,3 +26,10 @@ export const mypageTabs: LinkType[] = [
     src: "schedule",
   },
 ];
+
+export const defaultLinks: LinkType[] = [
+  { name: "상품 선택하기", src: "/products" },
+  { name: "공지사항 확인하기", src: "/notices" },
+  // { name: "일정 확인하기 ", src: "/schedules" },
+  // { name: "자주 묻는 질문", src: "/faqs" },
+];
