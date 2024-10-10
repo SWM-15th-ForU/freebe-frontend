@@ -15,7 +15,7 @@ const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
       <div className={infoStyles.wrapper}>
         <Link href="/id/notices">
           <div className={infoStyles.item}>
-            <span className={infoStyles.name}>작가 약관 확인하기</span>
+            <span className={infoStyles.name}>작가 공지사항 확인하기</span>
             <Image
               src="/icons/right.svg"
               alt="바로가기"

@@ -43,8 +43,11 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
         <CheckBox
           checked={photographerAgreement}
           onPress={() => changeAgreement("photographerAgreement")}
-          title="작가 약관 동의"
-          link={{ name: "작가 약관 확인하기", path: `/${profileName}/notices` }}
+          title="작가 공지사항 동의"
+          link={{
+            name: "작가 공지사항 확인하기",
+            path: `/${profileName}/notices`,
+          }}
         />
         <CheckBox
           checked={serviceAgreement}
