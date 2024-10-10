@@ -97,8 +97,7 @@ export async function putShootingDate(
 
 export async function putMemo(id: number, memo: string) {
   const body = {
-    reservationFormId: id,
     photographerMemo: memo,
   };
-  await apiClient.put("photographer/reservation/memo", { json: body });
+  await apiClient.put(`photographer/reservation/memo/${id}`, { json: body });
 }

@@ -23,7 +23,7 @@ const PhotographerMemo = () => {
     await responseHandler(
       putMemo(reservationNumber, photographerMemo),
       () => {
-        popToast("메모가 변경되었습니다.");
+        setIsEditing(false);
         router.refresh();
       },
       () => {
@@ -54,16 +54,16 @@ const PhotographerMemo = () => {
         <div className={sectionStyles.wrapper}>
           <CustomButton
             size="sm"
-            styleType="primary"
-            title="작성 완료"
-            onClick={handleSubmitMemo}
+            styleType="line"
+            title="취소"
+            onClick={() => setIsEditing(false)}
             style={{ flex: 1 }}
           />
           <CustomButton
             size="sm"
-            styleType="line"
-            title="취소"
-            onClick={() => setIsEditing(false)}
+            styleType="primary"
+            title="작성 완료"
+            onClick={handleSubmitMemo}
             style={{ flex: 1 }}
           />
         </div>
