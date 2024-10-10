@@ -1,4 +1,6 @@
+import { useParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
+import { PageParams } from "route-parameters";
 import { reservation } from "product-types";
 import { formatPrice } from "@/utils/parse";
 import CheckBox from "@/components/inputs/checkbox";
@@ -6,8 +8,8 @@ import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import submitStyles from "../submit.css";
 import { priceFormStyles } from "./parts.css";
 
-// TODO: 작가 약관 페이지 연결 필요
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
+  const { profileName } = useParams<Pick<PageParams, "profileName">>();
   const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
   const [totalPrice, serviceAgreement, photographerAgreement] = watch(
     ["totalPrice", "serviceAgreement", "photographerAgreement"],
@@ -42,7 +44,7 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
           checked={photographerAgreement}
           onPress={() => changeAgreement("photographerAgreement")}
           title="작가 약관 동의"
-          link={{ name: "작가 약관 확인하기", path: "/" }}
+          link={{ name: "작가 약관 확인하기", path: `/${profileName}/notices` }}
         />
         <CheckBox
           checked={serviceAgreement}
