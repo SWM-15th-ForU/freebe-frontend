@@ -41,6 +41,7 @@ const TextInput = <T extends FieldValues>({
             className={
               disabled ? InputStyles.disabledInput : InputStyles.multilineInput
             }
+            disabled={disabled}
             placeholder={placeholder}
             {...(formField && register(formField))}
           />

@@ -1,12 +1,36 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import Chip from "@/components/common/chip";
 import TextInput from "@/components/inputs/text-input";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import popToast from "@/components/common/toast";
+import { responseHandler } from "@/services/common/error";
+import { putMemo } from "@/services/client/photographer/reservations";
 import { sectionStyles } from "../section.css";
 
 const PhotographerMemo = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const router = useRouter();
+  const { getValues } = useFormContext<Details>();
+
+  async function handleSubmitMemo() {
+    const [reservationNumber, photographerMemo] = getValues([
+      "reservationNumber",
+      "photographerMemo",
+    ]);
+    await responseHandler(
+      putMemo(reservationNumber, photographerMemo),
+      () => {
+        setIsEditing(false);
+        router.refresh();
+      },
+      () => {
+        popToast("다시 시도해주세요.", "수정에 실패했습니다.", true);
+      },
+    );
+  }
 
   return (
     <div>
@@ -27,12 +51,22 @@ const PhotographerMemo = () => {
         disabled={!isEditing}
       />
       {isEditing && (
-        <CustomButton
-          size="sm"
-          styleType="primary"
-          title="작성 완료"
-          onClick={() => setIsEditing(false)}
-        />
+        <div className={sectionStyles.wrapper}>
+          <CustomButton
+            size="sm"
+            styleType="line"
+            title="취소"
+            onClick={() => setIsEditing(false)}
+            style={{ flex: 1 }}
+          />
+          <CustomButton
+            size="sm"
+            styleType="primary"
+            title="작성 완료"
+            onClick={handleSubmitMemo}
+            style={{ flex: 1 }}
+          />
+        </div>
       )}
     </div>
   );
