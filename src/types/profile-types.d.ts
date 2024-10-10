@@ -35,4 +35,13 @@ declare module "profile-types" {
     privacyAgreement: boolean;
     marketingAgreement: boolean;
   }
+
+  interface Notice {
+    title: string;
+    content: string;
+  }
+
+  interface NoticeForm {
+    notices: Notice[];
+  }
 }
