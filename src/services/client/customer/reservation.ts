@@ -58,6 +58,7 @@ export async function cancelReservation(
   cancellationReason: string,
 ) {
   const body = {
+    updateStatus: "CANCELLED_BY_CUSTOMER",
     cancellationReason,
   };
   const response = await apiClient.put(`customer/reservation/${id}`, {

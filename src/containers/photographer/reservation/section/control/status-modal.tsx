@@ -2,6 +2,7 @@ import { Status } from "reservation-types";
 import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { statusTitles } from "@/constants/common/reservation";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { Modal } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import popToast from "@/components/common/toast";
@@ -25,7 +26,10 @@ const StatusModal = ({
 
   async function handleStatusChange() {
     await responseHandler(
-      putReservationStatus(parseInt(formId, 10), targetStatus),
+      putReservationStatus(
+        parseInt(formId, PARAMETER_DEFAULT_RADIX),
+        targetStatus,
+      ),
       () => {
         close();
         popToast("신청 상태가 변경되었습니다.");
