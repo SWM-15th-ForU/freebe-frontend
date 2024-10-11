@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import CommonInput from "@/components/inputs/common-input";
 import popToast from "@/components/common/toast";
@@ -23,7 +24,10 @@ const CancelModal = ({
 
   async function handleCancel() {
     await responseHandler(
-      cancelReservation(parseInt(formId, 10), cancellationReason),
+      cancelReservation(
+        parseInt(formId, PARAMETER_DEFAULT_RADIX),
+        cancellationReason,
+      ),
       () => {
         close();
         popToast("신청이 취소되었습니다.");
