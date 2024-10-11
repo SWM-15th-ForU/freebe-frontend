@@ -83,7 +83,7 @@ export const logout = async () => {
       await reissueTokens();
     } catch {
       deleteTokens();
-      redirect("login");
+      redirect("/");
     }
   }
   if (response.ok || response.redirected) {
