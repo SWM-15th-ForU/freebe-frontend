@@ -25,9 +25,7 @@ export async function PUT() {
     return new NextResponse();
   } catch (error) {
     deleteTokens();
-    return NextResponse.redirect(
-      new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
-    );
+    return NextResponse.redirect(new URL("/", process.env.NEXT_PUBLIC_DOMAIN));
   }
 }
 
@@ -42,7 +40,7 @@ export async function DELETE() {
       if (response.status === 403) {
         deleteTokens();
         return NextResponse.redirect(
-          new URL("login", process.env.NEXT_PUBLIC_DOMAIN),
+          new URL("/", process.env.NEXT_PUBLIC_DOMAIN),
         );
       }
     }

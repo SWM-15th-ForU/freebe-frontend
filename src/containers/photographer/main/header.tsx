@@ -3,11 +3,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { LinkType } from "profile-types";
 import * as styles from "./header/header.css";
 import Profile from "./header/profile";
 import Url from "./header/url";
 
-const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
+const Header = ({
+  isOnboarding,
+  link,
+}: {
+  isOnboarding?: boolean;
+  link?: LinkType;
+}) => {
   const [url, setUrl] = useState<string>("");
 
   useEffect(() => {
@@ -41,6 +48,11 @@ const Header = ({ isOnboarding }: { isOnboarding?: boolean }) => {
           <Url myUrl={url} />
           <Profile />
         </>
+      )}
+      {link && (
+        <Link href={link.src} target="_blank" className={styles.linkText}>
+          {link.name}
+        </Link>
       )}
     </header>
   );

@@ -30,6 +30,11 @@ export const headerContainer = style([
   },
 ]);
 
+export const linkText = style([
+  texts["body-02"],
+  sprinkles({ color: "text-01" }),
+]);
+
 export const profileContainer = style({
   display: "flex",
   flexDirection: "row",

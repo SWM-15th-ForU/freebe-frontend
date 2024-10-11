@@ -42,6 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          name="naver-site-verification"
+          content="2a75aaab03248bdbc9a65fec4c3c98687d161403"
+        />
         <GoogleAnalytics gaId="G-HB94Q4DZRD" />
         <ColorSchemeScript />
       </head>
