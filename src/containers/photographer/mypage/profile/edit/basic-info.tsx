@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { PhotographerForm } from "profile-types";
 import TextInput from "@/components/inputs/text-input";
@@ -7,7 +8,11 @@ import { CustomButton } from "@/components/buttons/common-buttons";
 import { editStyles } from "./edit.css";
 
 const BasicInfo = () => {
-  const { watch, setValue } = useFormContext<PhotographerForm>();
+  const {
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext<PhotographerForm>();
   const profileImg = watch("profileImg");
 
   function handleChangeProfileImg(e: ChangeEvent<HTMLInputElement>) {
@@ -59,12 +64,32 @@ const BasicInfo = () => {
           container={{ marginTop: 0 }}
         />
         <TextInput<PhotographerForm>
+          title="연락처"
+          placeholder="고객이 연락할 수 있는 수단을 입력해주세요."
+          formField="contact"
+          multiline
+          container={{ marginBottom: 10 }}
+        />
+        <div className={editStyles.caption}>
+          <Image src="/icons/error.svg" alt="확인" height={20} width={12} />
+          <span>
+            설정한 연락처는(전화번호, 카카오톡 채팅방 링크, 인스타그램 아이디
+            등) 작가님께서 예약을 수락하신 고객에게만 전달됩니다.
+          </span>
+        </div>
+        {errors.contact && (
+          <span className={editStyles.error}>{errors.contact.message}</span>
+        )}
+        <TextInput<PhotographerForm>
           title="소개 문구"
           placeholder="소개글을 입력해 주세요."
           formField="message"
           inputSize="md"
           multiline
         />
+        {errors.message && (
+          <span className={editStyles.error}>{errors.message.message}</span>
+        )}
       </div>
     </div>
   );

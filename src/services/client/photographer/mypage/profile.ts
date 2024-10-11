@@ -4,7 +4,8 @@ import apiClient from "../../core";
 export async function putProfile(form: PhotographerForm) {
   const formData = new FormData();
   const inputData = {
-    introductionContent: form.message,
+    contact: form.contact,
+    introductionContent: (form.message !== "" && form.message) || null,
     linkInfos: form.linkInfos.map((link) => {
       return {
         linkTitle: link.name,
