@@ -70,14 +70,21 @@ export function parsePeriodToSearchParams(
   };
 }
 
+function formatTimeWithSec(timeStr: string): string {
+  if (/^\d{2}:\d{2}:\d{2}$/.test(timeStr)) {
+    return timeStr;
+  }
+  return `${timeStr}:00`;
+}
+
 export function createDateObjects(
   dateStr: string,
   startTimeStr: string,
   endTimeStr: string,
 ) {
   const date = new Date(dateStr);
-  const startTime = new Date(`${dateStr}T${startTimeStr}:00`);
-  const endTime = new Date(`${dateStr}T${endTimeStr}:00`);
+  const startTime = new Date(`${dateStr}T${formatTimeWithSec(startTimeStr)}`);
+  const endTime = new Date(`${dateStr}T${formatTimeWithSec(endTimeStr)}`);
 
   return {
     date,

@@ -55,6 +55,8 @@ const DateModal = ({
     }
   }, [shootingDate]);
 
+  console.log(preferredDates);
+
   async function handleShootingDateSubmit() {
     if (
       dateValue.date !== null &&
