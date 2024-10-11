@@ -91,7 +91,7 @@ export async function putShootingDate(
     newShootingDate: shootingDate,
     currentReservationStatus: currentStatus,
   };
-  await apiClient.put(`photographer/reservation/shooting/date/${id}`, {
+  await apiClient.put(`photographer/reservation/shooting-date/${id}`, {
     json: body,
   });
 }
