@@ -94,3 +94,10 @@ export async function putShootingDate(
     json: body,
   });
 }
+
+export async function putMemo(id: number, memo: string) {
+  const body = {
+    photographerMemo: memo,
+  };
+  await apiClient.put(`photographer/reservation/memo/${id}`, { json: body });
+}

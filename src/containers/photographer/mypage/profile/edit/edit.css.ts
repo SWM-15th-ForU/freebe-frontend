@@ -52,7 +52,7 @@ export const editStyles = styleVariants({
     display: "flex",
     flexDirection: "column",
     minWidth: 380,
-    paddingBottom: 60,
+    paddingBottom: 10,
 
     "@media": {
       [breakpoints.mobile]: {
@@ -127,4 +127,40 @@ export const editStyles = styleVariants({
     }),
     { margin: 3, display: "block" },
   ],
+});
+
+export const leaveStyles = styleVariants({
+  container: {
+    marginTop: 60,
+    marginLeft: "auto",
+  },
+  wrapper: {
+    width: "100%",
+  },
+  button: [
+    texts["headline-03"],
+    sprinkles({ color: "text-02" }),
+    {
+      background: "none",
+      border: "none",
+      textDecoration: "underline",
+    },
+  ],
+  title: [
+    texts["headline-02"],
+    sprinkles({ color: "text-02" }),
+    { minWidth: "fit-content" },
+  ],
+  message: [texts["headline-03"], sprinkles({ color: "text-point" })],
+  list: [
+    texts["body-01"],
+    sprinkles({ backgroundColor: "bg-lightgrey", color: "text-02" }),
+    { borderRadius: 16, padding: 10, paddingInlineStart: 30 },
+  ],
+  reasonWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "10px 0px",
+    gap: 8,
+  },
 });

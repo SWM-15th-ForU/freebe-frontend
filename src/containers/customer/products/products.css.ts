@@ -125,9 +125,11 @@ export const infoStyles = styleVariants({
 export const modalStyles = styleVariants({
   content: {
     borderRadius: 16,
+    padding: "0px 16px 16px 16px",
   },
   header: {
-    paddingBottom: 0,
+    padding: 30,
+    justifyContent: "center",
     alignItems: "flex-start",
   },
   body: {
@@ -150,6 +152,11 @@ export const modalStyles = styleVariants({
       color: "text-02",
     }),
   ],
+  close: {
+    position: "absolute",
+    top: 25,
+    right: 10,
+  },
 });
 
 export const indicatorStyle = style({
