@@ -28,7 +28,11 @@ const SubmitForm = ({
   items: Item[];
   basicPrice: number;
 }) => {
-  const { setValue, watch } = useFormContext<reservation.FormType>();
+  const {
+    setValue,
+    watch,
+    formState: { touchedFields },
+  } = useFormContext<reservation.FormType>();
   const [totalPrice, serviceAgreement, photographerAgreement] = watch([
     "totalPrice",
     "serviceAgreement",
@@ -39,8 +43,10 @@ const SubmitForm = ({
     setValue("name", name);
     setValue("contact", contact);
     setValue("profileName", profileName);
-    setValue("instagram", instagram);
     setValue("productId", productId);
+    if (!touchedFields.instagram) {
+      setValue("instagram", instagram);
+    }
   }, [name, contact, items, profileName, productId]);
 
   const prices = watch("options").map((option) => option.price);
