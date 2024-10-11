@@ -2,10 +2,9 @@ import { Join } from "profile-types";
 import apiClient from "../core";
 
 export async function postProfile(form: Join) {
-  // TODO: 백엔드 join api 명세 수정 확인 필요
   const body = {
-    contact: form.contact,
     profileName: form.profileName,
+    contact: form.contact,
     termsOfServiceAgreement: form.serviceAgreement,
     privacyPolicyAgreement: form.privacyAgreement,
     marketingAgreement: form.marketingAgreement,

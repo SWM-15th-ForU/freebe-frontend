@@ -12,7 +12,7 @@ export async function getCurrentProfile(): Promise<PhotographerForm> {
     profileImg:
       data.profileImageUrl !== null ? { url: data.profileImageUrl } : undefined,
     profileName: data.profileName,
-    message: data.introductionContent,
+    message: data.introductionContent || "",
     linkInfos: data.linkInfos.map((link) => {
       return { name: link.linkTitle, src: link.linkUrl };
     }),

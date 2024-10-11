@@ -13,7 +13,7 @@ declare module "profile-types" {
     bannerImageUrl: string | null;
     profileImageUrl: string | null;
     profileName: string;
-    introductionContent: string;
+    introductionContent: string | null;
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }
 
