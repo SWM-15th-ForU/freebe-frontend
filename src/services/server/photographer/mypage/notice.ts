@@ -1,6 +1,9 @@
 import { Notice } from "profile-types";
+import { api } from "../../core";
 
 export async function getCurrentNotices(): Promise<Notice[]> {
-  // TODO: api 명세 확인 후 구현
-  return [];
+  const { data } = await api
+    .get("photographer/profile")
+    .json<{ data: Notice[] | null }>();
+  return data || [];
 }

@@ -21,7 +21,8 @@ export async function getPhotographerProfile(
 export async function getPhotographerNotices(
   profileName: string,
 ): Promise<Notice[]> {
-  // TODO: api 명세 확인 후 구현
-
-  return [];
+  const { data } = await api
+    .get(`customer/notice/${profileName}`)
+    .json<{ data: Notice[] | null }>();
+  return data || [];
 }

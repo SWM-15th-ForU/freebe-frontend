@@ -1,5 +1,8 @@
 import { NoticeForm } from "profile-types";
+import apiClient from "../../core";
 
 export async function putNewNotices(data: NoticeForm) {
-  // TODO: api 명세 확인 후 구현
+  await apiClient.put("photographer/notice", {
+    json: data.notices,
+  });
 }
