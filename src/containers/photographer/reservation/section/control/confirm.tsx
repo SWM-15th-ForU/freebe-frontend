@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import TextInput from "@/components/inputs/text-input";
 import popToast from "@/components/common/toast";
 import { putReservationDetails } from "@/services/client/photographer/reservations";
 import { responseHandler } from "@/services/common/error";
@@ -92,27 +91,31 @@ const Confirm = () => {
               />
             )}
           </div>
+        </div>
+        <div className={sectionStyles.divider}>
           <div className={sectionStyles.priceWrapper}>
             <span className={sectionStyles.title}>총 가격</span>
             <span className={sectionStyles.price}>
               {formatPrice(totalPrice)}
             </span>
           </div>
+          <div className={sectionStyles.priceWrapper}>
+            <span className={sectionStyles.title}>기본 가격</span>
+            <span className={sectionStyles.content}>
+              {formatPrice(basicPrice)}
+            </span>
+          </div>
+          {options.length > 0 && (
+            <div>
+              <span className={sectionStyles.title}>추가 옵션</span>
+              <div className={sectionStyles.optionWrapper}>
+                {options.map((option) => (
+                  <OptionField key={option.title} option={option} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-        <span className={sectionStyles.title}>기본 가격</span>
-        <TextInput<Details>
-          disabled
-          inputSize="sm"
-          formField="basicPrice"
-          container={{ flex: 1 }}
-        />
-        <span className={sectionStyles.title}>추가 옵션</span>
-        <div className={sectionStyles.optionWrapper}>
-          {options.map((option, index) => (
-            <OptionField key={option.title} optionIndex={index} />
-          ))}
-        </div>
-
         {isActiveStatus(currentStatus) &&
           (isEditing ? (
             <div className={sectionStyles.buttonWrapper}>

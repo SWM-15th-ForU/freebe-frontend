@@ -25,7 +25,7 @@ const ShootingPlace = ({ isEditing }: { isEditing: boolean }) => {
         <TextInput<Details>
           formField="shootingPlace"
           placeholder="장소를 입력해주세요."
-          container={{ margin: 0 }}
+          container={{ marginTop: 0 }}
         />
       )}
     </div>
