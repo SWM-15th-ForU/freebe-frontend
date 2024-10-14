@@ -9,6 +9,8 @@ export async function postReservation(form: reservation.FormType) {
     profileName: form.profileName,
     productId: form.productId,
     instagramId: form.instagram,
+    // TODO: 백엔드 api 명세 검토
+    preferredPlace: form.preferredPlace === "" ? null : form.preferredPlace,
     preferredDates: arrayToObject(
       form.schedules.map((schedule) => {
         return {

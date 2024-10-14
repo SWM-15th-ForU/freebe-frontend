@@ -113,6 +113,7 @@ declare module "product-types" {
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
+      preferredPlace: string;
       referenceImages: FormImage[];
       totalPrice: number;
       serviceAgreement: boolean;
