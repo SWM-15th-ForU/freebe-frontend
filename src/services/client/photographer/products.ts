@@ -26,7 +26,7 @@ export async function postNewProduct(
     productDescription: form.subtitle,
     basicPrice: form.basicPrice,
     basicPlace: form.basicPlace,
-    preferredPlaceAvailability: form.preferredPlaceAvailability,
+    allowPreferredPlace: form.allowPreferredPlace,
     productComponents: form.items.map((item) => {
       return {
         title: item.title,
@@ -96,13 +96,13 @@ export async function putProductDetails(
     discounts,
     basicPrice,
     basicPlace,
-    preferredPlaceAvailability,
+    allowPreferredPlace,
   } = newDetails;
   const inputData = {
     // TODO: 백엔드 api 명세 검토
     basicPrice,
     basicPlace,
-    preferredPlaceAvailability,
+    allowPreferredPlace,
     productId: parseInt(productId, PARAMETER_DEFAULT_RADIX),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;

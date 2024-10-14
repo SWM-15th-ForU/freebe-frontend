@@ -33,7 +33,7 @@ declare module "product-types" {
     images: Image[];
     basicPrice: number;
     basicPlace: string;
-    preferredPlaceAvailability: boolean;
+    allowPreferredPlace: boolean;
     items: Item[];
     options: Option[];
     discounts: Discount[];
@@ -61,7 +61,7 @@ declare module "product-types" {
     basicPrice: number;
     // TODO: 백엔드 api 명세 검토 필요
     basicPlace: string;
-    preferredPlaceAvailability: boolean;
+    allowPreferredPlace: boolean;
     productComponents: {
       title: string;
       content: string;
