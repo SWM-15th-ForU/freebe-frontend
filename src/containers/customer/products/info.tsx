@@ -17,6 +17,8 @@ const ProductInfo = ({
   items,
   options,
   subtitle,
+  basicPlace,
+  allowPreferredPlace,
   title,
   basicPrice,
   images,
@@ -79,6 +81,14 @@ const ProductInfo = ({
       </div>
       <div className={infoStyles.wrapper}>
         <div className={infoStyles.itemsWrapper}>
+          <ProductItem
+            key="basic-place"
+            title="촬영 장소"
+            content={basicPlace}
+            description={
+              allowPreferredPlace ? "신청 시 희망 장소 요청 가능" : ""
+            }
+          />
           {items.map((item, index) => {
             return <ProductItem key={index} {...item} />;
           })}

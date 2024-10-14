@@ -14,6 +14,8 @@ const NewProduct = () => {
     title: "",
     subtitle: "",
     basicPrice: 0,
+    basicPlace: "",
+    allowPreferredPlace: false,
     items: [
       {
         title: "촬영 시간",
@@ -31,6 +33,13 @@ const NewProduct = () => {
         title: "보정본 추가",
         isFree: false,
         description: "",
+        price: 0,
+      },
+      {
+        title: "포트폴리오 업로드 미동의",
+        isFree: true,
+        description:
+          "해당 옵션을 선택하지 않을 경우, 촬영된 사진이 인스타그램에 업로드되어 포트폴리오로 사용될 수 있습니다.",
         price: 0,
       },
     ],
