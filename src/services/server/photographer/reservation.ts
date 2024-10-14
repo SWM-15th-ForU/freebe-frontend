@@ -45,6 +45,8 @@ export async function getReservationDetail(formId: string): Promise<Details> {
     ...data,
     statusHistory,
     currentStatus,
+    preferredPlace: data.preferredPlace || undefined,
+    shootingPlace: data.shootingPlace || undefined,
     cancelStatus: data.statusBeforeCancellation,
     customer: data.customerDetails,
     photographerMemo: data.photographerMemo || "",

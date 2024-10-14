@@ -96,6 +96,8 @@ export async function getReservationDetails(
     options,
     currentStatus,
     shootingDate: data.shootingDate || undefined,
+    preferredPlace: data.preferredPlace || undefined,
+    shootingPlace: data.shootingPlace || undefined,
     preferredDates: objectToArray(data.preferredDate, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
