@@ -14,6 +14,7 @@ const Info = ({
   productInfo,
   requestMemo,
   totalPrice,
+  profileName,
 }: Omit<CustomerDetails, "currentStatus" | "productTitle">) => {
   return (
     <div className={detailStyles.body}>
@@ -24,7 +25,7 @@ const Info = ({
       />
       <RequestInfos requestMemo={requestMemo} />
       <OptionInfos options={options} basicPrice={basicPrice} />
-      <Confirm totalPrice={totalPrice} />
+      <Confirm totalPrice={totalPrice} profileName={profileName} />
     </div>
   );
 };

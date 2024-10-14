@@ -80,6 +80,7 @@ declare module "reservation-types" {
   };
 
   interface CustomerReservationResponse extends BaseReservationResponse {
+    profileName: string;
     preferredDate: { [key: string]: ReservationDate };
     reservationStatus:
       | Status
@@ -123,6 +124,7 @@ declare module "reservation-types" {
   }
 
   interface CustomerDetails extends BaseDetails {
+    profileName: string;
     totalPrice: number;
   }
 

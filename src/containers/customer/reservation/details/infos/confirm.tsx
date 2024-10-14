@@ -7,13 +7,15 @@ import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import { formatPrice } from "@/utils/parse";
 import { infoStyles } from "./infos.css";
 
-// TODO: 작가 profileName 조회 필요
-const Confirm = ({ totalPrice }: Pick<CustomerDetails, "totalPrice">) => {
+const Confirm = ({
+  totalPrice,
+  profileName,
+}: Pick<CustomerDetails, "totalPrice" | "profileName">) => {
   return (
     <div className={infoStyles.container}>
       <span className={infoStyles.price}>총 {formatPrice(totalPrice)}</span>
       <div className={infoStyles.wrapper}>
-        <Link href="/id/notices">
+        <Link href={`/${profileName}/notices`}>
           <div className={infoStyles.item}>
             <span className={infoStyles.name}>작가 공지사항 확인하기</span>
             <Image
