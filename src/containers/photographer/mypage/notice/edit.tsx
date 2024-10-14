@@ -8,7 +8,8 @@ import Chip from "@/components/common/chip";
 import NoticeItem from "./notice-item";
 import { accordionStyles, editStyles } from "./notice.css";
 
-const SAMPLE_NOTICE = ["환불 규정", "취소 안내"];
+const SAMPLE_NOTICE = ["포트폴리오 사용", "보정본 작업 기간"];
+const REQUIRED_NOTICES_BOUND = 2;
 
 const NoticeEdit = () => {
   const {
@@ -78,35 +79,25 @@ const NoticeEdit = () => {
           ))}
         </div>
       )}
-      {notices.length > 0 ? (
-        <Accordion
-          value={openedAccordion}
-          onChange={setOpenedAccordion}
-          classNames={{
-            ...accordionStyles,
-          }}
-        >
-          {notices.map((notice, index) => (
-            <NoticeItem
-              key={index}
-              notice={notice}
-              index={index}
-              onClickRemove={handleRemoveNotice}
-              errors={errors}
-            />
-          ))}
-        </Accordion>
-      ) : (
-        <div className={editStyles.infoWrapper}>
-          <Image
-            src="/icons/error.svg"
-            alt="공지사항 없음"
-            width={16}
-            height={16}
+      <Accordion
+        value={openedAccordion}
+        onChange={setOpenedAccordion}
+        classNames={{
+          ...accordionStyles,
+        }}
+      >
+        {notices.map((notice, index) => (
+          <NoticeItem
+            key={index}
+            notice={notice}
+            index={index}
+            required={index < REQUIRED_NOTICES_BOUND}
+            onClickRemove={handleRemoveNotice}
+            errors={errors}
           />
-          <span>아직 공지사항을 등록하지 않으셨어요.</span>
-        </div>
-      )}
+        ))}
+      </Accordion>
+
       <CustomButton
         title="추가하기"
         onClick={() => append({ title: "새 공지사항", content: "" })}

@@ -11,11 +11,13 @@ const NoticeItem = ({
   index,
   onClickRemove,
   errors,
+  required,
 }: {
   notice: Notice;
   index: number;
   onClickRemove: (index: number) => void;
   errors: FieldErrors<NoticeForm>;
+  required?: boolean;
 }) => {
   return (
     <Accordion.Item key={index} value={`${index}`}>
@@ -30,17 +32,19 @@ const NoticeItem = ({
               height={12}
             />
           )}
-          <CustomButton
-            styleType="line"
-            title="삭제"
-            size="xs"
-            onClick={() => onClickRemove(index)}
-            style={{
-              marginLeft: "auto",
-              marginRight: 10,
-              padding: "5px 10px",
-            }}
-          />
+          {!required && (
+            <CustomButton
+              styleType="line"
+              title="삭제"
+              size="xs"
+              onClick={() => onClickRemove(index)}
+              style={{
+                marginLeft: "auto",
+                marginRight: 10,
+                padding: "5px 10px",
+              }}
+            />
+          )}
         </div>
       </Accordion.Control>
       <Accordion.Panel>
@@ -49,6 +53,7 @@ const NoticeItem = ({
             title="제목"
             formField={`notices.${index}.title`}
             container={{ margin: 0 }}
+            disabled={required}
           />
           {errors.notices?.[index]?.title && (
             <span className={editStyles.error}>
