@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
+import popToast from "@/components/common/toast";
+import { putReservationDetails } from "@/services/client/photographer/reservations";
+import { responseHandler } from "@/services/common/error";
 import { progressStatus } from "@/constants/common/reservation";
 import { isActiveStatus } from "@/utils/type-guards";
 import { useDisclosure } from "@mantine/hooks";
@@ -17,19 +21,22 @@ import DateModal from "./date-modal";
 import ShootingPlace from "./shooting-place";
 
 const Confirm = () => {
+  const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
   const [cancelOpened, { open: openCancel, close: closeCancel }] =
     useDisclosure(false);
   const [dateOpened, { open: openDate, close: closeDate }] =
     useDisclosure(false);
-  const { watch } = useFormContext<Details>();
-  const [options, currentStatus, shootingDate, basicPrice] = watch([
-    "options",
-    "currentStatus",
-    "shootingDate",
-    "basicPrice",
-  ]);
+  const { watch, getValues } = useFormContext<Details>();
+  const [options, currentStatus, shootingDate, shootingPlace, basicPrice] =
+    watch([
+      "options",
+      "currentStatus",
+      "shootingDate",
+      "shootingPlace",
+      "basicPrice",
+    ]);
   const prices = options.map((option) => option.price);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -40,8 +47,24 @@ const Confirm = () => {
     }
   }, [prices, totalPrice, basicPrice]);
 
-  function handlePutNewDetails() {
-    setIsEditing(false);
+  async function handlePutNewDetails() {
+    const reservationNumber = getValues("reservationNumber");
+    await responseHandler(
+      putReservationDetails({
+        reservationNumber,
+        shootingDate,
+        shootingPlace,
+        currentStatus,
+      }),
+      () => {
+        setIsEditing(false);
+        popToast("수정사항이 반영되었습니다.");
+        router.refresh();
+      },
+      () => {
+        popToast("다시 시도해주세요.", "수정에 실패했습니다.", true);
+      },
+    );
   }
 
   return (
