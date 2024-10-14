@@ -2,6 +2,19 @@ import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+export const captionStyle = style([
+  texts["caption-01"],
+  sprinkles({
+    color: "text-03",
+  }),
+  {
+    display: "flex",
+    alignItems: "flex-start",
+    gap: 8,
+    lineHeight: "20px",
+  },
+]);
+
 export const bottomSheetStyles = styleVariants({
   container: {
     display: "flex",
