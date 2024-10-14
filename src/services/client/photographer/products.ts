@@ -21,9 +21,12 @@ export async function postNewProduct(
 ) {
   const formData = new FormData();
   const inputData = {
+    // TODO: 백엔드 api 명세 검토
     productTitle: form.title,
-    basicPrice: form.basicPrice,
     productDescription: form.subtitle,
+    basicPrice: form.basicPrice,
+    basicPlace: form.basicPlace,
+    preferredPlaceAvailability: form.preferredPlaceAvailability,
     productComponents: form.items.map((item) => {
       return {
         title: item.title,
@@ -85,9 +88,21 @@ export async function putProductDetails(
   productId: string,
 ) {
   const formData = new FormData();
-  const { title, subtitle, items, options, discounts, basicPrice } = newDetails;
-  const inputData = {
+  const {
+    title,
+    subtitle,
+    items,
+    options,
+    discounts,
     basicPrice,
+    basicPlace,
+    preferredPlaceAvailability,
+  } = newDetails;
+  const inputData = {
+    // TODO: 백엔드 api 명세 검토
+    basicPrice,
+    basicPlace,
+    preferredPlaceAvailability,
     productId: parseInt(productId, PARAMETER_DEFAULT_RADIX),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;

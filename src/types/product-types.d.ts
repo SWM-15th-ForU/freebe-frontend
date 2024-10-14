@@ -32,6 +32,8 @@ declare module "product-types" {
     subtitle: string;
     images: Image[];
     basicPrice: number;
+    basicPlace: string;
+    preferredPlaceAvailability: boolean;
     items: Item[];
     options: Option[];
     discounts: Discount[];
@@ -57,6 +59,9 @@ declare module "product-types" {
     productDescription: string | null;
     productImageUrls: string[];
     basicPrice: number;
+    // TODO: 백엔드 api 명세 검토 필요
+    basicPlace: string;
+    preferredPlaceAvailability: boolean;
     productComponents: {
       title: string;
       content: string;

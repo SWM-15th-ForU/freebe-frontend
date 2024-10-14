@@ -43,12 +43,16 @@ export async function getCurrentProductDetails(
     productComponents,
     productDiscounts,
     productImageUrls,
+    basicPlace,
+    preferredPlaceAvailability,
   } = data;
 
   const currentDetails: ProductFormdata = {
     title: productTitle,
     subtitle: productDescription || "",
     basicPrice,
+    basicPlace,
+    preferredPlaceAvailability,
     items: productComponents.map((component) => {
       return {
         ...component,
