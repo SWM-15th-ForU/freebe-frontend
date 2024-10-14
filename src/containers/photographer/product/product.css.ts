@@ -13,7 +13,8 @@ export const bannerStyles = styleVariants({
       borderRadius: 9,
       borderWidth: 1,
       borderStyle: "solid",
-
+      maxWidth: 300,
+      width: "100%",
       display: "flex",
       flexDirection: "column",
     },
@@ -110,6 +111,7 @@ export const listStyles = styleVariants({
   body: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    justifyItems: "center",
     gap: 10,
     minWidth: "100%",
   },
