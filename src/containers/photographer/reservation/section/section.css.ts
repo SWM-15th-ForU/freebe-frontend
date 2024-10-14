@@ -52,6 +52,9 @@ export const sectionStyles = styleVariants({
       marginBottom: 20,
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
+      display: "flex",
+      flexDirection: "column",
+      gap: 30,
     },
   ],
   scheduleWrapper: [
@@ -90,7 +93,6 @@ export const sectionStyles = styleVariants({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    margin: "28px 0px",
     gap: 20,
   },
   buttonWrapper: {
