@@ -1,6 +1,7 @@
 import { Metadata } from "next";
+import ServiceFooter from "@/containers/common/footer";
 import { METADATA } from "@/constants/metadata";
-import { contentStyle, layoutStyle } from "./customer.css";
+import { contentStyle, layoutStyle } from "../../customer.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -8,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const MainLayout = ({
+const CustomerLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -16,8 +17,9 @@ const MainLayout = ({
   return (
     <div className={layoutStyle}>
       <div className={contentStyle}>{children}</div>
+      <ServiceFooter />
     </div>
   );
 };
 
-export default MainLayout;
+export default CustomerLayout;
