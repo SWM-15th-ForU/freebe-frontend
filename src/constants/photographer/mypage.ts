@@ -33,3 +33,6 @@ export const defaultLinks: LinkType[] = [
   // { name: "일정 확인하기 ", src: "/schedules" },
   // { name: "자주 묻는 질문", src: "/faqs" },
 ];
+
+export const SAMPLE_NOTICE = ["포트폴리오 사용", "보정본 작업 기간"];
+export const REQUIRED_NOTICES_BOUND = 2;

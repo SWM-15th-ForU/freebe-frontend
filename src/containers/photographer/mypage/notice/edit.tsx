@@ -3,13 +3,14 @@ import Image from "next/image";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { NoticeForm } from "profile-types";
 import { Accordion } from "@mantine/core";
+import {
+  SAMPLE_NOTICE,
+  REQUIRED_NOTICES_BOUND,
+} from "@/constants/photographer/mypage";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import Chip from "@/components/common/chip";
 import NoticeItem from "./notice-item";
 import { accordionStyles, editStyles } from "./notice.css";
-
-const SAMPLE_NOTICE = ["포트폴리오 사용", "보정본 작업 기간"];
-const REQUIRED_NOTICES_BOUND = 2;
 
 const NoticeEdit = () => {
   const {
