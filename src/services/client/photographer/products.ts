@@ -22,6 +22,8 @@ export async function postNewProduct(
   const inputData = {
     productTitle: form.title,
     basicPrice: form.basicPrice,
+    // TODO: 백엔드 상품 상세 수정 api 명세 검토
+    notices: form.notices,
     productDescription: form.subtitle,
     productComponents: form.items.map((item) => {
       return {
@@ -84,9 +86,12 @@ export async function putProductDetails(
   productId: string,
 ) {
   const formData = new FormData();
-  const { title, subtitle, items, options, discounts, basicPrice } = newDetails;
+  const { title, subtitle, items, options, discounts, basicPrice, notices } =
+    newDetails;
   const inputData = {
     basicPrice,
+    // TODO: 백엔드 상품 상세 수정 api 명세 검토
+    notices,
     productId: parseInt(productId, 10),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;
