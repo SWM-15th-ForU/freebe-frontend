@@ -33,7 +33,7 @@ const SubmitForm = ({
     watch,
     formState: { touchedFields },
   } = useFormContext<reservation.FormType>();
-  const [totalPrice, noticeAgreement] = watch([>>>>>>> develop
+  const [totalPrice, noticeAgreement] = watch([
     "totalPrice",
     "noticeAgreement",
   ]);
