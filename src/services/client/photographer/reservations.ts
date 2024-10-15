@@ -96,7 +96,7 @@ export async function putReservationDetails(
     currentReservationStatus: currentStatus,
   };
   await apiClient.put(
-    `photographer/reservation/shooting-date/${reservationNumber}`,
+    `photographer/reservation/shooting-info/${reservationNumber}`,
     {
       json: body,
     },
