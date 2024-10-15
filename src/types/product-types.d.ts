@@ -1,5 +1,10 @@
 type Description = string | null;
 
+interface Notice {
+  title: string;
+  content: string;
+}
+
 declare module "product-types" {
   type Status = "ACTIVE" | "INACTIVE";
   interface Item {
@@ -35,6 +40,7 @@ declare module "product-types" {
     items: Item[];
     options: Option[];
     discounts: Discount[];
+    notices: Notice[];
   }
 
   interface ProductFormdata extends Omit<Product, "images"> {}
@@ -73,6 +79,8 @@ declare module "product-types" {
       discountValue: number;
       description: Description;
     }[];
+    // TODO: 백엔드 상품 상세 조회 api 명세 검토 필요
+    notices: Notice[];
   }
 
   namespace reservation {
