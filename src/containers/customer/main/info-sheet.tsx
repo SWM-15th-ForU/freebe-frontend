@@ -28,9 +28,11 @@ const InfoSheet = ({
         <div className={sheetStyles.divider} style={{ paddingTop: 0 }}>
           <Profile id={profileName} img={profileImg} />
         </div>
-        <div className={sheetStyles.divider}>
-          <span className={sheetStyles.message}>{message}</span>
-        </div>
+        {message !== "" && (
+          <div className={sheetStyles.divider}>
+            <span className={sheetStyles.message}>{message}</span>
+          </div>
+        )}
         <div
           className={sheetStyles.buttonWrapper}
           style={{ pointerEvents: preview ? "none" : "auto" }}

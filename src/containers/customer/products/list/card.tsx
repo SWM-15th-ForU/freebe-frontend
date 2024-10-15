@@ -28,7 +28,10 @@ const ProductCard = ({
         </div>
         <div className={cardStyles.wrapper}>
           <span className={cardStyles.title}>{title}</span>
-          <span className={cardStyles.price}>{formatPrice(basicPrice)}</span>
+          <span className={cardStyles.price}>
+            {formatPrice(basicPrice)}
+            {basicPrice !== 0 && "~"}
+          </span>
         </div>
       </Link>
     </div>

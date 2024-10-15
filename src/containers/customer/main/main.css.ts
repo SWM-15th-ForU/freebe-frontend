@@ -41,7 +41,11 @@ export const sheetStyles = styleVariants({
       gap: 10,
     },
   ],
-  message: [texts["headline-03"], sprinkles({ color: "text-01" })],
+  message: [
+    texts["headline-03"],
+    sprinkles({ color: "text-01" }),
+    { whiteSpace: "pre-wrap" },
+  ],
 });
 
 export const imageStyles = styleVariants({
