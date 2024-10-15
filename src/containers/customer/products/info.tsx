@@ -10,8 +10,7 @@ import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
 import { commonTabsStyles } from "@/styles/mantine.css";
 import { formatPrice } from "@/utils/parse";
-import ProductItem from "./info/product-item";
-import ProductOption from "./info/product-option";
+import BasicInfo from "./basic-info";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
 
 const TABS_ID = {
@@ -81,21 +80,7 @@ const ProductInfo = ({
           <Tabs.Tab value={TABS_ID.notices}>촬영 공지사항</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value={TABS_ID.basic}>
-          <div className={infoStyles.wrapper}>
-            <div className={infoStyles.itemsWrapper}>
-              {items.map((item, index) => {
-                return <ProductItem key={index} {...item} />;
-              })}
-            </div>
-          </div>
-          <div className={infoStyles.wrapper}>
-            <p className={infoStyles.subtitle}>추가 옵션</p>
-            <div className={infoStyles.itemsWrapper}>
-              {options.map((option, index) => {
-                return <ProductOption key={index} {...option} />;
-              })}
-            </div>
-          </div>
+          <BasicInfo items={items} options={options} />
         </Tabs.Panel>
         <Tabs.Panel value={TABS_ID.notices}>
           <div />
