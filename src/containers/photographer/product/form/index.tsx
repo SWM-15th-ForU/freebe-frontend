@@ -11,7 +11,6 @@ import ItemFieldArray from "./field/item-field-array";
 import ImagesInput from "./field/image-input";
 import OptionFieldArray from "./field/option-field-array";
 import NoticeFieldArray from "./field/notice-field-array";
-import DiscountFieldArray from "./field/discount-field-array";
 import { formStyles } from "./form.css";
 
 const ProductForm = ({
@@ -198,10 +197,9 @@ const ProductForm = ({
           <div className={formStyles.split}>
             <OptionFieldArray disabled={!isEditing} />
           </div>
-          <div className={formStyles.split}>
+          <div style={{ width: "100%", minWidth: "fit-content" }}>
             <NoticeFieldArray disabled={!isEditing} />
           </div>
-          <DiscountFieldArray disabled={!isEditing} />
         </div>
         {isEditing && (
           <CustomButton
