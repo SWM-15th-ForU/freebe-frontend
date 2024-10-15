@@ -1,4 +1,4 @@
-import { Item, Option, reservation } from "product-types";
+import { Product, reservation } from "product-types";
 import {
   CustomerDetails,
   CustomerReservationResponse,
@@ -22,14 +22,18 @@ interface FormDataResponse {
     price: number;
     description: string | null;
   }[];
+  basicPlace: string;
+  allowPreferredPlace: boolean;
 }
 
-export async function getFormBase(productId: string): Promise<
-  Pick<reservation.FormType, "name" | "contact" | "instagram"> & {
-    options: Option[];
-    items: Item[];
-    basicPrice: number;
-  }
+export async function getFormBase(
+  productId: string,
+): Promise<
+  Pick<reservation.FormType, "name" | "contact" | "instagram"> &
+    Pick<
+      Product,
+      "options" | "items" | "basicPlace" | "basicPrice" | "allowPreferredPlace"
+    >
 > {
   const response = await api
     .get(`customer/reservation/form/${productId}`)
@@ -37,6 +41,7 @@ export async function getFormBase(productId: string): Promise<
   const { data } = response;
 
   return {
+    ...data,
     name: data.name,
     contact: data.phoneNumber,
     basicPrice: data.basicPrice,
@@ -90,6 +95,8 @@ export async function getReservationDetails(
     options,
     currentStatus,
     shootingDate: data.shootingDate || undefined,
+    preferredPlace: data.preferredPlace || undefined,
+    shootingPlace: data.shootingPlace || undefined,
     preferredDates: objectToArray(data.preferredDate, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
@@ -105,7 +112,7 @@ export async function getReservationDetails(
       options
         .map((option) => option.price)
         .reduce((sum: number, price: number) => sum + price, 0),
-    notices: objectToArray(data.notices, (arr) =>
+    notices: objectToArray(data.photoNotice, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
   };

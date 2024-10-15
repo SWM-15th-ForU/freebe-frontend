@@ -36,6 +36,8 @@ const ProductForm = ({
     basicPrice: z.coerce
       .number()
       .nonnegative({ message: "기본 가격을 입력해 주세요." }),
+    basicPlace: z.string().min(1, { message: "촬영 장소를 입력해 주세요." }),
+    allowPreferredPlace: z.boolean(),
     items: z.array(
       z.object({
         title: z

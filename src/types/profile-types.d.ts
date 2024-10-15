@@ -17,7 +17,6 @@ declare module "profile-types" {
     linkInfos: { linkTitle: string; linkUrl: string }[];
   }
 
-  // TODO: 백엔드 api 명세 확인 필요
   interface PhotographerProfileResponse extends ProfileResponse {
     contact: string;
   }

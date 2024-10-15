@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { Details } from "reservation-types";
 import { reservation } from "product-types";
 import { Modal } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import ScheduleCalender from "@/components/calender/schedule-calender";
-import popToast from "@/components/common/toast";
 import InputStyles from "@/components/inputs/input.css";
 import { modalStyles } from "@/containers/customer/products/products.css";
-import { responseHandler } from "@/services/common/error";
-import { putShootingDate } from "@/services/client/photographer/reservations";
 import {
   createDateObjects,
   formatDate,
@@ -28,20 +24,16 @@ const DateModal = ({
   opened: boolean;
   close: () => void;
 }) => {
-  const router = useRouter();
-  const { watch } = useFormContext<Details>();
+  const { watch, setValue } = useFormContext<Details>();
   const [dateValue, setDateValue] = useState<reservation.ScheduleListType>({
     date: null,
     endTime: null,
     startTime: null,
   });
-  const [reservationNumber, shootingDate, preferredDates, currentStatus] =
-    watch([
-      "reservationNumber",
-      "shootingDate",
-      "preferredDates",
-      "currentStatus",
-    ]);
+  const [shootingDate, preferredDates] = watch([
+    "shootingDate",
+    "preferredDates",
+  ]);
 
   useEffect(() => {
     if (shootingDate) {
@@ -61,41 +53,29 @@ const DateModal = ({
       dateValue.endTime !== null &&
       dateValue.startTime !== null
     ) {
-      await responseHandler(
-        putShootingDate(
-          reservationNumber,
-          {
-            date: formatDateString(dateValue.date),
-            startTime: parseTimeRequest(dateValue.startTime, "00:00"),
-            endTime: parseTimeRequest(dateValue.endTime, "24:00"),
-          },
-          currentStatus,
-        ),
-        () => {
-          close();
-          popToast("일정이 변경되었습니다.");
-          router.refresh();
-        },
-        () => {
-          popToast("다시 시도해주세요.", "수정에 실패했습니다.", true);
-        },
-      );
+      setValue("shootingDate", {
+        date: formatDateString(dateValue.date),
+        startTime: parseTimeRequest(dateValue.startTime, "00:00"),
+        endTime: parseTimeRequest(dateValue.endTime, "23:59"),
+      });
+      close();
     }
   }
 
   return (
     <Modal
       centered
+      title="촬영 일정을 변경해주세요."
       opened={opened}
       onClose={close}
       classNames={{ ...modalStyles, content: customModalStyles.dateContent }}
     >
-      <div className={sectionStyles.title}>촬영 일정을 변경해주세요.</div>
       <div className={customModalStyles.dateSelect}>
         <ScheduleCalender value={dateValue} setValue={setDateValue} size="md" />
         <div className={customModalStyles.preferredDate}>
-          <div className={sectionStyles.message}>후보 일정에서 선택하기</div>
-
+          {preferredDates.length > 0 && (
+            <div className={sectionStyles.message}>후보 일정에서 선택하기</div>
+          )}
           {preferredDates.map((value, index) => (
             <div
               key={`${index} ${value.date}`}

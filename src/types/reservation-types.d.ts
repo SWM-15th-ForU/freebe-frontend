@@ -25,7 +25,6 @@ declare module "reservation-types" {
     quantity: number;
     price: number;
   }
-
   interface BaseDetails {
     currentStatus: Status;
     cancelStatus?: Status;
@@ -33,7 +32,10 @@ declare module "reservation-types" {
     productInfo: { title: string; content: string }[];
     preferredDates: ReservationDate[];
     shootingDate?: ReservationDate;
+    preferredPlace?: string;
+    shootingPlace?: string;
     basicPrice: number;
+    basicPlace: string;
     options: Option[];
     notices: Notice[];
     requestMemo: string;
@@ -44,9 +46,12 @@ declare module "reservation-types" {
     statusBeforeCancellation?: Status;
     photoInfo: { [key: string]: string };
     photoOptions: { [key: string]: Option };
-    notices: { [key: string]: Notice };
+    preferredPlace: null | string;
+    photoNotice: { [key: string]: Notice };
     shootingDate: null | ReservationDate;
+    shootingPlace: null | string;
     basicPrice: number;
+    basicPlace: string;
   }
 
   type ActiveStatus =

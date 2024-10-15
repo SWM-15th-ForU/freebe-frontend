@@ -30,35 +30,13 @@ export async function getProductList(
   });
 }
 
-// interface ProductDetailResponseData {
-//   productTitle: string;
-//   productDescription: string;
-//   productImageUrls: string[];
-//   basicPrice: number;
-//   productComponents: {
-//     title: string;
-//     content: string;
-//     description: null | string;
-//   }[];
-//   productOptions: {
-//     title: string;
-//     price: number;
-//     description: null | string;
-//   }[];
-//   productDiscounts: {
-//     title: string;
-//     discountType: "RATE" | "AMOUNT";
-//     discountValue: number;
-//     description: null | string;
-//   }[];
-// }
-
 export async function getProductDetails(productId: string): Promise<Product> {
   const response = await api
     .get(`customer/product/details/${productId}`)
     .json<{ data: ProductDetailResponseData }>();
   const { data } = response;
   return {
+    ...data,
     title: data.productTitle,
     subtitle: data.productDescription || "",
     basicPrice: data.basicPrice,

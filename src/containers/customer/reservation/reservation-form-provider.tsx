@@ -24,6 +24,7 @@ const ReservationFormProvider = ({
     instagram: "",
     schedules: [],
     options: [],
+    preferredPlace: "",
     referenceImages: [],
     memo: "",
     noticeAgreement: false,
@@ -59,6 +60,7 @@ const ReservationFormProvider = ({
     schedules: z.array(scheduleListSchema).optional(),
     options: z.array(selectedOptionSchema).optional(),
     memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
+    preferredPlace: z.string(),
     referenceImages: z
       .array(
         z.object({

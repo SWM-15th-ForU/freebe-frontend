@@ -52,6 +52,9 @@ export const sectionStyles = styleVariants({
       marginBottom: 20,
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
+      display: "flex",
+      flexDirection: "column",
+      gap: 20,
     },
   ],
   scheduleWrapper: [
@@ -75,22 +78,19 @@ export const sectionStyles = styleVariants({
       overflowX: "scroll",
     },
   ],
-  optionWrapper: [
-    baseWrapper,
-    { gap: 10, flexDirection: "column", padding: "10px 0px" },
-  ],
+  optionWrapper: [baseWrapper, { gap: 10, flexDirection: "column" }],
   title: [
     texts["headline-02"],
     sprinkles({ color: "text-02" }),
     { minWidth: "fit-content" },
   ],
   price: [texts["headline-02"], sprinkles({ color: "blue" })],
+  content: [texts["headline-03"], sprinkles({ color: "blue" })],
   message: [texts["headline-03"], sprinkles({ color: "text-point" })],
   priceWrapper: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    margin: "28px 0px",
     gap: 20,
   },
   buttonWrapper: {
@@ -132,8 +132,16 @@ export const fieldStyles = styleVariants({
     width: "100%",
     gap: 12,
     display: "flex",
+    justifyContent: "space-between",
+    margin: "8px 0px",
     position: "relative",
   },
+  name: [
+    texts["headline-03"],
+    sprinkles({ color: "text-03" }),
+    { minWidth: 60 },
+  ],
+  content: [texts["headline-03"], sprinkles({ color: "blue" })],
 });
 
 export const titleStyles = styleVariants({

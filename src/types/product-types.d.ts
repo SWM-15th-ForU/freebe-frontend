@@ -37,6 +37,8 @@ declare module "product-types" {
     subtitle: string;
     images: Image[];
     basicPrice: number;
+    basicPlace: string;
+    allowPreferredPlace: boolean;
     items: Item[];
     options: Option[];
     discounts: Discount[];
@@ -63,6 +65,8 @@ declare module "product-types" {
     productDescription: string | null;
     productImageUrls: string[];
     basicPrice: number;
+    basicPlace: string;
+    allowPreferredPlace: boolean;
     productComponents: {
       title: string;
       content: string;
@@ -115,6 +119,7 @@ declare module "product-types" {
       schedules: ScheduleListType[];
       options: SelectedOption[];
       memo: string;
+      preferredPlace: string;
       referenceImages: FormImage[];
       totalPrice: number;
       noticeAgreement: boolean;

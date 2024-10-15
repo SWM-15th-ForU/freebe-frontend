@@ -1,7 +1,7 @@
 import {
   ActiveStatus,
+  Details,
   Infos,
-  ReservationDate,
   ReservationList,
   ReservationListResponse,
   ReservationSearchParams,
@@ -82,18 +82,25 @@ export async function putReservationStatus(
   });
 }
 
-export async function putShootingDate(
-  id: number,
-  shootingDate: ReservationDate,
-  currentStatus: Status,
+export async function putReservationDetails(
+  details: Pick<
+    Details,
+    "reservationNumber" | "currentStatus" | "shootingDate" | "shootingPlace"
+  >,
 ) {
+  const { reservationNumber, currentStatus, shootingDate, shootingPlace } =
+    details;
   const body = {
-    newShootingDate: shootingDate,
+    newShootingDate: shootingDate || null,
+    newShootingPlace: shootingPlace || null,
     currentReservationStatus: currentStatus,
   };
-  await apiClient.put(`photographer/reservation/shooting-date/${id}`, {
-    json: body,
-  });
+  await apiClient.put(
+    `photographer/reservation/shooting-info/${reservationNumber}`,
+    {
+      json: body,
+    },
+  );
 }
 
 export async function putMemo(id: number, memo: string) {

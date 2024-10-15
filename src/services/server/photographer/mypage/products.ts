@@ -43,6 +43,8 @@ export async function getCurrentProductDetails(
     productComponents,
     productDiscounts,
     productImageUrls,
+    basicPlace,
+    allowPreferredPlace,
     notices,
   } = data;
 
@@ -50,6 +52,8 @@ export async function getCurrentProductDetails(
     title: productTitle,
     subtitle: productDescription || "",
     basicPrice,
+    basicPlace,
+    allowPreferredPlace,
     notices,
     items: productComponents.map((component) => {
       return {

@@ -2,30 +2,36 @@ import { CustomerDetails } from "reservation-types";
 import { detailStyles } from "./detail.css";
 import ProductInfos from "./infos/product";
 import OptionInfos from "./infos/option";
-import ScheduleInfos from "./infos/schedule";
 import RequestInfos from "./infos/request";
 import Confirm from "./infos/confirm";
+import ShootingInfos from "./infos/shooting";
 
 const Info = ({
   basicPrice,
+  basicPlace,
   shootingDate,
   options,
   preferredDates,
   productInfo,
   requestMemo,
   totalPrice,
-  profileName,
+  preferredPlace,
+  shootingPlace,
 }: Omit<CustomerDetails, "currentStatus" | "productTitle">) => {
   return (
     <div className={detailStyles.body}>
-      <ProductInfos productInfo={productInfo} />
-      <ScheduleInfos
+      <ProductInfos basicPlace={basicPlace} productInfo={productInfo} />
+      <RequestInfos
+        requestMemo={requestMemo}
         preferredDates={preferredDates}
-        shootingDate={shootingDate}
+        preferredPlace={preferredPlace}
       />
-      <RequestInfos requestMemo={requestMemo} />
+      <ShootingInfos
+        shootingDate={shootingDate}
+        shootingPlace={shootingPlace}
+      />
       <OptionInfos options={options} basicPrice={basicPrice} />
-      <Confirm totalPrice={totalPrice} profileName={profileName} />
+      <Confirm totalPrice={totalPrice} />
     </div>
   );
 };
