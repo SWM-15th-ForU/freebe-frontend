@@ -1,4 +1,4 @@
-import { Photographer, ProfileResponse } from "profile-types";
+import { Notice, Photographer, ProfileResponse } from "profile-types";
 import { api } from "../core";
 
 export async function getPhotographerProfile(
@@ -16,4 +16,14 @@ export async function getPhotographerProfile(
       return { name: link.linkTitle, src: link.linkUrl };
     }),
   };
+}
+
+// TODO: 불필요한 로직 삭제
+export async function getPhotographerNotices(
+  productId: string,
+): Promise<Notice[]> {
+  const { data } = await api
+    .get(`customer/notice/${productId}`)
+    .json<{ data: Notice[] | null }>();
+  return data || [];
 }

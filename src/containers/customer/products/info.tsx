@@ -5,13 +5,20 @@ import { Product } from "product-types";
 import { PageParams } from "route-parameters";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure } from "@mantine/hooks";
-import { Modal } from "@mantine/core";
+import { Modal, Tabs } from "@mantine/core";
+import QueryProviders from "@/containers/common/query-providers";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
+import { commonTabsStyles } from "@/styles/mantine.css";
 import { formatPrice } from "@/utils/parse";
-import ProductItem from "./info/product-item";
-import ProductOption from "./info/product-option";
+import BasicInfo from "./basic-info";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
+import NoticeList from "../notice";
+
+const TABS_ID = {
+  basic: "product-basic",
+  notices: "product-notices",
+};
 
 const ProductInfo = ({
   items,
@@ -55,15 +62,7 @@ const ProductInfo = ({
       >
         {images.map((image, index) => {
           return (
-            <Carousel.Slide
-              key={index}
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "100vw",
-                backgroundColor: "#d9d9d9",
-              }}
-            >
+            <Carousel.Slide key={index} className={infoStyles.slide}>
               <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
             </Carousel.Slide>
           );
@@ -79,29 +78,27 @@ const ProductInfo = ({
         </div>
         <p className={infoStyles.content}>{subtitle}</p>
       </div>
-      <div className={infoStyles.wrapper}>
-        <div className={infoStyles.itemsWrapper}>
-          <ProductItem
-            key="basic-place"
-            title="촬영 장소"
-            content={basicPlace}
-            description={
-              allowPreferredPlace ? "신청 시 희망 장소 요청 가능" : ""
-            }
+      <Tabs defaultValue={TABS_ID.basic} classNames={{ ...commonTabsStyles }}>
+        <Tabs.List>
+          <Tabs.Tab value={TABS_ID.basic}>상품 정보</Tabs.Tab>
+          <Tabs.Tab value={TABS_ID.notices}>촬영 공지사항</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value={TABS_ID.basic}>
+          <BasicInfo
+            items={items}
+            options={options}
+            basicPlace={basicPlace}
+            allowPreferredPlace={allowPreferredPlace}
           />
-          {items.map((item, index) => {
-            return <ProductItem key={index} {...item} />;
-          })}
-        </div>
-      </div>
-      <div className={infoStyles.wrapper}>
-        <p className={infoStyles.subtitle}>추가 옵션</p>
-        <div className={infoStyles.itemsWrapper}>
-          {options.map((option, index) => {
-            return <ProductOption key={index} {...option} />;
-          })}
-        </div>
-      </div>
+        </Tabs.Panel>
+        <Tabs.Panel value={TABS_ID.notices}>
+          <div className={infoStyles.wrapper}>
+            <QueryProviders>
+              <NoticeList />
+            </QueryProviders>
+          </div>
+        </Tabs.Panel>
+      </Tabs>
       <BottomButton
         title="예약 시작하기"
         onClick={open}

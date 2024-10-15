@@ -16,7 +16,7 @@ jobs:
         run: node -v
 
       - name: Install Dependencies # 의존 파일 설치
-        run: npm install
+        run: npm install --force
 
       - name: Set environment variables # 환경변수 설정
         run: echo "NEXT_PUBLIC_API_DOMAIN="https://api.freebe.co.kr/"" >> $GITHUB_ENV

@@ -46,5 +46,6 @@ export async function getProductDetails(productId: string): Promise<Product> {
       return { ...option, isFree: option.price === 0 };
     }),
     discounts: normalizeDescription(data.productDiscounts),
+    notices: data.notices,
   };
 }

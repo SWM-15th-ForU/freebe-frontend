@@ -5,6 +5,11 @@ interface BaseInfos {
   reservationSubmissionDate: string;
 }
 
+interface Notice {
+  title: string;
+  content: string;
+}
+
 interface DateFixed extends BaseInfos {
   reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
   shootingDate: ReservationDate;
@@ -32,6 +37,7 @@ declare module "reservation-types" {
     basicPrice: number;
     basicPlace: string;
     options: Option[];
+    notices: Notice[];
     requestMemo: string;
   }
 
@@ -41,6 +47,7 @@ declare module "reservation-types" {
     photoInfo: { [key: string]: string };
     photoOptions: { [key: string]: Option };
     preferredPlace: null | string;
+    notices: { [key: string]: Notice };
     shootingDate: null | ReservationDate;
     shootingPlace: null | string;
     basicPrice: number;
@@ -85,6 +92,7 @@ declare module "reservation-types" {
   };
 
   interface CustomerReservationResponse extends BaseReservationResponse {
+    profileName: string;
     preferredDate: { [key: string]: ReservationDate };
     reservationStatus:
       | Status
@@ -128,6 +136,7 @@ declare module "reservation-types" {
   }
 
   interface CustomerDetails extends BaseDetails {
+    profileName: string;
     totalPrice: number;
   }
 

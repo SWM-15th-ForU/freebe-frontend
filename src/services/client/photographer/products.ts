@@ -22,6 +22,7 @@ export async function postNewProduct(
   const formData = new FormData();
   const inputData = {
     productTitle: form.title,
+    notices: form.notices,
     productDescription: form.subtitle,
     basicPrice: form.basicPrice,
     basicPlace: form.basicPlace,
@@ -94,11 +95,13 @@ export async function putProductDetails(
     options,
     discounts,
     basicPrice,
+    notices,
     basicPlace,
     allowPreferredPlace,
   } = newDetails;
   const inputData = {
     basicPrice,
+    notices,
     basicPlace,
     allowPreferredPlace,
     productId: parseInt(productId, PARAMETER_DEFAULT_RADIX),

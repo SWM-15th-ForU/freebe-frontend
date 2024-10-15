@@ -1,14 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormImage, ProductFormdata } from "product-types";
+import { FormImage, Notice, ProductFormdata } from "product-types";
 import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
 import { responseHandler } from "@/services/common/error";
 import ProductForm from "./form";
 import { formStyles } from "./product.css";
 
-const NewProduct = () => {
+const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
   const router = useRouter();
   const defaultValues: ProductFormdata = {
     title: "",
@@ -51,6 +51,7 @@ const NewProduct = () => {
         description: "",
       },
     ],
+    notices: baseNotice,
   };
 
   async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
