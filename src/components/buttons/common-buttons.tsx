@@ -18,7 +18,7 @@ interface ButtonProps
 
 interface ButtonOptions {
   size: "xs" | "sm" | "md" | "lg";
-  styleType: "primary" | "secondary" | "line";
+  styleType: "primary" | "secondary" | "line" | "danger";
   link?: string;
 }
 

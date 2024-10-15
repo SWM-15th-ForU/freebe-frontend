@@ -1,5 +1,6 @@
 import { FormImage, ProductFormdata } from "product-types";
 import { FilterItemType } from "common-types";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import apiClient from "../core";
 
 export async function getProductTitles(): Promise<FilterItemType[]> {
@@ -90,7 +91,7 @@ export async function putProductDetails(
   const inputData = {
     basicPrice,
     notices,
-    productId: parseInt(productId, 10),
+    productId: parseInt(productId, PARAMETER_DEFAULT_RADIX),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;
     }),

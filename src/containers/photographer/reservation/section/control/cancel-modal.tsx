@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
@@ -24,7 +25,7 @@ const CancelModal = ({
   async function handleCancel() {
     await responseHandler(
       putReservationStatus(
-        parseInt(formId, 10),
+        parseInt(formId, PARAMETER_DEFAULT_RADIX),
         "CANCELLED_BY_PHOTOGRAPHER",
         cancellationReason,
       ),

@@ -4,6 +4,7 @@ import apiClient from "../core";
 export async function postProfile(form: Join) {
   const body = {
     profileName: form.profileName,
+    contact: form.contact,
     termsOfServiceAgreement: form.serviceAgreement,
     privacyPolicyAgreement: form.privacyAgreement,
     marketingAgreement: form.marketingAgreement,

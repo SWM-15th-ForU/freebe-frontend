@@ -1,3 +1,4 @@
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { PRODUCT_PROGRESS } from "@/constants/customer/product";
 import SubmitForm from "@/containers/customer/reservation/submit-form";
 import ProductHeaderLayout from "@/containers/ui/product-header-layout";
@@ -23,7 +24,7 @@ const SubmitPage = async ({
     >
       <SubmitForm
         profileName={params.profileName}
-        productId={parseInt(params.productId, 10)}
+        productId={parseInt(params.productId, PARAMETER_DEFAULT_RADIX)}
         {...result}
       />
     </ProductHeaderLayout>

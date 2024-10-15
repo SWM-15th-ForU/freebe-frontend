@@ -4,7 +4,8 @@ import apiClient from "../../core";
 export async function putProfile(form: PhotographerForm) {
   const formData = new FormData();
   const inputData = {
-    introductionContent: form.message,
+    contact: form.contact,
+    introductionContent: (form.message !== "" && form.message) || null,
     linkInfos: form.linkInfos.map((link) => {
       return {
         linkTitle: link.name,
@@ -35,4 +36,20 @@ export async function putProfile(form: PhotographerForm) {
   await apiClient.put("photographer/profile", {
     body: formData,
   });
+}
+
+async function deleteCookiesAfterLeave(retryCount: number) {
+  const MAX_RETRY_COUNT = 5;
+  try {
+    await fetch("/auth/role", { method: "DELETE" });
+  } catch {
+    if (MAX_RETRY_COUNT > retryCount) {
+      deleteCookiesAfterLeave(retryCount + 1);
+    }
+  }
+}
+
+export async function leaveService(reason: string) {
+  await apiClient.post("unlink", { json: { reason } });
+  await deleteCookiesAfterLeave(0);
 }

@@ -157,6 +157,16 @@ const buttonStyles = styleVariants({
       border: "none",
     },
   ],
+  danger: [
+    baseButton,
+    sprinkles({
+      color: "white",
+    }),
+    {
+      border: "none",
+      backgroundColor: "#E4473D",
+    },
+  ],
   line: [
     baseButton,
     sprinkles({

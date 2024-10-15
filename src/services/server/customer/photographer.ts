@@ -11,7 +11,7 @@ export async function getPhotographerProfile(
     profileName: data.profileName,
     bannerImg: data.bannerImageUrl || undefined,
     profileImg: data.profileImageUrl || undefined,
-    message: data.introductionContent,
+    message: data.introductionContent || "",
     linkInfos: data.linkInfos.map((link) => {
       return { name: link.linkTitle, src: link.linkUrl };
     }),

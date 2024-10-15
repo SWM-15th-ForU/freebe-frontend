@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import CommonInput from "@/components/inputs/common-input";
 import popToast from "@/components/common/toast";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { cancelReservation } from "@/services/client/customer/reservation";
+import { responseHandler } from "@/services/common/error";
 import { cancelStyles } from "./detail.css";
 
 const CancelModal = ({
@@ -16,16 +18,26 @@ const CancelModal = ({
   opened: boolean;
   close: () => void;
 }) => {
+  const router = useRouter();
   const { formId } = useParams<Pick<PageParams, "formId">>();
   const [cancellationReason, setCancellationReason] = useState("");
 
   async function handleCancel() {
-    try {
-      await cancelReservation(parseInt(formId, 10), cancellationReason);
-      popToast("취소가 완료되었습니다.");
-    } catch (error) {
-      popToast("다시 시도해주세요.", "취소가 실패했습니다.");
-    }
+    await responseHandler(
+      cancelReservation(
+        parseInt(formId, PARAMETER_DEFAULT_RADIX),
+        cancellationReason,
+      ),
+      () => {
+        close();
+        popToast("신청이 취소되었습니다.");
+        router.refresh();
+      },
+      () => {
+        popToast("다시 시도해주세요.", "취소에 실패했습니다.", true);
+        router.refresh();
+      },
+    );
   }
 
   return (
@@ -42,6 +54,7 @@ const CancelModal = ({
       <CommonInput
         placeholder="취소 사유를 입력해 주세요."
         value={cancellationReason}
+        multiline={false}
         onChange={(e) => setCancellationReason(e.currentTarget.value)}
       />
       <CustomButton

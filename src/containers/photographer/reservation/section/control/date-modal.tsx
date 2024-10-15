@@ -35,11 +35,13 @@ const DateModal = ({
     endTime: null,
     startTime: null,
   });
-  const [reservationNumber, shootingDate, preferredDates] = watch([
-    "reservationNumber",
-    "shootingDate",
-    "preferredDates",
-  ]);
+  const [reservationNumber, shootingDate, preferredDates, currentStatus] =
+    watch([
+      "reservationNumber",
+      "shootingDate",
+      "preferredDates",
+      "currentStatus",
+    ]);
 
   useEffect(() => {
     if (shootingDate) {
@@ -60,11 +62,15 @@ const DateModal = ({
       dateValue.startTime !== null
     ) {
       await responseHandler(
-        putShootingDate(reservationNumber, {
-          date: formatDateString(dateValue.date),
-          startTime: parseTimeRequest(dateValue.startTime, "00:00"),
-          endTime: parseTimeRequest(dateValue.endTime, "24:00"),
-        }),
+        putShootingDate(
+          reservationNumber,
+          {
+            date: formatDateString(dateValue.date),
+            startTime: parseTimeRequest(dateValue.startTime, "00:00"),
+            endTime: parseTimeRequest(dateValue.endTime, "24:00"),
+          },
+          currentStatus,
+        ),
         () => {
           close();
           popToast("일정이 변경되었습니다.");
