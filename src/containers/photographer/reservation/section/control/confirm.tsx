@@ -14,18 +14,23 @@ import StatusModal from "./status-modal";
 import CancelModal from "./cancel-modal";
 import ShootingDate from "./shooting-date";
 import DateModal from "./date-modal";
+import NoticeModal from "./notice-modal";
 
 const Confirm = () => {
+  // TODO: 모달 분리하기
   const [opened, { open, close }] = useDisclosure(false);
   const [cancelOpened, { open: openCancel, close: closeCancel }] =
     useDisclosure(false);
   const [dateOpened, { open: openDate, close: closeDate }] =
     useDisclosure(false);
+  const [noticeOpened, { open: openNotice, close: closeNotice }] =
+    useDisclosure(false);
   const { watch } = useFormContext<Details>();
-  const [options, currentStatus, shootingDate] = watch([
+  const [options, currentStatus, shootingDate, notices] = watch([
     "options",
     "currentStatus",
     "shootingDate",
+    "notices",
   ]);
   const prices = options.map((option) => option.price);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -39,9 +44,23 @@ const Confirm = () => {
 
   return (
     <div>
-      <span className={sectionStyles.message}>
-        확인 후 수락을 결정해 주세요.
-      </span>
+      <div className={sectionStyles.header}>
+        <span className={sectionStyles.message}>
+          확인 후 수락을 결정해 주세요.
+        </span>
+        <button
+          type="button"
+          className={sectionStyles.detail}
+          onClick={openNotice}
+        >
+          공지사항 확인하기
+        </button>
+        <NoticeModal
+          notices={notices}
+          opened={noticeOpened}
+          close={closeNotice}
+        />
+      </div>
       <div className={sectionStyles.box}>
         <div className={sectionStyles.divider}>
           <span className={sectionStyles.title}>기본 가격</span>

@@ -106,6 +106,15 @@ export const sectionStyles = styleVariants({
     gap: 12,
     height: 32,
   },
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  detail: [
+    texts["body-02"],
+    sprinkles({ color: "text-03" }),
+    { background: "none", border: "none" },
+  ],
 });
 
 export const fieldStyles = styleVariants({
