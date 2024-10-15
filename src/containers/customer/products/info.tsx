@@ -5,13 +5,19 @@ import { Product } from "product-types";
 import { PageParams } from "route-parameters";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure } from "@mantine/hooks";
-import { Modal } from "@mantine/core";
+import { Modal, Tabs } from "@mantine/core";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
+import { commonTabsStyles } from "@/styles/mantine.css";
 import { formatPrice } from "@/utils/parse";
 import ProductItem from "./info/product-item";
 import ProductOption from "./info/product-option";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
+
+const TABS_ID = {
+  basic: "product-basic",
+  notices: "product-notices",
+};
 
 const ProductInfo = ({
   items,
@@ -69,21 +75,32 @@ const ProductInfo = ({
         </div>
         <p className={infoStyles.content}>{subtitle}</p>
       </div>
-      <div className={infoStyles.wrapper}>
-        <div className={infoStyles.itemsWrapper}>
-          {items.map((item, index) => {
-            return <ProductItem key={index} {...item} />;
-          })}
-        </div>
-      </div>
-      <div className={infoStyles.wrapper}>
-        <p className={infoStyles.subtitle}>추가 옵션</p>
-        <div className={infoStyles.itemsWrapper}>
-          {options.map((option, index) => {
-            return <ProductOption key={index} {...option} />;
-          })}
-        </div>
-      </div>
+      <Tabs defaultValue={TABS_ID.basic} classNames={{ ...commonTabsStyles }}>
+        <Tabs.List>
+          <Tabs.Tab value={TABS_ID.basic}>상품 정보</Tabs.Tab>
+          <Tabs.Tab value={TABS_ID.notices}>촬영 공지사항</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value={TABS_ID.basic}>
+          <div className={infoStyles.wrapper}>
+            <div className={infoStyles.itemsWrapper}>
+              {items.map((item, index) => {
+                return <ProductItem key={index} {...item} />;
+              })}
+            </div>
+          </div>
+          <div className={infoStyles.wrapper}>
+            <p className={infoStyles.subtitle}>추가 옵션</p>
+            <div className={infoStyles.itemsWrapper}>
+              {options.map((option, index) => {
+                return <ProductOption key={index} {...option} />;
+              })}
+            </div>
+          </div>
+        </Tabs.Panel>
+        <Tabs.Panel value={TABS_ID.notices}>
+          <div />
+        </Tabs.Panel>
+      </Tabs>
       <BottomButton
         title="예약 시작하기"
         onClick={open}
