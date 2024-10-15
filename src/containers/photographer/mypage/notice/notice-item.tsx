@@ -32,19 +32,18 @@ const NoticeItem = ({
               height={12}
             />
           )}
-          {!required && (
-            <CustomButton
-              styleType="line"
-              title="삭제"
-              size="xs"
-              onClick={() => onClickRemove(index)}
-              style={{
-                marginLeft: "auto",
-                marginRight: 10,
-                padding: "5px 10px",
-              }}
-            />
-          )}
+          <CustomButton
+            styleType="line"
+            title="삭제"
+            size="xs"
+            onClick={() => onClickRemove(index)}
+            style={{
+              marginLeft: "auto",
+              marginRight: 10,
+              padding: "5px 10px",
+              visibility: required ? "hidden" : "visible",
+            }}
+          />
         </div>
       </Accordion.Control>
       <Accordion.Panel>
