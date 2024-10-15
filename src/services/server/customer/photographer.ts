@@ -18,11 +18,12 @@ export async function getPhotographerProfile(
   };
 }
 
+// TODO: 불필요한 로직 삭제
 export async function getPhotographerNotices(
-  profileName: string,
+  productId: string,
 ): Promise<Notice[]> {
   const { data } = await api
-    .get(`customer/notice/${profileName}`)
+    .get(`customer/notice/${productId}`)
     .json<{ data: Notice[] | null }>();
   return data || [];
 }

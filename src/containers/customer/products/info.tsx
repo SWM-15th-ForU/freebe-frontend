@@ -6,11 +6,13 @@ import { PageParams } from "route-parameters";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Tabs } from "@mantine/core";
+import QueryProviders from "@/containers/common/query-providers";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import LoginButton from "@/components/buttons/login-button";
 import { commonTabsStyles } from "@/styles/mantine.css";
 import { formatPrice } from "@/utils/parse";
 import BasicInfo from "./basic-info";
+import NoticeList from "./notice";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
 
 const TABS_ID = {
@@ -83,7 +85,11 @@ const ProductInfo = ({
           <BasicInfo items={items} options={options} />
         </Tabs.Panel>
         <Tabs.Panel value={TABS_ID.notices}>
-          <div />
+          <div className={infoStyles.wrapper}>
+            <QueryProviders>
+              <NoticeList />
+            </QueryProviders>
+          </div>
         </Tabs.Panel>
       </Tabs>
       <BottomButton

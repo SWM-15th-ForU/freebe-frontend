@@ -6,7 +6,6 @@ import { infoStyles } from "./products.css";
 const BasicInfo = ({ items, options }: Pick<Product, "items" | "options">) => {
   return (
     <div>
-      {" "}
       <div className={infoStyles.wrapper}>
         <div className={infoStyles.itemsWrapper}>
           {items.map((item, index) => {
