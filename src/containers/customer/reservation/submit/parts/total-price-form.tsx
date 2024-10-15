@@ -1,23 +1,26 @@
-import { useParams } from "next/navigation";
 import { useFormContext } from "react-hook-form";
-import { PageParams } from "route-parameters";
 import { reservation } from "product-types";
-import { formatPrice } from "@/utils/parse";
+import { useDisclosure } from "@mantine/hooks";
 import CheckBox from "@/components/inputs/checkbox";
+import { formatPrice } from "@/utils/parse";
 import submitStyles from "../submit.css";
+import NoticeModal from "./notices-modal";
 import { priceFormStyles } from "./parts.css";
 
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
-  const { productId } = useParams<Pick<PageParams, "productId">>();
-  const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
-  const [totalPrice, photographerAgreement] = watch(
-    ["totalPrice", "photographerAgreement"],
+  const [opened, { open, close }] = useDisclosure(false);
+  const { watch, setValue } = useFormContext<reservation.FormType>();
+  const [totalPrice, noticeAgreement] = watch(
+    ["totalPrice", "noticeAgreement"],
     { totalPrice: basicPrice },
   );
 
-  function changeAgreement(target: "photographerAgreement") {
-    const currentValue = getValues(target);
-    setValue(target, !currentValue);
+  function onClickAgreement() {
+    if (noticeAgreement) {
+      setValue("noticeAgreement", false);
+    } else {
+      open();
+    }
   }
 
   return (
@@ -38,9 +41,17 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
       </div>
       <div className={priceFormStyles.agreementWrapper}>
         <CheckBox
-          checked={photographerAgreement}
-          onPress={() => changeAgreement("photographerAgreement")}
+          checked={noticeAgreement}
+          onPress={onClickAgreement}
           title="촬영 공지사항에 동의합니다."
+        />
+        <NoticeModal
+          opened={opened}
+          close={close}
+          onAgree={() => {
+            setValue("noticeAgreement", true);
+            close();
+          }}
         />
       </div>
     </div>

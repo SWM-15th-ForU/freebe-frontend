@@ -118,7 +118,7 @@ declare module "product-types" {
       memo: string;
       referenceImages: FormImage[];
       totalPrice: number;
-      photographerAgreement: boolean;
+      noticeAgreement: boolean;
     }
   }
 }

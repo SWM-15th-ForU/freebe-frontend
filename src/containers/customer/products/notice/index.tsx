@@ -23,7 +23,7 @@ const NoticeList = () => {
   return (
     <div className={noticeStyles.container}>
       <div className={noticeStyles.header}>
-        <Image src="/icons/error.svg" alt="안내" width={24} height={14} />
+        <Image src="/icons/error.svg" alt="안내" width={14} height={24} />
         <span className={noticeStyles.info}>
           {data.length > 0
             ? "촬영을 신청하기 전, 아래 공지사항을 꼭 확인해주세요."

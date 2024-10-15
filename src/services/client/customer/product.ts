@@ -2,6 +2,7 @@ import { Notice } from "product-types";
 import apiClient from "../core";
 
 export async function getProductNotices(productId: string): Promise<Notice[]> {
+  // TODO: 더미 데이터 제거
   // const { data } = await apiClient
   //   .get(`customer/notice/${productId}`)
   //   .json<{ data: Notice[] | null }>();

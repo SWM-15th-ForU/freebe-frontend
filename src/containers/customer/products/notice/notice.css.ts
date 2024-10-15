@@ -17,7 +17,8 @@ export const noticeStyles = styleVariants({
   },
   header: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
+    gap: 8,
   },
   info: [texts["headline-03"], sprinkles({ color: "text-03" })],
   wrapper: [

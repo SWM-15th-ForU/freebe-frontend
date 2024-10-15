@@ -26,7 +26,7 @@ const ReservationFormProvider = ({
     options: [],
     referenceImages: [],
     memo: "",
-    photographerAgreement: false,
+    noticeAgreement: false,
     totalPrice: 0,
   };
 
@@ -68,7 +68,7 @@ const ReservationFormProvider = ({
       )
       .optional(),
     totalPrice: z.number(),
-    photographerAgreement: z.boolean(),
+    noticeAgreement: z.boolean(),
   });
 
   const method = useForm<reservation.FormType>({
