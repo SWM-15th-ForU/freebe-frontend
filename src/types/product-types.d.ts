@@ -118,7 +118,6 @@ declare module "product-types" {
       memo: string;
       referenceImages: FormImage[];
       totalPrice: number;
-      serviceAgreement: boolean;
       photographerAgreement: boolean;
     }
   }

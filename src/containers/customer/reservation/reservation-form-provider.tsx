@@ -27,7 +27,6 @@ const ReservationFormProvider = ({
     referenceImages: [],
     memo: "",
     photographerAgreement: false,
-    serviceAgreement: false,
     totalPrice: 0,
   };
 
@@ -69,7 +68,6 @@ const ReservationFormProvider = ({
       )
       .optional(),
     totalPrice: z.number(),
-    serviceAgreement: z.boolean(),
     photographerAgreement: z.boolean(),
   });
 

@@ -32,7 +32,6 @@ export async function postReservation(form: reservation.FormType) {
       image.file !== undefined ? null : image.url,
     ),
     totalPrice: form.totalPrice,
-    serviceTermAgreement: form.serviceAgreement,
     photographerTermAgreement: form.photographerAgreement,
   };
   formData.append(

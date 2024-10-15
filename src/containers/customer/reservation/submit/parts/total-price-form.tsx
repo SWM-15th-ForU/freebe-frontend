@@ -4,21 +4,18 @@ import { PageParams } from "route-parameters";
 import { reservation } from "product-types";
 import { formatPrice } from "@/utils/parse";
 import CheckBox from "@/components/inputs/checkbox";
-import { AGREEMENT_LINKS } from "@/constants/common/agreement";
 import submitStyles from "../submit.css";
 import { priceFormStyles } from "./parts.css";
 
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
-  const { profileName } = useParams<Pick<PageParams, "profileName">>();
+  const { productId } = useParams<Pick<PageParams, "productId">>();
   const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
-  const [totalPrice, serviceAgreement, photographerAgreement] = watch(
-    ["totalPrice", "serviceAgreement", "photographerAgreement"],
+  const [totalPrice, photographerAgreement] = watch(
+    ["totalPrice", "photographerAgreement"],
     { totalPrice: basicPrice },
   );
 
-  function changeAgreement(
-    target: "serviceAgreement" | "photographerAgreement",
-  ) {
+  function changeAgreement(target: "photographerAgreement") {
     const currentValue = getValues(target);
     setValue(target, !currentValue);
   }
@@ -43,17 +40,7 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
         <CheckBox
           checked={photographerAgreement}
           onPress={() => changeAgreement("photographerAgreement")}
-          title="작가 공지사항 동의"
-          link={{
-            name: "작가 공지사항 확인하기",
-            path: `/${profileName}/notices`,
-          }}
-        />
-        <CheckBox
-          checked={serviceAgreement}
-          onPress={() => changeAgreement("serviceAgreement")}
-          title="서비스 약관 동의"
-          link={{ name: "서비스 약관 확인하기", path: AGREEMENT_LINKS.service }}
+          title="촬영 공지사항에 동의합니다."
         />
       </div>
     </div>
