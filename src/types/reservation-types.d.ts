@@ -47,7 +47,7 @@ declare module "reservation-types" {
     photoInfo: { [key: string]: string };
     photoOptions: { [key: string]: Option };
     preferredPlace: null | string;
-    notices: { [key: string]: Notice };
+    photoNotice: { [key: string]: Notice };
     shootingDate: null | ReservationDate;
     shootingPlace: null | string;
     basicPrice: number;
