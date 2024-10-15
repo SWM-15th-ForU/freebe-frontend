@@ -1,0 +1,1 @@
+export const PARAMETER_DEFAULT_RADIX = 10;

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { countInputStyles } from "./input.css";
 
 interface CountInputProps {
@@ -43,7 +44,9 @@ const CountInput = ({
         min={minCount}
         max={maxCount}
         value={value}
-        onChange={(e) => setValue(parseInt(e.currentTarget.value, 10))}
+        onChange={(e) =>
+          setValue(parseInt(e.currentTarget.value, PARAMETER_DEFAULT_RADIX))
+        }
       />
       <button
         className={countInputStyles.button}

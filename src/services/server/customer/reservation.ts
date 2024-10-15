@@ -105,5 +105,8 @@ export async function getReservationDetails(
       options
         .map((option) => option.price)
         .reduce((sum: number, price: number) => sum + price, 0),
+    notices: objectToArray(data.notices, (arr) =>
+      arr.sort().map(([_, content]) => content),
+    ),
   };
 }

@@ -32,8 +32,7 @@ export async function postReservation(form: reservation.FormType) {
       image.file !== undefined ? null : image.url,
     ),
     totalPrice: form.totalPrice,
-    serviceTermAgreement: form.serviceAgreement,
-    photographerTermAgreement: form.photographerAgreement,
+    noticeAgreement: form.noticeAgreement,
   };
   formData.append(
     "request",
@@ -58,6 +57,7 @@ export async function cancelReservation(
   cancellationReason: string,
 ) {
   const body = {
+    updateStatus: "CANCELLED_BY_CUSTOMER",
     cancellationReason,
   };
   const response = await apiClient.put(`customer/reservation/${id}`, {

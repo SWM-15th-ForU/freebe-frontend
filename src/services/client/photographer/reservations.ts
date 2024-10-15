@@ -85,12 +85,13 @@ export async function putReservationStatus(
 export async function putShootingDate(
   id: number,
   shootingDate: ReservationDate,
+  currentStatus: Status,
 ) {
   const body = {
-    reservationFormId: id,
     newShootingDate: shootingDate,
+    currentReservationStatus: currentStatus,
   };
-  await apiClient.put("photographer/reservation/shooting/date", {
+  await apiClient.put(`photographer/reservation/shooting-date/${id}`, {
     json: body,
   });
 }

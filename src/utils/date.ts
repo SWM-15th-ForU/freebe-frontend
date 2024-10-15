@@ -1,3 +1,4 @@
+import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import { Period, ReservationSearchParams } from "reservation-types";
 
 export function parseDate(target: Date) {
@@ -19,7 +20,7 @@ export function parseTimeRequest(target: Date | null, ifNull: string) {
 
 export function formatTimeString(timeString: string): string {
   const [hours, minutes] = timeString.split(":");
-  const hoursNumeric = parseInt(hours, 10);
+  const hoursNumeric = parseInt(hours, PARAMETER_DEFAULT_RADIX);
   const period = hoursNumeric >= 12 ? "PM" : "AM";
   const parsedHour = hoursNumeric % 12 === 0 ? 12 : hoursNumeric % 12;
   return `${period} ${parsedHour}:${minutes}`;
@@ -70,14 +71,21 @@ export function parsePeriodToSearchParams(
   };
 }
 
+function formatTimeWithSec(timeStr: string): string {
+  if (/^\d{2}:\d{2}:\d{2}$/.test(timeStr)) {
+    return timeStr;
+  }
+  return `${timeStr}:00`;
+}
+
 export function createDateObjects(
   dateStr: string,
   startTimeStr: string,
   endTimeStr: string,
 ) {
   const date = new Date(dateStr);
-  const startTime = new Date(`${dateStr}T${startTimeStr}:00`);
-  const endTime = new Date(`${dateStr}T${endTimeStr}:00`);
+  const startTime = new Date(`${dateStr}T${formatTimeWithSec(startTimeStr)}`);
+  const endTime = new Date(`${dateStr}T${formatTimeWithSec(endTimeStr)}`);
 
   return {
     date,

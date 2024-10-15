@@ -1,5 +1,8 @@
 import NewProduct from "@/containers/photographer/product/new-product";
+import { getCurrentNotices } from "@/services/server/photographer/mypage/notice";
 
-export default function NewProductPage() {
-  return <NewProduct />;
+export default async function NewProductPage() {
+  const baseNotice = await getCurrentNotices();
+
+  return <NewProduct baseNotice={baseNotice} />;
 }
