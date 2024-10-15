@@ -57,7 +57,15 @@ const StatusIcon = ({
   return (
     <div className={iconStyles.container}>
       <div className={iconStyles.wrapper}>
-        <span className={iconStyles.caption}>{canceled ? "취소" : date}</span>
+        <span
+          className={
+            current === "DONE" && !canceled
+              ? iconStyles.pastCaption
+              : iconStyles.caption
+          }
+        >
+          {canceled ? "취소" : date}
+        </span>
       </div>
       <Banner status={status} current={current} canceled={canceled} />
       <div className={iconStyles.wrapper}>

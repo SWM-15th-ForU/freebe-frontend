@@ -58,7 +58,9 @@ const Status = ({
         {customerStatusInfos[currentStatus]}
       </span>
       {currentStatus !== "CANCELLED" && (
-        <ReservationStatus statusHistory={statusHistory} noInformation />
+        <div className={detailStyles.status}>
+          <ReservationStatus statusHistory={statusHistory} noInformation />
+        </div>
       )}
       <div className={detailStyles.chips}>
         <Chip name="공유하기" styleType="highlight" onClick={handleExport} />
