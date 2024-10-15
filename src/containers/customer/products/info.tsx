@@ -12,8 +12,8 @@ import LoginButton from "@/components/buttons/login-button";
 import { commonTabsStyles } from "@/styles/mantine.css";
 import { formatPrice } from "@/utils/parse";
 import BasicInfo from "./basic-info";
-import NoticeList from "./notice";
 import { indicatorStyle, infoStyles, modalStyles } from "./products.css";
+import NoticeList from "../notice";
 
 const TABS_ID = {
   basic: "product-basic",

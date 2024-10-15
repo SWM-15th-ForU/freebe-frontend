@@ -3,10 +3,12 @@ import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
 
 export const noticeStyles = styleVariants({
-  container: {
-    padding: "20px 20px 80px 20px",
-    overflowY: "scroll",
-  },
+  container: [
+    sprinkles({ backgroundColor: "white" }),
+    {
+      paddingBottom: 30,
+    },
+  ],
   list: {
     marginTop: 20,
     display: "flex",
@@ -15,7 +17,8 @@ export const noticeStyles = styleVariants({
   },
   header: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
+    gap: 8,
   },
   info: [texts["headline-03"], sprinkles({ color: "text-03" })],
   wrapper: [
@@ -26,10 +29,12 @@ export const noticeStyles = styleVariants({
       borderTopWidth: 1,
     },
   ],
-  title: [texts["headline-02"], sprinkles({ color: "text-point" })],
+  title: [texts["headline-02"], sprinkles({ color: "text-02" })],
   content: [
-    texts["body-01"],
-    sprinkles({ color: "text-01" }),
+    texts["body-02"],
+    sprinkles({
+      color: "text-01",
+    }),
     { marginTop: 10, marginBottom: 0, whiteSpace: "pre-wrap", width: "100%" },
   ],
 });

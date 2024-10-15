@@ -1,6 +1,6 @@
 import { Modal } from "@mantine/core";
 import QueryProviders from "@/containers/common/query-providers";
-import NoticeList from "@/containers/customer/products/notice";
+import NoticeList from "@/containers/customer/notice";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { modalStyles } from "./parts.css";
 
