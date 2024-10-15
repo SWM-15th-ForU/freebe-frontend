@@ -59,7 +59,6 @@ declare module "product-types" {
     productDescription: string | null;
     productImageUrls: string[];
     basicPrice: number;
-    // TODO: 백엔드 api 명세 검토 필요
     basicPlace: string;
     allowPreferredPlace: boolean;
     productComponents: {

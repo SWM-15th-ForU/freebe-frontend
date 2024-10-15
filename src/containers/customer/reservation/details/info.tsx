@@ -8,6 +8,7 @@ import ShootingInfos from "./infos/shooting";
 
 const Info = ({
   basicPrice,
+  basicPlace,
   shootingDate,
   options,
   preferredDates,
@@ -19,7 +20,7 @@ const Info = ({
 }: Omit<CustomerDetails, "currentStatus" | "productTitle">) => {
   return (
     <div className={detailStyles.body}>
-      <ProductInfos productInfo={productInfo} />
+      <ProductInfos basicPlace={basicPlace} productInfo={productInfo} />
       <RequestInfos
         requestMemo={requestMemo}
         preferredDates={preferredDates}

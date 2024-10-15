@@ -22,7 +22,6 @@ interface FormDataResponse {
     price: number;
     description: string | null;
   }[];
-  // TODO: 백엔드 api 명세 검토
   basicPlace: string;
   allowPreferredPlace: boolean;
 }

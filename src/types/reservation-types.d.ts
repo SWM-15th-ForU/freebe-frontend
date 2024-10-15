@@ -20,8 +20,6 @@ declare module "reservation-types" {
     quantity: number;
     price: number;
   }
-
-  // TODO: 백엔드 신청서 상세조회 api 명세 검토
   interface BaseDetails {
     currentStatus: Status;
     cancelStatus?: Status;
@@ -32,6 +30,7 @@ declare module "reservation-types" {
     preferredPlace?: string;
     shootingPlace?: string;
     basicPrice: number;
+    basicPlace: string;
     options: Option[];
     requestMemo: string;
   }
@@ -45,6 +44,7 @@ declare module "reservation-types" {
     shootingDate: null | ReservationDate;
     shootingPlace: null | string;
     basicPrice: number;
+    basicPlace: string;
   }
 
   type ActiveStatus =

@@ -21,7 +21,6 @@ export async function postNewProduct(
 ) {
   const formData = new FormData();
   const inputData = {
-    // TODO: 백엔드 api 명세 검토
     productTitle: form.title,
     productDescription: form.subtitle,
     basicPrice: form.basicPrice,
@@ -99,7 +98,6 @@ export async function putProductDetails(
     allowPreferredPlace,
   } = newDetails;
   const inputData = {
-    // TODO: 백엔드 api 명세 검토
     basicPrice,
     basicPlace,
     allowPreferredPlace,
