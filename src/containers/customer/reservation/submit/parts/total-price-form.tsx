@@ -1,24 +1,26 @@
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
-import { formatPrice } from "@/utils/parse";
+import { useDisclosure } from "@mantine/hooks";
 import CheckBox from "@/components/inputs/checkbox";
-import { AGREEMENT_LINKS } from "@/constants/common/agreement";
+import { formatPrice } from "@/utils/parse";
 import submitStyles from "../submit.css";
+import NoticeModal from "./notices-modal";
 import { priceFormStyles } from "./parts.css";
 
-// TODO: 작가 약관 페이지 연결 필요
 const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
-  const { watch, setValue, getValues } = useFormContext<reservation.FormType>();
-  const [totalPrice, serviceAgreement, photographerAgreement] = watch(
-    ["totalPrice", "serviceAgreement", "photographerAgreement"],
+  const [opened, { open, close }] = useDisclosure(false);
+  const { watch, setValue } = useFormContext<reservation.FormType>();
+  const [totalPrice, noticeAgreement] = watch(
+    ["totalPrice", "noticeAgreement"],
     { totalPrice: basicPrice },
   );
 
-  function changeAgreement(
-    target: "serviceAgreement" | "photographerAgreement",
-  ) {
-    const currentValue = getValues(target);
-    setValue(target, !currentValue);
+  function onClickAgreement() {
+    if (noticeAgreement) {
+      setValue("noticeAgreement", false);
+    } else {
+      open();
+    }
   }
 
   return (
@@ -39,16 +41,17 @@ const TotalPriceForm = ({ basicPrice }: { basicPrice: number }) => {
       </div>
       <div className={priceFormStyles.agreementWrapper}>
         <CheckBox
-          checked={photographerAgreement}
-          onPress={() => changeAgreement("photographerAgreement")}
-          title="작가 약관 동의"
-          link={{ name: "작가 약관 확인하기", path: "/" }}
+          checked={noticeAgreement}
+          onPress={onClickAgreement}
+          title="촬영 공지사항에 동의합니다."
         />
-        <CheckBox
-          checked={serviceAgreement}
-          onPress={() => changeAgreement("serviceAgreement")}
-          title="서비스 약관 동의"
-          link={{ name: "서비스 약관 확인하기", path: AGREEMENT_LINKS.service }}
+        <NoticeModal
+          opened={opened}
+          close={close}
+          onAgree={() => {
+            setValue("noticeAgreement", true);
+            close();
+          }}
         />
       </div>
     </div>

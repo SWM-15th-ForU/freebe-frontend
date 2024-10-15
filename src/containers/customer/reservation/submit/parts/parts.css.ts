@@ -4,6 +4,43 @@ import { style, styleVariants } from "@vanilla-extract/css";
 
 const baseText = style([texts["body-01"]]);
 
+export const modalStyles = styleVariants({
+  content: {
+    borderRadius: 16,
+    padding: "0px 10px 10px 10px",
+  },
+  header: {
+    padding: 30,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    margin: "0 16px",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-point",
+    }),
+  ],
+  info: [
+    texts["body-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
+  close: {
+    position: "absolute",
+    top: 25,
+    right: 10,
+  },
+});
+
 export const errorStyle = style([
   texts["caption-01"],
   sprinkles({

@@ -1,5 +1,6 @@
 import { useFormContext } from "react-hook-form";
-import { LinkType, PhotographerForm } from "profile-types";
+import { PhotographerForm } from "profile-types";
+import { defaultLinks } from "@/constants/photographer/mypage";
 import BackgroundImage from "@/containers/customer/main/background-image";
 import InfoSheet from "@/containers/customer/main/info-sheet";
 import { profileStyles } from "./profile.css";
@@ -13,12 +14,6 @@ const Preview = () => {
     "profileImg",
     "profileName",
   ]);
-
-  const defaultLinks: LinkType[] = [
-    { name: "상품 선택하기", src: "/products" },
-    { name: "일정 확인하기 ", src: "/schedules" },
-    { name: "자주 묻는 질문", src: "/faqs" },
-  ];
 
   return (
     <div className={profileStyles.preview}>

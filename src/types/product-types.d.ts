@@ -2,6 +2,11 @@ type Description = string | null;
 
 declare module "product-types" {
   type Status = "ACTIVE" | "INACTIVE";
+
+  interface Notice {
+    title: string;
+    content: string;
+  }
   interface Item {
     title: string;
     content: string;
@@ -35,6 +40,7 @@ declare module "product-types" {
     items: Item[];
     options: Option[];
     discounts: Discount[];
+    notices: Notice[];
   }
 
   interface ProductFormdata extends Omit<Product, "images"> {}
@@ -73,6 +79,7 @@ declare module "product-types" {
       discountValue: number;
       description: Description;
     }[];
+    notices: Notice[];
   }
 
   namespace reservation {
@@ -110,8 +117,7 @@ declare module "product-types" {
       memo: string;
       referenceImages: FormImage[];
       totalPrice: number;
-      serviceAgreement: boolean;
-      photographerAgreement: boolean;
+      noticeAgreement: boolean;
     }
   }
 }

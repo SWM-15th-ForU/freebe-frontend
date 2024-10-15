@@ -1,4 +1,8 @@
-import { Product, ProductListData } from "product-types";
+import {
+  Product,
+  ProductDetailResponseData,
+  ProductListData,
+} from "product-types";
 import { normalizeDescription } from "@/utils/product";
 import { api } from "../core";
 
@@ -26,28 +30,28 @@ export async function getProductList(
   });
 }
 
-interface ProductDetailResponseData {
-  productTitle: string;
-  productDescription: string;
-  productImageUrls: string[];
-  basicPrice: number;
-  productComponents: {
-    title: string;
-    content: string;
-    description: null | string;
-  }[];
-  productOptions: {
-    title: string;
-    price: number;
-    description: null | string;
-  }[];
-  productDiscounts: {
-    title: string;
-    discountType: "RATE" | "AMOUNT";
-    discountValue: number;
-    description: null | string;
-  }[];
-}
+// interface ProductDetailResponseData {
+//   productTitle: string;
+//   productDescription: string;
+//   productImageUrls: string[];
+//   basicPrice: number;
+//   productComponents: {
+//     title: string;
+//     content: string;
+//     description: null | string;
+//   }[];
+//   productOptions: {
+//     title: string;
+//     price: number;
+//     description: null | string;
+//   }[];
+//   productDiscounts: {
+//     title: string;
+//     discountType: "RATE" | "AMOUNT";
+//     discountValue: number;
+//     description: null | string;
+//   }[];
+// }
 
 export async function getProductDetails(productId: string): Promise<Product> {
   const response = await api
@@ -56,7 +60,7 @@ export async function getProductDetails(productId: string): Promise<Product> {
   const { data } = response;
   return {
     title: data.productTitle,
-    subtitle: data.productDescription,
+    subtitle: data.productDescription || "",
     basicPrice: data.basicPrice,
     images: data.productImageUrls,
     items: normalizeDescription(data.productComponents),
@@ -64,5 +68,6 @@ export async function getProductDetails(productId: string): Promise<Product> {
       return { ...option, isFree: option.price === 0 };
     }),
     discounts: normalizeDescription(data.productDiscounts),
+    notices: data.notices,
   };
 }
