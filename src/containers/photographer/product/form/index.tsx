@@ -8,9 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import ItemFieldArray from "./field/item-field-array";
-import OptionFieldArray from "./field/option-field-array";
 import ImagesInput from "./field/image-input";
 import DiscountFieldArray from "./field/discount-field-array";
+import NoticeFieldArray from "./field/notice-field-array";
 import { formStyles } from "./form.css";
 
 const ProductForm = ({
@@ -111,6 +111,18 @@ const ProductForm = ({
           },
         ),
     ),
+    notices: z.array(
+      z.object({
+        title: z
+          .string()
+          .min(1, { message: "제목을 비워둘 수 없습니다." })
+          .max(30, { message: "30자 이내로 작성해주세요." }),
+        content: z
+          .string()
+          .min(1, { message: "내용을 비워둘 수 없습니다." })
+          .max(300, { message: "300자 이내로 작성해주세요." }),
+      }),
+    ),
   });
 
   const method = useForm<ProductFormdata>({
@@ -183,9 +195,8 @@ const ProductForm = ({
             <ItemFieldArray disabled={!isEditing} />
           </div>
           <div className={formStyles.split}>
-            <OptionFieldArray disabled={!isEditing} />
+            <NoticeFieldArray disabled={!isEditing} />
           </div>
-
           <DiscountFieldArray disabled={!isEditing} />
         </div>
         {isEditing && (
