@@ -9,14 +9,13 @@ export async function postReservation(form: reservation.FormType) {
     profileName: form.profileName,
     productId: form.productId,
     instagramId: form.instagram,
-    // TODO: 백엔드 api 명세 검토
     preferredPlace: form.preferredPlace === "" ? null : form.preferredPlace,
     preferredDates: arrayToObject(
       form.schedules.map((schedule) => {
         return {
           ...schedule,
           startTime: parseTimeRequest(schedule.startTime, "00:00"),
-          endTime: parseTimeRequest(schedule.endTime, "24:00"),
+          endTime: parseTimeRequest(schedule.endTime, "23:59"),
         };
       }),
     ),

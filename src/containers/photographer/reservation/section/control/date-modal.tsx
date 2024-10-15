@@ -56,7 +56,7 @@ const DateModal = ({
       setValue("shootingDate", {
         date: formatDateString(dateValue.date),
         startTime: parseTimeRequest(dateValue.startTime, "00:00"),
-        endTime: parseTimeRequest(dateValue.endTime, "24:00"),
+        endTime: parseTimeRequest(dateValue.endTime, "23:59"),
       });
       close();
     }
