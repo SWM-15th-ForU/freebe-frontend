@@ -1,12 +1,12 @@
 type Description = string | null;
 
-interface Notice {
-  title: string;
-  content: string;
-}
-
 declare module "product-types" {
   type Status = "ACTIVE" | "INACTIVE";
+
+  interface Notice {
+    title: string;
+    content: string;
+  }
   interface Item {
     title: string;
     content: string;
