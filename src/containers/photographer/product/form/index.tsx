@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { FormImage, ProductFormdata } from "product-types";
@@ -9,8 +9,9 @@ import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import ItemFieldArray from "./field/item-field-array";
 import ImagesInput from "./field/image-input";
-import DiscountFieldArray from "./field/discount-field-array";
+import OptionFieldArray from "./field/option-field-array";
 import NoticeFieldArray from "./field/notice-field-array";
+import DiscountFieldArray from "./field/discount-field-array";
 import { formStyles } from "./form.css";
 
 const ProductForm = ({
@@ -193,6 +194,9 @@ const ProductForm = ({
           </div>
           <div className={formStyles.split}>
             <ItemFieldArray disabled={!isEditing} />
+          </div>
+          <div className={formStyles.split}>
+            <OptionFieldArray disabled={!isEditing} />
           </div>
           <div className={formStyles.split}>
             <NoticeFieldArray disabled={!isEditing} />
