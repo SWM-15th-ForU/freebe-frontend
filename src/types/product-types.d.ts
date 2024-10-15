@@ -79,7 +79,6 @@ declare module "product-types" {
       discountValue: number;
       description: Description;
     }[];
-    // TODO: 백엔드 상품 상세 조회 api 명세 검토 필요
     notices: Notice[];
   }
 
