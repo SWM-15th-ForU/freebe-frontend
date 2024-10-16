@@ -8,10 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
 import { responseHandler } from "@/services/common/error";
 import popToast from "@/components/common/toast";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import ProfileEdit from "./edit";
 import { mypageStyles, profileStyles } from "./profile.css";
 import Preview from "./preview";
-import SubmitProfile from "./submit";
 
 const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
   const router = useRouter();
@@ -63,20 +63,27 @@ const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
   };
 
   return (
-    <div className={mypageStyles.container}>
-      <span className={mypageStyles.title}>내 프로필 관리</span>
-
+    <div className={profileStyles.page}>
       <FormProvider {...method}>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={profileStyles.form}
           encType="multipart/form-data"
         >
+          <div className={profileStyles.formHeader}>
+            <span className={mypageStyles.title}>내 프로필 관리</span>
+            <CustomButton
+              type="submit"
+              styleType="primary"
+              size="sm"
+              title="프로필 저장"
+              style={{ marginLeft: "auto", width: 96, height: 40 }}
+            />
+          </div>
           <div className={profileStyles.container}>
             <Preview />
             <ProfileEdit />
           </div>
-          <SubmitProfile />
         </form>
       </FormProvider>
     </div>
