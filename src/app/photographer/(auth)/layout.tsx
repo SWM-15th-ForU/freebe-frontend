@@ -10,7 +10,6 @@ const PhotographerLayout = ({
     <div>
       <div
         style={{
-          width: "100vw",
           minHeight: "100vh",
           paddingTop: 51,
         }}

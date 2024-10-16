@@ -18,10 +18,12 @@ export const loginPageStyles = styleVariants({
   ],
   layout: [
     {
-      width: "100vw",
       minHeight: "100vh",
       position: "relative",
       display: "flex",
+      "::-webkit-scrollbar": {
+        display: "none",
+      },
     },
   ],
 });
