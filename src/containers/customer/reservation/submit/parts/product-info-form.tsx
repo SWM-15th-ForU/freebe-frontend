@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Item, reservation } from "product-types";
+import { Product, reservation } from "product-types";
 import { useDisclosure } from "@mantine/hooks";
 import TextInput from "@/components/inputs/text-input";
 import ScheduleInput from "@/components/inputs/schedule-input";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import InfoCaption from "@/components/common/info-caption";
 import PartLayout from "../part-layout";
 import submitStyles from "../submit.css";
 import ScheduleModal from "../schedule-modal";
@@ -14,10 +15,12 @@ const MAX_SCHEDULE_SELECT = 3;
 const ProductInfoForm = ({
   items,
   basicPrice,
-}: {
-  items: Item[];
-  basicPrice: number;
-}) => {
+  basicPlace,
+  allowPreferredPlace,
+}: Pick<
+  Product,
+  "items" | "basicPrice" | "basicPlace" | "allowPreferredPlace"
+>) => {
   const [editIndex, setEditIndex] = useState<number>();
 
   function handleFinishEditSchedule() {
@@ -57,6 +60,7 @@ const ProductInfoForm = ({
     <PartLayout title="촬영 정보">
       <ScheduleModal close={close} opened={opened} targetIndex={editIndex} />
       <TextInput title="기본 가격" disabled value={basicPrice} />
+      <TextInput title="촬영 장소" disabled value={basicPlace} />
       {items.map((item, index) => {
         return (
           <TextInput
@@ -67,6 +71,17 @@ const ProductInfoForm = ({
           />
         );
       })}
+      {allowPreferredPlace && (
+        <div style={{ marginBottom: 20 }}>
+          <TextInput<reservation.FormType>
+            title="희망 장소"
+            placeholder="장소를 입력해주세요."
+            formField="preferredPlace"
+            container={{ marginBottom: 8 }}
+          />
+          <InfoCaption information="등록되어 있는 촬영 장소 외에 더 구체적으로 원하는 장소가 있다면 작성해주세요. 작가님과의 협의 후에 확정됩니다." />
+        </div>
+      )}
       <span className={submitStyles.itemTitle}>촬영 일정</span>
       {schedules.map((field, index) => {
         return (

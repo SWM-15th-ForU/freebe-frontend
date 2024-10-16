@@ -27,6 +27,15 @@ export const infoStyles = styleVariants({
     flexDirection: "column",
     gap: 10,
   },
+  requestWrapper: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      borderBottomWidth: 1,
+      borderBottomStyle: "solid",
+      paddingBottom: 16,
+      marginBottom: 16,
+    },
+  ],
   item: {
     display: "flex",
     alignItems: "top",

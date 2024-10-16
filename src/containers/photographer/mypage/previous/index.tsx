@@ -22,7 +22,6 @@ const PreviousReservations = () => {
   }, [searchParams]);
 
   function handleSetKeyword() {
-    // TODO: 한글 검색어 테스트 필요
     setParams((prev) => {
       return { ...prev, keyword: search };
     });

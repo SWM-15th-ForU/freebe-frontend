@@ -5,12 +5,14 @@ import PhotoDetails from "./photo-details";
 import ScheduleDetails from "./schedule-details";
 import ImageDetails from "./image-details";
 import RequestDetails from "./request-details";
+import PlaceDetails from "./place-details";
 
 const ReservationDetails = () => {
   const { watch } = useFormContext<Details>();
-  const [currentStatus, cancleStatus] = watch([
+  const [currentStatus, cancleStatus, preferredPlace] = watch([
     "currentStatus",
     "cancelStatus",
+    "preferredPlace",
   ]);
 
   return (
@@ -20,6 +22,7 @@ const ReservationDetails = () => {
       )}
       <PhotoDetails />
       <ScheduleDetails />
+      {preferredPlace && <PlaceDetails />}
       <ImageDetails />
       <RequestDetails />
     </div>

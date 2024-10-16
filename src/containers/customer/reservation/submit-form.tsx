@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { Item, Option, reservation } from "product-types";
+import { Product, reservation } from "product-types";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import CustomerInfoForm from "@/containers/customer/reservation/submit/parts/customer-info-form";
 import ProductInfoForm from "@/containers/customer/reservation/submit/parts/product-info-form";
@@ -20,14 +20,16 @@ const SubmitForm = ({
   items,
   options,
   basicPrice,
+  basicPlace,
+  allowPreferredPlace,
 }: Pick<
   reservation.FormType,
   "contact" | "instagram" | "name" | "productId" | "profileName"
-> & {
-  options: Option[];
-  items: Item[];
-  basicPrice: number;
-}) => {
+> &
+  Pick<
+    Product,
+    "basicPlace" | "allowPreferredPlace" | "items" | "options" | "basicPrice"
+  >) => {
   const {
     setValue,
     watch,
@@ -65,7 +67,12 @@ const SubmitForm = ({
       }}
     >
       <CustomerInfoForm />
-      <ProductInfoForm items={items} basicPrice={basicPrice} />
+      <ProductInfoForm
+        items={items}
+        basicPrice={basicPrice}
+        allowPreferredPlace={allowPreferredPlace}
+        basicPlace={basicPlace}
+      />
       <RequestForm />
       <SelectOptionForm options={options} />
       <TotalPriceForm basicPrice={basicPrice} />

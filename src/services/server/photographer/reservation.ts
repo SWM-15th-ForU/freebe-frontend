@@ -45,6 +45,8 @@ export async function getReservationDetail(formId: string): Promise<Details> {
     ...data,
     statusHistory,
     currentStatus,
+    preferredPlace: data.preferredPlace || undefined,
+    shootingPlace: data.shootingPlace || undefined,
     cancelStatus: data.statusBeforeCancellation,
     customer: data.customerDetails,
     photographerMemo: data.photographerMemo || "",
@@ -61,7 +63,7 @@ export async function getReservationDetail(formId: string): Promise<Details> {
     options: objectToArray(data.photoOptions, (arr) =>
       arr.map(([_, content]) => content),
     ),
-    notices: objectToArray(data.notices, (arr) =>
+    notices: objectToArray(data.photoNotice, (arr) =>
       arr.sort().map(([_, content]) => content),
     ),
   };

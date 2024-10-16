@@ -22,9 +22,11 @@ export async function postNewProduct(
   const formData = new FormData();
   const inputData = {
     productTitle: form.title,
-    basicPrice: form.basicPrice,
     notices: form.notices,
     productDescription: form.subtitle,
+    basicPrice: form.basicPrice,
+    basicPlace: form.basicPlace,
+    allowPreferredPlace: form.allowPreferredPlace,
     productComponents: form.items.map((item) => {
       return {
         title: item.title,
@@ -86,11 +88,22 @@ export async function putProductDetails(
   productId: string,
 ) {
   const formData = new FormData();
-  const { title, subtitle, items, options, discounts, basicPrice, notices } =
-    newDetails;
+  const {
+    title,
+    subtitle,
+    items,
+    options,
+    discounts,
+    basicPrice,
+    notices,
+    basicPlace,
+    allowPreferredPlace,
+  } = newDetails;
   const inputData = {
     basicPrice,
     notices,
+    basicPlace,
+    allowPreferredPlace,
     productId: parseInt(productId, PARAMETER_DEFAULT_RADIX),
     existingUrls: newImages.map((image) => {
       return image.file !== undefined ? null : image.url;

@@ -24,6 +24,8 @@ const ProductInfo = ({
   items,
   options,
   subtitle,
+  basicPlace,
+  allowPreferredPlace,
   title,
   basicPrice,
   images,
@@ -82,7 +84,12 @@ const ProductInfo = ({
           <Tabs.Tab value={TABS_ID.notices}>촬영 공지사항</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value={TABS_ID.basic}>
-          <BasicInfo items={items} options={options} />
+          <BasicInfo
+            items={items}
+            options={options}
+            basicPlace={basicPlace}
+            allowPreferredPlace={allowPreferredPlace}
+          />
         </Tabs.Panel>
         <Tabs.Panel value={TABS_ID.notices}>
           <div className={infoStyles.wrapper}>

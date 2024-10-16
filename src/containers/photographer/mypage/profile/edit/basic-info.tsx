@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
-import Image from "next/image";
 import { useFormContext } from "react-hook-form";
 import { PhotographerForm } from "profile-types";
+import InfoCaption from "@/components/common/info-caption";
 import TextInput from "@/components/inputs/text-input";
 import ProfileImage from "@/components/images/profile-image";
 import { CustomButton } from "@/components/buttons/common-buttons";
@@ -71,13 +71,10 @@ const BasicInfo = () => {
           multiline
           container={{ marginBottom: 10 }}
         />
-        <div className={editStyles.caption}>
-          <Image src="/icons/error.svg" alt="확인" height={20} width={12} />
-          <span>
-            설정한 연락처는(전화번호, 카카오톡 채팅방 링크, 인스타그램 아이디
-            등) 작가님께서 예약을 수락하신 고객에게만 전달됩니다.
-          </span>
-        </div>
+        <InfoCaption
+          information="설정한 연락처는(전화번호, 카카오톡 채팅방 링크, 인스타그램 아이디
+            등) 작가님께서 예약을 수락하신 고객에게만 전달됩니다."
+        />
         {errors.contact && (
           <span className={editStyles.error}>{errors.contact.message}</span>
         )}
