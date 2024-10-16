@@ -2,14 +2,15 @@ import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { FormImage } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { ACCEPTED_IMAGE_FILE } from "@/constants/common/common";
+import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import InfoCaption from "@/components/common/info-caption";
 import ImageThumbnail from "@/components/images/image-thumbnail";
-import { getFormImageFromFiles } from "@/utils/image";
+import { validatingFiles } from "@/utils/image";
 import {
   CustomButton,
   FinishButton,
 } from "@/components/buttons/common-buttons";
+import popToast from "@/components/common/toast";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { formStyles } from "../form.css";
 // TODO: modal style 공통으로 옮기기
@@ -28,35 +29,37 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [opened, { open, close }] = useDisclosure(false);
 
+  function getFileList(
+    e: React.DragEvent | React.ChangeEvent<HTMLInputElement>,
+  ) {
+    if (e.type === "drop") {
+      const event = e as React.DragEvent;
+      return event.dataTransfer.files;
+    }
+    if (e.type === "change") {
+      const { files } = e.target as HTMLInputElement;
+      return files;
+    }
+    return null;
+  }
+
   function handleAddImage(
     e: React.DragEvent | React.ChangeEvent<HTMLInputElement>,
   ) {
     e.preventDefault();
-    if (e.type === "drop") {
-      const event = e as React.DragEvent;
-      const droppedImages: FormImage[] = getFormImageFromFiles(
-        Array.from(event.dataTransfer.files),
-      );
+    const selectedFiles = getFileList(e);
+    const { isOver, selectedImages } = validatingFiles(selectedFiles);
+    if (isOver) {
+      popToast("10MB 이하의 이미지만 등록할 수 있습니다.");
+    }
+    if (selectedImages.length > 0) {
       setImage((prev) => {
-        const newImages = [...prev, ...droppedImages].slice(
-          ARRAY_START_INDEX,
-          MAX_IMAGE_COUNT,
-        );
-        return newImages;
+        const newImages = [...prev, ...selectedImages];
+        if (newImages.length > MAX_IMAGE_COUNT) {
+          popToast("이미지는 최대 10개까지 등록할 수 있습니다.");
+        }
+        return newImages.slice(ARRAY_START_INDEX, MAX_IMAGE_COUNT);
       });
-    } else if (e.type === "change") {
-      const inputElement = e.target as HTMLInputElement;
-      const selectedImages: FormImage[] = inputElement.files
-        ? getFormImageFromFiles(Array.from(inputElement.files))
-        : [];
-      setImage((prev) => {
-        const newImages = [...prev, ...selectedImages].slice(
-          ARRAY_START_INDEX,
-          MAX_IMAGE_COUNT,
-        );
-        return newImages;
-      });
-      inputElement.value = "";
     }
   }
 
@@ -99,10 +102,13 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
       </Modal>
       <span className={formStyles.subtitle}>상품 사진</span>
       {!disabled && (
-        <InfoCaption
-          information="업로드하기 전, 포트폴리오로 사용할 수 있는 사진인지 확인해주세요.
-            도용 및 무단 사용된 이미지는 삭제될 수 있습니다."
-        />
+        <>
+          <InfoCaption
+            information="업로드하기 전, 포트폴리오로 사용할 수 있는 사진인지 확인해주세요.
+          도용 및 무단 사용된 이미지는 삭제될 수 있습니다."
+          />
+          <InfoCaption information={ACCEPTED_IMAGE.info} />
+        </>
       )}
       <div
         style={{
@@ -142,7 +148,8 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
       )}
       <input
         type="file"
-        accept={ACCEPTED_IMAGE_FILE}
+        multiple
+        accept={ACCEPTED_IMAGE.file}
         style={{ display: "none" }}
         ref={InputRef}
         onChange={handleAddImage}
