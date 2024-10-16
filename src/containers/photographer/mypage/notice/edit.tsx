@@ -9,6 +9,7 @@ import {
 } from "@/constants/photographer/mypage";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import Chip from "@/components/common/chip";
+import InfoCaption from "@/components/common/info-caption";
 import NoticeItem from "./notice-item";
 import { accordionStyles, editStyles } from "./notice.css";
 
@@ -80,6 +81,7 @@ const NoticeEdit = () => {
           ))}
         </div>
       )}
+      <InfoCaption information="'취소 및 환불 규정', '예약 변경 규정'은 필수 항목입니다." />
       <Accordion
         value={openedAccordion}
         onChange={setOpenedAccordion}
