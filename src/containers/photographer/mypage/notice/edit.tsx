@@ -66,6 +66,7 @@ const NoticeEdit = () => {
           }}
         />
       </div>
+      <InfoCaption information="'취소 및 환불 규정', '예약 변경 규정'은 필수 항목입니다." />
       {sampleNotIncluded().length > 0 && (
         <div className={editStyles.chipWrapper}>
           <span className={editStyles.title}>예시 항목</span>
@@ -81,7 +82,6 @@ const NoticeEdit = () => {
           ))}
         </div>
       )}
-      <InfoCaption information="'취소 및 환불 규정', '예약 변경 규정'은 필수 항목입니다." />
       <Accordion
         value={openedAccordion}
         onChange={setOpenedAccordion}

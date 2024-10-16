@@ -6,7 +6,7 @@ export const guideStyles = styleVariants({
   textWrapper: {
     padding: "0px 10px 10px 10px",
     display: "flex",
-    gap: 8,
+    marginLeft: -8,
   },
   text: [
     texts["caption-01"],
