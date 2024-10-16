@@ -8,9 +8,14 @@ import { headerStyles } from "./products.css";
 interface ProductHeaderProps {
   title: string;
   progress?: ProgressType;
+  hasBackbutton?: boolean;
 }
 
-const ProductsHeader = ({ title, progress }: ProductHeaderProps) => {
+const ProductsHeader = ({
+  title,
+  progress,
+  hasBackbutton = true,
+}: ProductHeaderProps) => {
   const router = useRouter();
 
   function handlePressBack() {
@@ -20,13 +25,20 @@ const ProductsHeader = ({ title, progress }: ProductHeaderProps) => {
   return (
     <div className={headerStyles.container}>
       <div className={headerStyles.wrapper}>
-        <div
-          className={headerStyles.button}
-          role="presentation"
-          onClick={handlePressBack}
-        >
-          <Image src="/icons/previous.svg" width={24} height={24} alt="이전" />
-        </div>
+        {hasBackbutton && (
+          <div
+            className={headerStyles.button}
+            role="presentation"
+            onClick={handlePressBack}
+          >
+            <Image
+              src="/icons/previous.svg"
+              width={24}
+              height={24}
+              alt="이전"
+            />
+          </div>
+        )}
         <span className={headerStyles.title}>{title}</span>
       </div>
       {progress && (
