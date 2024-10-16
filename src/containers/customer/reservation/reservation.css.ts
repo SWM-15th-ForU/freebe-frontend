@@ -5,6 +5,7 @@ export const reservationStyles = styleVariants({
     display: "flex",
     width: "100%",
     flexDirection: "row",
+    marginBottom: 8,
     ":not(:last-child)": {
       marginRight: "2%",
     },

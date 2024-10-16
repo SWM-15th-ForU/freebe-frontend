@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import { PhotographerForm } from "profile-types";
 import { CustomButton } from "@/components/buttons/common-buttons";
-import { ACCEPTED_IMAGE_FILE } from "@/constants/common/common";
+import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import { editStyles } from "./edit.css";
 
 const Banner = () => {
@@ -40,7 +40,7 @@ const Banner = () => {
         >
           <input
             type="file"
-            accept={ACCEPTED_IMAGE_FILE}
+            accept={ACCEPTED_IMAGE.file}
             style={{
               opacity: 0,
               position: "absolute",
