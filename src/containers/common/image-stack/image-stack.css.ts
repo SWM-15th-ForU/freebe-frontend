@@ -100,6 +100,9 @@ export const imageStackStyles = styleVariants({
   buttonWrapper: {
     border: "none",
     background: "none",
+    ":hover": {
+      filter: "none",
+    },
   },
   prev: [navButtonStyle, { left: "-50px" }],
   next: [navButtonStyle, { right: "-50px" }],

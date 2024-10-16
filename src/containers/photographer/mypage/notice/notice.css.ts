@@ -27,6 +27,7 @@ export const editStyles = styleVariants({
   header: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   infoWrapper: [
     texts["headline-03"],

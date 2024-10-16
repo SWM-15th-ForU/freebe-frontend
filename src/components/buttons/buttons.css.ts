@@ -174,10 +174,13 @@ const buttonStyles = styleVariants({
       color: "blue",
     }),
     {
-      background: "none",
+      backgroundColor: "transparent",
       borderStyle: "solid",
       borderRadius: 8,
       borderWidth: 1,
+      ":hover": {
+        backgroundColor: "white",
+      },
     },
   ],
   secondary: [

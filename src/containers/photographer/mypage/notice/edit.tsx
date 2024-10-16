@@ -57,11 +57,12 @@ const NoticeEdit = () => {
         <CustomButton
           styleType="primary"
           title="저장"
-          size="xs"
+          size="sm"
           type="submit"
           style={{
             marginRight: 10,
-            padding: "5px 10px",
+            paddingLeft: 15,
+            paddingRight: 15,
           }}
         />
       </div>

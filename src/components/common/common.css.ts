@@ -271,12 +271,10 @@ export const chipStyles = styleVariants({
   highlight: [
     commonChipStyle,
     sprinkles({
+      backgroundColor: "white",
       color: "blue",
       borderColor: "blue",
     }),
-    {
-      background: "none",
-    },
   ],
   selectedContainer: [
     sprinkles({
