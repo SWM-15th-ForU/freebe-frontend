@@ -92,6 +92,11 @@ export const formStyles = styleVariants({
       lineHeight: "20px",
     },
   ],
+  textarea: {
+    ":focus-within": {
+      outline: "none",
+    },
+  },
 });
 
 const baseInput = style({
@@ -190,6 +195,9 @@ export const inputStyles = styleVariants({
       borderRadius: 8,
       padding: "8px 12px",
       ":focus": {
+        borderColor: "#007AFF",
+      },
+      ":focus-within": {
         borderColor: "#007AFF",
       },
     },
