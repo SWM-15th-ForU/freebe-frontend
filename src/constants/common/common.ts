@@ -12,3 +12,11 @@ export const ACCEPTED_IMAGE = {
   info: "최대 10MB의 이미지 파일만 업로드 가능합니다.",
   size: 1024 ** 2 * 10,
 };
+
+export const SERVICE_LINKS = {
+  help: "https://slashpage.com/freebe",
+  serviceAgreement: "https://slashpage.com/freebe/service-agreement?full=true",
+  privacyAgreement: "https://slashpage.com/freebe/privacy-agreement?full=true",
+  notice: "https://slashpage.com/freebe/notice",
+  landingPage: "https://freebe.softr.app/",
+};

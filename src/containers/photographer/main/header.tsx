@@ -10,10 +10,10 @@ import Url from "./header/url";
 
 const Header = ({
   isOnboarding,
-  link,
+  links,
 }: {
   isOnboarding?: boolean;
-  link?: LinkType;
+  links?: LinkType[];
 }) => {
   const [url, setUrl] = useState<string>("");
 
@@ -49,10 +49,19 @@ const Header = ({
           <Profile />
         </>
       )}
-      {link && (
-        <Link href={link.src} target="_blank" className={styles.linkText}>
-          {link.name}
-        </Link>
+      {links && isOnboarding && (
+        <div className={styles.linkWrapper}>
+          {links.map((link) => (
+            <Link
+              key={link.name}
+              href={link.src}
+              target="_blank"
+              className={styles.linkText}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
       )}
     </header>
   );
