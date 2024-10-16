@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FormImage } from "product-types";
 import { Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { ACCEPTED_IMAGE_FILE } from "@/constants/common/common";
 import ImageThumbnail from "@/components/images/image-thumbnail";
 import { getFormImageFromFiles } from "@/utils/image";
 import {
@@ -145,7 +146,7 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
       )}
       <input
         type="file"
-        accept="image/*"
+        accept={ACCEPTED_IMAGE_FILE}
         style={{ display: "none" }}
         ref={InputRef}
         onChange={handleAddImage}
