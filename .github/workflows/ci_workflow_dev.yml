@@ -4,7 +4,8 @@ on:
   pull_request:
     branches: 
       - develop
-      - dev-infra-test
+      - 'release/**'
+      - master
 
 jobs:
   build:
