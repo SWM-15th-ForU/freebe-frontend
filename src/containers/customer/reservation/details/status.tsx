@@ -63,7 +63,7 @@ const Status = ({
         </div>
       )}
       <div className={detailStyles.chips}>
-        <Chip name="공유하기" styleType="highlight" onClick={handleExport} />
+        <Chip name="링크 복사" styleType="highlight" onClick={handleExport} />
         {isCustomerAbleToCancel(currentStatus) && (
           <Chip name="취소하기" styleType="highlight" onClick={open} />
         )}
