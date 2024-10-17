@@ -2,7 +2,10 @@ name: Frontend Dev Server CI
 
 on:
   pull_request:
-    branches: ["develop"]
+    branches: 
+      - develop
+      - 'release/**'
+      - master
 
 jobs:
   build:
