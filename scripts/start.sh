@@ -14,6 +14,12 @@ echo "--------------------------------------------------" | tee -a $LOG_FILE
 
 cd $ROOT_PATH
 
+echo "[$NOW] npm install start" | tee -a $LOG_FILE
+npm install
+
+echo "[$NOW] npm run build start" | tee -a $LOG_FILE
+npm run build
+
 # 로그 기록 시작
 {
     echo "[$NOW] start pm2 process"
