@@ -46,13 +46,15 @@ export default function RootLayout({
           name="naver-site-verification"
           content="2a75aaab03248bdbc9a65fec4c3c98687d161403"
         />
-        <GoogleAnalytics gaId="G-HB94Q4DZRD" />
         <ColorSchemeScript />
       </head>
       <body
         className={pretendard.className}
         style={{ overflowX: "hidden", overflowY: "hidden" }}
       >
+        <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ""}
+        />
         <MantineProvider
           theme={{
             colors: {
