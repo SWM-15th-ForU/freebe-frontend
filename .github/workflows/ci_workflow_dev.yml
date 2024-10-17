@@ -2,7 +2,9 @@ name: Frontend Dev Server CI
 
 on:
   pull_request:
-    branches: ["develop"]
+    branches: 
+      - develop
+      - dev-infra-test
 
 jobs:
   build:
