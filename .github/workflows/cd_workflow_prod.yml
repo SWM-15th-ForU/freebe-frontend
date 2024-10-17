@@ -25,7 +25,6 @@ jobs:
           echo "AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET }}" >> .env
           echo "AWS_CODE_DEPLOY_GROUP=${{ secrets.AWS_CODE_DEPLOY_GROUP }}" >> .env
           echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env
-          echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env
           echo "NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_KAKAO_DOMAIN=${{ secrets.NEXT_PUBLIC_KAKAO_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY }}" >> .env
