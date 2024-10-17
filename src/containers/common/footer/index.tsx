@@ -5,7 +5,7 @@ import { footerStyles } from "./footer.css";
 
 const ServiceFooter = () => {
   const SERVICE_INFO = [
-    { name: "이메일", content: "swm15foru@gmail.com" },
+    { name: "이메일", content: "official@freebe.co.kr" },
     { name: "전화번호", content: "070-8098-6471" },
     {
       name: "주소",
