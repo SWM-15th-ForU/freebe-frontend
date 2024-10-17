@@ -33,6 +33,12 @@ jobs:
           echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY_DEV }}" >> .env
           echo "NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN_DEV }}" >> .env
 
+      - name: npm 설치
+        run: npm install
+
+      - name: 프로젝트 빌드
+        run: npm run build
+      
       - name: 압축
         run: zip -r ./frontend_freebe.zip .
 
