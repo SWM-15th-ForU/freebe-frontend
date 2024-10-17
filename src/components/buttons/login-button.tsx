@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { User } from "user-types";
+import { sendGAEvent } from "@next/third-parties/google";
 import buttonStyles from "./buttons.css";
 
 const LoginButton = ({
@@ -18,8 +19,10 @@ const LoginButton = ({
   };
 
   function loginToKakao() {
+    sendGAEvent("event", "login", { method: "kakao", roleType, destination });
     window.location.href = `${process.env.NEXT_PUBLIC_KAKAO_DOMAIN}oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_AUTH_KAKAO_KEY}&redirect_uri=${redirectUri}&state=${JSON.stringify(stateValue)}`;
   }
+
   return (
     <button type="button" onClick={loginToKakao} className={buttonStyles.kakao}>
       <Image
