@@ -21,18 +21,18 @@ export const statusStyles = styleVariants({
     display: "flex",
     alignItems: "center",
     background: "linear-gradient(to bottom, #F4F8FD 0%, #E6F1FD 100%)",
-    maxWidth: 550,
-    width: "100%",
     height: 150,
     borderRadius: 16,
     gap: 15,
     padding: "15px 40px",
+    width: "100%",
+    maxWidth: 600,
 
     "@media": {
       [breakpoints.mobile]: {
         width: "100%",
-        height: 120,
         maxWidth: "100%",
+        minWidth: 300,
         padding: "20px 0px",
         gap: 10,
         background: "none",
@@ -79,9 +79,15 @@ export const iconStyles = styleVariants({
     alignSelf: "center",
     justifyContent: "center",
     gap: 3,
+    minHeight: 20,
   },
   name: [baseName, sprinkles({ color: "text-01" })],
   caption: [baseName, sprinkles({ color: "text-03" })],
+  pastCaption: [
+    baseName,
+    sprinkles({ color: "text-03" }),
+    { "@media": { [breakpoints.mobile]: { display: "none" } } },
+  ],
 });
 
 const baseBanner = style([

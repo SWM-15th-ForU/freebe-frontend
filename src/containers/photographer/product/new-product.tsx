@@ -43,14 +43,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
         price: 0,
       },
     ],
-    discounts: [
-      {
-        title: "첫 주문 할인",
-        discountType: "AMOUNT",
-        discountValue: null,
-        description: "",
-      },
-    ],
+    discounts: [],
     notices: baseNotice,
   };
 

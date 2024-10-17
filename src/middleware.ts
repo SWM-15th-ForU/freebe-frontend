@@ -21,7 +21,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/photographer", request.url));
   }
   if (shouldPhotographer && !isPhotographer) {
-    return NextResponse.redirect(new URL("/login/photographer", request.url));
+    return NextResponse.redirect(
+      new URL(
+        `/login/photographer?redirect=${encodeURIComponent(pathname)}`,
+        request.url,
+      ),
+    );
   }
   if (shouldCustomer && !isLoggedIn) {
     return NextResponse.redirect(

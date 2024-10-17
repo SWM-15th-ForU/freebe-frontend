@@ -127,7 +127,7 @@ export const leaveStyles = styleVariants({
   },
   button: [
     texts["headline-03"],
-    sprinkles({ color: "text-02" }),
+    sprinkles({ color: "text-04" }),
     {
       background: "none",
       border: "none",

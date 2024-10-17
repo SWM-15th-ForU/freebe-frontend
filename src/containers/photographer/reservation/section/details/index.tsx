@@ -9,11 +9,17 @@ import PlaceDetails from "./place-details";
 
 const ReservationDetails = () => {
   const { watch } = useFormContext<Details>();
-  const preferredPlace = watch("preferredPlace");
+  const [currentStatus, cancleStatus, preferredPlace] = watch([
+    "currentStatus",
+    "cancelStatus",
+    "preferredPlace",
+  ]);
 
   return (
     <div>
-      <CustomerDetails />
+      {cancleStatus !== "NEW" && (
+        <CustomerDetails isDisableToAccess={currentStatus === "NEW"} />
+      )}
       <PhotoDetails />
       <ScheduleDetails />
       {preferredPlace && <PlaceDetails />}

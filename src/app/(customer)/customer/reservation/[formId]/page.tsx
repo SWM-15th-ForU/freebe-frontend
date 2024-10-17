@@ -10,7 +10,9 @@ const CustomerReservationPage = async ({
 }) => {
   const details = await getReservationDetails(params.formId);
   return (
-    <ProductHeaderLayout header={{ title: "신청서 확인" }}>
+    <ProductHeaderLayout
+      header={{ title: "신청서 확인", hasBackbutton: false }}
+    >
       <ReservationDetails details={details} />
     </ProductHeaderLayout>
   );

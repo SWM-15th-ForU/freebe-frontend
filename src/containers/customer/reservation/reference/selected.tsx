@@ -2,6 +2,8 @@ import { FormImage } from "product-types";
 import { BLUE03, LIGHTGREY01 } from "@/styles/colors";
 import { texts } from "@/styles/text.css";
 import ImageThumbnail from "@/components/images/image-thumbnail";
+import InfoCaption from "@/components/common/info-caption";
+import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import { reservationStyles } from "../reservation.css";
 
 const REFERENCE_LENGTH = 3;
@@ -41,6 +43,9 @@ const ReferenceSelected = ({
             );
           })}
       </div>
+      <InfoCaption
+        information={`직접 업로드하는 경우, ${ACCEPTED_IMAGE.info}`}
+      />
     </div>
   );
 };
