@@ -1,0 +1,52 @@
+name: Frontend Dev Server CD
+
+on:
+  push:
+    branches:
+      - "release/**"
+  create:
+
+jobs:
+  build:
+    if: github.ref_type == 'branch' && startsWith(github.ref, 'refs/heads/release')
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Node v
+        run: node -v
+
+      - name: env 설정
+        run: |
+          echo "AWS_REGION=${{ secrets.AWS_REGION }}" >> .env
+          echo "AWS_CODE_DEPLOY_APPLICATION=${{ secrets.AWS_CODE_DEPLOY_APPLICATION }}" >> .env
+          echo "AWS_ACCESS_KEY=${{ secrets.CICD_ACCESS_KEY }}" >> .env
+          echo "AWS_SECRET_KEY=${{ secrets.CICD_SECRET_KEY }}" >> .env
+          echo "AWS_S3_BUCKET=${{ secrets.AWS_S3_BUCKET_DEV }}" >> .env
+          echo "AWS_CODE_DEPLOY_GROUP=${{ secrets.AWS_CODE_DEPLOY_GROUP_DEV }}" >> .env
+          echo "NEXT_PUBLIC_API_DOMAIN=${{ secrets.NEXT_PUBLIC_API_DOMAIN_DEV }}" >> .env
+          echo "NEXT_PUBLIC_KAKAO_DOMAIN=${{ secrets.NEXT_PUBLIC_KAKAO_DOMAIN }}" >> .env
+          echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY_DEV }}" >> .env
+          echo "NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN_DEV }}" >> .env
+
+      - name: 압축
+        run: zip -r ./frontend_freebe.zip .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.CICD_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.CICD_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: S3에 zip 업로드(전체 파일)
+        run: aws s3 cp frontend_freebe.zip s3://${{ secrets.AWS_S3_BUCKET_DEV }}/cicd-dev/frontend_freebe.zip --region ap-northeast-2
+
+      - name: Code Deploy로 배포
+        run: >
+          aws deploy create-deployment --application-name ${{ secrets.AWS_CODE_DEPLOY_APPLICATION }}
+          --deployment-config-name CodeDeployDefault.AllAtOnce
+          --deployment-group-name ${{ secrets.AWS_CODE_DEPLOY_GROUP_DEV }}
+          --s3-location bucket=${{ secrets.AWS_S3_BUCKET_DEV }},bundleType=zip,key=cicd-dev/frontend_freebe.zip
