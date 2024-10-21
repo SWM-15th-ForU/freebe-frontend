@@ -1,14 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import popToast from "@/components/common/toast";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import MenuItem from "./menu-item";
-import LinkCopy from "./link-copy";
 import { itemStyles } from "./sidebar.css";
 
 const MenuList = () => {
-  const [linkOpened, setLinkOpened] = useState(false);
+  const [url, setUrl] = useState<string>("");
   const currentTab = usePathname().split("/").pop();
+
+  useEffect(() => {
+    const localData = localStorage.getItem("url");
+    if (localData) {
+      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}${localData}`);
+    }
+  });
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(url);
+      popToast(
+        "복사한 링크를 고객에게 전달해보세요!",
+        "클립보드에 복사되었습니다.",
+      );
+    } catch (error) {
+      popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
+    }
+  }
 
   return (
     <div className={itemStyles.container}>
@@ -44,15 +63,12 @@ const MenuList = () => {
             }
           />
         </Link>
-        <div style={{ position: "relative" }}>
-          <MenuItem
-            name="내 링크 복사"
-            icon="/icons/sidebar/copy.svg"
-            className={itemStyles.button}
-            onClick={() => setLinkOpened((prev) => !prev)}
-          />
-          {linkOpened && <LinkCopy onClose={() => setLinkOpened(false)} />}
-        </div>
+        <MenuItem
+          name="내 링크 복사"
+          icon="/icons/sidebar/copy.svg"
+          className={itemStyles.button}
+          onClick={handleCopy}
+        />
       </div>
       <div>
         <span className={itemStyles.title}>마이페이지</span>

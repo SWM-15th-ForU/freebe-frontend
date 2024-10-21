@@ -23,7 +23,8 @@ export const itemStyles = styleVariants({
     gap: 30,
     padding: "20px 10px 10px 10px",
     position: "relative",
-    height: "100%",
+    height: "calc(100vh - 51px)",
+    overflowY: "scroll",
   },
   title: [
     texts["headline-02"],
@@ -101,14 +102,19 @@ export const linkStyles = styleVariants({
 });
 
 const baseContainer = style([
-  sprinkles({ borderColor: "stroke-grey" }),
+  sprinkles({ borderColor: "stroke-grey", backgroundColor: "white" }),
   {
-    position: "relative",
-    height: "calc(100vh - 51px)",
+    position: "sticky",
+    top: 51,
+    left: 0,
+    // height: "100%",
+
     borderRightStyle: "solid",
     borderRightWidth: 1,
+    height: "calc(100vh - 51px)",
     transition: "width 0.3s ease",
     flexShrink: 0,
+    zIndex: 3,
 
     "@media": {
       [breakpoints.mobile]: {
@@ -133,12 +139,14 @@ export const menuStyles = styleVariants({
       borderStyle: "solid",
       borderRadius: "100%",
       position: "absolute",
+      padding: 0,
       right: -15,
       top: 30,
       width: 30,
       height: 30,
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
     },
   ],
   openIcon: [baseIcon],

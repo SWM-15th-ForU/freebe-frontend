@@ -5,7 +5,7 @@ export const mypageStyles = styleVariants({
   container: [
     {
       height: "calc(100vh - 51px)",
-      overflowY: "hidden",
+      overflowY: "scroll",
       position: "relative",
     },
   ],
@@ -15,6 +15,7 @@ export const mypageStyles = styleVariants({
       position: "relative",
       height: "100%",
       display: "flex",
+      boxSizing: "content-box",
 
       "@media": {
         [breakpoints.mobile]: {
