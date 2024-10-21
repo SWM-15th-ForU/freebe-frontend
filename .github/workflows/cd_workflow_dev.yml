@@ -3,10 +3,12 @@ name: Frontend Dev Server CD
 on:
   push:
     branches:
-      - 'release/**'
+      - "release/**"
+  create:
 
 jobs:
   build:
+    if: github.ref_type == 'branch' && startsWith(github.ref, 'refs/heads/release')
     runs-on: ubuntu-22.04
 
     steps:
@@ -28,7 +30,7 @@ jobs:
           echo "NEXT_PUBLIC_KAKAO_DOMAIN=${{ secrets.NEXT_PUBLIC_KAKAO_DOMAIN }}" >> .env
           echo "NEXT_PUBLIC_AUTH_KAKAO_KEY=${{ secrets.NEXT_PUBLIC_AUTH_KAKAO_KEY_DEV }}" >> .env
           echo "NEXT_PUBLIC_DOMAIN=${{ secrets.NEXT_PUBLIC_DOMAIN_DEV }}" >> .env
-      
+
       - name: 압축
         run: zip -r ./frontend_freebe.zip .
 
