@@ -33,11 +33,41 @@ export const itemStyles = styleVariants({
   ],
   selectedButton: [
     baseButton,
-    texts["body-02"],
-    sprinkles({ backgroundColor: "bg-lightgrey", color: "blue" }),
+    sprinkles({
+      backgroundColor: "bg-lightgrey",
+      color: "blue",
+      fontSize: {
+        desktop: "xs",
+        mobile: "sm",
+      },
+      fontWeight: "semibold",
+    }),
   ],
-  button: [baseButton, texts["body-01"], sprinkles({ color: "text-02" })],
-  logoutButton: [baseButton, texts["body-02"], sprinkles({ color: "pink" })],
+  button: [
+    baseButton,
+    sprinkles({
+      color: "text-02",
+      fontSize: {
+        desktop: "xs",
+        mobile: "sm",
+      },
+      fontWeight: "regular",
+    }),
+  ],
+  logoutButton: [
+    baseButton,
+    sprinkles({
+      color: "pink",
+      fontSize: {
+        desktop: "xs",
+        mobile: "sm",
+      },
+      fontWeight: {
+        desktop: "regular",
+        mobile: "medium",
+      },
+    }),
+  ],
 });
 
 export const linkStyles = styleVariants({

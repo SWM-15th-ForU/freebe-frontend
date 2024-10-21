@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
+import { Drawer } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import CloseButton from "@/components/buttons/close-button";
 import * as styles from "./header/header.css";
-import Profile from "./header/profile";
-import Url from "./header/url";
+import MenuList from "./sidebar/menu-list";
 
 const Header = ({
   isOnboarding,
@@ -15,14 +16,7 @@ const Header = ({
   isOnboarding?: boolean;
   links?: LinkType[];
 }) => {
-  const [url, setUrl] = useState<string>("");
-
-  useEffect(() => {
-    const localData = localStorage.getItem("url");
-    if (localData) {
-      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}${localData}`);
-    }
-  });
+  const [opened, { close, open }] = useDisclosure(false);
 
   return (
     <header className={styles.headerContainer}>
@@ -57,6 +51,23 @@ const Header = ({
           ))}
         </div>
       )}
+      <button type="button" onClick={open} className={styles.menuStyles.button}>
+        <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
+      </button>
+      <Drawer
+        size="xs"
+        withCloseButton={false}
+        onClose={close}
+        opened={opened}
+        position="right"
+      >
+        <CloseButton
+          onClick={close}
+          size={16}
+          container={{ position: "absolute", right: 40, top: 50 }}
+        />
+        <MenuList hasServiceLinks />
+      </Drawer>
     </header>
   );
 };

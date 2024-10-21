@@ -3,10 +3,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import popToast from "@/components/common/toast";
 import { mypageTabs } from "@/constants/photographer/mypage";
+import { SERVICE_LINKS } from "@/constants/common/common";
 import MenuItem from "./menu-item";
 import { itemStyles } from "./sidebar.css";
 
-const MenuList = () => {
+const links = [
+  { name: "서비스 안내", src: SERVICE_LINKS.landingPage },
+  { name: "고객센터", src: SERVICE_LINKS.help },
+];
+
+const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   const [url, setUrl] = useState<string>("");
   const currentTab = usePathname().split("/").pop();
 
@@ -85,11 +91,18 @@ const MenuList = () => {
           </Link>
         ))}
       </div>
-      <MenuItem
-        name="로그아웃"
-        className={itemStyles.logoutButton}
-        container={{ marginTop: "auto" }}
-      />
+      <div style={{ marginTop: "auto" }}>
+        {hasServiceLinks && (
+          <>
+            {links.map((link) => (
+              <Link key={link.name} href={link.src} target="_blank">
+                <MenuItem name={link.name} className={itemStyles.button} />
+              </Link>
+            ))}
+          </>
+        )}
+        <MenuItem name="로그아웃" className={itemStyles.logoutButton} />
+      </div>
     </div>
   );
 };
