@@ -1,5 +1,7 @@
 import ServiceFooter from "@/containers/common/footer";
 import Header from "@/containers/photographer/main/header";
+import PhotographerSidebar from "@/containers/photographer/main/sidebar";
+import { photographerStyles } from "./photographer.css";
 
 const PhotographerLayout = ({
   children,
@@ -8,14 +10,12 @@ const PhotographerLayout = ({
 }>) => {
   return (
     <div>
-      <div
-        style={{
-          minHeight: "100vh",
-          paddingTop: 51,
-        }}
-      >
+      <div className={photographerStyles.headerLayout}>
         <Header />
-        {children}
+        <div className={photographerStyles.body}>
+          <PhotographerSidebar />
+          <div className={photographerStyles.content}>{children}</div>
+        </div>
       </div>
       <ServiceFooter />
     </div>

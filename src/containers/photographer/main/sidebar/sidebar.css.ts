@@ -41,7 +41,7 @@ export const itemStyles = styleVariants({
 
 export const linkStyles = styleVariants({
   dropdown: [
-    sprinkles({ borderColor: "stroke-grey" }),
+    sprinkles({ borderColor: "stroke-grey", backgroundColor: "white" }),
     {
       borderWidth: 1,
       borderStyle: "solid",
@@ -50,6 +50,7 @@ export const linkStyles = styleVariants({
       boxShadow: "0px 10px 25px 0px #00000026",
       top: -30,
       left: 250,
+      zIndex: 300,
       position: "absolute",
     },
   ],
@@ -107,6 +108,7 @@ const baseContainer = style([
     borderRightStyle: "solid",
     borderRightWidth: 1,
     transition: "width 0.3s ease",
+    flexShrink: 0,
 
     "@media": {
       [breakpoints.mobile]: {
