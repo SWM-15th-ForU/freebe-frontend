@@ -116,6 +116,11 @@ const baseContainer = style([
   },
 ]);
 
+const baseIcon = style({
+  transition: "transform 0.5s ease",
+  paddingLeft: 3,
+});
+
 export const menuStyles = styleVariants({
   container: [baseContainer, { width: 250 }],
   closedContainer: [baseContainer, { width: 25 }],
@@ -130,6 +135,10 @@ export const menuStyles = styleVariants({
       top: 30,
       width: 30,
       height: 30,
+      display: "flex",
+      alignItems: "center",
     },
   ],
+  openIcon: [baseIcon],
+  closeIcon: [baseIcon, { transform: "rotate(180deg)" }],
 });
