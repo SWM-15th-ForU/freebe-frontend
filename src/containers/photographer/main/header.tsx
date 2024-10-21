@@ -43,13 +43,7 @@ const Header = ({
           />
         </Link>
       )}
-      {!isOnboarding && (
-        <>
-          <Url myUrl={url} />
-          <Profile />
-        </>
-      )}
-      {links && isOnboarding && (
+      {links && (
         <div className={styles.linkWrapper}>
           {links.map((link) => (
             <Link
