@@ -79,19 +79,11 @@ const TUTORIAL_LEVELS: {
     content:
       "새롭게 접수된 신청서는 메인페이지에서 확인할 수 있어요. 신청서가 접수될 때마다 알림톡을 보내드려요!",
     maskImage:
-      "linear-gradient(to right, black 270px, transparent 270px), linear-gradient(to left, black 30px, transparent 30px),linear-gradient(black 140px, transparent 140px 500px, black 500px)",
+      "linear-gradient(to right, black 270px, transparent 270px), linear-gradient(to left, black 30px, transparent 30px),linear-gradient(black 140px, transparent 140px 600px, black 600px)",
   },
   {
     content:
       "튜토리얼은 메인페이지에서 언제든지 다시 확인할 수 있어요. 사용중 어려운 점이 있다면 고객센터로 문의해주세요. 프리비와 함께 더 자유로운 촬영 되세요!",
-    maskX: {
-      start: 280,
-      end: 240,
-    },
-    maskY: {
-      start: 230,
-      end: 280,
-    },
   },
 ];
 
