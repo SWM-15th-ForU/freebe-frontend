@@ -6,7 +6,7 @@ import { menuStyles } from "./sidebar.css";
 import ControlSidebar from "./control";
 
 const PhotographerSidebar = ({ tutorialParam }: { tutorialParam: boolean }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     if (tutorialParam) {

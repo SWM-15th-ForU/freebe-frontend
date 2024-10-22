@@ -177,7 +177,7 @@ const Tutorial = ({
       </div>
       <div className={tutorialStyles.buttonWrapper}>
         <CustomButton
-          title="튜토리얼 그만 보기"
+          title="튜토리얼 닫기"
           size="sm"
           styleType="line"
           onClick={handleClose}
