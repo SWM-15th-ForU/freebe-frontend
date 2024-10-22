@@ -2,10 +2,6 @@ import { LinkType } from "profile-types";
 
 export const mypageTabs: LinkType[] = [
   {
-    name: "내 프로필 관리",
-    src: "profile",
-  },
-  {
     name: "내 상품 목록",
     src: "products",
   },
