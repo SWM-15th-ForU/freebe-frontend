@@ -1,7 +1,7 @@
 import { CSSProperties, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Modal } from "@mantine/core";
+import { FocusTrap, Modal } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { tutorialModalStyles, tutorialStyles } from "./tutorial.css";
 
@@ -130,6 +130,7 @@ const Tutorial = ({
       styles={{ content: { ...TUTORIAL_LEVELS[index]?.modalPosition } }}
     >
       <div className={tutorialStyles.container}>
+        <FocusTrap.InitialFocus />
         {index > 0 && (
           <button
             onClick={() => setIndex((prev) => prev - 1)}
