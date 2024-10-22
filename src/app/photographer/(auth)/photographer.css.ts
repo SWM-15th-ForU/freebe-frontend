@@ -7,10 +7,10 @@ export const photographerStyles = styleVariants({
     paddingTop: 51,
   },
   body: {
+    scrollMarginTop: 51,
     display: "flex",
     position: "relative",
     maxWidth: "100vw",
-    // overflowX: "scroll",
     "@media": {
       [breakpoints.mobile]: {
         minHeight: "calc(100vh - 51px)",

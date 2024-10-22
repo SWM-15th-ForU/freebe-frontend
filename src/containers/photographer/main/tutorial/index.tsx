@@ -126,6 +126,7 @@ const Tutorial = ({
       closeOnClickOutside={false}
       withCloseButton={false}
       centered
+      lockScroll={false}
       overlayProps={{
         style: {
           maskImage:

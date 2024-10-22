@@ -13,21 +13,25 @@ export default function Home() {
 
   useEffect(() => {
     const urlParam = searchParams.get("url");
-    const isTutorial = searchParams.get("tutorial");
-    if (isTutorial) {
-      setIsOnTutorial(true);
-    }
+    const tutorialParam = searchParams.get("tutorial");
     if (urlParam) {
       const decodedUrl = decodeURIComponent(urlParam);
       localStorage.setItem("url", decodedUrl);
-      router.replace("/photographer");
+      router.replace(
+        tutorialParam ? "/photographer?tutorial=true" : "/photographer",
+      );
       router.refresh();
+    }
+    if (tutorialParam) {
+      setIsOnTutorial(true);
+    } else {
+      setIsOnTutorial(false);
     }
   }, [router, searchParams]);
 
   return (
     <div className={photographerStyles.body}>
-      <PhotographerSidebar />
+      <PhotographerSidebar tutorialParam={isOnTutorial} />
       <div className={photographerStyles.content}>
         <MainView tutorialParam={isOnTutorial} />
       </div>

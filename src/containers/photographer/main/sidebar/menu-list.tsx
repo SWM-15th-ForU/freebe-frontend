@@ -37,7 +37,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   }
 
   function handleOpenTutorial() {
-    router.replace("/photographer?tutorial=true");
+    router.replace("/photographer?tutorial=true", { scroll: true });
   }
 
   return (

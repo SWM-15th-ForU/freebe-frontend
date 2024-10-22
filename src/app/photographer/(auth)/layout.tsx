@@ -1,7 +1,6 @@
 import { SERVICE_LINKS } from "@/constants/common/common";
 import ServiceFooter from "@/containers/common/footer";
 import Header from "@/containers/photographer/main/header";
-import PhotographerSidebar from "@/containers/photographer/main/sidebar";
 import { photographerStyles } from "./photographer.css";
 
 const PhotographerLayout = ({
@@ -18,10 +17,7 @@ const PhotographerLayout = ({
             { name: "고객센터", src: SERVICE_LINKS.help },
           ]}
         />
-        <div className={photographerStyles.body}>
-          <PhotographerSidebar />
-          <div className={photographerStyles.content}>{children}</div>
-        </div>
+        {children}
       </div>
       <ServiceFooter />
     </div>

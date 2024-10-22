@@ -66,7 +66,7 @@ const PhotographerJoin = () => {
       postProfile(data),
       (url) => {
         popToast("가입이 완료되었습니다!");
-        router.push(`/photographer?url=${url}`);
+        router.push(`/photographer?url=${url}&tutorial=true`);
       },
       handleSubmitFail,
     );

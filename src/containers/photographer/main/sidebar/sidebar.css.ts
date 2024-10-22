@@ -68,6 +68,16 @@ export const itemStyles = styleVariants({
       },
     }),
   ],
+  mobileDisable: {
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "none",
+      },
+      "screen and (max-height: 660px)": {
+        display: "none",
+      },
+    },
+  },
 });
 
 export const linkStyles = styleVariants({
@@ -137,7 +147,6 @@ const baseContainer = style([
     position: "sticky",
     top: 51,
     left: 0,
-    // height: "100%",
 
     borderRightStyle: "solid",
     borderRightWidth: 1,

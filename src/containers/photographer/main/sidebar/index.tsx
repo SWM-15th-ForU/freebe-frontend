@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuList from "./menu-list";
 import { menuStyles } from "./sidebar.css";
 import ControlSidebar from "./control";
 
-const PhotographerSidebar = () => {
+const PhotographerSidebar = ({ tutorialParam }: { tutorialParam: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (tutorialParam) {
+      setIsOpen(true);
+    }
+  }, [tutorialParam]);
 
   function handleClickControl() {
     setIsOpen((prev) => {

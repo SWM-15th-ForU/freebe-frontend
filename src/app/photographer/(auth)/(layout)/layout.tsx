@@ -8,7 +8,7 @@ const SidebarLayout = ({
 }>) => {
   return (
     <div className={photographerStyles.body}>
-      <PhotographerSidebar />
+      <PhotographerSidebar tutorialParam={false} />
       <div className={photographerStyles.content}>{children}</div>
     </div>
   );
