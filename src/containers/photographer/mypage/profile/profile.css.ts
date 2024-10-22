@@ -40,9 +40,6 @@ export const profileStyles = styleVariants({
       paddingBottom: 0,
       position: "relative",
       height: "auto",
-      flexGrow: 1,
-      overflow: "hidden",
-
       "@media": {
         [breakpoints.mobile]: {
           padding: "24px 20px",
@@ -53,6 +50,7 @@ export const profileStyles = styleVariants({
   form: {
     position: "relative",
     height: "100%",
+    width: "100%",
     "@media": {
       [breakpoints.mobile]: {
         height: "auto",
@@ -67,7 +65,6 @@ export const profileStyles = styleVariants({
   container: {
     display: "flex",
     height: "calc(100% - 60px)",
-    width: "auto",
     minHeight: 500,
     gap: 24,
     position: "relative",
