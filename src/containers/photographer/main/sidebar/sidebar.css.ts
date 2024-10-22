@@ -54,20 +54,6 @@ export const itemStyles = styleVariants({
       fontWeight: "regular",
     }),
   ],
-  logoutButton: [
-    baseButton,
-    sprinkles({
-      color: "pink",
-      fontSize: {
-        desktop: "xs",
-        mobile: "sm",
-      },
-      fontWeight: {
-        desktop: "regular",
-        mobile: "medium",
-      },
-    }),
-  ],
   mobileDisable: {
     "@media": {
       [breakpoints.mobile]: {

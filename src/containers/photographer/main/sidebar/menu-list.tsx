@@ -128,7 +128,11 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
             onClick={handleOpenTutorial}
           />
         )}
-        <MenuItem name="로그아웃" className={itemStyles.logoutButton} />
+        <MenuItem
+          name="로그아웃"
+          icon="/icons/logout.svg"
+          className={itemStyles.button}
+        />
       </div>
     </div>
   );
