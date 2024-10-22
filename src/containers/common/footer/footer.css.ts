@@ -7,6 +7,9 @@ export const footerStyles = styleVariants({
   container: [
     sprinkles({ backgroundColor: "text-01" }),
     {
+      position: "sticky",
+      left: 0,
+      right: 0,
       marginTop: "auto",
       width: "100%",
       padding: "32px 60px 60px 60px",

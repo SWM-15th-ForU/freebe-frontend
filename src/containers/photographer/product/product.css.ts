@@ -178,6 +178,7 @@ export const formStyles = styleVariants({
     margin: "auto",
     paddingTop: 50,
     paddingBottom: 80,
+    padding: "50px 30px 80px 30px",
     alignSelf: "flex-start",
 
     "@media": {

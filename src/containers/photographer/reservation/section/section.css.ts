@@ -104,7 +104,7 @@ export const sectionStyles = styleVariants({
       overflowX: "scroll",
     },
   ],
-  optionWrapper: [baseWrapper, { gap: 10, flexDirection: "column" }],
+  optionWrapper: [baseWrapper, { marginTop: 10, flexDirection: "column" }],
   title: [
     texts["headline-02"],
     sprinkles({ color: "text-02" }),
@@ -165,7 +165,7 @@ export const fieldStyles = styleVariants({
   name: [
     texts["headline-03"],
     sprinkles({ color: "text-03" }),
-    { minWidth: 60 },
+    { minWidth: 60, flexBasis: "30%" },
   ],
   content: [texts["headline-03"], sprinkles({ color: "blue" })],
 });

@@ -93,3 +93,10 @@ export function createDateObjects(
     endTime,
   };
 }
+
+export function getDateStringFromToday(offset: number) {
+  const today = new Date();
+  const resultDate = new Date(today);
+  resultDate.setDate(today.getDate() + offset);
+  return formatDateString(resultDate);
+}
