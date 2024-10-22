@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import popToast from "@/components/common/toast";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { SERVICE_LINKS } from "@/constants/common/common";
@@ -13,6 +13,7 @@ const links = [
 ];
 
 const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
+  const router = useRouter();
   const [url, setUrl] = useState<string>("");
   const currentTab = usePathname().split("/").pop();
 
@@ -33,6 +34,10 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
     } catch (error) {
       popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
     }
+  }
+
+  function handleOpenTutorial() {
+    router.replace("/photographer?tutorial=true");
   }
 
   return (
@@ -69,6 +74,21 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
             }
           />
         </Link>
+        <Link href="/photographer/profile">
+          <MenuItem
+            name="프로필 설정"
+            icon={
+              currentTab === "profile"
+                ? "/icons/sidebar/profile-blue.svg"
+                : "/icons/sidebar/profile.svg"
+            }
+            className={
+              currentTab === "profile"
+                ? itemStyles.selectedButton
+                : itemStyles.button
+            }
+          />
+        </Link>
         <MenuItem
           name="내 링크 복사"
           icon="/icons/sidebar/copy.svg"
@@ -100,6 +120,13 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
               </Link>
             ))}
           </>
+        )}
+        {currentTab === "photographer" && (
+          <MenuItem
+            name="튜토리얼 보기"
+            className={`${itemStyles.button} ${itemStyles.mobileDisable}`}
+            onClick={handleOpenTutorial}
+          />
         )}
         <MenuItem name="로그아웃" className={itemStyles.logoutButton} />
       </div>
