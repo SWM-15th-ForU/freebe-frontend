@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Join } from "profile-types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { ID_REGEX } from "@/constants/common/user";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
@@ -28,7 +29,7 @@ const PhotographerJoin = () => {
     contact: z
       .string()
       .min(1, { message: "연락처를 입력해 주세요." })
-      .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+      .max(MAX_LENGTHS.TEXT, { message: "최대 100자까지 입력 가능합니다." }),
     marketingAgreement: z.boolean(),
     privacyAgreement: z.boolean(),
     serviceAgreement: z.boolean(),
