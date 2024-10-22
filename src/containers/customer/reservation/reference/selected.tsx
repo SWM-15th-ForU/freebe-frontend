@@ -27,7 +27,7 @@ const ReferenceSelected = ({
     >
       <span className={texts["body-01"]} style={{ color: BLUE03 }}>
         내가 원하는 분위기와 비슷한 사진을 최소 1장, 최대 3장 선택할 수 있어요.
-        고른 사진은 작가님께 촬영용 레퍼런스로 전달돼요.
+        고른 사진은 작가님께 촬영시 참고할 사진 자료로 전달돼요.
       </span>
       <div className={reservationStyles.imageWrapper}>
         {images
