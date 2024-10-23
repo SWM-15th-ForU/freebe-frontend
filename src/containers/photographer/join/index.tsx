@@ -9,10 +9,10 @@ import { MAX_LENGTHS } from "@/constants/common/schema";
 import { ID_REGEX } from "@/constants/common/user";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import NoticeBanner from "@/containers/common/notice-banner";
 import { postProfile } from "@/services/client/photographer/profile";
 import { CUSTOMED_CODE, responseHandler } from "@/services/common/error";
 import Profile from "./profile";
-import Agreements from "./agreements";
 import { joinStyles } from "./join.css";
 
 const PhotographerJoin = () => {
@@ -30,26 +30,16 @@ const PhotographerJoin = () => {
       .string()
       .min(1, { message: "연락처를 입력해 주세요." })
       .max(MAX_LENGTHS.TEXT, { message: "최대 100자까지 입력 가능합니다." }),
-    marketingAgreement: z.boolean(),
-    privacyAgreement: z.boolean(),
-    serviceAgreement: z.boolean(),
   });
   const defaultValues: Join = {
     contact: "",
     profileName: "",
-    marketingAgreement: false,
-    privacyAgreement: false,
-    serviceAgreement: false,
   };
   const method = useForm<Join>({
     defaultValues,
     resolver: zodResolver(joinSchema),
   });
-  const { handleSubmit, watch, setError } = method;
-  const [serviceAgreement, privacyAgreement] = watch([
-    "serviceAgreement",
-    "privacyAgreement",
-  ]);
+  const { handleSubmit, setError } = method;
 
   function handleSubmitFail(message?: string) {
     if (message === CUSTOMED_CODE.PROFILE_NAME_ALREADY_EXISTS) {
@@ -76,14 +66,17 @@ const PhotographerJoin = () => {
   return (
     <FormProvider {...method}>
       <form className={joinStyles.container} onSubmit={handleSubmit(onSubmit)}>
+        <NoticeBanner container={{ width: "100%" }} />
+        <span className={joinStyles.title}>
+          가입을 위해 계정 설정을 완료해주세요!
+        </span>
         <Profile />
-        <Agreements />
         <CustomButton
           type="submit"
           size="md"
           styleType="primary"
           title="가입하기"
-          disabled={!serviceAgreement || !privacyAgreement}
+          style={{ marginTop: 30 }}
         />
       </form>
     </FormProvider>
