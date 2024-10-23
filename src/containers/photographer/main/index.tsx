@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MainViewType } from "service-types";
 import { useDisclosure } from "@mantine/hooks";
+import NoticeBanner from "@/containers/common/notice-banner";
 import Preparing from "@/containers/ui/preparing";
 import ReservationList from "../list";
 import Controller from "./controller";
@@ -47,6 +48,7 @@ const MainView = ({ tutorialParam }: { tutorialParam: boolean }) => {
         />
       )}
       {view === "calender" && <Preparing />}
+      <NoticeBanner container={{ marginTop: "auto", alignSelf: "center" }} />
     </div>
   );
 };
