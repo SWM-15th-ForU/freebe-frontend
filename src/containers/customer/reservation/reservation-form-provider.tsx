@@ -61,7 +61,7 @@ const ReservationFormProvider = ({
     schedules: z.array(scheduleListSchema).optional(),
     options: z.array(selectedOptionSchema).optional(),
     memo: z.string().max(MAX_LENGTHS.LONG_TEXT, {
-      message: "최대 300자까지 입력 가능합니다.",
+      message: "최대 500자까지 입력 가능합니다.",
     }),
     preferredPlace: z.string().max(MAX_LENGTHS.TEXT, {
       message: "최대 100자까지 입력 가능합니다.",

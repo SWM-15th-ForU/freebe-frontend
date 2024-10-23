@@ -135,7 +135,7 @@ const ProductForm = ({
           .string()
           .min(1, { message: "내용을 비워둘 수 없습니다." })
           .max(MAX_LENGTHS.LONG_TEXT, {
-            message: "300자 이내로 작성해주세요.",
+            message: "500자 이내로 작성해주세요.",
           }),
       }),
     ),

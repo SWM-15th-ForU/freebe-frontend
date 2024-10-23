@@ -20,7 +20,7 @@ const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
     message: z
       .string()
       .max(MAX_LENGTHS.LONG_TEXT, {
-        message: "최대 300자까지 입력 가능합니다.",
+        message: "최대 500자까지 입력 가능합니다.",
       })
       .optional(),
     contact: z
