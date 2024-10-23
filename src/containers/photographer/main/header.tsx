@@ -51,23 +51,31 @@ const Header = ({
           ))}
         </div>
       )}
-      <button type="button" onClick={open} className={styles.menuStyles.button}>
-        <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
-      </button>
-      <Drawer
-        size="xs"
-        withCloseButton={false}
-        onClose={close}
-        opened={opened}
-        position="right"
-      >
-        <CloseButton
-          onClick={close}
-          size={16}
-          container={{ position: "absolute", right: 40, top: 50 }}
-        />
-        <MenuList hasServiceLinks />
-      </Drawer>
+      {!isOnboarding && (
+        <>
+          <button
+            type="button"
+            onClick={open}
+            className={styles.menuStyles.button}
+          >
+            <Image src="/icons/menu.svg" alt="menu" width={24} height={24} />
+          </button>
+          <Drawer
+            size="xs"
+            withCloseButton={false}
+            onClose={close}
+            opened={opened}
+            position="right"
+          >
+            <CloseButton
+              onClick={close}
+              size={16}
+              container={{ position: "absolute", right: 40, top: 50 }}
+            />
+            <MenuList hasServiceLinks />
+          </Drawer>
+        </>
+      )}
     </header>
   );
 };
