@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { BeforeErrorHook, HTTPError, KyRequest } from "ky";
 import * as Sentry from "@sentry/nextjs";
 import { CustomedError, getCustomedErrorMessage } from "./error";
@@ -36,14 +35,7 @@ async function getCustomedError(error: HTTPError) {
 }
 
 export const beforeError: BeforeErrorHook = async (error) => {
-  if (error.response.status === 401) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}auth`, {
-      method: "PUT",
-    });
-    if (response.redirected) {
-      redirect(response.url);
-    }
-  } else {
+  if (error.response.status !== 401) {
     Sentry.captureException(error);
   }
   const customedError = await getCustomedError(error);
