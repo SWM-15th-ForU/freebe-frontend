@@ -40,7 +40,7 @@ export const setTokens = (accessToken: string, refreshToken: string) => {
   });
 };
 
-export const reissueTokens = async () => {
+export const reissueTokens = async (callback?: () => Promise<any>) => {
   const refreshToken = getRefreshToken();
   if (!refreshToken) {
     throw new Error();
@@ -62,6 +62,9 @@ export const reissueTokens = async () => {
       } else {
         setTokens(newAccessToken, newRefreshToken);
       }
+      if (callback) {
+        callback();
+      }
     } else {
       throw new Error();
     }
@@ -80,7 +83,7 @@ export const logout = async () => {
   });
   if (response.status === 401) {
     try {
-      await reissueTokens();
+      await reissueTokens(logout);
     } catch {
       deleteTokens();
       redirect("/");

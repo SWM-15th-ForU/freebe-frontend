@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import popToast from "@/components/common/toast";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { SERVICE_LINKS } from "@/constants/common/common";
+import { logout } from "@/services/client/core/auth";
 import MenuItem from "./menu-item";
 import { itemStyles } from "./sidebar.css";
 
@@ -16,6 +17,13 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   const router = useRouter();
   const [url, setUrl] = useState<string>("");
   const currentTab = usePathname().split("/").pop();
+
+  async function handleLogout() {
+    const redirect = await logout();
+    if (redirect) {
+      router.push(redirect);
+    }
+  }
 
   useEffect(() => {
     const localData = localStorage.getItem("url");
@@ -130,6 +138,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
         )}
         <MenuItem
           name="로그아웃"
+          onClick={handleLogout}
           icon="/icons/logout.svg"
           className={itemStyles.button}
         />
