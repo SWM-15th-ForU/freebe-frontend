@@ -77,6 +77,20 @@ const Confirm = () => {
     );
   }
 
+  function progressNextStatus() {
+    if (
+      compareStatus(currentStatus, "NEW") === "DONE" &&
+      (shootingDate === undefined || shootingPlace === undefined)
+    ) {
+      popToast(
+        "'수정하기'를 누른 다음 촬영 장소와 일정을 먼저 확정해주세요.",
+        "아직 다음 단계로 넘어갈 수 없어요.",
+      );
+    } else {
+      open();
+    }
+  }
+
   return (
     <div>
       <div className={sectionStyles.header}>
@@ -100,12 +114,7 @@ const Confirm = () => {
         <div className={sectionStyles.divider}>
           <ShootingPlace isEditing={isEditing} />
           <div>
-            <ShootingDate
-              needShootingDate={
-                compareStatus(currentStatus, "NEW") === "DONE" &&
-                shootingDate === undefined
-              }
-            />
+            <ShootingDate />
             {isEditing && (
               <CustomButton
                 size="sm"
@@ -172,13 +181,9 @@ const Confirm = () => {
               </div>
               <CustomButton
                 title={progressStatus[currentStatus]}
-                onClick={open}
+                onClick={progressNextStatus}
                 styleType="primary"
                 size="sm"
-                disabled={
-                  compareStatus(currentStatus, "NEW") === "DONE" &&
-                  shootingDate === undefined
-                }
               />
               <StatusModal
                 close={close}

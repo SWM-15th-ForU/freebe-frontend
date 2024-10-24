@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Details } from "reservation-types";
 import { FormProvider, useForm } from "react-hook-form";
 import ReservationDetails from "./section/details";
@@ -10,6 +11,13 @@ import ReservationTitle from "./title";
 
 const ReservationDetailsPage = ({ detailsData }: { detailsData: Details }) => {
   const method = useForm<Details>({ defaultValues: detailsData });
+  const { setValue } = method;
+
+  useEffect(() => {
+    Object.keys(detailsData).forEach((key) => {
+      setValue(key as keyof Details, detailsData[key as keyof Details]);
+    });
+  }, [detailsData, setValue]);
 
   return (
     <FormProvider {...method}>
