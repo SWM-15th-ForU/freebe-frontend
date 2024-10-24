@@ -10,13 +10,29 @@ import {
   noticeBannerStyles,
 } from "./notice-banner.css";
 
-const NoticeBanner = ({ container }: { container?: CSSProperties }) => {
-  const bannerDatas = [
-    {
-      image: "https://picsum.photos/1200/600",
-      link: "https://slashpage.com/freebe",
-    },
-  ];
+const NoticeBanner = ({
+  container,
+  target,
+}: {
+  container?: CSSProperties;
+  target: "join" | "main";
+}) => {
+  const bannerDatas = {
+    join: [
+      {
+        image:
+          "https://local-freebe-data.s3.ap-northeast-2.amazonaws.com/service-banner/join-banner.png",
+        link: undefined,
+      },
+    ],
+    main: [
+      {
+        image:
+          "https://local-freebe-data.s3.ap-northeast-2.amazonaws.com/service-banner/main-banner.png",
+        link: "https://slashpage.com/freebe/xjqy1g2vqrk4dm6vd54z",
+      },
+    ],
+  };
   return (
     <Carousel
       withIndicators
@@ -24,16 +40,25 @@ const NoticeBanner = ({ container }: { container?: CSSProperties }) => {
       classNames={{ ...carouselStyles, ...customedCarouselStyles }}
       style={{ ...container }}
     >
-      {bannerDatas.map((banner, index) => (
+      {bannerDatas[target].map((banner, index) => (
         <Carousel.Slide key={index}>
-          <Link target="_blank" href={banner.link}>
+          {banner.link ? (
+            <Link target="_blank" href={banner.link}>
+              <Image
+                alt={`banner image ${index}`}
+                src={banner.image}
+                fill
+                className={noticeBannerStyles.image}
+              />
+            </Link>
+          ) : (
             <Image
               alt={`banner image ${index}`}
               src={banner.image}
               fill
               className={noticeBannerStyles.image}
             />
-          </Link>
+          )}
         </Carousel.Slide>
       ))}
     </Carousel>

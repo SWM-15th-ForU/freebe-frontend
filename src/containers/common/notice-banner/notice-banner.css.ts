@@ -4,8 +4,10 @@ import { styleVariants } from "@vanilla-extract/css";
 export const customedCarouselStyles = styleVariants({
   root: {
     position: "relative",
-    width: 700,
-    aspectRatio: "4",
+    width: "100%",
+    minWidth: 700,
+    maxWidth: 950,
+    aspectRatio: "5",
 
     "@media": {
       [breakpoints.mobile]: {

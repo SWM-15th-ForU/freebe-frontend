@@ -66,7 +66,7 @@ const PhotographerJoin = () => {
   return (
     <FormProvider {...method}>
       <form className={joinStyles.container} onSubmit={handleSubmit(onSubmit)}>
-        <NoticeBanner container={{ width: "100%" }} />
+        <NoticeBanner container={{ width: "100%" }} target="join" />
         <span className={joinStyles.title}>
           가입을 위해 계정 설정을 완료해주세요!
         </span>

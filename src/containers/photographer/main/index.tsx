@@ -48,7 +48,10 @@ const MainView = ({ tutorialParam }: { tutorialParam: boolean }) => {
         />
       )}
       {view === "calender" && <Preparing />}
-      <NoticeBanner container={{ marginTop: "auto", alignSelf: "center" }} />
+      <NoticeBanner
+        container={{ marginTop: "auto", alignSelf: "center" }}
+        target="main"
+      />
     </div>
   );
 };
