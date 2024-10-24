@@ -4,7 +4,7 @@ import { formatDate, formatTimeString } from "@/utils/date";
 import { sectionStyles } from "../section.css";
 import { dateStyles } from "./control.css";
 
-const ShootingDate = ({ needShootingDate }: { needShootingDate: boolean }) => {
+const ShootingDate = () => {
   const { watch } = useFormContext<Details>();
   const shootingDate = watch("shootingDate");
 
@@ -27,11 +27,6 @@ const ShootingDate = ({ needShootingDate }: { needShootingDate: boolean }) => {
           <span className={dateStyles.info}>
             아직 일정이 확정되지 않았어요.
           </span>
-          {needShootingDate && (
-            <span className={dateStyles.error}>
-              다음으로 진행하기 위해 일정을 먼저 확정해 주세요.
-            </span>
-          )}
         </div>
       )}
     </div>
