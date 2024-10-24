@@ -31,3 +31,17 @@ export const commonTabsStyles = styleVariants({
   ],
   tab: [texts["headline-03"], sprinkles({ color: "text-02" })],
 });
+
+export const carouselStyles = styleVariants({
+  indicator: {
+    width: "8px",
+    height: "8px",
+    backgroundColor: "white",
+    borderRadius: "50%",
+    transition: "background-color 0.3s ease",
+
+    selectors: {
+      "&[data-active]": { transition: "none", backgroundColor: "#007AFF" },
+    },
+  },
+});

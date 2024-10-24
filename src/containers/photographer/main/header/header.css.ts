@@ -107,6 +107,14 @@ export const urlStyles = styleVariants({
 });
 
 export const menuStyles = styleVariants({
+  mobileDisplay: {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
   close: {
     position: "absolute",
     top: 20,

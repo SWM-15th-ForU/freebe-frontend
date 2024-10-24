@@ -70,5 +70,9 @@ export const footerStyles = styleVariants({
     { fontSize: 13, fontWeight: 600 },
   ],
   content: [sprinkles({ color: "white" }), { fontSize: 13, fontWeight: 400 }],
-  caption: [texts["caption-01"], sprinkles({ color: "text-04" })],
+  caption: [
+    texts["caption-01"],
+    sprinkles({ color: "text-04" }),
+    { display: "block" },
+  ],
 });

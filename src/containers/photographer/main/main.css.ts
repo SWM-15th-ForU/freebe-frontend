@@ -7,6 +7,8 @@ export const mainviewStyles = styleVariants({
   container: {
     width: "100%",
     minWidth: 375,
+    display: "flex",
+    flexDirection: "column",
     padding: "32px 40px 80px 40px",
     "@media": {
       [breakpoints.mobile]: {

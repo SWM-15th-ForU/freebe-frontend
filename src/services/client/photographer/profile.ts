@@ -5,9 +5,6 @@ export async function postProfile(form: Join) {
   const body = {
     profileName: form.profileName,
     contact: form.contact,
-    termsOfServiceAgreement: form.serviceAgreement,
-    privacyPolicyAgreement: form.privacyAgreement,
-    marketingAgreement: form.marketingAgreement,
   };
   const { data } = await apiClient
     .post("photographer/join", {

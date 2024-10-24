@@ -5,6 +5,7 @@ import { PhotographerForm } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
 import { responseHandler } from "@/services/common/error";
 import popToast from "@/components/common/toast";
@@ -16,15 +17,30 @@ import Preview from "./preview";
 const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
   const router = useRouter();
   const profileSchema = z.object({
-    message: z.string().optional(),
+    message: z
+      .string()
+      .max(MAX_LENGTHS.LONG_TEXT, {
+        message: "최대 500자까지 입력 가능합니다.",
+      })
+      .optional(),
     contact: z
       .string()
       .min(1, { message: "연락처를 입력해 주세요." })
-      .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+      .max(MAX_LENGTHS.TEXT, { message: "최대 100자까지 입력 가능합니다." }),
     linkInfos: z.array(
       z.object({
-        name: z.string().min(1, { message: "표시될 이름을 입력해 주세요." }),
-        src: z.string().min(1, { message: "링크를 입력해 주세요." }),
+        name: z
+          .string()
+          .min(1, { message: "표시될 이름을 입력해 주세요." })
+          .max(MAX_LENGTHS.TITLE, {
+            message: "최대 30자까지 입력 가능합니다.",
+          }),
+        src: z
+          .string()
+          .min(1, { message: "링크를 입력해 주세요." })
+          .max(MAX_LENGTHS.TEXT, {
+            message: "최대 100자까지 입력 가능합니다.",
+          }),
       }),
     ),
     bannerImg: z

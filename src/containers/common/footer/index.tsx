@@ -57,6 +57,9 @@ const ServiceFooter = () => {
         </div>
       </div>
       <span className={footerStyles.caption}>
+        © 2024 free:be. All rights reserved.
+      </span>
+      <span className={footerStyles.caption}>
         프리비는 통신판매중개자로서 통신판매의 당사자가 아니며 각 상품의 주문,
         거래 및 환불 등에 관한 의무와 책임은 각 판매자에게 있습니다.
       </span>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { FormImage, ProductFormdata } from "product-types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import ItemFieldArray from "./field/item-field-array";
@@ -28,28 +29,35 @@ const ProductForm = ({
     title: z
       .string()
       .min(1, { message: "제목을 입력해 주세요." })
-      .max(30, { message: "최대 30자까지 입력 가능합니다." }),
+      .max(MAX_LENGTHS.TITLE, { message: "최대 30자까지 입력 가능합니다." }),
     subtitle: z
       .string()
-      .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+      .max(MAX_LENGTHS.TEXT, { message: "최대 100자까지 입력 가능합니다." }),
     basicPrice: z.coerce
       .number()
       .nonnegative({ message: "기본 가격을 입력해 주세요." }),
-    basicPlace: z.string().min(1, { message: "촬영 장소를 입력해 주세요." }),
+    basicPlace: z
+      .string()
+      .min(1, { message: "촬영 장소를 입력해 주세요." })
+      .max(MAX_LENGTHS.TEXT, { message: "최대 100자까지 입력 가능합니다." }),
     allowPreferredPlace: z.boolean(),
     items: z.array(
       z.object({
         title: z
           .string()
           .min(1, { message: "구성의 이름을 입력해 주세요." })
-          .max(30, { message: "최대 30자까지 입력 가능합니다." }),
-        description: z
-          .string()
-          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+          .max(MAX_LENGTHS.TITLE, {
+            message: "최대 30자까지 입력 가능합니다.",
+          }),
+        description: z.string().max(MAX_LENGTHS.TEXT, {
+          message: "최대 100자까지 입력 가능합니다.",
+        }),
         content: z
           .string()
           .min(1, { message: "내용을 입력해 주세요." })
-          .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+          .max(MAX_LENGTHS.TEXT, {
+            message: "최대 100자까지 입력 가능합니다.",
+          }),
       }),
     ),
     options: z.array(
@@ -58,10 +66,12 @@ const ProductForm = ({
           title: z
             .string()
             .min(1, { message: "옵션의 이름을 입력해 주세요." })
-            .max(30, { message: "최대 30자까지 입력 가능합니다." }),
-          description: z
-            .string()
-            .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+            .max(MAX_LENGTHS.TITLE, {
+              message: "최대 30자까지 입력 가능합니다.",
+            }),
+          description: z.string().max(MAX_LENGTHS.TEXT, {
+            message: "최대 100자까지 입력 가능합니다.",
+          }),
           price: z.coerce.number(),
           isFree: z.boolean(),
         })
@@ -84,10 +94,12 @@ const ProductForm = ({
           title: z
             .string()
             .min(1, { message: "이름을 입력해 주세요." })
-            .max(30, { message: "최대 30자까지 입력 가능합니다." }),
-          description: z
-            .string()
-            .max(100, { message: "최대 100자까지 입력 가능합니다." }),
+            .max(MAX_LENGTHS.TITLE, {
+              message: "최대 30자까지 입력 가능합니다.",
+            }),
+          description: z.string().max(MAX_LENGTHS.TEXT, {
+            message: "최대 100자까지 입력 가능합니다.",
+          }),
           discountValue: z.coerce.number(),
           discountType: z.string(),
         })
@@ -118,11 +130,13 @@ const ProductForm = ({
         title: z
           .string()
           .min(1, { message: "제목을 비워둘 수 없습니다." })
-          .max(30, { message: "30자 이내로 작성해주세요." }),
+          .max(MAX_LENGTHS.TITLE, { message: "30자 이내로 작성해주세요." }),
         content: z
           .string()
           .min(1, { message: "내용을 비워둘 수 없습니다." })
-          .max(300, { message: "300자 이내로 작성해주세요." }),
+          .max(MAX_LENGTHS.LONG_TEXT, {
+            message: "500자 이내로 작성해주세요.",
+          }),
       }),
     ),
   });

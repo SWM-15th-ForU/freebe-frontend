@@ -5,6 +5,7 @@ import { Notice, NoticeForm } from "profile-types";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import popToast from "@/components/common/toast";
 import { responseHandler } from "@/services/common/error";
 import { putNewNotices } from "@/services/client/photographer/mypage/notice";
@@ -19,11 +20,13 @@ const PhotographerNotice = ({ data }: { data: Notice[] }) => {
         title: z
           .string()
           .min(1, { message: "제목을 비워둘 수 없습니다." })
-          .max(30, { message: "30자 이내로 작성해주세요." }),
+          .max(MAX_LENGTHS.TITLE, { message: "30자 이내로 작성해주세요." }),
         content: z
           .string()
           .min(1, { message: "내용을 비워둘 수 없습니다." })
-          .max(300, { message: "300자 이내로 작성해주세요." }),
+          .max(MAX_LENGTHS.NOTICE, {
+            message: "1000자 이내로 작성해주세요.",
+          }),
       }),
     ),
   });

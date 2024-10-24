@@ -1,6 +1,7 @@
 "use client";
 
 import popToast from "@/components/common/toast";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { ID_REGEX } from "@/constants/common/user";
 import { postReservation } from "@/services/client/customer/reservation";
 import { responseHandler } from "@/services/common/error";
@@ -40,8 +41,8 @@ const ReservationFormProvider = ({
   const selectedOptionSchema = z.object({
     index: z.number(),
     title: z.string(),
-    quantity: z.number(),
-    price: z.number(),
+    quantity: z.number().nonnegative(),
+    price: z.number().nonnegative(),
   });
 
   const reservationFormSchema = z.object({
@@ -59,8 +60,12 @@ const ReservationFormProvider = ({
       }),
     schedules: z.array(scheduleListSchema).optional(),
     options: z.array(selectedOptionSchema).optional(),
-    memo: z.string().max(300, { message: "최대 300자까지 입력 가능합니다." }),
-    preferredPlace: z.string(),
+    memo: z.string().max(MAX_LENGTHS.LONG_TEXT, {
+      message: "최대 500자까지 입력 가능합니다.",
+    }),
+    preferredPlace: z.string().max(MAX_LENGTHS.TEXT, {
+      message: "최대 100자까지 입력 가능합니다.",
+    }),
     referenceImages: z
       .array(
         z.object({
