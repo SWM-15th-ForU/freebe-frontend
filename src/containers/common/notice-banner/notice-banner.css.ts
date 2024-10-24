@@ -7,7 +7,7 @@ export const customedCarouselStyles = styleVariants({
     width: "100%",
     minWidth: 700,
     maxWidth: 950,
-    aspectRatio: "5",
+    paddingBottom: 30,
 
     "@media": {
       [breakpoints.mobile]: {
@@ -17,6 +17,7 @@ export const customedCarouselStyles = styleVariants({
   },
   viewport: {
     height: "100%",
+    aspectRatio: "5",
   },
   container: {
     height: "100%",
