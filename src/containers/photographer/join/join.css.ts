@@ -10,7 +10,6 @@ export const joinStyles = styleVariants({
     flexDirection: "column",
     width: 660,
     margin: "auto",
-    // gap: 60,
     padding: "30px 0px 60px 0px",
 
     "@media": {
