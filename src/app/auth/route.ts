@@ -35,7 +35,10 @@ export async function DELETE() {
     if (response.redirected) {
       const redirectUrl = response.url;
       if (redirectUrl) {
-        return NextResponse.redirect(redirectUrl);
+        console.log(redirectUrl);
+        return NextResponse.redirect(
+          new URL("/", process.env.NEXT_PUBLIC_DOMAIN),
+        );
       }
       if (response.status === 403) {
         deleteTokens();
