@@ -11,7 +11,7 @@ export const customedCarouselStyles = styleVariants({
 
     "@media": {
       [breakpoints.mobile]: {
-        width: "100%",
+        minWidth: 200,
       },
     },
   },
