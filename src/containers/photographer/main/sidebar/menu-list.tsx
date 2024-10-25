@@ -129,13 +129,11 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
             ))}
           </>
         )}
-        {currentTab === "photographer" && (
-          <MenuItem
-            name="튜토리얼 보기"
-            className={`${itemStyles.button} ${itemStyles.mobileDisable}`}
-            onClick={handleOpenTutorial}
-          />
-        )}
+        <MenuItem
+          name="튜토리얼 보기"
+          className={`${itemStyles.button} ${itemStyles.mobileDisable}`}
+          onClick={handleOpenTutorial}
+        />
         <MenuItem
           name="로그아웃"
           onClick={handleLogout}
