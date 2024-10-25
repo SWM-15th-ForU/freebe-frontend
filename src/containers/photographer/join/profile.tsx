@@ -10,7 +10,7 @@ const Profile = () => {
   } = useFormContext<Join>();
 
   return (
-    <div>
+    <div className={profileStyles.container}>
       <TextInput<Join>
         title="아이디"
         placeholder="프리비에서 사용할 아이디를 입력해주세요."

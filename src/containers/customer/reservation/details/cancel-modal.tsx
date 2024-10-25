@@ -3,6 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
 import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import CommonInput from "@/components/inputs/common-input";
 import popToast from "@/components/common/toast";
@@ -52,9 +53,10 @@ const CancelModal = ({
         취소하실 경우 사유를 꼭 작성해 주세요.
       </div>
       <CommonInput
-        placeholder="취소 사유를 입력해 주세요."
+        placeholder="취소 사유를 입력해 주세요. (최대 100자)"
         value={cancellationReason}
         multiline={false}
+        maxLength={MAX_LENGTHS.TEXT}
         onChange={(e) => setCancellationReason(e.currentTarget.value)}
       />
       <CustomButton
