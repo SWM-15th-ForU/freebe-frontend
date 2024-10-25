@@ -18,5 +18,5 @@ export const SERVICE_LINKS = {
   serviceAgreement: "https://slashpage.com/freebe/service-agreement?full=true",
   privacyAgreement: "https://slashpage.com/freebe/privacy-agreement?full=true",
   notice: "https://slashpage.com/freebe/notice",
-  landingPage: "https://freebe.softr.app/",
+  landingPage: "https://info.freebe.co.kr/",
 };

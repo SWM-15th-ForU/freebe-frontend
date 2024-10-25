@@ -6,7 +6,7 @@ import { breakpoints } from "@/styles/breakpoints.css";
 export const viewContainer = style({
   display: "flex",
   gap: 8,
-  padding: "28px 0px",
+  padding: "28px 0px 80px 0px",
   overflowX: "scroll",
   width: "100%",
   "@media": {

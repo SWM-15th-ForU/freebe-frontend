@@ -169,7 +169,7 @@ declare module "reservation-types" {
     reservationStatus:
       | "CANCELLED_BY_PHOTOGRAPHER"
       | "CANCELLED_BY_CUSTOMER"
-      | "COMPLETED";
+      | "PHOTO_COMPLETED";
     reservationId: number;
     reservationSubmissionDate: string;
     shootingDate: string | null;
