@@ -91,6 +91,11 @@ const Confirm = () => {
     }
   }
 
+  function handleCancelEdit() {
+    setIsEditing(false);
+    router.refresh();
+  }
+
   return (
     <div>
       <div className={sectionStyles.header}>
@@ -152,12 +157,20 @@ const Confirm = () => {
         </div>
         {isActiveStatus(currentStatus) &&
           (isEditing ? (
-            <div className={sectionStyles.buttonWrapper}>
+            <div className={sectionStyles.wrapper}>
+              <CustomButton
+                title="취소하기"
+                size="sm"
+                styleType="line"
+                onClick={handleCancelEdit}
+                style={{ flex: 1 }}
+              />
               <CustomButton
                 title="저장하기"
                 size="sm"
                 styleType="primary"
                 onClick={handlePutNewDetails}
+                style={{ flex: 1 }}
               />
               <DateModal close={closeDate} opened={dateOpened} />
             </div>
