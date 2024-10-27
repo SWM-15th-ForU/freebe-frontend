@@ -10,11 +10,6 @@ interface Notice {
   content: string;
 }
 
-interface DateFixed extends BaseInfos {
-  reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
-  shootingDate: ReservationDate;
-}
-
 interface DateNotFixed extends BaseInfos {
   reservationStatus: "NEW" | "IN_PROGRESS";
   shootingDate: null;
@@ -68,6 +63,11 @@ declare module "reservation-types" {
     date: string;
     startTime: string;
     endTime: string;
+  }
+
+  interface DateFixed extends BaseInfos {
+    reservationStatus: "WAITING_FOR_DEPOSIT" | "WAITING_FOR_PHOTO";
+    shootingDate: ReservationDate;
   }
 
   type Infos = DateFixed | DateNotFixed;
@@ -169,7 +169,7 @@ declare module "reservation-types" {
     reservationStatus:
       | "CANCELLED_BY_PHOTOGRAPHER"
       | "CANCELLED_BY_CUSTOMER"
-      | "COMPLETED";
+      | "PHOTO_COMPLETED";
     reservationId: number;
     reservationSubmissionDate: string;
     shootingDate: string | null;

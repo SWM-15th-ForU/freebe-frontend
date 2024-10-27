@@ -39,7 +39,6 @@ export const mypageStyles = styleVariants({
       padding: 40,
       position: "relative",
       height: "auto",
-      overflowY: "scroll",
       flexGrow: 1,
 
       "@media": {
@@ -61,16 +60,9 @@ export const mypageStyles = styleVariants({
   ],
   content: [
     {
-      width: "100%",
       paddingTop: 20,
       paddingBottom: 60,
       position: "relative",
-
-      "@media": {
-        [breakpoints.mobile]: {
-          height: "100%",
-        },
-      },
     },
   ],
 });

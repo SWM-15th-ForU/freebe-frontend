@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Modal } from "@mantine/core";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import popToast from "@/components/common/toast";
@@ -104,10 +105,11 @@ const LeaveModal = ({
         </div>
         {selectedReason === "기타" && (
           <CommonInput
-            placeholder="탈퇴 사유를 작성해주세요."
+            placeholder="탈퇴 사유를 작성해주세요. (최대 500자)"
             value={reason}
             onChange={(e) => setReason(e.currentTarget.value)}
             multiline
+            maxLength={MAX_LENGTHS.LONG_TEXT}
           />
         )}
       </div>

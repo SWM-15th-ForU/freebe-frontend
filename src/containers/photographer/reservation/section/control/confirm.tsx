@@ -77,6 +77,25 @@ const Confirm = () => {
     );
   }
 
+  function progressNextStatus() {
+    if (
+      compareStatus(currentStatus, "NEW") === "DONE" &&
+      (shootingDate === undefined || shootingPlace === undefined)
+    ) {
+      popToast(
+        "'수정하기'를 누른 다음 촬영 장소와 일정을 먼저 확정해주세요.",
+        "아직 다음 단계로 넘어갈 수 없어요.",
+      );
+    } else {
+      open();
+    }
+  }
+
+  function handleCancelEdit() {
+    setIsEditing(false);
+    router.refresh();
+  }
+
   return (
     <div>
       <div className={sectionStyles.header}>
@@ -100,12 +119,7 @@ const Confirm = () => {
         <div className={sectionStyles.divider}>
           <ShootingPlace isEditing={isEditing} />
           <div>
-            <ShootingDate
-              needShootingDate={
-                compareStatus(currentStatus, "NEW") === "DONE" &&
-                shootingDate === undefined
-              }
-            />
+            <ShootingDate />
             {isEditing && (
               <CustomButton
                 size="sm"
@@ -143,12 +157,20 @@ const Confirm = () => {
         </div>
         {isActiveStatus(currentStatus) &&
           (isEditing ? (
-            <div className={sectionStyles.buttonWrapper}>
+            <div className={sectionStyles.wrapper}>
+              <CustomButton
+                title="취소하기"
+                size="sm"
+                styleType="line"
+                onClick={handleCancelEdit}
+                style={{ flex: 1 }}
+              />
               <CustomButton
                 title="저장하기"
                 size="sm"
                 styleType="primary"
                 onClick={handlePutNewDetails}
+                style={{ flex: 1 }}
               />
               <DateModal close={closeDate} opened={dateOpened} />
             </div>
@@ -172,13 +194,9 @@ const Confirm = () => {
               </div>
               <CustomButton
                 title={progressStatus[currentStatus]}
-                onClick={open}
+                onClick={progressNextStatus}
                 styleType="primary"
                 size="sm"
-                disabled={
-                  compareStatus(currentStatus, "NEW") === "DONE" &&
-                  shootingDate === undefined
-                }
               />
               <StatusModal
                 close={close}

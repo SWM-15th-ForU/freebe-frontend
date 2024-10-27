@@ -1,9 +1,13 @@
-html {
+/* html {
   scrollbar-gutter: auto;
-}
+} */
 
 body {
   overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a {

@@ -1,6 +1,6 @@
 import ky from "ky";
 import { beforeError } from "@/services/common";
-import { beforeRequest } from "./interceptor";
+import { beforeRequest, beforeRetry } from "./interceptor";
 
 const apiClient = ky
   .create({
@@ -8,11 +8,18 @@ const apiClient = ky
     credentials: "include",
     mode: "cors",
     cache: "no-store",
+    retry: {
+      limit: 3,
+      methods: ["get", "post", "put", "delete"],
+      statusCodes: [401],
+      backoffLimit: 1000,
+    },
   })
   .extend({
     hooks: {
       beforeRequest: [beforeRequest],
       beforeError: [beforeError],
+      beforeRetry: [beforeRetry],
     },
   });
 

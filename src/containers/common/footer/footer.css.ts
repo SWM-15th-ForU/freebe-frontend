@@ -7,6 +7,9 @@ export const footerStyles = styleVariants({
   container: [
     sprinkles({ backgroundColor: "text-01" }),
     {
+      position: "sticky",
+      left: 0,
+      right: 0,
       marginTop: "auto",
       width: "100%",
       padding: "32px 60px 60px 60px",
@@ -67,5 +70,9 @@ export const footerStyles = styleVariants({
     { fontSize: 13, fontWeight: 600 },
   ],
   content: [sprinkles({ color: "white" }), { fontSize: 13, fontWeight: 400 }],
-  caption: [texts["caption-01"], sprinkles({ color: "text-04" })],
+  caption: [
+    texts["caption-01"],
+    sprinkles({ color: "text-04" }),
+    { display: "block" },
+  ],
 });
