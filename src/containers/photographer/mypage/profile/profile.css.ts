@@ -36,6 +36,7 @@ export const profileStyles = styleVariants({
   page: [
     sprinkles({ backgroundColor: "bg-lightgrey" }),
     {
+      flexGrow: 1,
       padding: 40,
       paddingBottom: 0,
       position: "relative",

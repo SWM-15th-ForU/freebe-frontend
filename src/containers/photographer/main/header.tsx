@@ -30,7 +30,7 @@ const Header = ({
           alt="free:be"
         />
       ) : (
-        <Link href="/photographer" style={{ height: 20 }}>
+        <Link href="/photographer" style={{ height: 20, cursor: "pointer" }}>
           <Image
             src="/icons/freebe-logo.svg"
             width={100}
