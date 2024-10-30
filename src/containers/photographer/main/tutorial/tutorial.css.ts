@@ -32,6 +32,11 @@ export const tutorialStyles = styleVariants({
   body: {
     margin: "15px 0px",
     paddingRight: 30,
+    "@media": {
+      [breakpoints.mobile]: {
+        paddingRight: 0,
+      },
+    },
   },
   buttonWrapper: {
     display: "flex",
@@ -39,7 +44,11 @@ export const tutorialStyles = styleVariants({
     gap: 10,
     alignItems: "center",
   },
-  caption: [texts["caption-01"], sprinkles({ color: "text-point" })],
+  caption: [
+    texts["caption-01"],
+    sprinkles({ color: "text-point" }),
+    { whiteSpace: "pre-wrap" },
+  ],
   title: [
     texts["headline-02"],
     sprinkles({ color: "text-point" }),
@@ -70,6 +79,11 @@ export const tutorialStyles = styleVariants({
       boxShadow: "0px 5px 5px rgba(86, 152, 218, 0.15)",
       ":hover": {
         animation: `${navButtonFrames} 1s ease-in-out infinite`,
+      },
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "none",
+        },
       },
     },
   ],
