@@ -10,6 +10,7 @@ import CloseButton from "@/components/buttons/close-button";
 import * as styles from "./header/header.css";
 import MenuList from "./sidebar/menu-list";
 import { menuStyles } from "./header/header.css";
+import { customDrawerStyles } from "./main.css";
 
 const Header = ({
   isOnboarding,
@@ -106,11 +107,12 @@ const Header = ({
             onClose={close}
             opened={opened}
             position="right"
+            classNames={{ ...customDrawerStyles }}
           >
             <CloseButton
               onClick={close}
               size={16}
-              container={{ position: "absolute", right: 40, top: 50 }}
+              container={{ position: "absolute", right: 40, top: 34 }}
             />
             <MenuList hasServiceLinks />
           </Drawer>

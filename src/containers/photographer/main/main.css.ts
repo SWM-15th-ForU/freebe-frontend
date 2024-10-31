@@ -37,3 +37,9 @@ export const mainviewStyles = styleVariants({
     },
   ],
 });
+
+export const customDrawerStyles = styleVariants({
+  body: {
+    padding: "0px 0px 0px 10px",
+  },
+});
