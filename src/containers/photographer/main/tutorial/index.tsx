@@ -62,7 +62,7 @@ const TUTORIAL_LEVELS: {
   {
     caption: "프리비 시작하기 3/4",
     modalPosition: { top: 230, left: 260 },
-    title: "링크 공유하기",
+    title: "예약 페이지 공유하기",
     content:
       "설정이 완료되었다면, 링크를 복사하고 작가님의 인스타그램 등 원하시는 채널에 공유해보세요. 프리비 링크로 고객들이 바로 예약을 시작할 수 있어요.",
     maskX: {

@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import popToast from "@/components/common/toast";
+import { Modal } from "@mantine/core";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { SERVICE_LINKS } from "@/constants/common/common";
 import { logout } from "@/services/client/core/auth";
 import MenuItem from "./menu-item";
-import { itemStyles } from "./sidebar.css";
+import { itemStyles, linkStyles } from "./sidebar.css";
+import LinkCopy from "./link-copy";
 
 const links = [
   { name: "서비스 안내", src: SERVICE_LINKS.landingPage },
@@ -15,32 +16,14 @@ const links = [
 
 const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   const router = useRouter();
-  const [url, setUrl] = useState<string>("");
   const currentTab = usePathname().split("/").pop();
+
+  const [opened, setOpened] = useState(false);
 
   async function handleLogout() {
     const redirect = await logout();
     if (redirect) {
       router.push(redirect);
-    }
-  }
-
-  useEffect(() => {
-    const localData = localStorage.getItem("url");
-    if (localData) {
-      setUrl(`${process.env.NEXT_PUBLIC_DOMAIN}${localData}`);
-    }
-  });
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(url);
-      popToast(
-        "복사한 링크를 고객에게 전달해보세요!",
-        "클립보드에 복사되었습니다.",
-      );
-    } catch (error) {
-      popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
     }
   }
 
@@ -98,11 +81,24 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
           />
         </Link>
         <MenuItem
-          name="내 링크 복사"
-          icon="/icons/sidebar/copy.svg"
-          className={itemStyles.button}
-          onClick={handleCopy}
+          name="내 예약 페이지"
+          icon={
+            opened ? "/icons/sidebar/link-blue.svg" : "/icons/sidebar/link.svg"
+          }
+          className={opened ? itemStyles.selectedButton : itemStyles.button}
+          onClick={() => setOpened((prev) => !prev)}
         />
+        <Modal
+          onClose={() => setOpened(false)}
+          withCloseButton={false}
+          opened={opened}
+          centered
+          overlayProps={{ backgroundOpacity: 0 }}
+          classNames={{ content: linkStyles.dropdown }}
+          lockScroll={false}
+        >
+          <LinkCopy />
+        </Modal>
       </div>
       <div>
         <span className={itemStyles.title}>마이페이지</span>

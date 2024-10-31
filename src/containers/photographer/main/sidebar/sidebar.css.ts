@@ -25,6 +25,12 @@ export const itemStyles = styleVariants({
     position: "relative",
     height: "calc(100vh - 51px)",
     overflowY: "scroll",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        height: "100%",
+      },
+    },
   },
   title: [
     texts["headline-02"],
@@ -73,12 +79,18 @@ export const linkStyles = styleVariants({
       borderWidth: 1,
       borderStyle: "solid",
       borderRadius: 8,
-      padding: 20,
       boxShadow: "0px 10px 25px 0px #00000026",
-      top: -30,
-      left: 250,
-      zIndex: 300,
       position: "absolute",
+      maxWidth: 400,
+      top: 280,
+      left: 50,
+      "@media": {
+        [breakpoints.mobile]: {
+          top: 230,
+          left: 10,
+          right: 10,
+        },
+      },
     },
   ],
   container: [
@@ -91,7 +103,6 @@ export const linkStyles = styleVariants({
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
-      minWidth: 400,
       padding: "7px 6px 7px 12px",
       gap: 15,
       marginTop: 10,
@@ -100,11 +111,14 @@ export const linkStyles = styleVariants({
         [breakpoints.mobile]: {
           marginLeft: "auto",
           minWidth: 0,
-          padding: 0,
-          backgroundColor: "white",
         },
       },
     },
+  ],
+  title: [
+    texts["headline-03"],
+    sprinkles({ color: "text-point" }),
+    { marginBottom: 8, display: "block" },
   ],
   content: [
     texts["body-02"],
@@ -113,17 +127,19 @@ export const linkStyles = styleVariants({
     }),
     {
       flex: 1,
-      "@media": {
-        [breakpoints.mobile]: {
-          display: "none",
-        },
-      },
+      minWidth: "fit-content",
     },
   ],
   icon: {
     position: "relative",
     width: 30,
     height: 22,
+  },
+  buttonWrapper: {
+    display: "flex",
+    justifyContent: "flex-end",
+    gap: 8,
+    marginTop: 12,
   },
 });
 
