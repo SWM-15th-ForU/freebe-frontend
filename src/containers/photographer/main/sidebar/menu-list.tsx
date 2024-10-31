@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { sendGAEvent } from "@next/third-parties/google";
 import popToast from "@/components/common/toast";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { SERVICE_LINKS } from "@/constants/common/common";
@@ -70,6 +71,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
         <Link href="/photographer/new-product">
           <MenuItem
             name="촬영 상품 등록"
+            onClick={() => sendGAEvent("event", "start_product_register")}
             icon={
               currentTab === "new-product"
                 ? "/icons/sidebar/camera-blue.svg"

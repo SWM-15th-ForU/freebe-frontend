@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { FormImage, Notice, ProductFormdata } from "product-types";
+import { sendGAEvent } from "@next/third-parties/google";
 import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
 import { responseHandler } from "@/services/common/error";
@@ -48,6 +49,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
   };
 
   async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
+    sendGAEvent("event", "product_register", { product_title: data.title });
     await responseHandler(
       postNewProduct(data, images),
       () => {
