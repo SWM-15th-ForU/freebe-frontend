@@ -198,4 +198,11 @@ export const formStyles = styleVariants({
       color: "text-02",
     }),
   ],
+  link: [
+    texts["body-02"],
+    sprinkles({
+      color: "text-03",
+    }),
+    { marginLeft: "auto", textDecoration: "none" },
+  ],
 });

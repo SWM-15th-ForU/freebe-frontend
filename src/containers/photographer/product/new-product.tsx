@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FormImage, Notice, ProductFormdata } from "product-types";
 import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
@@ -25,7 +26,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
       {
         title: "보정본 수",
         content: "10장",
-        description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
+        description: "",
       },
     ],
     options: [
@@ -67,7 +68,16 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
 
   return (
     <div className={formStyles.container}>
-      <span className={formStyles.title}>촬영 정보 등록하기</span>
+      <div className={formStyles.head}>
+        <span className={formStyles.title}>촬영 정보 등록하기</span>
+        <Link
+          href="https://www.freebe.co.kr/freebe_official/products/8"
+          target="_blank"
+          className={formStyles.link}
+        >
+          등록 예시 보기
+        </Link>
+      </div>
       <ProductForm
         formBase={defaultValues}
         handleSendForm={addNewProduct}
