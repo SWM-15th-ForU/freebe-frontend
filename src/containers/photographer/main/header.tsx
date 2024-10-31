@@ -72,6 +72,15 @@ const Header = ({
             </Menu.Target>
             <Menu.Dropdown>
               <Link
+                href={SERVICE_LINKS.landingPage}
+                className={menuStyles.item}
+                target="_blank"
+              >
+                <Menu.Item>
+                  <span>서비스 안내</span>
+                </Menu.Item>
+              </Link>
+              <Link
                 href={SERVICE_LINKS.help}
                 className={menuStyles.item}
                 target="_blank"
@@ -81,12 +90,12 @@ const Header = ({
                 </Menu.Item>
               </Link>
               <Link
-                href={SERVICE_LINKS.landingPage}
+                href={SERVICE_LINKS.notice}
                 className={menuStyles.item}
                 target="_blank"
               >
                 <Menu.Item>
-                  <span>서비스 소개</span>
+                  <span>공지사항</span>
                 </Menu.Item>
               </Link>
             </Menu.Dropdown>

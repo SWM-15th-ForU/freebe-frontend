@@ -14,7 +14,7 @@ export const ACCEPTED_IMAGE = {
 };
 
 export const SERVICE_LINKS = {
-  help: "https://slashpage.com/freebe",
+  help: "https://pf.kakao.com/_LxfHRn",
   serviceAgreement: "https://slashpage.com/freebe/service-agreement?full=true",
   privacyAgreement: "https://slashpage.com/freebe/privacy-agreement?full=true",
   notice: "https://slashpage.com/freebe/notice",
