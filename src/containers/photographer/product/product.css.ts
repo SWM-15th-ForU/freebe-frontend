@@ -198,11 +198,21 @@ export const formStyles = styleVariants({
       color: "text-02",
     }),
   ],
-  link: [
-    texts["body-02"],
+  info: [
     sprinkles({
-      color: "text-03",
+      color: "text-02",
     }),
-    { marginLeft: "auto", textDecoration: "none" },
+    { marginBottom: 10, display: "block", fontSize: 14, fontWeight: 500 },
+  ],
+  dropdown: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      padding: "16px 20px",
+      borderWidth: 1,
+      borderStyle: "solid",
+      maxWidth: 350,
+      borderRadius: 8,
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
   ],
 });

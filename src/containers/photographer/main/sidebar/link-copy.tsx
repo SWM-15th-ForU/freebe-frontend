@@ -20,7 +20,10 @@ const LinkCopy = () => {
   async function handleCopy() {
     try {
       await navigator.clipboard.writeText(url);
-      popToast("원하는 곳에 공유해보세요.", "링크가 복사되었습니다!");
+      popToast(
+        "원하는 곳에 공유해 프리비로 예약을 받아 보세요!",
+        "링크가 복사되었습니다.",
+      );
     } catch (error) {
       popToast("다시 시도해 주세요.", "오류가 발생했습니다.");
     }
@@ -29,7 +32,7 @@ const LinkCopy = () => {
   return (
     <div>
       <span className={linkStyles.title}>내 예약 페이지</span>
-      <InfoCaption information="링크를 복사해 고객에게 전달해보세요. 내가 등록한 상품을 고객이 확인하고 예약을 시작할 수 있어요." />
+      <InfoCaption information="링크를 복사해 인스타그램 프로필에 게시해보세요. 내가 등록한 상품을 고객이 확인하고 예약을 시작할 수 있어요." />
       <div className={linkStyles.container}>
         <span className={linkStyles.content}>{url}</span>
       </div>
