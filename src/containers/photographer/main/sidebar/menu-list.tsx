@@ -128,7 +128,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
         )}
         <MenuItem
           name="튜토리얼 보기"
-          className={`${itemStyles.button} ${itemStyles.mobileDisable}`}
+          className={itemStyles.button}
           onClick={handleOpenTutorial}
         />
         <MenuItem

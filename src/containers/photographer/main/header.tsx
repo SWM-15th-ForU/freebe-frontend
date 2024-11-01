@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
@@ -11,6 +13,7 @@ import * as styles from "./header/header.css";
 import MenuList from "./sidebar/menu-list";
 import { menuStyles } from "./header/header.css";
 import { customDrawerStyles } from "./main.css";
+import MobileTutorial from "./tutorial/mobile";
 
 const Header = ({
   isOnboarding,
@@ -19,7 +22,22 @@ const Header = ({
   isOnboarding?: boolean;
   links?: LinkType[];
 }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [opened, { close, open }] = useDisclosure(false);
+  const [isOnTutorial, { close: closeTutorial, open: openTutorial }] =
+    useDisclosure(false, {
+      onClose: () => {
+        router.replace("/photographer");
+      },
+    });
+
+  useEffect(() => {
+    const tutorialParam = searchParams.get("tutorial");
+    if (tutorialParam) {
+      openTutorial();
+    }
+  }, [searchParams]);
 
   return (
     <header className={styles.headerContainer}>
@@ -114,10 +132,11 @@ const Header = ({
             size="xs"
             withCloseButton={false}
             onClose={close}
-            opened={opened}
+            opened={opened || isOnTutorial}
             position="right"
             classNames={{ ...customDrawerStyles }}
           >
+            <MobileTutorial close={closeTutorial} opened={isOnTutorial} />
             <CloseButton
               onClick={close}
               size={16}
