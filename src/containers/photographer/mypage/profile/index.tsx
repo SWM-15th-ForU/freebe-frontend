@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { PhotographerForm } from "profile-types";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
+import { sendGAEvent } from "@next/third-parties/google";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MAX_LENGTHS } from "@/constants/common/schema";
 import { putProfile } from "@/services/client/photographer/mypage/profile";
@@ -63,6 +64,7 @@ const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
   const { handleSubmit } = method;
 
   const onSubmit: SubmitHandler<PhotographerForm> = async (data) => {
+    sendGAEvent("event", "edit_profile", { profile_name: data.profileName });
     await responseHandler(
       putProfile(data),
       () => {
