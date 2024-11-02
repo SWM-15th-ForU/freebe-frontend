@@ -1,5 +1,6 @@
 import { CSSProperties, DetailedHTMLProps, InputHTMLAttributes } from "react";
 import { FieldValues, Path, useFormContext } from "react-hook-form";
+import AdditionInfo from "../common/addition-info";
 import InputStyles from "./input.css";
 
 interface TextInputProps<T extends FieldValues>
@@ -12,6 +13,7 @@ interface TextInputProps<T extends FieldValues>
   placeholder?: string;
   disabled?: boolean;
   multiline?: boolean;
+  description?: string;
   formField?: Path<T>;
   container?: CSSProperties;
 }
@@ -21,6 +23,7 @@ const TextInput = <T extends FieldValues>({
   placeholder = "내용을 입력해주세요.",
   disabled,
   multiline,
+  description,
   formField,
   container,
   inputSize = "sm",
@@ -30,7 +33,10 @@ const TextInput = <T extends FieldValues>({
 
   return (
     <div className={InputStyles.container} style={container}>
-      {title && <span className={InputStyles.title}>{title}</span>}
+      <div className={InputStyles.header}>
+        {title && <span className={InputStyles.title}>{title}</span>}
+        {description && <AdditionInfo content={description} size={16} />}
+      </div>
       <div
         className={`${
           disabled ? InputStyles.disabledInputWrapper : InputStyles.inputWrapper

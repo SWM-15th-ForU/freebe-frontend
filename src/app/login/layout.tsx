@@ -16,6 +16,7 @@ const LoginLayout = ({
           links={[
             { name: "서비스 안내", src: SERVICE_LINKS.landingPage },
             { name: "고객센터", src: SERVICE_LINKS.help },
+            { name: "공지사항", src: SERVICE_LINKS.notice },
           ]}
         />
         {children}

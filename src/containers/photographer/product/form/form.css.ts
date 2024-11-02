@@ -68,6 +68,7 @@ export const formStyles = styleVariants({
       border: 0,
       width: "100%",
       marginTop: 10,
+      resize: "vertical",
       ":disabled": {
         background: "none",
       },

@@ -35,6 +35,7 @@ const SelectOptionForm = ({ options }: { options: Option[] }) => {
         quantity: 1,
         title: options[index].title,
         price: basePrice,
+        description: options[index].description,
       });
     }
   }

@@ -159,11 +159,17 @@ const InputStyles = styleVariants({
     marginBottom: 20,
     position: "relative",
   },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  },
   title: [
     texts["headline-03"],
     sprinkles({
       color: "text-02",
     }),
+    { lineHeight: "16px", padding: "4px 0px" },
   ],
   inputWrapper: [
     sprinkles({ backgroundColor: "white" }),
