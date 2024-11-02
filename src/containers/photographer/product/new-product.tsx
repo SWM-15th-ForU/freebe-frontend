@@ -1,7 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import { FormImage, Notice, ProductFormdata } from "product-types";
+import { Popover } from "@mantine/core";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
 import { responseHandler } from "@/services/common/error";
@@ -25,7 +29,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
       {
         title: "보정본 수",
         content: "10장",
-        description: "보정본 추가는 상품 옵션에서 선택해 주세요.",
+        description: "",
       },
     ],
     options: [
@@ -67,7 +71,42 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
 
   return (
     <div className={formStyles.container}>
-      <span className={formStyles.title}>촬영 정보 등록하기</span>
+      <div>
+        <div className={formStyles.head}>
+          <span className={formStyles.title}>촬영 정보 등록하기</span>
+          <Popover
+            withArrow
+            defaultOpened
+            classNames={{ dropdown: formStyles.dropdown }}
+          >
+            <Popover.Target>
+              <Image
+                src="/icons/components/info.svg"
+                width={16}
+                height={16}
+                alt="추가 정보"
+                style={{ marginRight: "auto", marginLeft: 8 }}
+              />
+            </Popover.Target>
+            <Popover.Dropdown>
+              <span className={formStyles.info}>
+                촬영 상품 등록이 처음이라면, 예시 상품을 참고해보세요. 상품은
+                등록한 뒤에도 자유롭게 수정할 수 있어요.
+              </span>
+              <Link
+                href="https://www.freebe.co.kr/freebe_official/products/8"
+                target="_blank"
+              >
+                <CustomButton
+                  size="sm"
+                  styleType="primary"
+                  title="등록 예시 미리 보기"
+                />
+              </Link>
+            </Popover.Dropdown>
+          </Popover>
+        </div>
+      </div>
       <ProductForm
         formBase={defaultValues}
         handleSendForm={addNewProduct}

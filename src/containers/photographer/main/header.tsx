@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
@@ -10,6 +12,8 @@ import CloseButton from "@/components/buttons/close-button";
 import * as styles from "./header/header.css";
 import MenuList from "./sidebar/menu-list";
 import { menuStyles } from "./header/header.css";
+import { customDrawerStyles } from "./main.css";
+import MobileTutorial from "./tutorial/mobile";
 
 const Header = ({
   isOnboarding,
@@ -18,7 +22,22 @@ const Header = ({
   isOnboarding?: boolean;
   links?: LinkType[];
 }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [opened, { close, open }] = useDisclosure(false);
+  const [isOnTutorial, { close: closeTutorial, open: openTutorial }] =
+    useDisclosure(false, {
+      onClose: () => {
+        router.replace("/photographer");
+      },
+    });
+
+  useEffect(() => {
+    const tutorialParam = searchParams.get("tutorial");
+    if (tutorialParam) {
+      openTutorial();
+    }
+  }, [searchParams]);
 
   return (
     <header className={styles.headerContainer}>
@@ -71,6 +90,15 @@ const Header = ({
             </Menu.Target>
             <Menu.Dropdown>
               <Link
+                href={SERVICE_LINKS.landingPage}
+                className={menuStyles.item}
+                target="_blank"
+              >
+                <Menu.Item>
+                  <span>서비스 안내</span>
+                </Menu.Item>
+              </Link>
+              <Link
                 href={SERVICE_LINKS.help}
                 className={menuStyles.item}
                 target="_blank"
@@ -80,12 +108,12 @@ const Header = ({
                 </Menu.Item>
               </Link>
               <Link
-                href={SERVICE_LINKS.landingPage}
+                href={SERVICE_LINKS.notice}
                 className={menuStyles.item}
                 target="_blank"
               >
                 <Menu.Item>
-                  <span>서비스 소개</span>
+                  <span>공지사항</span>
                 </Menu.Item>
               </Link>
             </Menu.Dropdown>
@@ -104,13 +132,15 @@ const Header = ({
             size="xs"
             withCloseButton={false}
             onClose={close}
-            opened={opened}
+            opened={opened || isOnTutorial}
             position="right"
+            classNames={{ ...customDrawerStyles }}
           >
+            <MobileTutorial close={closeTutorial} opened={isOnTutorial} />
             <CloseButton
               onClick={close}
               size={16}
-              container={{ position: "absolute", right: 40, top: 50 }}
+              container={{ position: "absolute", right: 40, top: 34 }}
             />
             <MenuList hasServiceLinks />
           </Drawer>
