@@ -222,7 +222,7 @@ const ProductForm = ({
             type="submit"
             styleType="primary"
             size="md"
-            title="저장하기"
+            title="등록하기"
             style={{ marginTop: 40 }}
           />
         )}
