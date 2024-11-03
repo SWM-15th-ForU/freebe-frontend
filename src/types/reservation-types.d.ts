@@ -172,7 +172,7 @@ declare module "reservation-types" {
       | "PHOTO_COMPLETED";
     reservationId: number;
     reservationSubmissionDate: string;
-    shootingDate: string | null;
+    shootingDate: { date: string; startTime: string; endTime: string } | null;
     customerName: string;
     productTitle: string;
     price: number;

@@ -37,3 +37,17 @@ export const mainviewStyles = styleVariants({
     },
   ],
 });
+
+export const customDrawerStyles = styleVariants({
+  root: {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
+  body: {
+    padding: "0px 0px 0px 10px",
+  },
+});

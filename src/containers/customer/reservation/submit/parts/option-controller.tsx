@@ -1,6 +1,7 @@
 import { reservation } from "product-types";
 import CountInput from "@/components/inputs/count-input";
 import CloseButton from "@/components/buttons/close-button";
+import AdditionInfo from "@/components/common/addition-info";
 import { formatPrice } from "@/utils/parse";
 import { optionControllerStyles } from "./parts.css";
 
@@ -25,7 +26,12 @@ const OptionController = ({
           : optionControllerStyles.container
       }
     >
-      <span className={optionControllerStyles.title}>{option.title}</span>
+      <div className={optionControllerStyles.titleWrapper}>
+        <span className={optionControllerStyles.title}>{option.title}</span>
+        {option.description !== "" && (
+          <AdditionInfo content={option.description} size={16} />
+        )}
+      </div>
       <div className={optionControllerStyles.wrapper}>
         <CountInput
           value={option.quantity}
