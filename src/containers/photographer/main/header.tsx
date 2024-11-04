@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
@@ -23,6 +23,7 @@ const Header = ({
   links?: LinkType[];
 }) => {
   const router = useRouter();
+  const pathName = usePathname();
   const searchParams = useSearchParams();
   const [opened, { close, open }] = useDisclosure(false);
   const [isOnTutorial, { close: closeTutorial, open: openTutorial }] =
@@ -36,8 +37,14 @@ const Header = ({
     const tutorialParam = searchParams.get("tutorial");
     if (tutorialParam) {
       openTutorial();
+    } else {
+      closeTutorial();
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    close();
+  }, [pathName]);
 
   return (
     <header className={styles.headerContainer}>
