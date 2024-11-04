@@ -103,6 +103,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
                   size="sm"
                   styleType="primary"
                   title="등록 예시 미리 보기"
+                  onClick={() => sendGAEvent("event", "view_example_product")}
                 />
               </Link>
             </Popover.Dropdown>

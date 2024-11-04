@@ -30,6 +30,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   }
 
   function handleOpenTutorial() {
+    sendGAEvent("event", "view_tutorial");
     router.replace("/photographer?tutorial=true", { scroll: true });
   }
 
