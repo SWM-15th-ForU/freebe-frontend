@@ -132,6 +132,7 @@ export const BottomButton = ({
       type={type === "submit" ? "submit" : "button"}
       className={`${disabled ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
       onClick={disabled ? () => {} : onClick}
+      disabled={disabled}
       {...props}
     >
       {title}

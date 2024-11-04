@@ -145,6 +145,9 @@ const buttonStyles = styleVariants({
     {
       border: "none",
       cursor: "initial",
+      ":hover": {
+        filter: "none",
+      },
     },
   ],
   primary: [
@@ -206,6 +209,9 @@ const buttonStyles = styleVariants({
     {
       border: "none",
       cursor: "initial",
+      ":hover": {
+        filter: "none",
+      },
     },
   ],
   linkArea: {
