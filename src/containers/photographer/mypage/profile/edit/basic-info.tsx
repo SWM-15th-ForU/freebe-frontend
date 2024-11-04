@@ -63,6 +63,7 @@ const BasicInfo = () => {
           formField="profileName"
           disabled
           container={{ marginTop: 0 }}
+          style={{ width: 150, minWidth: 0 }}
         />
         <TextInput<PhotographerForm>
           title="연락처"
@@ -70,6 +71,7 @@ const BasicInfo = () => {
           formField="contact"
           multiline
           container={{ marginBottom: 10 }}
+          style={{ width: 150, minWidth: 0 }}
         />
         <InfoCaption
           information="설정한 연락처는(전화번호, 카카오톡 채팅방 링크, 인스타그램 아이디
@@ -84,6 +86,7 @@ const BasicInfo = () => {
           formField="message"
           inputSize="md"
           multiline
+          style={{ width: 150, minWidth: 0 }}
         />
         {errors.message && (
           <span className={editStyles.error}>{errors.message.message}</span>
