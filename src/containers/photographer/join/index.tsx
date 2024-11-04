@@ -39,7 +39,11 @@ const PhotographerJoin = () => {
     defaultValues,
     resolver: zodResolver(joinSchema),
   });
-  const { handleSubmit, setError } = method;
+  const {
+    handleSubmit,
+    setError,
+    formState: { isSubmitting },
+  } = method;
 
   function handleSubmitFail(message?: string) {
     if (message === CUSTOMED_CODE.PROFILE_NAME_ALREADY_EXISTS) {
@@ -76,6 +80,7 @@ const PhotographerJoin = () => {
           size="md"
           styleType="primary"
           title="가입하기"
+          loading={isSubmitting}
           style={{ marginTop: 30 }}
         />
       </form>

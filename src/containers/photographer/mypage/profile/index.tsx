@@ -60,7 +60,10 @@ const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
     defaultValues: { ...profile },
     resolver: zodResolver(profileSchema),
   });
-  const { handleSubmit } = method;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = method;
 
   const onSubmit: SubmitHandler<PhotographerForm> = async (data) => {
     await responseHandler(
@@ -93,6 +96,7 @@ const MyProfile = ({ profile }: { profile: PhotographerForm }) => {
               styleType="primary"
               size="sm"
               title="프로필 저장"
+              loading={isSubmitting}
               style={{ marginLeft: "auto", width: 96, height: 40 }}
             />
           </div>

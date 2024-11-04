@@ -138,17 +138,28 @@ export const BottomButton = ({
   onClick,
   disabled,
   type,
+  loading,
   ...props
-}: ButtonProps) => {
+}: ButtonProps & { loading?: boolean }) => {
   return (
     <button
       type={type === "submit" ? "submit" : "button"}
-      className={`${disabled ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
-      onClick={disabled ? () => {} : onClick}
-      disabled={disabled}
+      className={`${disabled || loading ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
+      onClick={onClick}
+      disabled={disabled || loading}
       {...props}
     >
-      {title}
+      {loading ? (
+        <Image
+          src="/icons/loading.svg"
+          width={30}
+          height={30}
+          alt="now loading"
+          className={loaderStyle}
+        />
+      ) : (
+        title
+      )}
     </button>
   );
 };

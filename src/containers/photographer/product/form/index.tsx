@@ -149,7 +149,7 @@ const ProductForm = ({
     watch,
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = method;
   const [images, setImages] = useState<FormImage[]>(imageBase);
   const subtitle = watch("subtitle");
@@ -224,6 +224,7 @@ const ProductForm = ({
             size="md"
             title="등록하기"
             style={{ marginTop: 40 }}
+            loading={isSubmitting}
           />
         )}
       </form>
