@@ -68,9 +68,7 @@ const buttonStyles = styleVariants({
     fontSize: 17,
     fontWeight: 600,
     color: "#1a1a1a",
-    ":hover": {
-      cursor: "pointer",
-    },
+    cursor: "pointer",
   },
   add: [
     texts["button-01"],
@@ -148,6 +146,9 @@ const buttonStyles = styleVariants({
       ":hover": {
         filter: "none",
       },
+      ":active": {
+        filter: "none",
+      },
     },
   ],
   primary: [
@@ -184,6 +185,9 @@ const buttonStyles = styleVariants({
       ":hover": {
         backgroundColor: "white",
       },
+      ":active": {
+        backgroundColor: "white",
+      },
     },
   ],
   secondary: [
@@ -212,6 +216,9 @@ const buttonStyles = styleVariants({
       ":hover": {
         filter: "none",
       },
+      ":active": {
+        filter: "none",
+      },
     },
   ],
   linkArea: {
@@ -229,11 +236,20 @@ export const closeStyles = styleVariants({
     zIndex: 3,
     display: "flex",
     alignItems: "center",
+    cursor: "pointer",
   },
   grey: [
     sprinkles({
       color: "stroke-grey",
     }),
+    {
+      ":hover": {
+        filter: "brightness(0.7);",
+      },
+      ":active": {
+        filter: "brightness(0.7);",
+      },
+    },
   ],
   white: [
     sprinkles({

@@ -4,7 +4,7 @@ import { styleVariants } from "@vanilla-extract/css";
 
 export const fileSelectStyles = styleVariants({
   container: [
-    sprinkles({ borderColor: "blue" }),
+    sprinkles({ borderColor: "blue", backgroundColor: "white" }),
     {
       width: "100%",
       position: "relative",
@@ -15,6 +15,12 @@ export const fileSelectStyles = styleVariants({
       paddingTop: 8,
       paddingBottom: 8,
       marginBottom: 20,
+      ":hover": {
+        filter: "brightness(0.92);",
+      },
+      ":active": {
+        filter: "brightness(0.92);",
+      },
     },
   ],
   info: [
