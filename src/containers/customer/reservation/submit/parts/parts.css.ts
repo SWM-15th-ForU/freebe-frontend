@@ -62,6 +62,11 @@ export const optionControllerStyles = styleVariants({
     },
   ],
   lastContainer: { marginTop: 24 },
+  titleWrapper: {
+    display: "flex",
+    gap: 6,
+    alignItems: "center",
+  },
   title: [
     texts["body-01"],
     sprinkles({

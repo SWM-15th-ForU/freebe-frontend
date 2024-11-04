@@ -44,6 +44,7 @@ const ReservationFormProvider = ({
     title: z.string(),
     quantity: z.number().nonnegative(),
     price: z.number().nonnegative(),
+    description: z.string().optional(),
   });
 
   const reservationFormSchema = z.object({

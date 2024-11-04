@@ -108,6 +108,7 @@ declare module "product-types" {
       title: string;
       quantity: number;
       price: number;
+      description: string;
     }
 
     export interface FormType {

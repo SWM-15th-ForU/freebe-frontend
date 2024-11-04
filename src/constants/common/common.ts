@@ -9,12 +9,12 @@ export const IMAGE_STACK_SOURCES = [
 
 export const ACCEPTED_IMAGE = {
   file: ".jpeg,.jpg,.png,.bmp,.webp,.tiff,.tif,.ico,.svg",
-  info: "최대 10MB의 이미지 파일만 업로드 가능합니다.",
-  size: 1024 ** 2 * 10,
+  info: "최대 50MB의 이미지 파일만 업로드 가능합니다.",
+  size: 1024 ** 2 * 50,
 };
 
 export const SERVICE_LINKS = {
-  help: "https://slashpage.com/freebe",
+  help: "https://pf.kakao.com/_LxfHRn",
   serviceAgreement: "https://slashpage.com/freebe/service-agreement?full=true",
   privacyAgreement: "https://slashpage.com/freebe/privacy-agreement?full=true",
   notice: "https://slashpage.com/freebe/notice",

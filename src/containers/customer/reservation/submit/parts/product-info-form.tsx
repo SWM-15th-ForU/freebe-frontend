@@ -60,7 +60,6 @@ const ProductInfoForm = ({
     <PartLayout title="촬영 정보">
       <ScheduleModal close={close} opened={opened} targetIndex={editIndex} />
       <TextInput title="기본 가격" disabled value={basicPrice} />
-      <TextInput title="촬영 장소" disabled value={basicPlace} />
       {items.map((item, index) => {
         return (
           <TextInput
@@ -68,9 +67,11 @@ const ProductInfoForm = ({
             title={item.title}
             disabled
             value={item.content}
+            description={item.description}
           />
         );
       })}
+      <TextInput title="촬영 장소" disabled value={basicPlace} />
       {allowPreferredPlace && (
         <div style={{ marginBottom: 20 }}>
           <TextInput<reservation.FormType>

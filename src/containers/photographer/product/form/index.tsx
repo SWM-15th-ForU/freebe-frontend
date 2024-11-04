@@ -186,7 +186,7 @@ const ProductForm = ({
             <span className={formStyles.error}>
               {errors.title && errors.title.message}
             </span>
-            {!isEditing ? (
+            {isEditing ? (
               <textarea
                 placeholder="(선택) 상품 소개글을 입력해 주세요."
                 className={formStyles.input}
@@ -222,7 +222,7 @@ const ProductForm = ({
             type="submit"
             styleType="primary"
             size="md"
-            title="저장하기"
+            title="등록하기"
             style={{ marginTop: 40 }}
           />
         )}
