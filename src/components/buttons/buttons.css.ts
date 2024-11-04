@@ -1,7 +1,7 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 const baseTab = style([
   sprinkles({ borderColor: "stroke-grey" }),
@@ -50,6 +50,19 @@ const baseBottomButton = style([
     },
   },
 ]);
+
+const rotateAnimation = keyframes({
+  from: {
+    transform: "rotate(0deg)",
+  },
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
+
+export const loaderStyle = style({
+  animation: `${rotateAnimation} 2s linear infinite`,
+});
 
 const buttonStyles = styleVariants({
   kakao: {
