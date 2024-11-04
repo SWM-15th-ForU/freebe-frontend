@@ -1,6 +1,6 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 export const captionStyle = style([
   texts["caption-01"],
@@ -14,6 +14,19 @@ export const captionStyle = style([
     lineHeight: "20px",
   },
 ]);
+
+const rotateAnimation = keyframes({
+  from: {
+    transform: "rotate(0deg)",
+  },
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
+
+export const loaderStyle = style({
+  animation: `${rotateAnimation} 2s linear infinite`,
+});
 
 export const bottomSheetStyles = styleVariants({
   container: {

@@ -49,6 +49,7 @@ const Confirm = () => {
   ]);
   const prices = options.map((option) => option.price);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [saveLoading, setSaveLoading] = useState(false);
 
   useEffect(() => {
     const newPrice = prices.reduce((sum, price) => sum + price, 0) + basicPrice;
@@ -58,6 +59,7 @@ const Confirm = () => {
   }, [prices, totalPrice, basicPrice]);
 
   async function handlePutNewDetails() {
+    setSaveLoading(true);
     const reservationNumber = getValues("reservationNumber");
     await responseHandler(
       putReservationDetails({
@@ -75,6 +77,7 @@ const Confirm = () => {
         popToast("다시 시도해주세요.", "수정에 실패했습니다.", true);
       },
     );
+    setSaveLoading(false);
   }
 
   function progressNextStatus() {
@@ -170,6 +173,7 @@ const Confirm = () => {
                 size="sm"
                 styleType="primary"
                 onClick={handlePutNewDetails}
+                loading={saveLoading}
                 style={{ flex: 1 }}
               />
               <DateModal close={closeDate} opened={dateOpened} />
