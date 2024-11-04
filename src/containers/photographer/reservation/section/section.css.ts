@@ -15,9 +15,25 @@ export const sectionStyles = styleVariants({
       borderColor: "stroke-grey",
     }),
     {
+      position: "relative",
       padding: "40px 0px",
       borderBottomWidth: 1,
       borderBottomStyle: "solid",
+    },
+  ],
+  blurMessage: [
+    texts["headline-03"],
+    sprinkles({ color: "text-point" }),
+    {
+      position: "absolute",
+      top: 0,
+      height: "100%",
+      width: "100%",
+      display: "flex",
+      paddingTop: 60,
+      justifyContent: "center",
+      alignItems: "center",
+      gap: 8,
     },
   ],
   wrapper: [
@@ -26,6 +42,16 @@ export const sectionStyles = styleVariants({
       flexWrap: "wrap",
       justifyContent: "space-between",
       columnGap: "20px",
+    },
+  ],
+  blur: [
+    baseWrapper,
+    {
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      columnGap: "20px",
+      filter: "blur(8px)",
+      backgroundColor: "white",
     },
   ],
   box: [
@@ -78,7 +104,7 @@ export const sectionStyles = styleVariants({
       overflowX: "scroll",
     },
   ],
-  optionWrapper: [baseWrapper, { gap: 10, flexDirection: "column" }],
+  optionWrapper: [baseWrapper, { marginTop: 10, flexDirection: "column" }],
   title: [
     texts["headline-02"],
     sprinkles({ color: "text-02" }),
@@ -139,7 +165,7 @@ export const fieldStyles = styleVariants({
   name: [
     texts["headline-03"],
     sprinkles({ color: "text-03" }),
-    { minWidth: 60 },
+    { minWidth: 60, flexBasis: "30%" },
   ],
   content: [texts["headline-03"], sprinkles({ color: "blue" })],
 });

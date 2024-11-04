@@ -13,7 +13,8 @@ export const bannerStyles = styleVariants({
       borderRadius: 9,
       borderWidth: 1,
       borderStyle: "solid",
-
+      maxWidth: 300,
+      width: "100%",
       display: "flex",
       flexDirection: "column",
     },
@@ -110,6 +111,7 @@ export const listStyles = styleVariants({
   body: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    justifyItems: "center",
     gap: 10,
     minWidth: "100%",
   },
@@ -176,6 +178,7 @@ export const formStyles = styleVariants({
     margin: "auto",
     paddingTop: 50,
     paddingBottom: 80,
+    padding: "50px 30px 80px 30px",
     alignSelf: "flex-start",
 
     "@media": {
@@ -194,5 +197,22 @@ export const formStyles = styleVariants({
     sprinkles({
       color: "text-02",
     }),
+  ],
+  info: [
+    sprinkles({
+      color: "text-02",
+    }),
+    { marginBottom: 10, display: "block", fontSize: 14, fontWeight: 500 },
+  ],
+  dropdown: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      padding: "16px 20px",
+      borderWidth: 1,
+      borderStyle: "solid",
+      maxWidth: 350,
+      borderRadius: 8,
+      boxShadow: "0px 10px 25px 0px #00000026",
+    },
   ],
 });

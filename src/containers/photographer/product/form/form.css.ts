@@ -68,6 +68,7 @@ export const formStyles = styleVariants({
       border: 0,
       width: "100%",
       marginTop: 10,
+      resize: "vertical",
       ":disabled": {
         background: "none",
       },
@@ -92,6 +93,11 @@ export const formStyles = styleVariants({
       lineHeight: "20px",
     },
   ],
+  textarea: {
+    ":focus-within": {
+      outline: "none",
+    },
+  },
 });
 
 const baseInput = style({
@@ -190,6 +196,9 @@ export const inputStyles = styleVariants({
       borderRadius: 8,
       padding: "8px 12px",
       ":focus": {
+        borderColor: "#007AFF",
+      },
+      ":focus-within": {
         borderColor: "#007AFF",
       },
     },

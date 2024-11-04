@@ -44,6 +44,7 @@ const NoticeInput = ({
       <div className={inputStyles.content}>
         <textarea
           disabled={disabled}
+          className={formStyles.textarea}
           placeholder="내용을 입력해 주세요."
           style={{ width: "100%", border: "none", resize: "vertical" }}
           {...formRegister(`notices.${index}.content`)}

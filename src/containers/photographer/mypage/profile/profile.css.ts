@@ -33,26 +33,42 @@ export const mypageStyles = styleVariants({
 });
 
 export const profileStyles = styleVariants({
+  page: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    {
+      flexGrow: 1,
+      padding: 40,
+      paddingBottom: 0,
+      position: "relative",
+      height: "auto",
+      "@media": {
+        [breakpoints.mobile]: {
+          padding: "24px 20px",
+        },
+      },
+    },
+  ],
   form: {
     position: "relative",
-    height: "calc(100% - 21.5px)",
-    paddingTop: 20,
+    height: "100%",
+    width: "100%",
     "@media": {
       [breakpoints.mobile]: {
         height: "auto",
       },
     },
   },
+  formHeader: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: 20,
+  },
   container: {
     display: "flex",
-    width: "auto",
-
-    height: "100%",
-    paddingBottom: 16,
+    height: "calc(100% - 60px)",
     minHeight: 500,
     gap: 24,
     position: "relative",
-    overflowX: "scroll",
   },
   preview: [
     sprinkles({

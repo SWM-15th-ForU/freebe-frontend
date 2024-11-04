@@ -30,6 +30,16 @@ export const headerContainer = style([
   },
 ]);
 
+export const linkWrapper = style({
+  display: "flex",
+  gap: 24,
+  "@media": {
+    [breakpoints.mobile]: {
+      display: "none",
+    },
+  },
+});
+
 export const linkText = style([
   texts["body-02"],
   sprinkles({ color: "text-01" }),
@@ -97,6 +107,35 @@ export const urlStyles = styleVariants({
 });
 
 export const menuStyles = styleVariants({
+  mobileDisplay: {
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
+  close: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+  },
+  header: {
+    position: "absolute",
+  },
+  button: {
+    background: "none",
+    border: "none",
+    display: "none",
+    alignItems: "center",
+    justifyContent: "center",
+
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "flex",
+      },
+    },
+  },
   dropdown: [
     sprinkles({ borderColor: "stroke-grey" }),
     {

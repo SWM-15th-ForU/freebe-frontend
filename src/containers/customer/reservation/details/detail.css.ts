@@ -1,3 +1,4 @@
+import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { styleVariants } from "@vanilla-extract/css";
@@ -6,12 +7,27 @@ export const detailStyles = styleVariants({
   container: [
     sprinkles({ backgroundColor: "white" }),
     {
-      padding: "48px 47px 40px 47px",
+      padding: "48px 20px 40px 20px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+
+      "@media": {
+        [breakpoints.tablet]: {
+          padding: "30px 20px 30px 20px",
+        },
+      },
     },
   ],
+  status: {
+    width: "100%",
+    "@media": {
+      [breakpoints.tablet]: {
+        marginTop: 20,
+        height: 150,
+      },
+    },
+  },
   title: [texts["headline-02"], sprinkles({ color: "text-point" })],
   message: [texts["body-02"], sprinkles({ color: "text-03" })],
   chips: {

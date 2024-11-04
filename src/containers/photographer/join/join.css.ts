@@ -10,7 +10,6 @@ export const joinStyles = styleVariants({
     flexDirection: "column",
     width: 660,
     margin: "auto",
-    gap: 60,
     padding: "30px 0px 60px 0px",
 
     "@media": {
@@ -20,23 +19,20 @@ export const joinStyles = styleVariants({
       },
     },
   },
+  title: [
+    texts["headline-02"],
+    sprinkles({ color: "text-point" }),
+    { marginTop: 40 },
+  ],
 });
 
 export const profileStyles = styleVariants({
   container: [
-    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    sprinkles({ borderColor: "stroke-grey" }),
     {
-      width: "100%",
-      borderRadius: 16,
-      display: "flex",
-      padding: 32,
-      gap: 24,
-      "@media": {
-        [breakpoints.mobile]: {
-          padding: 20,
-          flexDirection: "column",
-        },
-      },
+      marginTop: 20,
+      borderTopWidth: 1,
+      borderTopStyle: "solid",
     },
   ],
   image: {

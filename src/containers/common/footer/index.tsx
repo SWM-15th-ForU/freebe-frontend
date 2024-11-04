@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AGREEMENT_LINKS } from "@/constants/common/agreement";
+import { SERVICE_LINKS } from "@/constants/common/common";
 import { footerStyles } from "./footer.css";
 
 const ServiceFooter = () => {
   const SERVICE_INFO = [
-    { name: "이메일", content: "swm15foru@gmail.com" },
+    { name: "이메일", content: "official@freebe.co.kr" },
     { name: "전화번호", content: "070-8098-6471" },
     {
       name: "주소",
@@ -41,19 +41,24 @@ const ServiceFooter = () => {
         <div className={footerStyles.menuWrapper}>
           <div className={footerStyles.menu}>
             <span className={footerStyles.title}>이용안내</span>
-            <span className={footerStyles.content}>공지사항</span>
+            <Link href={SERVICE_LINKS.notice} target="_blank">
+              <span className={footerStyles.content}>공지사항</span>
+            </Link>
           </div>
           <div className={footerStyles.menu}>
             <span className={footerStyles.title}>서비스 약관</span>
-            <Link href={AGREEMENT_LINKS.service} target="_blank">
+            <Link href={SERVICE_LINKS.serviceAgreement} target="_blank">
               <span className={footerStyles.content}>서비스 이용약관</span>
             </Link>
-            <Link href={AGREEMENT_LINKS.privacy} target="_blank">
+            <Link href={SERVICE_LINKS.privacyAgreement} target="_blank">
               <span className={footerStyles.content}>개인정보처리방침</span>
             </Link>
           </div>
         </div>
       </div>
+      <span className={footerStyles.caption}>
+        © 2024 free:be. All rights reserved.
+      </span>
       <span className={footerStyles.caption}>
         프리비는 통신판매중개자로서 통신판매의 당사자가 아니며 각 상품의 주문,
         거래 및 환불 등에 관한 의무와 책임은 각 판매자에게 있습니다.

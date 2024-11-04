@@ -3,6 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
 import { Modal } from "@mantine/core";
 import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
+import { MAX_LENGTHS } from "@/constants/common/schema";
 import { modalStyles } from "@/containers/customer/products/products.css";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import TextInput from "@/components/inputs/text-input";
@@ -51,10 +52,12 @@ const CancelModal = ({
     >
       <div className={sectionStyles.title}>신청서를 정말 취소하시겠어요?</div>
       <div className={sectionStyles.message}>
-        신청하신 분과 꼭 협의를 마친 뒤, 신중하게 취소해 주세요.
+        신청하신 분과 꼭 협의를 마친 뒤, 신중하게 취소해 주세요. 입력하신 취소
+        사유는 고객에게 전달됩니다.
       </div>
       <TextInput
-        placeholder="취소 사유를 입력해 주세요."
+        placeholder="취소 사유를 입력해 주세요. (최대 100자)"
+        maxLength={MAX_LENGTHS.TEXT}
         value={cancellationReason}
         onChange={(e) => setCancellationReason(e.currentTarget.value)}
       />

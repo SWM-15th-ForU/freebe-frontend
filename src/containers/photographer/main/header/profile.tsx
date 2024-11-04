@@ -7,7 +7,6 @@ import { menuStyles, profileContainer } from "./header.css";
 const Profile = () => {
   return (
     <div className={profileContainer}>
-      <Image src="/icons/alarm.svg" alt="알림" width={20} height={24} />
       <Menu
         position="top-end"
         classNames={{

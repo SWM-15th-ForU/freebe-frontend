@@ -5,6 +5,7 @@ import InfoCaption from "@/components/common/info-caption";
 import TextInput from "@/components/inputs/text-input";
 import ProfileImage from "@/components/images/profile-image";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import { editStyles } from "./edit.css";
 
 const BasicInfo = () => {
@@ -35,7 +36,7 @@ const BasicInfo = () => {
         <CustomButton size="sm" title="프로필 사진 등록" styleType="primary">
           <input
             type="file"
-            accept="image/*"
+            accept={ACCEPTED_IMAGE.file}
             style={{
               opacity: 0,
               position: "absolute",

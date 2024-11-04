@@ -19,10 +19,12 @@ export const containerStyle = style({
 export const detailStyle = style({
   flex: 1,
   maxWidth: "60%",
+  minWidth: 550,
   "@media": {
     [breakpoints.mobile]: {
       width: "100%",
       maxWidth: "100%",
+      minWidth: 300,
     },
   },
 });
