@@ -22,8 +22,10 @@ const CancelModal = ({
   const router = useRouter();
   const { formId } = useParams<Pick<PageParams, "formId">>();
   const [cancellationReason, setCancellationReason] = useState("");
+  const [loadingCancel, setLoadingCancel] = useState(false);
 
   async function handleCancel() {
+    setLoadingCancel(true);
     await responseHandler(
       putReservationStatus(
         parseInt(formId, PARAMETER_DEFAULT_RADIX),
@@ -41,6 +43,7 @@ const CancelModal = ({
         router.refresh();
       },
     );
+    setLoadingCancel(false);
   }
 
   return (
@@ -67,6 +70,7 @@ const CancelModal = ({
         title="취소하기"
         disabled={cancellationReason === ""}
         onClick={handleCancel}
+        loading={loadingCancel}
       />
     </Modal>
   );

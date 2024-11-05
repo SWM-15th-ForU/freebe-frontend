@@ -52,6 +52,7 @@ export const itemStyles = styleVariants({
   button: [
     baseButton,
     sprinkles({
+      backgroundColor: "white",
       color: "text-02",
       fontSize: {
         desktop: "xs",

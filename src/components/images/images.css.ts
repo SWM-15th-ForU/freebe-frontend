@@ -55,6 +55,12 @@ export const GridStyles = styleVariants({
     outlineOffset: -1,
     outlineColor: BLUE01,
     boxSizing: "content-box",
+    ":hover": {
+      filter: "brightness(0.92);",
+    },
+    ":active": {
+      filter: "brightness(0.92);",
+    },
   },
 });
 

@@ -56,3 +56,12 @@ input:-webkit-autofill:active {
   width: 8px;
   height: 8px;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:hover,
+button:active {
+  filter: brightness(0.92);
+}
