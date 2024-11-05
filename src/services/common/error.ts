@@ -28,6 +28,7 @@ export const CUSTOMED_CODE: { [key: string]: string } = {
 
 const CUSTOMED_STATUS: { [key: number]: string } = {
   404: "존재하지 않습니다.",
+  413: "요청의 용량이 너무 큽니다.",
 };
 
 export function getCustomedErrorMessage(
