@@ -9,8 +9,8 @@ export const IMAGE_STACK_SOURCES = [
 
 export const ACCEPTED_IMAGE = {
   file: ".jpeg,.jpg,.png,.bmp,.webp,.tiff,.tif,.ico,.svg",
-  info: "최대 50MB의 이미지 파일만 업로드 가능합니다.",
-  size: 1024 ** 2 * 50,
+  info: "최대 10MB의 이미지 파일만 업로드 가능합니다.",
+  size: 1024 ** 2 * 10,
 };
 
 export const SERVICE_LINKS = {

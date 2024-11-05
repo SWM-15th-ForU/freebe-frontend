@@ -11,7 +11,6 @@ const baseButton = style({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  background: "none",
   border: "none",
   gap: 10,
 });
