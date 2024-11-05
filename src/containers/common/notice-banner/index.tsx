@@ -4,35 +4,38 @@ import { carouselStyles } from "@/styles/mantine.css";
 import { Carousel } from "@mantine/carousel";
 import Image from "next/image";
 import Link from "next/link";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import {
   customedCarouselStyles,
   noticeBannerStyles,
 } from "./notice-banner.css";
+
+type BannerTargets = "join" | "main";
+
+type Banner = {
+  image: string;
+  link?: string;
+} & {
+  [key in BannerTargets]: boolean;
+};
 
 const NoticeBanner = ({
   container,
   target,
 }: {
   container?: CSSProperties;
-  target: "join" | "main";
+  target: BannerTargets;
 }) => {
-  const bannerDatas = {
-    join: [
-      {
-        image:
-          "https://local-freebe-data.s3.ap-northeast-2.amazonaws.com/service-banner/join-banner.png",
-        link: undefined,
-      },
-    ],
-    main: [
-      {
-        image:
-          "https://local-freebe-data.s3.ap-northeast-2.amazonaws.com/service-banner/main-banner.png",
-        link: "https://slashpage.com/freebe/xjqy1g2vqrk4dm6vd54z",
-      },
-    ],
-  };
+  const [bannerDatas, setBannerDatas] = useState<Banner[]>([]);
+
+  useEffect(() => {
+    const dataLayer = (window as any).dataLayer || [];
+    const bannerData = dataLayer.find(
+      (data: any) => data.event === "loadBannerData",
+    )?.bannerData;
+    if (bannerData) setBannerDatas(bannerData);
+  }, []);
+
   return (
     <Carousel
       withIndicators
@@ -40,27 +43,29 @@ const NoticeBanner = ({
       classNames={{ ...carouselStyles, ...customedCarouselStyles }}
       style={{ ...container }}
     >
-      {bannerDatas[target].map((banner, index) => (
-        <Carousel.Slide key={index}>
-          {banner.link ? (
-            <Link target="_blank" href={banner.link}>
+      {bannerDatas
+        .filter((data) => data[target])
+        .map((banner, index) => (
+          <Carousel.Slide key={index}>
+            {banner.link ? (
+              <Link target="_blank" href={banner.link}>
+                <Image
+                  alt={`banner image ${index}`}
+                  src={banner.image}
+                  fill
+                  className={noticeBannerStyles.image}
+                />
+              </Link>
+            ) : (
               <Image
                 alt={`banner image ${index}`}
                 src={banner.image}
                 fill
                 className={noticeBannerStyles.image}
               />
-            </Link>
-          ) : (
-            <Image
-              alt={`banner image ${index}`}
-              src={banner.image}
-              fill
-              className={noticeBannerStyles.image}
-            />
-          )}
-        </Carousel.Slide>
-      ))}
+            )}
+          </Carousel.Slide>
+        ))}
     </Carousel>
   );
 };
