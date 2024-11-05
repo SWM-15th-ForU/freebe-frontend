@@ -6,7 +6,7 @@ import * as Sentry from "@sentry/nextjs";
 
 Sentry.init({
   dsn: "https://92e2c980bb6bf71c3be5e4f0170006ed@o4508237874462720.ingest.us.sentry.io/4508237875773440",
-
+  denyUrls: [/https:\/\/www\.freebe\.n-e\.kr/],
   // Add optional integrations for additional features
   integrations: [Sentry.replayIntegration()],
 
