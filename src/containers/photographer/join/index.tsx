@@ -15,6 +15,16 @@ import { CUSTOMED_CODE, responseHandler } from "@/services/common/error";
 import Profile from "./profile";
 import { joinStyles } from "./join.css";
 
+const RESERVED_PROFILE_NAMES = [
+  ".env",
+  "photographer",
+  "customer",
+  "api",
+  "auth",
+  "login",
+];
+const IS_RESERVED_PROFILE_NAME = "사용할 수 없는 아이디입니다.";
+
 const PhotographerJoin = () => {
   const router = useRouter();
 
@@ -42,7 +52,10 @@ const PhotographerJoin = () => {
   const { handleSubmit, setError } = method;
 
   function handleSubmitFail(message?: string) {
-    if (message === CUSTOMED_CODE.PROFILE_NAME_ALREADY_EXISTS) {
+    if (
+      message === CUSTOMED_CODE.PROFILE_NAME_ALREADY_EXISTS ||
+      message === IS_RESERVED_PROFILE_NAME
+    ) {
       setError(
         "profileName",
         { message: "아이디를 다시 설정해주세요." },
@@ -53,14 +66,18 @@ const PhotographerJoin = () => {
   }
 
   async function onSubmit(data: Join) {
-    await responseHandler(
-      postProfile(data),
-      (url) => {
-        popToast("가입이 완료되었습니다!");
-        router.push(`/photographer?url=${url}&tutorial=true`);
-      },
-      handleSubmitFail,
-    );
+    if (RESERVED_PROFILE_NAMES.includes(data.profileName)) {
+      handleSubmitFail(IS_RESERVED_PROFILE_NAME);
+    } else {
+      await responseHandler(
+        postProfile(data),
+        (url) => {
+          popToast("가입이 완료되었습니다!");
+          router.push(`/photographer?url=${url}&tutorial=true`);
+        },
+        handleSubmitFail,
+      );
+    }
   }
 
   return (
