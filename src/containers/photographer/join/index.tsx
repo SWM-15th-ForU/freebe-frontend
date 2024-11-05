@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Join } from "profile-types";
+import { sendGAEvent } from "@next/third-parties/google";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MAX_LENGTHS } from "@/constants/common/schema";
 import { ID_REGEX } from "@/constants/common/user";
@@ -73,6 +74,7 @@ const PhotographerJoin = () => {
     if (isReservedProfileName(data.profileName)) {
       handleSubmitFail(IS_RESERVED_PROFILE_NAME);
     } else {
+      sendGAEvent("event", "enroll", { profile_name: data.profileName });
       await responseHandler(
         postProfile(data),
         (url) => {

@@ -7,7 +7,7 @@ import "@mantine/notifications/styles.css";
 import "./globals.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { METADATA } from "@/constants/metadata";
 
 const pretendard = localFont({
@@ -52,6 +52,9 @@ export default function RootLayout({
         className={pretendard.className}
         style={{ overflowX: "hidden", overflowY: "hidden" }}
       >
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID || ""}
+        />
         <GoogleAnalytics
           gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ""}
         />

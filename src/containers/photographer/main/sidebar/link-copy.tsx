@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { sendGAEvent } from "@next/third-parties/google";
 import popToast from "@/components/common/toast";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import InfoCaption from "@/components/common/info-caption";
@@ -19,6 +20,7 @@ const LinkCopy = () => {
 
   async function handleCopy() {
     try {
+      sendGAEvent("event", "copy_link", { url });
       await navigator.clipboard.writeText(url);
       popToast(
         "원하는 곳에 공유해 프리비로 예약을 받아 보세요!",
