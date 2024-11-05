@@ -62,7 +62,7 @@ export async function getPreviousReservationList(
           item.reservationStatus === "PHOTO_COMPLETED"
             ? "PHOTO_COMPLETED"
             : "CANCELLED",
-        shootingDate: item.shootingDate || undefined,
+        shootingDate: item.shootingDate?.date || undefined,
       };
     }),
   };

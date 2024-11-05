@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Switch } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { responseHandler } from "@/services/common/error";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
@@ -11,6 +12,8 @@ import {
 } from "@/services/client/photographer/products";
 import popToast from "@/components/common/toast";
 import { bannerStyles } from "../product.css";
+import DeleteModal from "./delete-modal";
+import DisableModal from "./disable-modal";
 
 const ProductBanner = ({
   activeStatus,
@@ -20,6 +23,10 @@ const ProductBanner = ({
   representativeImage,
 }: ProductResponseData) => {
   const router = useRouter();
+  const [deleteOpened, { open: openDelete, close: closeDelete }] =
+    useDisclosure(false);
+  const [disableOpened, { open: openDisable, close: closeDisable }] =
+    useDisclosure(false);
 
   async function handleSwitchOpen() {
     await responseHandler(
@@ -83,16 +90,28 @@ const ProductBanner = ({
         <span>예약 활성화</span>
         <Switch
           checked={activeStatus === "ACTIVE"}
-          onChange={handleSwitchOpen}
+          onChange={activeStatus === "ACTIVE" ? openDisable : handleSwitchOpen}
         />
         <CustomButton
           size="xs"
           styleType="line"
           title="삭제"
-          onClick={handleClickDelete}
+          onClick={openDelete}
           style={{ marginLeft: "auto", paddingLeft: 15, paddingRight: 15 }}
         />
       </div>
+      <DeleteModal
+        close={closeDelete}
+        handleDelete={handleClickDelete}
+        opened={deleteOpened}
+        productTitle={productTitle}
+      />
+      <DisableModal
+        close={closeDisable}
+        handleDisable={handleSwitchOpen}
+        opened={disableOpened}
+        productTitle={productTitle}
+      />
     </div>
   );
 };
