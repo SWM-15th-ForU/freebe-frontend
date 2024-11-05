@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Product } from "product-types";
 import { PageParams } from "route-parameters";
+import { sendGAEvent } from "@next/third-parties/google";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Tabs } from "@mantine/core";
@@ -33,6 +34,14 @@ const ProductInfo = ({
   productId,
 }: Product & Pick<PageParams, "productId" | "profileName">) => {
   const [opened, { open, close }] = useDisclosure(false);
+
+  function handleStartReservation() {
+    sendGAEvent("event", "start_reservation", {
+      profile_name: profileName,
+      product_id: productId,
+    });
+    open();
+  }
 
   return (
     <div className={infoStyles.container}>
@@ -101,7 +110,7 @@ const ProductInfo = ({
       </Tabs>
       <BottomButton
         title="예약 시작하기"
-        onClick={open}
+        onClick={handleStartReservation}
         style={{ position: "fixed" }}
       />
     </div>

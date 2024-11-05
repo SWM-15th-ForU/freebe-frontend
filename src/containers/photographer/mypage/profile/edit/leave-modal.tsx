@@ -30,8 +30,10 @@ const LeaveModal = ({
   const router = useRouter();
   const [selectedReason, setSelectedReason] = useState("");
   const [reason, setReason] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleLeave() {
+    setLoading(true);
     await responseHandler(
       leaveService(selectedReason === "기타" ? reason : selectedReason),
       () => {
@@ -46,6 +48,7 @@ const LeaveModal = ({
         popToast("다시 시도해주세요.", "탈퇴에 실패했습니다.", true);
       },
     );
+    setLoading(false);
   }
 
   function handleSelectReason(newReason: string) {
@@ -122,6 +125,7 @@ const LeaveModal = ({
           (reason === "" && selectedReason === "기타") || selectedReason === ""
         }
         onClick={handleLeave}
+        loading={loading}
       />
     </Modal>
   );

@@ -12,10 +12,12 @@ import { sectionStyles } from "../section.css";
 
 const PhotographerMemo = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [saveLoading, setSaveLoading] = useState(false);
   const router = useRouter();
   const { getValues } = useFormContext<Details>();
 
   async function handleSubmitMemo() {
+    setSaveLoading(true);
     const [reservationNumber, photographerMemo] = getValues([
       "reservationNumber",
       "photographerMemo",
@@ -30,6 +32,7 @@ const PhotographerMemo = () => {
         popToast("다시 시도해주세요.", "수정에 실패했습니다.", true);
       },
     );
+    setSaveLoading(false);
   }
 
   return (
@@ -61,6 +64,7 @@ const PhotographerMemo = () => {
           />
           <CustomButton
             size="sm"
+            loading={saveLoading}
             styleType="primary"
             title="작성 완료"
             onClick={handleSubmitMemo}

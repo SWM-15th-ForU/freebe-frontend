@@ -33,7 +33,7 @@ const SubmitForm = ({
   const {
     setValue,
     watch,
-    formState: { touchedFields },
+    formState: { touchedFields, isSubmitting },
   } = useFormContext<reservation.FormType>();
   const [totalPrice, noticeAgreement] = watch([
     "totalPrice",
@@ -80,6 +80,7 @@ const SubmitForm = ({
         title="신청하기"
         type="submit"
         disabled={!noticeAgreement}
+        loading={isSubmitting}
       />
     </div>
   );

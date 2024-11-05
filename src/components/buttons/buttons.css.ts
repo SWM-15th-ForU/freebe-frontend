@@ -1,7 +1,7 @@
 import { breakpoints } from "@/styles/breakpoints.css";
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 const baseTab = style([
   sprinkles({ borderColor: "stroke-grey" }),
@@ -51,6 +51,19 @@ const baseBottomButton = style([
   },
 ]);
 
+const rotateAnimation = keyframes({
+  from: {
+    transform: "rotate(0deg)",
+  },
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
+
+export const loaderStyle = style({
+  animation: `${rotateAnimation} 2s linear infinite`,
+});
+
 const buttonStyles = styleVariants({
   kakao: {
     display: "flex",
@@ -68,9 +81,7 @@ const buttonStyles = styleVariants({
     fontSize: 17,
     fontWeight: 600,
     color: "#1a1a1a",
-    ":hover": {
-      cursor: "pointer",
-    },
+    cursor: "pointer",
   },
   add: [
     texts["button-01"],
@@ -145,6 +156,12 @@ const buttonStyles = styleVariants({
     {
       border: "none",
       cursor: "initial",
+      ":hover": {
+        filter: "none",
+      },
+      ":active": {
+        filter: "none",
+      },
     },
   ],
   primary: [
@@ -174,10 +191,16 @@ const buttonStyles = styleVariants({
       color: "blue",
     }),
     {
-      background: "none",
+      backgroundColor: "transparent",
       borderStyle: "solid",
       borderRadius: 8,
       borderWidth: 1,
+      ":hover": {
+        backgroundColor: "white",
+      },
+      ":active": {
+        backgroundColor: "white",
+      },
     },
   ],
   secondary: [
@@ -203,6 +226,12 @@ const buttonStyles = styleVariants({
     {
       border: "none",
       cursor: "initial",
+      ":hover": {
+        filter: "none",
+      },
+      ":active": {
+        filter: "none",
+      },
     },
   ],
   linkArea: {
@@ -220,11 +249,20 @@ export const closeStyles = styleVariants({
     zIndex: 3,
     display: "flex",
     alignItems: "center",
+    cursor: "pointer",
   },
   grey: [
     sprinkles({
       color: "stroke-grey",
     }),
+    {
+      ":hover": {
+        filter: "brightness(0.7);",
+      },
+      ":active": {
+        filter: "brightness(0.7);",
+      },
+    },
   ],
   white: [
     sprinkles({

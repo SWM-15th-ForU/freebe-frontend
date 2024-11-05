@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Status } from "reservation-types";
 import { useParams, useRouter } from "next/navigation";
 import { PageParams } from "route-parameters";
@@ -23,8 +24,10 @@ const StatusModal = ({
 }) => {
   const router = useRouter();
   const { formId } = useParams<Pick<PageParams, "formId">>();
+  const [statusLoading, setStatusLoading] = useState(false);
 
   async function handleStatusChange() {
+    setStatusLoading(true);
     await responseHandler(
       putReservationStatus(
         parseInt(formId, PARAMETER_DEFAULT_RADIX),
@@ -41,6 +44,7 @@ const StatusModal = ({
         router.refresh();
       },
     );
+    setStatusLoading(false);
   }
 
   return (
@@ -61,6 +65,7 @@ const StatusModal = ({
           styleType="primary"
           title="변경하기"
           onClick={handleStatusChange}
+          loading={statusLoading}
         />
       </div>
     </Modal>

@@ -162,7 +162,7 @@ export const mobileTutorialStyles = styleVariants({
       borderWidth: 1,
       cursor: "pointer",
       boxShadow: "0px 5px 5px rgba(86, 152, 218, 0.15)",
-      ":hover": {
+      ":active": {
         animation: `${navButtonFrames} 1s ease-in-out infinite`,
       },
     },

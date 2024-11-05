@@ -17,7 +17,7 @@ const NoticeEdit = () => {
   const {
     watch,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useFormContext<NoticeForm>();
   const { remove, append } = useFieldArray<NoticeForm>({
     control,
@@ -58,11 +58,13 @@ const NoticeEdit = () => {
         <CustomButton
           styleType="primary"
           title="저장"
-          size="xs"
+          size="sm"
           type="submit"
+          loading={isSubmitting}
           style={{
             marginRight: 10,
-            padding: "5px 10px",
+            paddingLeft: 15,
+            paddingRight: 15,
           }}
         />
       </div>
