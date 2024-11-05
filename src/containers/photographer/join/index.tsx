@@ -65,8 +65,12 @@ const PhotographerJoin = () => {
     popToast("다시 시도해 주세요.", message || "가입에 실패했습니다.", true);
   }
 
+  function isReservedProfileName(profileName: string) {
+    return RESERVED_PROFILE_NAMES.includes(profileName);
+  }
+
   async function onSubmit(data: Join) {
-    if (RESERVED_PROFILE_NAMES.includes(data.profileName)) {
+    if (isReservedProfileName(data.profileName)) {
       handleSubmitFail(IS_RESERVED_PROFILE_NAME);
     } else {
       await responseHandler(
