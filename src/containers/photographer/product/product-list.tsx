@@ -5,7 +5,6 @@ import { Status } from "product-types";
 import { sendGAEvent } from "@next/third-parties/google";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
-import { CustomButton } from "@/components/buttons/common-buttons";
 import ProductBanner from "./list/product-banner";
 import { listStyles } from "./product.css";
 
