@@ -6,6 +6,7 @@ import { ID_REGEX } from "@/constants/common/user";
 import { postReservation } from "@/services/client/customer/reservation";
 import { responseHandler } from "@/services/common/error";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { sendGAEvent } from "@next/third-parties/google";
 import { useRouter } from "next/navigation";
 import { reservation } from "product-types";
 import { FormProvider, useForm } from "react-hook-form";
@@ -87,6 +88,10 @@ const ReservationFormProvider = ({
   const { handleSubmit } = method;
 
   async function onSubmit(data: reservation.FormType) {
+    sendGAEvent("event", "submit_reservation", {
+      profile_name: data.profileName,
+      product_id: data.productId,
+    });
     await responseHandler(
       postReservation(data),
       (formId) => {

@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { reservation } from "product-types";
+import { sendGAEvent } from "@next/third-parties/google";
 import { BottomButton } from "@/components/buttons/common-buttons";
 import popToast from "@/components/common/toast";
 import ReferenceGrid from "@/containers/customer/reservation/reference/grid";
@@ -17,7 +18,11 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
   const { setValue, watch } = useFormContext<reservation.FormType>();
   const currentPath = usePathname();
 
-  const selectedImageList = watch("referenceImages");
+  const [selectedImageList, productId, profileName] = watch([
+    "referenceImages",
+    "productId",
+    "profileName",
+  ]);
 
   const addImage = (url: string, file?: File) => {
     const currentImages = selectedImageList || [];
@@ -49,6 +54,10 @@ const ReferenceForm = ({ images }: { images: string[] }) => {
 
   function handleNext() {
     const nextPath = getNextPath("submit");
+    sendGAEvent("event", "add_reference", {
+      profile_name: profileName,
+      product_id: productId,
+    });
     router.push(nextPath);
   }
 

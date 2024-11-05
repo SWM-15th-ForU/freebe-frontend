@@ -43,7 +43,7 @@ export default withSentryConfig(withVanillaExtract(nextConfig), {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
-  org: "for-u-5h",
+  org: "freebe",
   project: "javascript-nextjs",
 
   // Only print logs for uploading source maps in CI

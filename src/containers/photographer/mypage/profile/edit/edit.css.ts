@@ -33,6 +33,11 @@ export const linkStyles = styleVariants({
         outline: "none",
         borderBottomColor: "#007AFF",
       },
+      "@media": {
+        [breakpoints.mobile]: {
+          minWidth: 0,
+        },
+      },
     },
   ],
   error: [
@@ -78,6 +83,12 @@ export const editStyles = styleVariants({
     display: "flex",
     alignItems: "center",
     minWidth: "fit-content",
+    "@media": {
+      [breakpoints.mobile]: {
+        flexDirection: "column",
+        alignItems: "flex-start",
+      },
+    },
   },
   link: {
     paddingTop: 20,
@@ -91,6 +102,14 @@ export const editStyles = styleVariants({
     flex: "0 0 104px",
     marginRight: 20,
     gap: 12,
+    "@media": {
+      [breakpoints.mobile]: {
+        flexDirection: "row",
+        width: 300,
+        alignItems: "flex-end",
+        marginBottom: 30,
+      },
+    },
   },
   title: [texts["headline-03"], sprinkles({ color: "text-02" })],
   fieldsWrapper: {
@@ -115,6 +134,15 @@ export const editStyles = styleVariants({
     }),
     { margin: 3, display: "block" },
   ],
+  banner: {
+    margin: "20px 0px",
+    display: "none",
+    "@media": {
+      [breakpoints.mobile]: {
+        display: "block",
+      },
+    },
+  },
 });
 
 export const leaveStyles = styleVariants({

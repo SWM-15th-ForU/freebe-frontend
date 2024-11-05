@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Status } from "product-types";
+import { sendGAEvent } from "@next/third-parties/google";
+import { CustomButton } from "@/components/buttons/common-buttons";
 import { ProductResponseData } from "@/services/server/photographer/mypage/products";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import ProductBanner from "./list/product-banner";
@@ -26,6 +28,7 @@ const ProductList = ({ productDatas, status }: ProductListProps) => {
         {status === "ACTIVE" && (
           <Link href="/photographer/new-product">
             <CustomButton
+              onClick={() => sendGAEvent("event", "start_product_register")}
               title="추가"
               size="sm"
               styleType="primary"

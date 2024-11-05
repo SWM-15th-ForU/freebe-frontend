@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { sendGAEvent } from "@next/third-parties/google";
 import { Modal } from "@mantine/core";
 import { mypageTabs } from "@/constants/photographer/mypage";
 import { SERVICE_LINKS } from "@/constants/common/common";
@@ -29,6 +30,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   }
 
   function handleOpenTutorial() {
+    sendGAEvent("event", "view_tutorial");
     router.replace("/photographer?tutorial=true", { scroll: true });
   }
 
@@ -54,6 +56,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
         <Link href="/photographer/new-product">
           <MenuItem
             name="촬영 상품 등록"
+            onClick={() => sendGAEvent("event", "start_product_register")}
             icon={
               currentTab === "new-product"
                 ? "/icons/sidebar/camera-blue.svg"

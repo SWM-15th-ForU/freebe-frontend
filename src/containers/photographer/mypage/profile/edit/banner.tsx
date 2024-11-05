@@ -1,12 +1,15 @@
 import { ChangeEvent } from "react";
 import { useFormContext } from "react-hook-form";
 import { PhotographerForm } from "profile-types";
+import BackgroundImage from "@/containers/customer/main/background-image";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import { editStyles } from "./edit.css";
 
 const Banner = () => {
-  const { setValue } = useFormContext<PhotographerForm>();
+  const { setValue, watch } = useFormContext<PhotographerForm>();
+
+  const bannerImg = watch("bannerImg");
 
   function handleDeleteBanner() {
     setValue("bannerImg", undefined);
@@ -24,6 +27,11 @@ const Banner = () => {
   return (
     <div className={editStyles.box}>
       <span className={editStyles.title}>배너 이미지</span>
+      {bannerImg && (
+        <div className={editStyles.banner}>
+          <BackgroundImage mainImage={bannerImg?.url} />
+        </div>
+      )}
       <div className={editStyles.buttonsWrapper}>
         <CustomButton
           title="삭제"
