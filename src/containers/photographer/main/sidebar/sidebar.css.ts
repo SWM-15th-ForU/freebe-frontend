@@ -35,6 +35,12 @@ export const itemStyles = styleVariants({
       },
     },
   },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingRight: 50,
+  },
   title: [
     texts["headline-02"],
     sprinkles({ color: "text-01" }),
@@ -63,6 +69,19 @@ export const itemStyles = styleVariants({
       },
       fontWeight: "regular",
     }),
+  ],
+  caption: [
+    sprinkles({ color: "text-03", fontSize: "xs", fontWeight: "medium" }),
+    {
+      display: "none",
+      background: "none",
+      border: "none",
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "inline",
+        },
+      },
+    },
   ],
   mobileDisable: {
     "@media": {

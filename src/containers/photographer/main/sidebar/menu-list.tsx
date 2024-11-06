@@ -37,7 +37,16 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
   return (
     <div className={itemStyles.container}>
       <div style={{ position: "relative", overflow: "visible" }}>
-        <span className={itemStyles.title}>메뉴</span>
+        <div className={itemStyles.header}>
+          <span className={itemStyles.title}>메뉴</span>
+          <button
+            type="button"
+            className={itemStyles.caption}
+            onClick={handleOpenTutorial}
+          >
+            튜토리얼 보기
+          </button>
+        </div>
         <Link href="/photographer">
           <MenuItem
             name="메인페이지"
@@ -131,7 +140,7 @@ const MenuList = ({ hasServiceLinks }: { hasServiceLinks?: boolean }) => {
         )}
         <MenuItem
           name="튜토리얼 보기"
-          className={itemStyles.button}
+          className={`${itemStyles.button} ${itemStyles.mobileDisable}`}
           onClick={handleOpenTutorial}
         />
         <MenuItem

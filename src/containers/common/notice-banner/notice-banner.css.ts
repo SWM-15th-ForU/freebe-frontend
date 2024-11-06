@@ -6,7 +6,7 @@ export const customedCarouselStyles = styleVariants({
     position: "relative",
     width: "100%",
     minWidth: 700,
-    maxWidth: 950,
+    maxWidth: 800,
     paddingBottom: 30,
 
     "@media": {

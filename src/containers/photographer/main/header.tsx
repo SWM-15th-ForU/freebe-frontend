@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
-import { Drawer, Menu } from "@mantine/core";
+import { Drawer, FocusTrap, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { SERVICE_LINKS } from "@/constants/common/common";
 import CloseButton from "@/components/buttons/close-button";
@@ -144,6 +144,7 @@ const Header = ({
             autoFocus={false}
             classNames={{ ...customDrawerStyles }}
           >
+            <FocusTrap.InitialFocus />
             <MobileTutorial close={closeTutorial} opened={isOnTutorial} />
             <CloseButton
               onClick={close}
