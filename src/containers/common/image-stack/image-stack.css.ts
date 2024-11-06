@@ -30,6 +30,9 @@ const navButtonStyle = style([
     ":hover": {
       animation: `${navButtonFrames} 1s ease-in-out infinite`,
     },
+    ":active": {
+      animation: `${navButtonFrames} 1s ease-in-out infinite`,
+    },
     "@media": {
       [breakpoints.mobile]: {
         aspectRatio: "1",
@@ -100,6 +103,12 @@ export const imageStackStyles = styleVariants({
   buttonWrapper: {
     border: "none",
     background: "none",
+    ":hover": {
+      filter: "none",
+    },
+    ":active": {
+      filter: "none",
+    },
   },
   prev: [navButtonStyle, { left: "-50px" }],
   next: [navButtonStyle, { right: "-50px" }],

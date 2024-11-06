@@ -1,6 +1,6 @@
 import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
-import { style, styleVariants } from "@vanilla-extract/css";
+import { keyframes, style, styleVariants } from "@vanilla-extract/css";
 
 export const captionStyle = style([
   texts["caption-01"],
@@ -14,6 +14,24 @@ export const captionStyle = style([
     lineHeight: "20px",
   },
 ]);
+
+const rotateAnimation = keyframes({
+  from: {
+    transform: "rotate(0deg)",
+  },
+  to: {
+    transform: "rotate(360deg)",
+  },
+});
+
+export const loaderStyle = style({
+  animation: `${rotateAnimation} 2s linear infinite`,
+});
+
+const baseIcon = style({
+  transition: "transform 0.5s ease",
+  paddingLeft: 3,
+});
 
 export const bottomSheetStyles = styleVariants({
   container: {
@@ -51,6 +69,24 @@ export const bottomSheetStyles = styleVariants({
     position: "relative",
     height: "100%",
   },
+  control: [
+    sprinkles({ borderColor: "stroke-grey", backgroundColor: "white" }),
+    {
+      borderWidth: 1,
+      borderStyle: "solid",
+      borderRadius: "100%",
+      position: "absolute",
+      top: -10,
+      left: "calc(50% - 19px)",
+      width: 38,
+      height: 38,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  ],
+  openIcon: [baseIcon, { transform: "rotate(270deg)" }],
+  closeIcon: [baseIcon, { transform: "rotate(90deg)" }],
 });
 
 export const profileStyles = styleVariants({
@@ -271,12 +307,10 @@ export const chipStyles = styleVariants({
   highlight: [
     commonChipStyle,
     sprinkles({
+      backgroundColor: "white",
       color: "blue",
       borderColor: "blue",
     }),
-    {
-      background: "none",
-    },
   ],
   selectedContainer: [
     sprinkles({

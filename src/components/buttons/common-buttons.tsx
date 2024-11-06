@@ -3,9 +3,10 @@ import {
   ButtonHTMLAttributes,
   MouseEventHandler,
 } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { LinkType } from "profile-types";
-import buttonStyles from "./buttons.css";
+import buttonStyles, { loaderStyle } from "./buttons.css";
 
 interface ButtonProps
   extends DetailedHTMLProps<
@@ -20,6 +21,7 @@ interface ButtonOptions {
   size: "xs" | "sm" | "md" | "lg";
   styleType: "primary" | "secondary" | "line" | "danger";
   link?: string;
+  loading?: boolean;
 }
 
 export const CustomButton = ({
@@ -30,18 +32,29 @@ export const CustomButton = ({
   disabled,
   children,
   link,
+  loading,
   ...props
 }: ButtonProps & ButtonOptions) => {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`${disabled ? buttonStyles.disabled : buttonStyles[styleType]} ${buttonStyles[size]}`}
-      disabled={disabled}
+      className={`${disabled || loading ? buttonStyles.disabled : buttonStyles[styleType]} ${buttonStyles[size]}`}
+      disabled={disabled || loading}
       {...props}
     >
       {children}
-      {title}
+      {loading ? (
+        <Image
+          src="/icons/loading.svg"
+          width={30}
+          height={30}
+          alt="now loading"
+          className={loaderStyle}
+        />
+      ) : (
+        title
+      )}
       {link && <Link href={link} className={buttonStyles.linkArea} />}
     </button>
   );
@@ -125,16 +138,28 @@ export const BottomButton = ({
   onClick,
   disabled,
   type,
+  loading,
   ...props
-}: ButtonProps) => {
+}: ButtonProps & { loading?: boolean }) => {
   return (
     <button
       type={type === "submit" ? "submit" : "button"}
-      className={`${disabled ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
-      onClick={disabled ? () => {} : onClick}
+      className={`${disabled || loading ? buttonStyles.bottomDisabled : buttonStyles.bottom}`}
+      onClick={onClick}
+      disabled={disabled || loading}
       {...props}
     >
-      {title}
+      {loading ? (
+        <Image
+          src="/icons/loading.svg"
+          width={30}
+          height={30}
+          alt="now loading"
+          className={loaderStyle}
+        />
+      ) : (
+        title
+      )}
     </button>
   );
 };

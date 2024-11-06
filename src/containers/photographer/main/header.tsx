@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { LinkType } from "profile-types";
-import { Drawer, Menu } from "@mantine/core";
+import { Drawer, FocusTrap, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { SERVICE_LINKS } from "@/constants/common/common";
 import CloseButton from "@/components/buttons/close-button";
@@ -23,6 +23,7 @@ const Header = ({
   links?: LinkType[];
 }) => {
   const router = useRouter();
+  const pathName = usePathname();
   const searchParams = useSearchParams();
   const [opened, { close, open }] = useDisclosure(false);
   const [isOnTutorial, { close: closeTutorial, open: openTutorial }] =
@@ -36,8 +37,14 @@ const Header = ({
     const tutorialParam = searchParams.get("tutorial");
     if (tutorialParam) {
       openTutorial();
+    } else {
+      closeTutorial();
     }
   }, [searchParams]);
+
+  useEffect(() => {
+    close();
+  }, [pathName]);
 
   return (
     <header className={styles.headerContainer}>
@@ -134,8 +141,10 @@ const Header = ({
             onClose={close}
             opened={opened || isOnTutorial}
             position="right"
+            autoFocus={false}
             classNames={{ ...customDrawerStyles }}
           >
+            <FocusTrap.InitialFocus />
             <MobileTutorial close={closeTutorial} opened={isOnTutorial} />
             <CloseButton
               onClick={close}

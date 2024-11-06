@@ -11,9 +11,12 @@ const baseButton = style({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
-  background: "none",
   border: "none",
   gap: 10,
+
+  ":active": {
+    filter: "none",
+  },
 });
 
 export const itemStyles = styleVariants({
@@ -31,6 +34,12 @@ export const itemStyles = styleVariants({
         height: "100%",
       },
     },
+  },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingRight: 50,
   },
   title: [
     texts["headline-02"],
@@ -52,6 +61,7 @@ export const itemStyles = styleVariants({
   button: [
     baseButton,
     sprinkles({
+      backgroundColor: "white",
       color: "text-02",
       fontSize: {
         desktop: "xs",
@@ -59,6 +69,19 @@ export const itemStyles = styleVariants({
       },
       fontWeight: "regular",
     }),
+  ],
+  caption: [
+    sprinkles({ color: "text-03", fontSize: "xs", fontWeight: "medium" }),
+    {
+      display: "none",
+      background: "none",
+      border: "none",
+      "@media": {
+        [breakpoints.mobile]: {
+          display: "inline",
+        },
+      },
+    },
   ],
   mobileDisable: {
     "@media": {

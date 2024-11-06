@@ -34,24 +34,23 @@ const MainView = ({ tutorialParam }: { tutorialParam: boolean }) => {
 
   return (
     <div className={mainviewStyles.container}>
-      <Tutorial close={closeTutorial} opened={isOnTutorial} />
-      <Controller
-        view={view}
-        setView={setView}
-        selectedProducts={selectedProducts}
-        setSelectedProducts={setSelectedProducts}
-      />
-      {view === "list" && (
-        <ReservationList
+      <div className={mainviewStyles.content}>
+        <Tutorial close={closeTutorial} opened={isOnTutorial} />
+        <Controller
+          view={view}
+          setView={setView}
           selectedProducts={selectedProducts}
-          setDummyData={isOnTutorial}
+          setSelectedProducts={setSelectedProducts}
         />
-      )}
-      {view === "calender" && <Preparing />}
-      <NoticeBanner
-        container={{ marginTop: "auto", alignSelf: "center" }}
-        target="main"
-      />
+        {view === "list" && (
+          <ReservationList
+            selectedProducts={selectedProducts}
+            setDummyData={isOnTutorial}
+          />
+        )}
+        {view === "calender" && <Preparing />}
+      </div>
+      <NoticeBanner container={{ alignSelf: "center" }} target="main" />
     </div>
   );
 };

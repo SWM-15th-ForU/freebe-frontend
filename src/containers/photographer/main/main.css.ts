@@ -6,15 +6,23 @@ import { styleVariants } from "@vanilla-extract/css";
 export const mainviewStyles = styleVariants({
   container: {
     width: "100%",
-    minWidth: 375,
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
     padding: "32px 40px 80px 40px",
     "@media": {
       [breakpoints.mobile]: {
         padding: "24px 20px 50px 20px",
+        flexDirection: "column-reverse",
+        justifyContent: "flex-end",
       },
     },
+  },
+  content: {
+    width: "100%",
+    minWidth: 375,
+    display: "flex",
+    flexDirection: "column",
   },
   controller: {
     position: "relative",
@@ -48,6 +56,6 @@ export const customDrawerStyles = styleVariants({
     },
   },
   body: {
-    padding: "0px 0px 0px 10px",
+    padding: "0px 0px 60px 10px",
   },
 });

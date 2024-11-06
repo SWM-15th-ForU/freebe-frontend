@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FormImage, Notice, ProductFormdata } from "product-types";
 import { Popover } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import { sendGAEvent } from "@next/third-parties/google";
 import popToast from "@/components/common/toast";
 import { postNewProduct } from "@/services/client/photographer/products";
 import { responseHandler } from "@/services/common/error";
@@ -52,6 +53,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
   };
 
   async function addNewProduct(data: ProductFormdata, images: FormImage[]) {
+    sendGAEvent("event", "product_register", { product_title: data.title });
     await responseHandler(
       postNewProduct(data, images),
       () => {
@@ -101,6 +103,7 @@ const NewProduct = ({ baseNotice }: { baseNotice: Notice[] }) => {
                   size="sm"
                   styleType="primary"
                   title="등록 예시 미리 보기"
+                  onClick={() => sendGAEvent("event", "view_example_product")}
                 />
               </Link>
             </Popover.Dropdown>

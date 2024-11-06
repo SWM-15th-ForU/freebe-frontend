@@ -115,21 +115,6 @@ export const listStyles = styleVariants({
     gap: 10,
     minWidth: "100%",
   },
-  add: [
-    texts["button-01"],
-    sprinkles({
-      backgroundColor: "blue",
-      color: "white",
-    }),
-    {
-      borderRadius: 4,
-      textDecoration: "none",
-      padding: "8px 20px",
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-    },
-  ],
 });
 
 export const headerStyle = {
