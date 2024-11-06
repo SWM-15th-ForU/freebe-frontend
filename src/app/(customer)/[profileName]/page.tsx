@@ -17,17 +17,26 @@ export async function generateMetadata({
   };
 }
 
-const EXCEPTIONAL_PROFILE_NAME = ".env";
+const EXCEPTIONAL_PROFILE_NAMES = [
+  ".env",
+  "index.php",
+  "resolve",
+  "query",
+  "dns-query",
+];
 
 const CustomerMainPage = async ({
   params,
 }: {
   params: Pick<PageParams, "profileName">;
 }) => {
-  const photographerProfile: Photographer =
-    params.profileName === EXCEPTIONAL_PROFILE_NAME
-      ? { linkInfos: [], message: "", profileName: "" }
-      : await getPhotographerProfile(params.profileName);
+  function isExceptionalName() {
+    return EXCEPTIONAL_PROFILE_NAMES.includes(params.profileName);
+  }
+
+  const photographerProfile: Photographer = isExceptionalName()
+    ? { linkInfos: [], message: "", profileName: "" }
+    : await getPhotographerProfile(params.profileName);
 
   return (
     <div className={mainStyle}>
