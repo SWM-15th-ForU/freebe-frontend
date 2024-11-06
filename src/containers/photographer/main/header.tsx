@@ -141,6 +141,7 @@ const Header = ({
             onClose={close}
             opened={opened || isOnTutorial}
             position="right"
+            autoFocus={false}
             classNames={{ ...customDrawerStyles }}
           >
             <MobileTutorial close={closeTutorial} opened={isOnTutorial} />

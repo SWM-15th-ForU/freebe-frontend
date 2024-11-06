@@ -13,6 +13,10 @@ const baseButton = style({
   alignItems: "center",
   border: "none",
   gap: 10,
+
+  ":active": {
+    filter: "none",
+  },
 });
 
 export const itemStyles = styleVariants({
