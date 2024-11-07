@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import { bottomSheetStyles } from "./common.css";
 
 const BottomSheet = ({ children }: { children: React.ReactNode }) => {
@@ -25,13 +26,22 @@ const BottomSheet = ({ children }: { children: React.ReactNode }) => {
             }
       }
     >
-      <div
-        role="presentation"
-        className={bottomSheetStyles.header}
-        onTouchEnd={handleSheetControl}
-        onClick={handleSheetControl}
-      >
-        <div className={bottomSheetStyles.handle} />
+      <div className={bottomSheetStyles.header}>
+        <button
+          type="button"
+          className={bottomSheetStyles.control}
+          onClick={handleSheetControl}
+        >
+          <Image
+            src="/icons/right.svg"
+            alt="메뉴"
+            width={16}
+            height={16}
+            className={
+              isFull ? bottomSheetStyles.closeIcon : bottomSheetStyles.openIcon
+            }
+          />
+        </button>
       </div>
       <div className={bottomSheetStyles.body}>{children}</div>
     </div>
