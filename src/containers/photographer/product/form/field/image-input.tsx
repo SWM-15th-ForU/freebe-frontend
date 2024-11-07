@@ -61,6 +61,10 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
         return newImages.slice(ARRAY_START_INDEX, MAX_IMAGE_COUNT);
       });
     }
+    if (e.type === "change") {
+      const input = e.target as HTMLInputElement;
+      input.value = "";
+    }
   }
 
   function handleDeleteImage(deleteImageIndex: number) {
