@@ -38,7 +38,7 @@ export function validatingFiles(inputFiles: FileList | null): {
 const MAX_WIDTH_UPLOAD = 1000;
 const MAX_HEIGHT_UPLOAD = 1000;
 
-async function resizeImage(file: File): Promise<File | null> {
+async function resizeImage(file: File): Promise<File> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.src = URL.createObjectURL(file);
@@ -82,12 +82,10 @@ async function resizeImage(file: File): Promise<File | null> {
 }
 
 export async function resizeImages(files: File[]): Promise<File[]> {
-  const resizedFiles: File[] = [];
-
-  Promise.all(
+  const resizedFiles = await Promise.all(
     files.map(async (file) => {
-      const resizedFile = await resizeImage(file);
-      if (resizedFile) resizedFiles.push(resizedFile);
+      const resizedImage = await resizeImage(file);
+      return resizedImage;
     }),
   );
 
