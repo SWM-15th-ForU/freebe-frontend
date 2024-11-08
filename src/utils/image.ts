@@ -47,6 +47,12 @@ async function resizeImage(file: File): Promise<File | null> {
       let targetWidth = img.width;
       let targetHeight = img.height;
 
+      if (
+        targetHeight <= MAX_HEIGHT_UPLOAD &&
+        targetWidth <= MAX_WIDTH_UPLOAD
+      ) {
+        resolve(file);
+      }
       if (targetWidth > MAX_WIDTH_UPLOAD) {
         targetHeight *= MAX_WIDTH_UPLOAD / targetWidth;
         targetWidth = MAX_WIDTH_UPLOAD;
@@ -78,10 +84,12 @@ async function resizeImage(file: File): Promise<File | null> {
 export async function resizeImages(files: File[]): Promise<File[]> {
   const resizedFiles: File[] = [];
 
-  files.map(async (file) => {
-    const resizedFile = await resizeImage(file);
-    if (resizedFile) resizedFiles.push(resizedFile);
-  });
+  Promise.all(
+    files.map(async (file) => {
+      const resizedFile = await resizeImage(file);
+      if (resizedFile) resizedFiles.push(resizedFile);
+    }),
+  );
 
   return resizedFiles;
 }
