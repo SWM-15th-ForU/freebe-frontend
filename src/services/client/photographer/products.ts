@@ -3,6 +3,8 @@ import { FilterItemType } from "common-types";
 import { PARAMETER_DEFAULT_RADIX } from "@/constants/common/common";
 import apiClient from "../core";
 
+const TIMEOUT_BOUND_FOR_IMAGE_REQUESTS = 20000;
+
 export async function getProductTitles(): Promise<FilterItemType[]> {
   const { data } = await apiClient.get("photographer/product/title").json<{
     data: {
@@ -64,6 +66,7 @@ export async function postNewProduct(
   await apiClient
     .post("photographer/product", {
       body: formData,
+      timeout: TIMEOUT_BOUND_FOR_IMAGE_REQUESTS,
     })
     .json();
 }
@@ -146,6 +149,7 @@ export async function putProductDetails(
 
   const response = await apiClient.put("photographer/product", {
     body: formData,
+    timeout: TIMEOUT_BOUND_FOR_IMAGE_REQUESTS,
   });
   return response;
 }

@@ -20,17 +20,74 @@ export function getFormImageFromFiles(files: File[]): FormImage[] {
 
 export function validatingFiles(inputFiles: FileList | null): {
   isOver: boolean;
-  selectedImages: FormImage[];
+  validatedFiles: File[];
 } {
   if (inputFiles === null) {
-    return { isOver: false, selectedImages: [] };
+    return { isOver: false, validatedFiles: [] };
   }
   const filesArray = Array.from(inputFiles);
   return {
     isOver:
       filesArray.filter((file) => file.size > ACCEPTED_IMAGE.size).length > 0,
-    selectedImages: getFormImageFromFiles(
-      filesArray.filter((file) => file.size <= ACCEPTED_IMAGE.size),
+    validatedFiles: filesArray.filter(
+      (file) => file.size <= ACCEPTED_IMAGE.size,
     ),
   };
+}
+
+const MAX_WIDTH_UPLOAD = 1000;
+const MAX_HEIGHT_UPLOAD = 1000;
+
+async function resizeImage(file: File): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    img.onload = () => {
+      let targetWidth = img.width;
+      let targetHeight = img.height;
+
+      if (
+        targetHeight <= MAX_HEIGHT_UPLOAD &&
+        targetWidth <= MAX_WIDTH_UPLOAD
+      ) {
+        resolve(file);
+      }
+      if (targetWidth > MAX_WIDTH_UPLOAD) {
+        targetHeight *= MAX_WIDTH_UPLOAD / targetWidth;
+        targetWidth = MAX_WIDTH_UPLOAD;
+      }
+      if (targetHeight > MAX_HEIGHT_UPLOAD) {
+        targetWidth *= MAX_HEIGHT_UPLOAD / targetHeight;
+        targetHeight = MAX_HEIGHT_UPLOAD;
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return reject(new Error("failed to use canvas"));
+
+      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+
+      canvas.toBlob((blob) => {
+        if (!blob) return reject(new Error("failed to extract blob"));
+        const resizedFile = new File([blob], file.name, { type: file.type });
+        resolve(resizedFile);
+      }, file.type);
+    };
+
+    img.onerror = () => reject(new Error("failed to load image"));
+  });
+}
+
+export async function resizeImages(files: File[]): Promise<File[]> {
+  const resizedFiles = await Promise.all(
+    files.map(async (file) => {
+      const resizedImage = await resizeImage(file);
+      return resizedImage;
+    }),
+  );
+
+  return resizedFiles;
 }
