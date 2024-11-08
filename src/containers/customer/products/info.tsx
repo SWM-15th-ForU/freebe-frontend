@@ -72,7 +72,13 @@ const ProductInfo = ({
         {images.map((image, index) => {
           return (
             <Carousel.Slide key={index} className={infoStyles.slide}>
-              <Image src={image} alt="" fill style={{ objectFit: "cover" }} />
+              <Image
+                src={image}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="450px"
+              />
             </Carousel.Slide>
           );
         })}

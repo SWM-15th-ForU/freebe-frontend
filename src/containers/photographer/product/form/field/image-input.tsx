@@ -5,7 +5,11 @@ import { useDisclosure } from "@mantine/hooks";
 import { ACCEPTED_IMAGE } from "@/constants/common/common";
 import InfoCaption from "@/components/common/info-caption";
 import ImageThumbnail from "@/components/images/image-thumbnail";
-import { validatingFiles } from "@/utils/image";
+import {
+  getFormImageFromFiles,
+  resizeImages,
+  validatingFiles,
+} from "@/utils/image";
 import {
   CustomButton,
   FinishButton,
@@ -43,23 +47,34 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
     return null;
   }
 
-  function handleAddImage(
+  async function handleAddImage(
     e: React.DragEvent | React.ChangeEvent<HTMLInputElement>,
   ) {
     e.preventDefault();
     const selectedFiles = getFileList(e);
-    const { isOver, selectedImages } = validatingFiles(selectedFiles);
+    const { isOver, validatedFiles } = validatingFiles(selectedFiles);
     if (isOver) {
       popToast("10MB 이하의 이미지만 등록할 수 있습니다.");
     }
-    if (selectedImages.length > 0) {
-      setImage((prev) => {
-        const newImages = [...prev, ...selectedImages];
-        if (newImages.length > MAX_IMAGE_COUNT) {
-          popToast("이미지는 최대 10개까지 등록할 수 있습니다.");
-        }
-        return newImages.slice(ARRAY_START_INDEX, MAX_IMAGE_COUNT);
-      });
+    if (validatedFiles.length > 0) {
+      try {
+        const resizedImages = await resizeImages(validatedFiles);
+        setImage((prev) => {
+          const newImages = [...prev, ...getFormImageFromFiles(resizedImages)];
+          console.log(newImages);
+          if (newImages.length > MAX_IMAGE_COUNT) {
+            popToast("이미지는 최대 10개까지 등록할 수 있습니다.");
+          }
+          return newImages.slice(ARRAY_START_INDEX, MAX_IMAGE_COUNT);
+        });
+        console.log(images);
+      } catch {
+        popToast("다시 시도해주세요.", "이미지 업로드에 실패했습니다.", true);
+      }
+    }
+    if (e.type === "change") {
+      const input = e.target as HTMLInputElement;
+      input.value = "";
     }
   }
 
