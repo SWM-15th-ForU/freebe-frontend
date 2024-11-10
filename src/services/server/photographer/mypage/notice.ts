@@ -10,7 +10,7 @@ export async function getCurrentNotices(): Promise<Notice[]> {
     {
       title: "취소 및 환불 규정",
       content:
-        "촬영일 기준 3일 전까지는 취소시 예약금을 환불해 드립니다. \n노쇼시 환불이 어렵습니다.",
+        "촬영일 기준  일 전까지는 취소시 예약금을 환불해 드립니다. \n노쇼시 환불이 어렵습니다.",
     },
     {
       title: "예약 변경 규정",
