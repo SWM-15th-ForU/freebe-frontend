@@ -183,7 +183,7 @@ const Tutorial = ({
           onClick={handleClose}
         />
         {TUTORIAL_LEVELS[index]?.link && (
-          <Link href={TUTORIAL_LEVELS[index].link}>
+          <Link href={TUTORIAL_LEVELS[index].link} target="_blank">
             <CustomButton title="바로 가기" size="sm" styleType="primary" />
           </Link>
         )}
