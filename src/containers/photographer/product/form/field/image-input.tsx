@@ -122,7 +122,7 @@ const ImagesInput = ({ images, setImage, disabled }: ImageInputProps) => {
             information="업로드하기 전, 포트폴리오로 사용할 수 있는 사진인지 확인해주세요.
           도용 및 무단 사용된 이미지는 삭제될 수 있습니다."
           />
-          <InfoCaption information={ACCEPTED_IMAGE.info} />
+          <InfoCaption information="장당 최대 10MB의 이미지 파일만 업로드 가능합니다. 이미지는 10장까지 추가하실 수 있습니다." />
         </>
       )}
       <div
