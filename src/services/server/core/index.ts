@@ -10,7 +10,7 @@ export const api = ky
     cache: "no-store",
     retry: {
       limit: 3,
-      methods: ["get", "post", "put", "delete"],
+      methods: ["get"],
       statusCodes: [401],
       backoffLimit: 1000,
     },

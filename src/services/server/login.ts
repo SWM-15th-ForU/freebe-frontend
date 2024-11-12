@@ -49,7 +49,9 @@ export async function login(
 
   const response = await api.post("login", {
     json: { roleType: roleType.toUpperCase(), code },
-    hooks: { beforeError: [handleLoginError] },
+    hooks: {
+      beforeError: [handleLoginError],
+    },
     cache: "no-store",
   });
 
