@@ -9,11 +9,6 @@ declare module "calender-types" {
     | "SATURDAY"
     | "SUNDAY";
 
-  interface BasicScheduleType {
-    id: number;
-    name: string;
-  }
-
   type BasicScheduleForm = {
     [key in DaysType]: {
       startTime: string;
@@ -21,4 +16,11 @@ declare module "calender-types" {
       isOff: boolean;
     };
   };
+
+  type BasicScheduleResponse = {
+    dayOfWeek: DaysType;
+    startTime: string;
+    endTime: string;
+    operationStatus: "ACTIVE" | "INACTIVE";
+  }[];
 }
