@@ -11,6 +11,7 @@ export const timeSelectorStyles = styleVariants({
     }),
     texts["body-01"],
     {
+      width: 90,
       position: "relative",
       borderRadius: 8,
       borderWidth: 1,

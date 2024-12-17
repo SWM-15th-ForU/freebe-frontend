@@ -52,7 +52,7 @@ const TimeSelector = ({
   }
 
   return (
-    <Menu withArrow position="bottom">
+    <Menu closeOnItemClick={false} withArrow position="bottom">
       <Menu.Target>
         <button className={timeSelectorStyles.container} type="button">
           {timeValue.toFormat("HH:mm")}
@@ -94,7 +94,7 @@ const TimeSelector = ({
                         : undefined
                     }
                   >
-                    <span>{minute}</span>
+                    <span>{minute === 0 ? "00" : minute}</span>
                   </Menu.Item>
                 ))}
             </div>
