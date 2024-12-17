@@ -14,47 +14,42 @@ const introduction: { [keys in TimeUnitType]: string } = {
 };
 
 const ConfirmModal = ({
-  onClose,
+  opened,
+  close,
   requestedUnit,
 }: {
-  onClose: () => void;
-  requestedUnit: null | TimeUnitType;
+  opened: boolean;
+  close: () => void;
+  requestedUnit: TimeUnitType;
 }) => {
   async function handleChangeUnit() {
-    if (requestedUnit) {
-      await responseHandler(
-        putNewUnit(requestedUnit),
-        () => {
-          onClose();
-          popToast("변경이 완료되었습니다.");
-        },
-        () => {
-          popToast("다시 시도해주세요.", "변경에 실패했습니다.", true);
-        },
-      );
-    }
+    await responseHandler(
+      putNewUnit(requestedUnit),
+      () => {
+        close();
+        popToast("변경이 완료되었습니다.");
+      },
+      () => {
+        popToast("다시 시도해주세요.", "변경에 실패했습니다.", true);
+      },
+    );
   }
 
   return (
     <Modal
-      onClose={onClose}
-      opened={requestedUnit !== null}
+      onClose={close}
+      opened={opened}
       centered
       title="변경 전 확인해주세요."
       classNames={{ ...commonModalStyles }}
     >
-      {requestedUnit !== null && (
-        <>
-          <span>{introduction[requestedUnit]}</span>
-          <CustomButton
-            size="sm"
-            styleType="primary"
-            title="그래도 변경하기"
-            onClick={handleChangeUnit}
-            style={{ marginTop: 16 }}
-          />
-        </>
-      )}
+      <span>{introduction[requestedUnit]}</span>
+      <CustomButton
+        size="sm"
+        styleType="primary"
+        title="그래도 변경하기"
+        onClick={handleChangeUnit}
+      />
     </Modal>
   );
 };
