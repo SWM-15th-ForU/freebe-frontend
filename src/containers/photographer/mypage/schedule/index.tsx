@@ -1,6 +1,6 @@
 import { TimeUnitType } from "calender-types";
 import { Divider } from "@mantine/core";
-import BasicSchedule from "./base";
+import BaseSchedule from "./base";
 import TimeBlock from "./time-block";
 import { scheduleStyles } from "./schedule.css";
 
@@ -15,7 +15,7 @@ const PhotographerSchedule = ({
     <div className={scheduleStyles.container}>
       <TimeBlock currentUnit={unit} />
       <Divider />
-      <BasicSchedule unit={unit} currentSchedule={currentSchedule} />
+      <BaseSchedule unit={unit} currentSchedule={currentSchedule} />
       <Divider />
       <div>날짜별 스케줄</div>
     </div>

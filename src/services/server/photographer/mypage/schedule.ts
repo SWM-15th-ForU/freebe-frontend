@@ -1,21 +1,21 @@
 import {
-  BasicScheduleForm,
-  BasicScheduleResponse,
+  BaseScheduleForm,
+  BaseScheduleResponse,
   TimeUnitType,
 } from "calender-types";
 import { api } from "../../core";
 
-export async function getCurrentBaseSchedule(): Promise<BasicScheduleForm> {
+export async function getCurrentBaseSchedule(): Promise<BaseScheduleForm> {
   const { data } = await api
     .get("photographer/schedule/base")
-    .json<{ data: BasicScheduleResponse }>();
+    .json<{ data: BaseScheduleResponse }>();
   return data.reduce((acc, item) => {
     acc[item.dayOfWeek] = {
       ...item,
       isOff: item.operationStatus === "INACTIVE",
     };
     return acc;
-  }, {} as BasicScheduleForm);
+  }, {} as BaseScheduleForm);
 }
 
 export async function getCurrentUnit(): Promise<TimeUnitType> {

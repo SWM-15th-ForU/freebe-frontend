@@ -1,12 +1,12 @@
 import { useFormContext } from "react-hook-form";
-import { BasicScheduleForm, DaysType, TimeUnitType } from "calender-types";
+import { BaseScheduleForm, DaysType, TimeUnitType } from "calender-types";
 import Chip from "@/components/common/chip";
 import TimeSelector from "@/components/inputs/time-selector";
 import { dayNames } from "@/constants/schedule";
 import { dayScheduleStyles } from "./base.css";
 
 const DaySchedule = ({ day, unit }: { day: DaysType; unit: TimeUnitType }) => {
-  const { watch, setValue } = useFormContext<BasicScheduleForm>();
+  const { watch, setValue } = useFormContext<BaseScheduleForm>();
   const { startTime, endTime, isOff } = watch(day);
 
   function setNewTime(newTime: string, type: "startTime" | "endTime") {

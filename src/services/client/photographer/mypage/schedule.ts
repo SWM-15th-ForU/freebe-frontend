@@ -1,6 +1,6 @@
 import {
-  BasicScheduleForm,
-  BasicScheduleResponse,
+  BaseScheduleForm,
+  BaseScheduleResponse,
   DaysType,
   TimeUnitType,
 } from "calender-types";
@@ -12,8 +12,8 @@ export async function putNewUnit(data: TimeUnitType) {
   });
 }
 
-export async function putNewBaseSchedule(form: BasicScheduleForm) {
-  const data: BasicScheduleResponse = Object.entries(form).map(
+export async function putNewBaseSchedule(form: BaseScheduleForm) {
+  const data: BaseScheduleResponse = Object.entries(form).map(
     ([title, value]) => {
       const dayOfWeek = title as DaysType;
       return {

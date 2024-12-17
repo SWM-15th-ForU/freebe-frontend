@@ -9,17 +9,17 @@ declare module "calender-types" {
     | "SATURDAY"
     | "SUNDAY";
 
-  interface BasicScheduleType {
+  interface BaseScheduleType {
     startTime: string;
     endTime: string;
     isOff: boolean;
   }
 
-  type BasicScheduleForm = {
-    [key in DaysType]: BasicScheduleType;
+  type BaseScheduleForm = {
+    [key in DaysType]: BaseScheduleType;
   };
 
-  type BasicScheduleResponse = {
+  type BaseScheduleResponse = {
     dayOfWeek: DaysType;
     startTime: string;
     endTime: string;

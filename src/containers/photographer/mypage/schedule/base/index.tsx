@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FormProvider, useForm } from "react-hook-form";
-import { BasicScheduleForm, DaysType, TimeUnitType } from "calender-types";
+import { BaseScheduleForm, DaysType, TimeUnitType } from "calender-types";
 import { Collapse } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { CustomButton } from "@/components/buttons/common-buttons";
@@ -13,15 +13,15 @@ import { scheduleStyles } from "../schedule.css";
 import DaySchedule from "./day-schedule";
 import { baseScheduleStyles } from "./base.css";
 
-const BasicSchedule = ({
+const BaseSchedule = ({
   unit,
   currentSchedule,
 }: {
   unit: TimeUnitType;
-  currentSchedule: BasicScheduleForm;
+  currentSchedule: BaseScheduleForm;
 }) => {
   const [opened, { toggle }] = useDisclosure(false);
-  const method = useForm<BasicScheduleForm>({
+  const method = useForm<BaseScheduleForm>({
     defaultValues: currentSchedule,
   });
   const {
@@ -29,7 +29,7 @@ const BasicSchedule = ({
     formState: { isSubmitting },
   } = method;
 
-  const onSubmit = async (form: BasicScheduleForm) => {
+  const onSubmit = async (form: BaseScheduleForm) => {
     responseHandler(
       putNewBaseSchedule(form),
       () => popToast("저장이 완료되었습니다."),
@@ -94,4 +94,4 @@ const BasicSchedule = ({
   );
 };
 
-export default BasicSchedule;
+export default BaseSchedule;
