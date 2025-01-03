@@ -7,6 +7,28 @@ const baseIcon = style({
   paddingLeft: 3,
 });
 
+export const confirmModalStyles = styleVariants({
+  caption: [texts["body-02"], sprinkles({ color: "text-02" })],
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    margin: "16px 0px 40px 0px",
+  },
+  schedule: {
+    display: "flex",
+    gap: 40,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  inner: {
+    left: 0,
+    right: 0,
+  },
+  key: [texts["headline-03"], sprinkles({ color: "blue" })],
+  value: [texts["body-02"], sprinkles({ color: "text-01" })],
+});
+
 export const baseScheduleStyles = styleVariants({
   control: [
     {

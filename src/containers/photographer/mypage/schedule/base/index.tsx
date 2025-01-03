@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { FormProvider, useForm } from "react-hook-form";
-import { BaseScheduleForm, DaysType, TimeUnitType } from "calender-types";
+import { BaseScheduleForm, TimeUnitType } from "calender-types";
 import { Collapse } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { daysArray } from "@/constants/schedule";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import popToast from "@/components/common/toast";
 import { responseHandler } from "@/services/common/error";
@@ -12,6 +13,7 @@ import { putNewBaseSchedule } from "@/services/client/photographer/mypage/schedu
 import { scheduleStyles } from "../schedule.css";
 import DaySchedule from "./day-schedule";
 import { baseScheduleStyles } from "./base.css";
+import ConfirmModal from "./confirm-modal";
 
 const BaseSchedule = ({
   unit,
@@ -21,13 +23,12 @@ const BaseSchedule = ({
   currentSchedule: BaseScheduleForm;
 }) => {
   const [opened, { toggle }] = useDisclosure(false);
+  const [requested, { open: request, close: cancelRequest }] =
+    useDisclosure(false);
   const method = useForm<BaseScheduleForm>({
     defaultValues: currentSchedule,
   });
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = method;
+  const { handleSubmit } = method;
 
   const onSubmit = async (form: BaseScheduleForm) => {
     responseHandler(
@@ -37,17 +38,8 @@ const BaseSchedule = ({
         popToast("다시 시도해주세요.", "저장에 실패했습니다.", true);
       },
     );
+    cancelRequest();
   };
-
-  const daysArray: DaysType[] = [
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY",
-    "SUNDAY",
-  ];
 
   return (
     <div>
@@ -80,13 +72,14 @@ const BaseSchedule = ({
               ))}
             </div>
             <CustomButton
-              type="submit"
+              type="button"
               title="저장하기"
               size="sm"
               styleType="primary"
               style={{ maxWidth: 600, margin: "24px auto 0px" }}
-              loading={isSubmitting}
+              onClick={request}
             />
+            <ConfirmModal opened={requested} close={cancelRequest} />
           </Collapse>
         </form>
       </FormProvider>
