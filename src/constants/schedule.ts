@@ -1,5 +1,15 @@
 import { DaysType } from "calender-types";
 
+export const daysArray: DaysType[] = [
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+  "SUNDAY",
+];
+
 export const dayNames: { [key in DaysType]: string } = {
   MONDAY: "월",
   TUESDAY: "화",
