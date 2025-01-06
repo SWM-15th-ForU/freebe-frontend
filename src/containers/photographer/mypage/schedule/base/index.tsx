@@ -7,6 +7,7 @@ import { Collapse } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { daysArray } from "@/constants/schedule";
 import { CustomButton } from "@/components/buttons/common-buttons";
+import InfoCaption from "@/components/common/info-caption";
 import popToast from "@/components/common/toast";
 import { responseHandler } from "@/services/common/error";
 import { putNewBaseSchedule } from "@/services/client/photographer/mypage/schedule";
@@ -67,6 +68,7 @@ const BaseSchedule = ({
           </div>
           <Collapse in={opened}>
             <div className={scheduleStyles.body}>
+              <InfoCaption information="각 요일을 클릭해 휴무일로 변경할 수 있습니다." />
               {daysArray.map((day) => (
                 <DaySchedule day={day} unit={unit} key={day} />
               ))}

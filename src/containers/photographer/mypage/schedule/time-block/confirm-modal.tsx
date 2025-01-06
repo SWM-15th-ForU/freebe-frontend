@@ -8,9 +8,9 @@ import popToast from "@/components/common/toast";
 
 const introduction: { [keys in TimeUnitType]: string } = {
   THIRTY_MINUTES:
-    "오픈 시간을 30분으로 설정하시면, 이후에 다시 1시간으로 변경할 경우 기본 스케줄과 날짜별 스케줄이 모두 초기화됩니다.",
+    "예약 시간을 30분 단위로 설정하시면, 이후에 다시 1시간으로 변경할 경우 기본 스케줄과 날짜별 스케줄이 모두 초기화됩니다.",
   SIXTY_MINUTES:
-    "오픈 시간을 변경할 경우, 기본 스케줄과 날짜별 스케줄이 모두 초기화됩니다.",
+    "예약 시간을 1시간 단위로 변경할 경우, 기본 스케줄과 날짜별 스케줄이 모두 초기화됩니다.",
 };
 
 const ConfirmModal = ({
