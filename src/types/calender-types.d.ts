@@ -25,4 +25,19 @@ declare module "calender-types" {
     endTime: string;
     operationStatus: "ACTIVE" | "INACTIVE";
   }[];
+
+  type DailyScheduleResponse = {
+    scheduleId: number;
+    scheduleStatus: "OPEN" | "CLOSED" | "CONFIRMED";
+    date: string;
+    startTime: string;
+    endTime: string;
+  }[];
+
+  type DailyScheduleValue = {
+    scheduleId: number;
+    scheduleStatus: "CONFIRMED" | "OPEN" | "CLOSED";
+    startTime: DateTime;
+    endTime: DateTime;
+  }[];
 }
