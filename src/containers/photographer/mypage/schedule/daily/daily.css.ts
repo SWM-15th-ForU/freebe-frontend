@@ -4,6 +4,51 @@ import { texts } from "@/styles/text.css";
 import { CalendarStylesNames } from "@mantine/dates";
 import { ComplexStyleRule, styleVariants } from "@vanilla-extract/css";
 
+export const listStyles = styleVariants({
+  status: [texts["headline-03"], sprinkles({ color: "text-point" })],
+  info: [texts["body-02"], sprinkles({ color: "text-03" })],
+  wrapper: {
+    marginTop: 8,
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+});
+
+export const viewStyles = styleVariants({
+  container: [
+    sprinkles({ borderColor: "stroke-grey" }),
+    {
+      flex: 1,
+      minWidth: 420,
+      width: "100%",
+      padding: 20,
+      marginTop: 10,
+      borderRadius: 16,
+      borderWidth: 1,
+      borderStyle: "solid",
+    },
+  ],
+  dateInfo: {
+    marginBottom: 16,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  date: [
+    texts["headline-02"],
+    sprinkles({ color: "text-02" }),
+    { marginBottom: 8, display: "block" },
+  ],
+  baseSchedule: [texts["body-02"], sprinkles({ color: "text-03" })],
+  scheduleWrapper: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+    padding: "16px 0px",
+  },
+});
+
 export const dailyStyles = styleVariants({
   body: {
     display: "flex",

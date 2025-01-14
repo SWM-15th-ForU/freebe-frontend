@@ -1,4 +1,6 @@
 declare module "calender-types" {
+  import { DateTime } from "luxon";
+
   type ScheduleStatusType = "CONFIRMED" | "OPEN" | "CLOSED";
   type TimeUnitType = "THIRTY_MINUTES" | "SIXTY_MINUTES";
   type DaysType =
