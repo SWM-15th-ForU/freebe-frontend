@@ -1,4 +1,5 @@
 declare module "calender-types" {
+  type ScheduleStatusType = "CONFIRMED" | "OPEN" | "CLOSED";
   type TimeUnitType = "THIRTY_MINUTES" | "SIXTY_MINUTES";
   type DaysType =
     | "MONDAY"
@@ -28,7 +29,7 @@ declare module "calender-types" {
 
   type DailyScheduleResponse = {
     scheduleId: number;
-    scheduleStatus: "OPEN" | "CLOSED" | "CONFIRMED";
+    scheduleStatus: ScheduleStatusType;
     date: string;
     startTime: string;
     endTime: string;
@@ -36,7 +37,7 @@ declare module "calender-types" {
 
   type DailyScheduleValue = {
     scheduleId: number;
-    scheduleStatus: "CONFIRMED" | "OPEN" | "CLOSED";
+    scheduleStatus: ScheduleStatusType;
     startTime: DateTime;
     endTime: DateTime;
   }[];
