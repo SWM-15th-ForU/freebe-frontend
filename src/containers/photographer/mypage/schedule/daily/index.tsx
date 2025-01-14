@@ -3,7 +3,7 @@
 import "dayjs/locale/ko";
 import { useState } from "react";
 import { DateTime } from "luxon";
-import { BaseScheduleForm, DailyScheduleValue } from "calender-types";
+import { BaseScheduleForm, DailyScheduleList } from "calender-types";
 import { DatePicker, DateValue } from "@mantine/dates";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { daysArray } from "@/constants/schedule";
@@ -66,7 +66,7 @@ const DailySchedule = ({
   const [viewDate, setViewDate] = useState(new Date());
   const { data: dailySchedules, error } = useSuspenseQuery({
     queryKey: ["dailySchedule", { viewDate }],
-    initialData: new Map<number, DailyScheduleValue>(),
+    initialData: new Map<number, DailyScheduleList>(),
     staleTime: 0,
     queryFn: () => getDailySchedules(viewDate),
     retry: false,

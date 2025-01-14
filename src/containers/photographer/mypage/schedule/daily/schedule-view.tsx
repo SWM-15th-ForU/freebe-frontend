@@ -1,4 +1,4 @@
-import { BaseScheduleType, DailyScheduleValue } from "calender-types";
+import { BaseScheduleType, DailyScheduleList } from "calender-types";
 import { formatTimeString } from "@/utils/date";
 import { Divider } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
@@ -10,7 +10,7 @@ const ScheduleView = ({
   dailySchedules,
   date,
 }: {
-  dailySchedules: DailyScheduleValue;
+  dailySchedules: DailyScheduleList;
   baseSchedule: BaseScheduleType;
   date: Date;
 }) => {

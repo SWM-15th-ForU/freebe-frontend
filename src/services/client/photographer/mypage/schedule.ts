@@ -2,7 +2,7 @@ import {
   BaseScheduleForm,
   BaseScheduleResponse,
   DailyScheduleResponse,
-  DailyScheduleValue,
+  DailyScheduleList,
   DaysType,
   TimeUnitType,
 } from "calender-types";
@@ -43,7 +43,7 @@ export async function getDailySchedules(requestedDate: Date) {
     })
     .json<{ data: DailyScheduleResponse }>();
 
-  const dailySchedules: Map<number, DailyScheduleValue> = new Map();
+  const dailySchedules: Map<number, DailyScheduleList> = new Map();
 
   data.forEach(({ scheduleId, scheduleStatus, date, startTime, endTime }) => {
     const { day } = DateTime.fromISO(date);
@@ -52,8 +52,8 @@ export async function getDailySchedules(requestedDate: Date) {
     const newSchedule = {
       scheduleId,
       scheduleStatus,
-      startTime: DateTime.fromFormat(startTime, "HH:MM:ss"),
-      endTime: DateTime.fromFormat(endTime, "HH:MM:ss"),
+      startTime: DateTime.fromFormat(startTime, "HH:mm:ss"),
+      endTime: DateTime.fromFormat(endTime, "HH:mm:ss"),
     };
     if (prevList) {
       dailySchedules.set(day, [...prevList, newSchedule]);

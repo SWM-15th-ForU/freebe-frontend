@@ -1,4 +1,4 @@
-import { DailyScheduleValue, ScheduleStatusType } from "calender-types";
+import { DailyScheduleList, ScheduleStatusType } from "calender-types";
 import { statusNames } from "@/constants/schedule";
 import Chip from "@/components/common/chip";
 import { listStyles } from "./daily.css";
@@ -8,7 +8,7 @@ const ScheduleList = ({
   scheduleData,
 }: {
   status: ScheduleStatusType;
-  scheduleData: DailyScheduleValue;
+  scheduleData: DailyScheduleList;
 }) => {
   return (
     <div>
