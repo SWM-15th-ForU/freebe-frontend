@@ -23,7 +23,7 @@ export const scheduleStyles = styleVariants({
   body: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-    paddingTop: 16,
+    paddingTop: 12,
     gap: 16,
     columnGap: 30,
   },
