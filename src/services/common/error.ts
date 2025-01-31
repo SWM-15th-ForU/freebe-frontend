@@ -24,6 +24,11 @@ export const CUSTOMED_CODE: { [key: string]: string } = {
   MAXIMUM_UPLOAD_SIZE_EXCEEDED: "이미지의 용량이 너무 큽니다.",
   NOT_FOUND_ESSENTIAL_TITLE:
     "공지사항에는 '취소 및 환불 규정', '예약 변경 규정'이 필수로 포함되어야 합니다.",
+  DAILY_SCHEDULE_NOT_FOUND: "해당하는 날짜별 스케줄을 찾을 수 없습니다.",
+  DAILY_SCHEDULE_OVERLAP: "해당 일정에 이미 등록된 스케줄이 있습니다.",
+  DAILY_SCHEDULE_IN_PAST: "현재 시점 이전의 스케줄은 등록할 수 없습니다.",
+  START_TIME_AFTER_END_TIME:
+    "시작 시간을 종료 시간보다 늦게 설정할 수 없습니다.",
 };
 
 const CUSTOMED_STATUS: { [key: number]: string } = {
