@@ -69,12 +69,15 @@ const DailySchedule = ({
   unit: TimeUnitType;
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [viewDate, setViewDate] = useState(new Date());
   const { data: dailySchedules, error } = useSuspenseQuery({
-    queryKey: ["dailySchedule", { viewDate }],
+    queryKey: [
+      "dailySchedule",
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+    ],
     initialData: new Map<number, DailyScheduleList>(),
     staleTime: 0,
-    queryFn: () => getDailySchedules(viewDate),
+    queryFn: () => getDailySchedules(selectedDate),
     retry: false,
   });
 
@@ -90,7 +93,6 @@ const DailySchedule = ({
 
   function changeMonth(date: DateValue) {
     if (date) {
-      setViewDate(date);
       date.setDate(1);
       setSelectedDate(date);
     }
