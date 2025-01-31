@@ -3,7 +3,11 @@
 import "dayjs/locale/ko";
 import { useState } from "react";
 import { DateTime } from "luxon";
-import { BaseScheduleForm, DailyScheduleList } from "calender-types";
+import {
+  BaseScheduleForm,
+  DailyScheduleList,
+  TimeUnitType,
+} from "calender-types";
 import { DatePicker, DateValue } from "@mantine/dates";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { daysArray } from "@/constants/schedule";
@@ -59,8 +63,10 @@ const CalendarDay = (
 
 const DailySchedule = ({
   baseSchedule,
+  unit,
 }: {
   baseSchedule: BaseScheduleForm;
+  unit: TimeUnitType;
 }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewDate, setViewDate] = useState(new Date());
@@ -128,6 +134,7 @@ const DailySchedule = ({
           }
           dailySchedules={dailySchedules.get(selectedDate.getDate()) || []}
           date={selectedDate}
+          unit={unit}
         />
       </div>
     </div>

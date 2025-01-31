@@ -1,19 +1,42 @@
-import { BaseScheduleType, DailyScheduleList } from "calender-types";
+import { useState } from "react";
+import {
+  BaseScheduleType,
+  DailyScheduleList,
+  DailyScheduleValue,
+  ScheduleStatusType,
+  TimeUnitType,
+} from "calender-types";
+import { useDisclosure } from "@mantine/hooks";
 import { formatTimeString } from "@/utils/date";
 import { Divider } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { viewStyles } from "./daily.css";
 import ScheduleList from "./schedule-list";
+import EditModal from "./edit-modal";
 
 const ScheduleView = ({
   baseSchedule,
   dailySchedules,
   date,
+  unit,
 }: {
   dailySchedules: DailyScheduleList;
   baseSchedule: BaseScheduleType;
   date: Date;
+  unit: TimeUnitType;
 }) => {
+  const [selectedSchedule, setSelectedSchedule] = useState<
+    DailyScheduleValue | undefined
+  >();
+  const [opened, { open, close }] = useDisclosure(false, {
+    onClose: () => setSelectedSchedule(undefined),
+  });
+
+  function handleSelectSchedule(scheduleValue: DailyScheduleValue) {
+    setSelectedSchedule(scheduleValue);
+    open();
+  }
+
   return (
     <div className={viewStyles.container}>
       <div className={viewStyles.dateInfo}>
@@ -28,29 +51,34 @@ const ScheduleView = ({
           </span>
         </div>
         <div>
-          <CustomButton size="sm" title="스케줄 추가하기" styleType="line" />
+          <CustomButton
+            size="sm"
+            title="스케줄 추가하기"
+            styleType="line"
+            onClick={open}
+          />
+          <EditModal
+            close={close}
+            opened={opened}
+            baseSchedule={baseSchedule}
+            initValue={selectedSchedule}
+            date={date}
+            unit={unit}
+          />
         </div>
       </div>
       <Divider />
       <div className={viewStyles.scheduleWrapper}>
-        <ScheduleList
-          status="OPEN"
-          scheduleData={dailySchedules.filter(
-            (v) => v.scheduleStatus === "OPEN",
-          )}
-        />
-        <ScheduleList
-          status="CLOSED"
-          scheduleData={dailySchedules.filter(
-            (v) => v.scheduleStatus === "CLOSED",
-          )}
-        />
-        <ScheduleList
-          status="CONFIRMED"
-          scheduleData={dailySchedules.filter(
-            (v) => v.scheduleStatus === "CONFIRMED",
-          )}
-        />
+        {["OPEN", "CLOSED", "CONFIRMED"].map((status) => (
+          <ScheduleList
+            key={status}
+            status={status as ScheduleStatusType}
+            onSelectSchedule={handleSelectSchedule}
+            scheduleData={dailySchedules.filter(
+              (v) => v.scheduleStatus === status,
+            )}
+          />
+        ))}
       </div>
     </div>
   );

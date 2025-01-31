@@ -37,11 +37,13 @@ declare module "calender-types" {
     endTime: string;
   }[];
 
-  type DailyScheduleList = (DailyScheduleValue & { scheduleId: number })[];
+  type DailyScheduleList = DailyScheduleValue[];
 
   interface DailyScheduleValue {
     scheduleStatus: ScheduleStatusType;
     startTime: DateTime;
     endTime: DateTime;
+    date: DateTime;
+    scheduleId: number;
   }
 }

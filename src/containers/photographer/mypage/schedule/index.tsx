@@ -20,7 +20,7 @@ const PhotographerSchedule = ({
       <BaseSchedule unit={unit} currentSchedule={currentSchedule} />
       <Divider />
       <QueryProviders>
-        <DailySchedule baseSchedule={currentSchedule} />
+        <DailySchedule baseSchedule={currentSchedule} unit={unit} />
       </QueryProviders>
     </div>
   );

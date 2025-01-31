@@ -1,4 +1,8 @@
-import { DailyScheduleList, ScheduleStatusType } from "calender-types";
+import {
+  DailyScheduleList,
+  DailyScheduleValue,
+  ScheduleStatusType,
+} from "calender-types";
 import { statusNames } from "@/constants/schedule";
 import Chip from "@/components/common/chip";
 import { listStyles } from "./daily.css";
@@ -6,9 +10,11 @@ import { listStyles } from "./daily.css";
 const ScheduleList = ({
   status,
   scheduleData,
+  onSelectSchedule,
 }: {
   status: ScheduleStatusType;
   scheduleData: DailyScheduleList;
+  onSelectSchedule: (scheduleValue: DailyScheduleValue) => void;
 }) => {
   return (
     <div>
@@ -18,7 +24,8 @@ const ScheduleList = ({
           scheduleData.map((schedule) => (
             <Chip
               key={schedule.scheduleId}
-              name={`${schedule.startTime.toFormat("HH:MM")} ~ ${schedule.endTime.toFormat("HH:MM")}`}
+              name={`${schedule.startTime.toFormat("HH:mm")} ~ ${schedule.endTime.toFormat("HH:mm")}`}
+              onClick={() => onSelectSchedule(schedule)}
             />
           ))
         ) : (
