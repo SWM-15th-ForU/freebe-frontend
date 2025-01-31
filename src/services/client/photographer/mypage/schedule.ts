@@ -57,7 +57,6 @@ export async function getDailySchedules(requestedDate: Date) {
       startTime: DateTime.fromFormat(startTime, "HH:mm:ss"),
       endTime: DateTime.fromFormat(endTime, "HH:mm:ss"),
     };
-    console.log(newSchedule);
     if (prevList) {
       dailySchedules.set(day, [...prevList, newSchedule]);
     } else {
