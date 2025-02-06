@@ -8,7 +8,7 @@ import {
 } from "calender-types";
 import { useDisclosure } from "@mantine/hooks";
 import { formatTimeString } from "@/utils/date";
-import { Divider } from "@mantine/core";
+import { Divider, Tooltip } from "@mantine/core";
 import { CustomButton } from "@/components/buttons/common-buttons";
 import { viewStyles } from "./daily.css";
 import ScheduleList from "./schedule-list";
@@ -36,6 +36,10 @@ const ScheduleView = ({
     setSelectedSchedule(scheduleValue);
     open();
   }
+  const today = new Date();
+  today.setDate(today.getDate() - 1);
+  today.setHours(23, 59, 59);
+  const isBeforeToday = date < today;
 
   return (
     <div className={viewStyles.container}>
@@ -51,12 +55,21 @@ const ScheduleView = ({
           </span>
         </div>
         <div>
-          <CustomButton
-            size="sm"
-            title="스케줄 추가하기"
-            styleType="line"
-            onClick={open}
-          />
+          <Tooltip
+            position="bottom"
+            label="이전 날짜에 스케줄을 추가할 수 없습니다."
+            disabled={!isBeforeToday}
+          >
+            <div>
+              <CustomButton
+                size="sm"
+                title="스케줄 추가하기"
+                styleType="line"
+                onClick={open}
+                disabled={isBeforeToday}
+              />
+            </div>
+          </Tooltip>
           <EditModal
             close={close}
             opened={opened}

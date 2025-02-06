@@ -2,21 +2,37 @@ import sprinkles from "@/styles/sprinkles.css";
 import { texts } from "@/styles/text.css";
 import { style, styleVariants } from "@vanilla-extract/css";
 
+const baseTimeSelectorContainer = style([
+  sprinkles({
+    borderColor: "stroke-grey",
+    color: "text-01",
+  }),
+  texts["body-01"],
+  {
+    width: 90,
+    position: "relative",
+    borderRadius: 8,
+    borderWidth: 1,
+    borderStyle: "solid",
+    padding: "8px 18px",
+  },
+]);
+
 export const timeSelectorStyles = styleVariants({
   container: [
     sprinkles({
       backgroundColor: "white",
-      borderColor: "stroke-grey",
-      color: "text-01",
     }),
-    texts["body-01"],
+    baseTimeSelectorContainer,
+  ],
+  disabledContainer: [
+    sprinkles({ backgroundColor: "bg-lightgrey" }),
+    baseTimeSelectorContainer,
     {
-      width: 90,
-      position: "relative",
-      borderRadius: 8,
-      borderWidth: 1,
-      borderStyle: "solid",
-      padding: "8px 18px",
+      cursor: "default",
+      ":hover": {
+        filter: "none",
+      },
     },
   ],
   dropdown: [

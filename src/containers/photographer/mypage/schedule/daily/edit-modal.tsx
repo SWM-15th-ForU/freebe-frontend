@@ -37,11 +37,34 @@ const EditModal = ({
   unit: TimeUnitType;
   baseSchedule: BaseScheduleType;
 }) => {
+  const current = DateTime.now();
+
+  const getStartTime = () => {
+    const nextHour = current
+      .plus({
+        minute:
+          unit === "SIXTY_MINUTES"
+            ? 60 - current.minute
+            : 30 - (current.minute % 30),
+      })
+      .startOf("minute");
+    const startTimeLimit =
+      unit === "SIXTY_MINUTES"
+        ? DateTime.now().set({ hour: 22, minute: 0 })
+        : DateTime.now().set({ hour: 23, minute: 0 });
+    return nextHour <= startTimeLimit ? nextHour : startTimeLimit;
+  };
+
+  const defaultStartTime = getStartTime();
+
   const defaultSchedule: DailyScheduleValue = {
     date: DateTime.fromJSDate(date),
     scheduleId: 0,
-    startTime: DateTime.fromObject({ hour: 12 }),
-    endTime: DateTime.fromObject({ hour: 13 }),
+    startTime: defaultStartTime,
+    endTime: DateTime.fromObject({
+      hour: unit === "SIXTY_MINUTES" ? 22 : 23,
+      minute: 0,
+    }),
     scheduleStatus: "OPEN",
   };
   const STATUS_LIST: ScheduleStatusType[] = ["OPEN", "CLOSED", "CONFIRMED"];
@@ -55,6 +78,17 @@ const EditModal = ({
   useEffect(() => {
     setScheduleValue(initValue || defaultSchedule);
   }, [date, initValue]);
+
+  const isStarted =
+    scheduleValue.date.set({
+      hour: scheduleValue.startTime.hour,
+      minute: scheduleValue.startTime.minute,
+    }) <= current;
+  const isDone =
+    scheduleValue.date.set({
+      hour: scheduleValue.endTime.hour,
+      minute: scheduleValue.endTime.minute,
+    }) <= current;
 
   async function handleSubmit() {
     setIsSubmitting(true);
@@ -122,37 +156,58 @@ const EditModal = ({
       </div>
       <Divider style={{ width: "100%" }} />
       <div>
+        {isDone && (
+          <InfoCaption
+            information="이미 완료된 스케줄이므로 수정이 불가능합니다."
+            container={{ marginBottom: 8 }}
+          />
+        )}
         <SegmentedControl
           data={STATUS_LIST.map((status) => {
             return { value: status, label: statusNames[status] };
           })}
           value={scheduleValue.scheduleStatus}
           onChange={updateStatus}
+          disabled={isStarted}
           color="var(--mantine-primary-color-filled)"
         />
-        <InfoCaption
-          information={
-            scheduleValue.scheduleStatus === "OPEN"
-              ? "스케줄을 저장하면 해당 시간대에 고객이 예약을 신청할 수 있습니다."
-              : "스케줄을 저장하면 해당 시간대에 고객이 예약을 신청할 수 없습니다."
-          }
-          container={{ marginTop: 8 }}
-        />
+        {!isDone && (
+          <InfoCaption
+            information={
+              scheduleValue.scheduleStatus === "OPEN"
+                ? "스케줄을 저장하면 해당 시간대에 고객이 예약을 신청할 수 있습니다."
+                : "스케줄을 저장하면 해당 시간대에 고객이 예약을 신청할 수 없습니다."
+            }
+            container={{ marginTop: 8 }}
+          />
+        )}
       </div>
       <div className={modalStyles.timeWrapper}>
         <span>시작 시간</span>
         <TimeSelector
           time={scheduleValue.startTime.toFormat("HH:mm:ss")}
           setTime={(newTime) => updateTime(newTime, "startTime")}
+          minTime={
+            current.hasSame(scheduleValue.date, "day")
+              ? current.toFormat("HH:mm:ss")
+              : undefined
+          }
           maxTime={scheduleValue.endTime.toFormat("HH:mm:ss")}
           unit={unit}
+          disabled={isStarted}
         />
         <span>~</span>
         <span>종료 시간</span>
         <TimeSelector
           time={scheduleValue.endTime.toFormat("HH:mm:ss")}
           setTime={(newTime) => updateTime(newTime, "endTime")}
-          minTime={scheduleValue.startTime.toFormat("HH:mm:ss")}
+          minTime={
+            current.hasSame(scheduleValue.date, "day") &&
+            scheduleValue.startTime < current
+              ? current.toFormat("HH:mm:ss")
+              : scheduleValue.startTime.toFormat("HH:mm:ss")
+          }
+          disabled={isDone}
           unit={unit}
         />
       </div>
@@ -167,14 +222,16 @@ const EditModal = ({
             style={{ flex: 1 }}
           />
         )}
-        <CustomButton
-          size="md"
-          styleType="primary"
-          title="저장하기"
-          onClick={handleSubmit}
-          loading={isSubmitting}
-          style={{ flex: 1 }}
-        />
+        {!isDone && (
+          <CustomButton
+            size="md"
+            styleType="primary"
+            title="저장하기"
+            onClick={handleSubmit}
+            loading={isSubmitting}
+            style={{ flex: 1 }}
+          />
+        )}
       </div>
     </Modal>
   );
