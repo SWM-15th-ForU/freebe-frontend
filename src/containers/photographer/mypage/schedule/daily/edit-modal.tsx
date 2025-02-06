@@ -156,7 +156,7 @@ const EditModal = ({
       </div>
       <Divider style={{ width: "100%" }} />
       <div>
-        {isDone && (
+        {isDone && initValue && (
           <InfoCaption
             information="이미 완료된 스케줄이므로 수정이 불가능합니다."
             container={{ marginBottom: 8 }}
@@ -171,7 +171,7 @@ const EditModal = ({
           disabled={isStarted}
           color="var(--mantine-primary-color-filled)"
         />
-        {!isDone && (
+        {(!isDone || !initValue) && (
           <InfoCaption
             information={
               scheduleValue.scheduleStatus === "OPEN"
