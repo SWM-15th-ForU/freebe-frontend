@@ -67,8 +67,11 @@ const BaseSchedule = ({
             </button>
           </div>
           <Collapse in={opened}>
+            <InfoCaption
+              information="각 요일을 클릭해 휴무일로 변경할 수 있습니다."
+              container={{ marginTop: 12 }}
+            />
             <div className={scheduleStyles.body}>
-              <InfoCaption information="각 요일을 클릭해 휴무일로 변경할 수 있습니다." />
               {daysArray.map((day) => (
                 <DaySchedule day={day} unit={unit} key={day} />
               ))}

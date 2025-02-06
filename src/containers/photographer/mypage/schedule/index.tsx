@@ -1,15 +1,17 @@
-import { TimeUnitType } from "calender-types";
+import { BaseScheduleForm, TimeUnitType } from "calender-types";
 import { Divider } from "@mantine/core";
+import QueryProviders from "@/containers/common/query-providers";
 import BaseSchedule from "./base";
 import TimeBlock from "./time-block";
 import { scheduleStyles } from "./schedule.css";
+import DailySchedule from "./daily";
 
 const PhotographerSchedule = ({
   unit,
   currentSchedule,
 }: {
   unit: TimeUnitType;
-  currentSchedule: any;
+  currentSchedule: BaseScheduleForm;
 }) => {
   return (
     <div className={scheduleStyles.container}>
@@ -17,7 +19,9 @@ const PhotographerSchedule = ({
       <Divider />
       <BaseSchedule unit={unit} currentSchedule={currentSchedule} />
       <Divider />
-      <div>날짜별 스케줄</div>
+      <QueryProviders>
+        <DailySchedule baseSchedule={currentSchedule} unit={unit} />
+      </QueryProviders>
     </div>
   );
 };

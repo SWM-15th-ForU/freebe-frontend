@@ -11,7 +11,8 @@ export async function getCurrentBaseSchedule(): Promise<BaseScheduleForm> {
     .json<{ data: BaseScheduleResponse }>();
   return data.reduce((acc, item) => {
     acc[item.dayOfWeek] = {
-      ...item,
+      endTime: item.endTime,
+      startTime: item.startTime,
       isOff: item.operationStatus === "INACTIVE",
     };
     return acc;

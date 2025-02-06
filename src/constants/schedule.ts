@@ -1,4 +1,4 @@
-import { DaysType } from "calender-types";
+import { DaysType, ScheduleStatusType } from "calender-types";
 
 export const daysArray: DaysType[] = [
   "MONDAY",
@@ -18,4 +18,10 @@ export const dayNames: { [key in DaysType]: string } = {
   FRIDAY: "금",
   SATURDAY: "토",
   SUNDAY: "일",
+};
+
+export const statusNames: { [key in ScheduleStatusType]: string } = {
+  CLOSED: "예약 중지",
+  OPEN: "추가 오픈",
+  CONFIRMED: "촬영 확정",
 };

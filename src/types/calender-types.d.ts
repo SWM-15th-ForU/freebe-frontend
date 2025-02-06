@@ -1,4 +1,7 @@
 declare module "calender-types" {
+  import { DateTime } from "luxon";
+
+  type ScheduleStatusType = "CONFIRMED" | "OPEN" | "CLOSED";
   type TimeUnitType = "THIRTY_MINUTES" | "SIXTY_MINUTES";
   type DaysType =
     | "MONDAY"
@@ -25,4 +28,22 @@ declare module "calender-types" {
     endTime: string;
     operationStatus: "ACTIVE" | "INACTIVE";
   }[];
+
+  type DailyScheduleResponse = {
+    scheduleId: number;
+    scheduleStatus: ScheduleStatusType;
+    date: string;
+    startTime: string;
+    endTime: string;
+  }[];
+
+  type DailyScheduleList = DailyScheduleValue[];
+
+  interface DailyScheduleValue {
+    scheduleStatus: ScheduleStatusType;
+    startTime: DateTime;
+    endTime: DateTime;
+    date: DateTime;
+    scheduleId: number;
+  }
 }

@@ -9,12 +9,14 @@ const TimeSelector = ({
   minTime,
   maxTime,
   unit,
+  disabled,
 }: {
   time: string;
   setTime: (newTime: string) => void;
   minTime?: string;
   maxTime?: string;
   unit: TimeUnitType;
+  disabled?: boolean;
 }) => {
   const hours = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -52,9 +54,21 @@ const TimeSelector = ({
   }
 
   return (
-    <Menu closeOnItemClick={false} withArrow position="bottom">
+    <Menu
+      disabled={disabled}
+      closeOnItemClick={false}
+      withArrow
+      position="bottom"
+    >
       <Menu.Target>
-        <button className={timeSelectorStyles.container} type="button">
+        <button
+          className={
+            disabled
+              ? timeSelectorStyles.disabledContainer
+              : timeSelectorStyles.container
+          }
+          type="button"
+        >
           {timeValue.toFormat("HH:mm")}
         </button>
       </Menu.Target>
