@@ -62,8 +62,8 @@ const EditModal = ({
     scheduleId: 0,
     startTime: defaultStartTime,
     endTime: DateTime.fromObject({
-      hour: unit === "SIXTY_MINUTES" ? 22 : 23,
-      minute: 0,
+      hour: 23,
+      minute: unit === "SIXTY_MINUTES" ? 0 : 30,
     }),
     scheduleStatus: "OPEN",
   };
