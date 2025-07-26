@@ -45,3 +45,39 @@ export const carouselStyles = styleVariants({
     },
   },
 });
+
+export const commonModalStyles = styleVariants({
+  content: {
+    borderRadius: 16,
+    padding: "0px 16px 16px 16px",
+  },
+  header: {
+    padding: 30,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  body: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+  title: [
+    texts["headline-02"],
+    sprinkles({
+      color: "text-point",
+    }),
+  ],
+  info: [
+    texts["body-02"],
+    sprinkles({
+      color: "text-02",
+    }),
+  ],
+  close: {
+    position: "absolute",
+    top: 25,
+    right: 10,
+  },
+});
