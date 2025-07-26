@@ -6,7 +6,6 @@ import { footerStyles } from "./footer.css";
 const ServiceFooter = () => {
   const SERVICE_INFO = [
     { name: "이메일", content: "official@freebe.co.kr" },
-    { name: "전화번호", content: "070-8098-6471" },
     {
       name: "주소",
       content: "경기도 김포시 김포한강10로133번길 127, 530-AC03호",
